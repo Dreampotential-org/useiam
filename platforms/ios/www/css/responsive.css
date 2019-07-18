@@ -1,0 +1,60 @@
+@media (max-width:680px){
+    .modalLogo{
+        width: 115px;
+        top: -65px;
+    }
+    .modal-header{
+        padding: 25px 20px 20px;
+    }
+    .modal-heading{
+        font-size: 28px;
+    }
+    #signupModal .modal-heading{
+        padding: 15px 0;
+    }
+    input[type=text], input[type=email], input[type=tel], input[type=password]{
+        width: inherit;
+        width: -webkit-fill-available;
+        padding: 12px 30px;
+    }
+    .popupForm{
+        text-align: center;
+    }
+    .popupForm a{
+        font-size: 19px;
+    }
+    .btnSubmit{
+        padding: 10px;
+        font-size: 24px;
+        width:50%;
+    }
+    .signupNeed{
+        font-size: 19px;
+    }
+    #regForm{
+        width: 100%;
+    }
+    .modal-content{
+        padding: 0 15px 30px;
+    }
+    .secAction{
+        display: block;
+        bottom: 10%;
+    }
+    .actionBtn{
+        width:70%;
+        margin:5px 0;
+    }
+    .btnVideo,.btnEvent{
+        padding:0;
+    }
+    .actionBtn.btnSwitchCamera{
+        display: block;
+    }
+    .secAction.recorded,.secAction.recording{
+        padding: 5% 0 13% 0!important;
+    }
+    .actionBtn.btnSwitchCamera{
+        margin-bottom: 8%;
+    }
+}
