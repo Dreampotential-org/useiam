@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css"/>
+    <title>useIAM</title>
+</head>
+<body>
+<header>
+    <div class="mainContainer" style="position: relative">
+        <button class="btnBack"><img src="images/arrow_back_white.png" alt=""/></button>
+        <button class="btnInfo"><img src="images/nfo.png" alt=""/></button>
+        <nav class="toggleBar">
+            <span class="bar bar1"></span>
+            <span class="bar bar2"></span>
+            <span class="bar bar3"></span>
+        </nav>
+        <div class="logo"><img src="images/iam.png" alt="logo" width='100px'></div>
+    </div>
+</header>
+<div id="page-contents">
+    <div id="login">
+        <div class="mainContainer">
+            <ol class="chat">
+                <li class="other">
+                    <div class="avatar"><img src="images/iam.png" draggable="false"/></div>
+                    <div class="msg">
+                        <p>Meet IAM, your Personal Accountability Manager</p>
+                    </div>
+                </li>
+                <li class="other">
+                    <div class="avatar"><img src="images/iam.png" draggable="false"/></div>
+                    <div class="msg">
+                        <p>Are you new or would you like to sign in?</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="secAction">
+            <button class="actionBtn" id="signup">I am new</button>
+            <button class="actionBtn" id="signin">Sign in</button>
+        </div>
+    </div>
+
+    <div id="dashboard">
+        <div class="mainContainer">
+            <ol class="chat">
+                <li class="other">
+                    <div class="avatar"><img src="images/iam.png" draggable="false"/></div>
+                    <div class="msg">
+                        <p>Hi, what would you like to do?</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="secAction">
+            <button class="actionBtn btnVideo">Take a Video</button>
+            <button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>
+        </div>
+    </div>
+
+    <div id="takeVideo">
+        <div class="mainContainer">
+            <video width="100%" height="auto" autoplay="true" id="videoElement">
+
+            </video>
+        </div>
+        <div class="secAction recording" id="recordingAction">
+            <button class="actionBtn btnRecord">&nbsp;</button>
+            <button class="actionBtn btnSwitchCamera"><img width="20px" src="images/ico-refresh.png" alt=""/></button>
+        </div>
+    </div>
+
+    <div id="submitVideo">
+        <div class="mainContainer">
+            <video width="100%" height="auto">
+
+            </video>
+        </div>
+        <div class="secAction recorded">
+            <button class="actionBtn submitRecordingBtn">Submit Recording</button>
+        </div>
+    </div>
+
+    <div id="addEvent">
+        <div class="mainContainer">
+            <div class="eventBox">
+                <label>Enter a note</label>
+                <textarea placeholder="Add Description of Event"></textarea>
+            </div>
+        </div>
+        <div class="secAction">
+            <div class="mainContainer">
+                <button class="actionBtn" id="locationAuth">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success">
+        <div class="mainContainer">
+            <ol class="chat">
+                <li class="other">
+                    <div class="avatar"><img src="images/iam.png" draggable="false"/></div>
+                    <div class="msg">
+                        <p>What would you like to do?</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="secAction">
+            <button class="actionBtn btnVideo">Take a Video</button>
+            <button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal" id="signinModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-header">
+            <img src="images/modalLogo.png" alt="Modal Logo" class="modalLogo">
+            <h2 class="modal-heading">Hello, Please login</h2>
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <form class="popupForm">
+                    <input type="Email" placeholder="Email" id='signin_email'>
+                    <input type="password" placeholder="Password" id='signin_password'>
+                    <p class="textCenter"><a href="#">Forgot password?</a></p>
+                    <input type="button" value="Login" class="btnSubmit loginToDashboard">
+                </form>
+                <p class="textCenter signupNeed">Don’t have an account? <a href="#">SignUp</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="signupModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-header">
+            <!--<h2 class="modal-heading">Create an account</h2>-->
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <form id="regForm" action="#">
+                    <!-- One "tab" for each step in the form: -->
+                    <div class="tab user-info">
+                        <h2 class="modal-heading" style="padding: 30px 0">Create an account</h2>
+                        <input placeholder="Name" id='signup_name'
+                          oninput="this.className = ''" type="text">
+                        <input placeholder="Email" id='signup_email'
+                          oninput="this.className = ''" type="email">
+                        <input type="password" id='signup_password'
+                         placeholder="Password" oninput="this.className=''"/>
+                    </div>
+
+                    <div class="tab get-monitor">
+                        <h2 class="modal-heading" style="padding: 30px 0">Set your monitor</h2>
+                        <p>This is the person you trust that will help you through the recovery process and receive videos and GPS events</p>
+                        <input placeholder="Recover Email" id='monitor_email'
+                              oninput="this.className = ''" type="email">
+                    </div>
+
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button class="btnNext" type="button"
+                                id="nextBtn">Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Circles which indicates the steps of the form: -->
+                    <div style="text-align:center;margin-top:10px;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="LocationModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-header">
+            <img src="images/iam.png"  class="modalLogo">
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="textCenter">
+                    <img src="images/location.png" style="width: 100px">
+                    <h3 class="locAuthTitle">Location Permission</h3>
+                    <p class="locAuthDesc">Please allow permissions for accessing your location through GPS.</p>
+                    <button id='allowGPS' class="btnSubmit btnGradient submitEventBtn">Allow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="videoInfo">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <img src='/images/x.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                    <h3 class="locAuthTitle textCenter">Take a Video</h3>
+                    <p class="locAuthDesc">1) Ensure you are connected to wifi</p>
+                    <p class="locAuthDesc">2) When you click record:</p>
+                    <ul>
+                        <li>show your medicine prescription bottle to the camera and take pill.</li>
+                        <li>If not taking medication, submit short video of plans for a day</li>
+                    </ul>
+                    <div class="textCenter">
+                        <button class="btnSubmit btnGradient btnOk">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slideMenu">
+    <h4 class="textCenter"><a href="#">Logout</a></h4>
+</div>
+<!-- jQuery -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/gps.js"></script>
+<script src="js/video.js"></script>
+<script type="text/javascript">
+    $("#page-contents").children().hide();
+    //show the dashboard div if already logged in. or else show login div.
+    $('#page-contents').find('#login').show("slow");
+</script>
+</body>
+</html>

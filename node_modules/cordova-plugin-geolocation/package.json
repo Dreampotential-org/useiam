@@ -1,0 +1,179 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-geolocation@4.0.2",
+        "scope": null,
+        "escapedName": "cordova-plugin-geolocation",
+        "name": "cordova-plugin-geolocation",
+        "rawSpec": "4.0.2",
+        "spec": "4.0.2",
+        "type": "version"
+      },
+      "/home/arosen/useiam"
+    ]
+  ],
+  "_from": "cordova-plugin-geolocation@4.0.2",
+  "_hasShrinkwrap": false,
+  "_id": "cordova-plugin-geolocation@4.0.2",
+  "_inCache": true,
+  "_integrity": "",
+  "_location": "/cordova-plugin-geolocation",
+  "_nodeVersion": "12.3.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-geolocation_4.0.2_1562857582017_0.9880070269729475"
+  },
+  "_npmUser": {
+    "name": "sujan12",
+    "email": "piotrowski+npmjs.com@gmail.com"
+  },
+  "_npmVersion": "6.9.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-geolocation@4.0.2",
+    "scope": null,
+    "escapedName": "cordova-plugin-geolocation",
+    "name": "cordova-plugin-geolocation",
+    "rawSpec": "4.0.2",
+    "spec": "4.0.2",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-geolocation/-/cordova-plugin-geolocation-4.0.2.tgz",
+  "_shasum": "4668a01ae8a49e27c5515f8b81880983e96d7eb3",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-geolocation@4.0.2",
+  "_where": "/home/arosen/useiam",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-geolocation/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-geolocation",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Geolocation Plugin",
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-QGThnPKzPxESHkruZlpE0+5aFBVOet8al0vIJ7laSUOQHIC1dd/JY6peVIbtLboKi5Dap1wCKRubOqPqH8xcQA==",
+    "shasum": "4668a01ae8a49e27c5515f8b81880983e96d7eb3",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-geolocation/-/cordova-plugin-geolocation-4.0.2.tgz",
+    "fileCount": 19,
+    "unpackedSize": 122468,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJdJ1BuCRA9TVsSAnZWagAAGaoP/inbODK8moKxECyEHksU\nf/QyRnubDPh9NqNVdZYMSMB89RHO1yhAnx3ErNNufg0XgDe/YM9rXbDVwC9n\nP5avGRJu6OkgRJfWqoOQwb35s9ud0wrz/+P/L9WzGvrM2/tDGgnBPZrRmx0e\nQqFus0PXC7KYmjI0I8khbcNaLUGTXSG0wMdTW1WfIwN6I/fwYDn+4A6BVqBe\nv9YfoBNTpZ3Srh87mBnnq+hNKoZ1uwN1vYOA1NSGWcGJxO4q8eMAeMtew5bw\noXWvgP1asMuRXch15jKj5wqZCa5uehezMU2pGq85qslLkOdXjJCblase8cCV\nvz8L7mLEQC9M4k9wfwZGUJU4/10HOwC7VE5uOq2qeQbXrWbzPyLYJoz80U0E\nqAsW0GBzDbSYkq/e1LdVKOYc3TakPaoVh3+5oCkqlJ67N+4O+SiDVBYdbcYw\nVc2LZu4dHPpOnvxLJyYTI//ZRZKKHni1B4CpYdyu4fPPpbn/nOlizh2TpPuA\nGoaYGW344QbXfx0dDYx+A6raDY6A+hUFduFOuZj4dtcxxBp31NnnTFMK30ZE\n5ZOwL9IZ5M3fC2ZLkOLVuamWMdjWZoeOvgU6ItUghtW58vfekrXvdPpzPEQj\nE7T9RdC1Kvi7Zrlw/9eiIyQxkQIzhqQbKSwlt2kdm2YxrnEiAOxuO2gazdPz\nfe9+\r\n=S0lT\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "5.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-geolocation#readme",
+  "keywords": [
+    "cordova",
+    "geolocation",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+      "name": "anis",
+      "email": "anis.kadri@gmail.com"
+    },
+    {
+      "name": "bowserj",
+      "email": "bowserj@apache.org"
+    },
+    {
+      "name": "brodybits",
+      "email": "chris@brody.consulting"
+    },
+    {
+      "name": "cordovaowner",
+      "email": "apachecordovabot@gmail.com"
+    },
+    {
+      "name": "csantanapr",
+      "email": "csantana23@gmail.com"
+    },
+    {
+      "name": "dpogue",
+      "email": "darryl@dpogue.ca"
+    },
+    {
+      "name": "erisu",
+      "email": "erisu.dev@outlook.jp"
+    },
+    {
+      "name": "filmaj",
+      "email": "maj.fil@gmail.com"
+    },
+    {
+      "name": "jcesarmobile",
+      "email": "jcesarmobile@gmail.com"
+    },
+    {
+      "name": "macdonst",
+      "email": "simon.macdonald@gmail.com"
+    },
+    {
+      "name": "purplecabbage",
+      "email": "purplecabbage@gmail.com"
+    },
+    {
+      "name": "shazron",
+      "email": "shazron@gmail.com"
+    },
+    {
+      "name": "stevegill",
+      "email": "stevengill97@gmail.com"
+    },
+    {
+      "name": "sujan12",
+      "email": "piotrowski+npmjs.com@gmail.com"
+    },
+    {
+      "name": "surajpindoria",
+      "email": "suraj.pindoria@yahoo.com"
+    }
+  ],
+  "name": "cordova-plugin-geolocation",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-geolocation.git"
+  },
+  "scripts": {
+    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
+    "test": "npm run eslint"
+  },
+  "version": "4.0.2"
+}
