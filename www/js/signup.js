@@ -73,8 +73,9 @@ function handle_signup() {
 }
 
 
-signup_api({'name': 'aaron', 'email': 'asdfasdf@asdfasdf.com',
-            'password': 'asfasdfasdf', 'monitor_email': 'asdfasdfsd@adasd.com'});
+signup_api({'name': 'aaron', 'email': 'asdxxxxxxfasdf@asdfasdf.com',
+            'password': 'asfasdfasdf', 
+    'monitor_email': 'asdfasdfsd@adasd.com', 'days_sober': '1'});
 
 
 function signup_api(params) {
@@ -82,6 +83,7 @@ function signup_api(params) {
     alert(JSON.stringify(params));
     form.append("name", params.name);
     form.append("email", params.email);
+    form.append("days_sober", params.days_sober);
     form.append("password", params.password);
     form.append("notify_email", params.monitor_email);
 
@@ -98,7 +100,7 @@ function signup_api(params) {
 
     $.ajax(settings).done(function (response) {
         localStorage.setItem("session_id", JSON.parse(response).token)
-        console.log("user logged in")
+        //console.log("user logged in");
         //alert(response)
         //callback();
     }).fail(function(err) {
