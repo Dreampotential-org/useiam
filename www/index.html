@@ -7,7 +7,7 @@
     <!--CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css"/>
-    <title>useIAM</title>
+    <title>IAM</title>
 </head>
 <body>
 <header>
@@ -141,6 +141,41 @@
     </div>
 </div>
 
+<div class="modal" id="setmonitorModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-header">
+            <!--<h2 class="modal-heading">Create an account</h2>-->
+        </div>
+        <div class="modal-body">
+            <div class="modal-content">
+                <form id="regForm" action="#">
+                    <!-- One "tab" for each step in the form: -->
+                    <div class="tab get-monitor">
+                        <h2 class="modal-heading" style="padding: 30px 0">Set your monitor</h2>
+                        <p>This is the person you trust that will help you through the recovery process and receive videos and GPS events</p>
+                        <input placeholder="Recover Email" id='monitor_email'
+                              oninput="this.className = ''" type="email">
+                    </div>
+
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            <button class="btnNext" type="button"
+                                id="nextBtn">Submit</button>
+                        </div>
+                    </div>
+                    <!--
+                    <div style="text-align:center;margin-top:10px;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+                    -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal" id="signupModal">
     <div class="modal-overlay"></div>
     <div class="modal-wrapper modal-transition">
@@ -161,31 +196,35 @@
                          placeholder="Password" oninput="this.className=''"/>
                     </div>
 
+                    <!--
                     <div class="tab get-monitor">
                         <h2 class="modal-heading" style="padding: 30px 0">Set your monitor</h2>
                         <p>This is the person you trust that will help you through the recovery process and receive videos and GPS events</p>
                         <input placeholder="Recover Email" id='monitor_email'
                               oninput="this.className = ''" type="email">
                     </div>
+                    -->
 
                     <div style="overflow:auto;">
                         <div style="float:right;">
                             <button class="btnNext" type="button"
-                                id="nextBtn">Next</button>
+                                id="nextBtn">Submit</button>
                         </div>
                     </div>
-
-                    <!-- Circles which indicates the steps of the form: -->
+                    <!--
                     <div style="text-align:center;margin-top:10px;">
                         <span class="step"></span>
                         <span class="step"></span>
                     </div>
-
+                    -->
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <div class="modal" id="LocationModal">
     <div class="modal-overlay"></div>
@@ -230,7 +269,9 @@
 </div>
 
 <div class="slideMenu">
-    <h4 class="textCenter"><a href="#">Logout</a></h4>
+    <h4 class="textCenter">
+      <a href="#" id='logout'>Logout</a>
+    </h4>
 </div>
 <!-- jQuery -->
 

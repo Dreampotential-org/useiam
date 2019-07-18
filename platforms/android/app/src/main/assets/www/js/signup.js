@@ -73,8 +73,13 @@ function handle_signup() {
 }
 
 
+signup_api({'name': 'aaron', 'email': 'asdfasdf@asdfasdf.com',
+            'password': 'asfasdfasdf', 'monitor_email': 'asdfasdfsd@adasd.com'});
+
+
 function signup_api(params) {
     var form = new FormData();
+    alert(JSON.stringify(params));
     form.append("name", params.name);
     form.append("email", params.email);
     form.append("password", params.password);

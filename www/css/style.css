@@ -638,7 +638,6 @@ video::-webkit-media-controls {
 
 /* Hide all steps by default: */
 #regForm .tab {
-    display: none;
 }
 
 /* Make circles that indicate the steps of the form: */

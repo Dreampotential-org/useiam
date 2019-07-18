@@ -37,8 +37,9 @@ $("video").click(function() {
 
 //for singup form tabs
 var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+//showTab(currentTab); // Display the current tab
 
+/*
 function showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab");
@@ -54,6 +55,7 @@ function showTab(n) {
 
     fixStepIndicator(n)
 }
+*/
 
 function nextPrev(n) {
     // This function will figure out which tab to display
@@ -81,7 +83,7 @@ function nextPrev(n) {
         x[currentTab].style.display = "none";
     }
     // Otherwise, display the correct tab:
-    showTab(currentTab);
+    //showTab(currentTab);
 }
 
 function validateForm() {
