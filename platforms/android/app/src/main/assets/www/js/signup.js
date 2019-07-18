@@ -1,8 +1,11 @@
+//var SERVER = 'http://127.0.0.1:8001'
+var SERVER = 'https://dev.usepam.com'
 function init_login_stuff() {
     user_logged_in()
     signup_signin_buttons()
     handle_signup();
     handle_signin();
+    handle_logout();
 }
 
 function user_logged_in() {
@@ -13,9 +16,17 @@ function user_logged_in() {
     }
 }
 
+function handle_logout() {
+    $("#logout").on('click', function(e) {
+        localStorage.clear();
+        location.reload();
+    });
+}
+
 function handle_signup() {
 
     $("#signupModal #nextBtn").on('click', function(e) {
+
         // validate inputs
         var invalid = false;
         if($("#signup_name").val().trim().length == 0) {
@@ -38,57 +49,42 @@ function handle_signup() {
             invalid = true;
         }
 
-        if (invalid == false && $(".tab.user-info").is(":visible")) {
-            // hide signup info show monitor collection
-            $(".tab.user-info").hide()
-            $(".tab.get-monitor").show()
-            $("#signupModal #nextBtn").text("Submit")
+        if (invalid == true) {
             return
         }
-
-        if ($(".tab.get-monitor").is(":visible")) {
-            if($("#monitor_email").val().trim().length != 0) {
-                if (!(validateEmail($("#monitor_email").val().trim()))) {
-                    $("#monitor_email").addClass("invalid")
-                    invalid = true;
-                }
-            } else {
-                $("#monitor_email").addClass("invalid")
-                invalid = true;
-            }
-        }
-
-        if (invalid == true) {
+        if ($("#signupModal #nextBtn").hasClass("running")) {
+            alert("API COmmand in process")
             return
         }
 
         // create their account
+        $("#signupModal #nextBtn").addClass("running")
         signup_api({
             'name': $("#signup_name").val().trim(),
             'email': $("#signup_email").val().trim(),
             'password': $("#signup_password").val().trim(),
-            'monitor_email': $("#monitor_email").val().trim(),
+            'monitor_email': '',
+            'days_sober': '1',
         })
     });
 }
 
-
-signup_api({'name': 'aaron', 'email': 'asdfasdf@asdfasdf.com',
-            'password': 'asfasdfasdf', 'monitor_email': 'asdfasdfsd@adasd.com'});
-
+//signup_api({'name': 'aaron', 'email': 'sdxxfasdf@asdfasdf.com',
+//            'password': 'asfasdfasdf',
+//    'monitor_email': 'asdfasdfsd@adasd.com', 'days_sober': '1'});
 
 function signup_api(params) {
     var form = new FormData();
-    alert(JSON.stringify(params));
     form.append("name", params.name);
     form.append("email", params.email);
+    form.append("days_sober", '1');
     form.append("password", params.password);
     form.append("notify_email", params.monitor_email);
 
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://dev.usepam.com/api/create-user/",
+      "url": SERVER + "/api/create-user/",
       "method": "POST",
       "processData": false,
       "contentType": false,
@@ -97,11 +93,24 @@ function signup_api(params) {
     }
 
     $.ajax(settings).done(function (response) {
+        $("#signupModal #nextBtn").removeClass("running")
+        var msg = JSON.parse(response).message
+        if (msg && 'User already exists' == msg) {
+            swal({
+                'title': 'Email already exists',
+                'text': '',
+                'icon': 'error',
+            });
+            return
+        }
         localStorage.setItem("session_id", JSON.parse(response).token)
-        console.log("user logged in")
-        //alert(response)
-        //callback();
+        console.log("user logged in");
+        //after successful login or signup show dashboard contents
+        showATab('dashboard');
+        //close modals
+        closeAllModals();
     }).fail(function(err) {
+        $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
         swal({
             'title': 'Error',
@@ -132,7 +141,7 @@ function login_api(email, password, callback) {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "https://dev.usepam.com/api/api-token-auth/",
+      "url": SERVER + "/api/api-token-auth/",
       "method": "POST",
       "processData": false,
       "contentType": false,

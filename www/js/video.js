@@ -11,6 +11,25 @@ function init_video_event() {
     });
 
     $("#videoInfo .btnOk").on('click', function(e) {
-        alert("Take video");
+        alert("Start take video")
+        var captureSuccess = function(mediaFiles) {
+            alert("SUCCESS")
+            var i, path, len;
+            for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                path = mediaFiles[i].fullPath;
+                // do something interesting with the file
+                alert(path)
+            }
+        };
+
+        // capture error callback
+        var captureError = function(error) {
+            alert(
+                'Error code: ' + error.code, null, 'Capture Error');
+        };
+
+        // start video capture
+        navigator.device.capture.captureVideo(
+            captureSuccess, captureError, {limit:1});
     });
 }

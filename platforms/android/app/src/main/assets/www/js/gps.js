@@ -39,7 +39,8 @@ function found_gps_or_timeout() {
             if (CURRENT_POSITION == null && CURRENT_POSITION_LOW == null) {
                 console.log("No GPS Signal. Try again");
             } else {
-
+                alert(JSON.stringify(CURRENT_POSITION))
+                alert(JSON.stringify(CURRENT_POSITION_LOW))
                 swal({
                     title: "GPS Location Found",
                     text: "Now, enter event and submit",
@@ -51,9 +52,6 @@ function found_gps_or_timeout() {
             counter++;
         }, 200);
     }, 20);
-
-
-
 }
 
 
