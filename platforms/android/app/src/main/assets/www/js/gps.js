@@ -20,7 +20,61 @@ function init_gps_event() {
         start_gps()
         found_gps_or_timeout();
     });
+
+
+    $("#locationAuth").on('click', function(e) {
+        api_gps_checkin();
+    });
 }
+
+function api_gps_checkin() {
+    var form = new FormData();
+    form.append("msg", $("#addEvent textarea").val());
+
+    if (CURRENT_POSITION != null) {
+        form.append("lat", CURRENT_POSITION.coords.latitude);
+        form.append("lng", CURRENT_POSITION.coords.longitude);
+    } else {
+        form.append("lat", CURRENT_POSITION_LOW.coords.latitude);
+        form.append("lng", CURRENT_POSITION_LOW.coords.longitude);
+    }
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+       "headers": {
+       "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + "/api/gps-checkin/",
+      "method": "POST",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+    $.ajax(settings).done(function (response) {
+        swal({
+                title: "Good job!",
+                text: "Gps and Note submitted successfully!",
+                showCancelButton: false,
+                confirmButtonText: "ok",
+                allowOutsideClick: false,
+                type: "success",
+        })
+        showATab('dashboard');
+        //close modals
+        closeAllModals();
+        showMenuBar();
+    }).fail(function(err) {
+        swal({
+            'title': 'Error',
+            'text': 'Try again',
+            'icon': 'error',
+        });
+
+    });
+}
+
 
 function found_gps_or_timeout() {
     $('#LocationModal').removeClass('is-visible');
@@ -39,8 +93,8 @@ function found_gps_or_timeout() {
             if (CURRENT_POSITION == null && CURRENT_POSITION_LOW == null) {
                 console.log("No GPS Signal. Try again");
             } else {
-                alert(JSON.stringify(CURRENT_POSITION))
-                alert(JSON.stringify(CURRENT_POSITION_LOW))
+                //alert(JSON.stringify(CURRENT_POSITION))
+                //alert(JSON.stringify(CURRENT_POSITION_LOW))
                 swal({
                     title: "GPS Location Found",
                     text: "Now, enter event and submit",

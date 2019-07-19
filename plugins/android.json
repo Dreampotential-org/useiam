@@ -15,6 +15,9 @@
     },
     "cordova-plugin-media-capture": {
       "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.useiam.useiam"
     }
   },
   "dependent_plugins": {
