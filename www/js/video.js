@@ -19,6 +19,8 @@ function init_video_event() {
                 path = mediaFiles[i].fullPath;
                 // do something interesting with the file
                 alert(path)
+                api_video_checkin(path);
+
             }
         };
 
@@ -32,4 +34,42 @@ function init_video_event() {
         navigator.device.capture.captureVideo(
             captureSuccess, captureError, {limit:1});
     });
+}
+
+
+function api_video_checkin(video_path) {
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+        alert("Finished!")
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+
+    var uri = encodeURI(SERVER + "/api/video/");
+    var options = new FileUploadOptions();
+    options.fileKey = "video";
+    options.fileName = fileURL.substr(video_path.lastIndexOf('/')+1);
+    options.mimeType = "application/octet-stream";
+
+    var headers = {
+        'Authorization': "Token " + localStorage.getItem("session_id")
+    };
+
+    options.headers = headers;
+
+    var ft = new FileTransfer();
+    ft.onprogress = function(progressEvent) {
+        if (progressEvent.lengthComputable) {
+            loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+        } else {
+            loadingStatus.increment();
+        }
+    };
+    ft.upload(fileURL, uri, win, fail, options);
 }
