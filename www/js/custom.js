@@ -6,10 +6,10 @@ function init() {
 
 
 
-$('#locationAuth').on('click', function(e) {
-  e.preventDefault();
-  $('#LocationModal').addClass('is-visible');
-});
+//$('#locationAuth').on('click', function(e) {
+//  e.preventDefault();
+//  $('#LocationModal').addClass('is-visible');
+//});
 $('.modal-overlay').on('click', function(e) {
   $('.modal').removeClass('is-visible');
 });
@@ -165,10 +165,9 @@ $('.submitRecordingBtn').on('click',function(e){
         }, 1000);
 });
 
+/*
 $('.submitEventBtn').on('click',function(e){
     //hide info button if visible
-
-
     closeAllModals();
     showATab('success');
 
@@ -185,6 +184,7 @@ $('.submitEventBtn').on('click',function(e){
                 appendTo(parentDiv.find('#success .chat')).show("slow");
         }, 1000);
 });
+*/
 
 
 
