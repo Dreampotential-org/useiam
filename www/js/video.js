@@ -28,6 +28,7 @@ function init_video_event() {
                 'Error code: ' + error.code, null, 'Capture Error');
         };
 
+        alert("STarting video recording")
         // start video capture
         navigator.device.capture.captureVideo(
             captureSuccess, captureError, {limit:1});
@@ -51,7 +52,7 @@ function api_video_checkin(mediaFile) {
 
     var uri = encodeURI(SERVER + "/api/video-upload/");
     var options = new FileUploadOptions();
-    options.fileKey = "file";
+    options.fileKey = "video";
     options.fileName = mediaFile.name
     options.mimeType = mediaFile.type
     options.contentType = "multipart/form-data";
