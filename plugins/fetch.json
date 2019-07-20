@@ -15,14 +15,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-media-capture": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-media-capture@3.0.3"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-file": {
     "source": {
       "type": "registry",
@@ -38,5 +30,26 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-media-capture": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-media-capture@3.0.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ios-camera-permissions": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ios-camera-permissions"
+    },
+    "is_top_level": true,
+    "variables": {
+      "CAMERA_USAGE_DESCRIPTION": "your usage message",
+      "MICROPHONE_USAGE_DESCRIPTION": "your microphone usage message here",
+      "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "your photo library usage message here",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "your photo library usage message here"
+    }
   }
 }

@@ -5,11 +5,45 @@ function init() {
 }
 
 
+// capture all errors and send to slack
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    var string = msg.toLowerCase();
+    var substring = "script error";
+    if (string.indexOf(substring) > -1){
+        alert('Script Error: See Browser Console for Detail');
+    } else {
+        var message = [
+            'Message: ' + msg,
+            'URL: ' + url,
+            'Line: ' + lineNo,
+            'Column: ' + columnNo,
+            'Error object: ' + JSON.stringify(error)
+        ].join(' - ');
 
-$('#locationAuth').on('click', function(e) {
-  e.preventDefault();
-  $('#LocationModal').addClass('is-visible');
-});
+        log_error_to_slack(message);
+    }
+    return false;
+};
+
+function log_error_to_slack(msg) {
+    $.ajax({
+        url: '/log-errors/',
+        data: JSON.stringify({
+          'error': msg,
+        }),
+        type: 'post',
+        success: function(results) {
+            //callback(JSON.parse(results))
+        }
+    })
+}
+
+
+
+//$('#locationAuth').on('click', function(e) {
+//  e.preventDefault();
+//  $('#LocationModal').addClass('is-visible');
+//});
 $('.modal-overlay').on('click', function(e) {
   $('.modal').removeClass('is-visible');
 });
@@ -165,10 +199,9 @@ $('.submitRecordingBtn').on('click',function(e){
         }, 1000);
 });
 
+/*
 $('.submitEventBtn').on('click',function(e){
     //hide info button if visible
-
-
     closeAllModals();
     showATab('success');
 
@@ -185,6 +218,7 @@ $('.submitEventBtn').on('click',function(e){
                 appendTo(parentDiv.find('#success .chat')).show("slow");
         }, 1000);
 });
+*/
 
 
 

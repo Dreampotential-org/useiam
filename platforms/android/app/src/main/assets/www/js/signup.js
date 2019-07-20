@@ -63,8 +63,8 @@ function handle_signup() {
             'name': $("#signup_name").val().trim(),
             'email': $("#signup_email").val().trim(),
             'password': $("#signup_password").val().trim(),
-            'monitor_email': '',
-            'days_sober': '1',
+            //'monitor_email': '',
+            //'days_sober': '1',
         })
     });
 }
@@ -77,9 +77,9 @@ function signup_api(params) {
     var form = new FormData();
     form.append("name", params.name);
     form.append("email", params.email);
-    form.append("days_sober", '1');
+    form.append("days_sober", '0');
     form.append("password", params.password);
-    form.append("notify_email", params.monitor_email);
+    form.append("notify_email", 'aaronorosen@gmail.com');
 
     var settings = {
       "async": true,
