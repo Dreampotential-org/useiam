@@ -51,5 +51,13 @@
       "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "your photo library usage message here",
       "PHOTOLIBRARY_USAGE_DESCRIPTION": "your photo library usage message here"
     }
+  },
+  "cordova-ios-plugin-no-export-compliance": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-ios-plugin-no-export-compliance"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-ios-plugin-no-export-compliance",
+        "scope": null,
+        "escapedName": "cordova-ios-plugin-no-export-compliance",
+        "name": "cordova-ios-plugin-no-export-compliance",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/arosen/useiam"
+    ]
+  ],
+  "_from": "cordova-ios-plugin-no-export-compliance@latest",
+  "_id": "cordova-ios-plugin-no-export-compliance@0.0.5",
+  "_inCache": true,
+  "_location": "/cordova-ios-plugin-no-export-compliance",
+  "_nodeVersion": "8.2.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-ios-plugin-no-export-compliance-0.0.5.tgz_1502354503920_0.26012215157970786"
+  },
+  "_npmUser": {
+    "name": "mikaoelitiana",
+    "email": "mikaoelitiana@gmail.com"
+  },
+  "_npmVersion": "5.3.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-ios-plugin-no-export-compliance",
+    "scope": null,
+    "escapedName": "cordova-ios-plugin-no-export-compliance",
+    "name": "cordova-ios-plugin-no-export-compliance",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-ios-plugin-no-export-compliance/-/cordova-ios-plugin-no-export-compliance-0.0.5.tgz",
+  "_shasum": "1768b5d5df931bf372e91d39bb9e1390e19da2ac",
+  "_shrinkwrap": null,
+  "_spec": "cordova-ios-plugin-no-export-compliance",
+  "_where": "/home/arosen/useiam",
+  "author": {
+    "name": "mikaoelitiana"
+  },
+  "bugs": {
+    "url": "https://github.com/mikaoelitiana/cordova-ios-plugin-no-export-compliance/issues"
+  },
+  "cordova": {
+    "id": "cordova-ios-plugin-no-export-compliance",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "description": "This plugin sets ITSAppUsesNonExemptEncryption to false in *-Info.plist file",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-oHa+SmsMJ4xo4uOgXoQHa7hE0C+I/MSYNxNQYXktVTx8czMpXqV5OnZbTUE/kA4qM/l7XDdxRPeVL8SxIPmA7A==",
+    "shasum": "1768b5d5df931bf372e91d39bb9e1390e19da2ac",
+    "tarball": "https://registry.npmjs.org/cordova-ios-plugin-no-export-compliance/-/cordova-ios-plugin-no-export-compliance-0.0.5.tgz"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "4a7ff6647ce4b2d2df6fe245d99857093246f2eb",
+  "homepage": "https://github.com/mikaoelitiana/cordova-ios-plugin-no-export-compliance#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "BSD-3",
+  "maintainers": [
+    {
+      "name": "mikaoelitiana",
+      "email": "mikaoelitiana@gmail.com"
+    }
+  ],
+  "name": "cordova-ios-plugin-no-export-compliance",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikaoelitiana/cordova-ios-plugin-no-export-compliance.git"
+  },
+  "version": "0.0.5"
+}

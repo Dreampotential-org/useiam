@@ -21,6 +21,9 @@
     },
     "cordova-plugin-ios-camera-permissions": {
       "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-ios-plugin-no-export-compliance": {
+      "PACKAGE_NAME": "com.useiam.useiam"
     }
   },
   "dependent_plugins": {

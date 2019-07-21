@@ -15,6 +15,7 @@
   "dependencies": {
     "cordova-android": "^8.0.0",
     "cordova-ios": "^5.0.1",
+    "cordova-ios-plugin-no-export-compliance": "0.0.5",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.0.2",
@@ -36,7 +37,8 @@
         "MICROPHONE_USAGE_DESCRIPTION": "your microphone usage message here",
         "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "your photo library usage message here",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": "your photo library usage message here"
-      }
+      },
+      "cordova-ios-plugin-no-export-compliance": {}
     },
     "platforms": [
       "android"
