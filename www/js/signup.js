@@ -1,5 +1,5 @@
-var SERVER = 'http://127.0.0.1:8001'
-//var SERVER = 'https://dev.usepam.com'
+//var SERVER = 'http://127.0.0.1:8001'
+var SERVER = 'https://dev.usepam.com'
 function init_login_stuff() {
     user_logged_in()
     signup_signin_buttons()
