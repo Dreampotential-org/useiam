@@ -37,11 +37,26 @@ function init_video_event() {
 
 
 function api_video_checkin(mediaFile) {
+
+    swal({
+        title: "0%",
+        text: "Video uploading please wait.",
+        icon: "info",
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+    });
+
     function win(r) {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
         alert("Finished!")
+        swal({
+          title: "Good job!",
+          text: "Video submitted successfully!",
+          icon: "success",
+        });
     }
 
     function fail(error) {
@@ -67,8 +82,11 @@ function api_video_checkin(mediaFile) {
 
     var ft = new FileTransfer();
     ft.onprogress = function(progressEvent) {
+
         if (progressEvent.lengthComputable) {
             loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+            $(".swal-title").text(
+                parseInt(progressEvent.loaded/progressEvent.total*100) + "%")
         } else {
             loadingStatus.increment();
         }
