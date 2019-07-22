@@ -1,5 +1,5 @@
-var SERVER = 'http://127.0.0.1:8001'
-//var SERVER = 'https://dev.usepam.com'
+//var SERVER = 'http://127.0.0.1:8001'
+var SERVER = 'https://dev.usepam.com'
 function init_login_stuff() {
     user_logged_in()
     signup_signin_buttons()
@@ -171,6 +171,7 @@ function signup_api(params) {
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
+	alert(err)
         swal({
             'title': 'Error',
             'text': 'Invalid email or password',

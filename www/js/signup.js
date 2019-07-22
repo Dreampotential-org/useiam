@@ -171,6 +171,7 @@ function signup_api(params) {
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
+	alert(err)
         swal({
             'title': 'Error',
             'text': 'Invalid email or password',

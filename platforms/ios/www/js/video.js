@@ -82,6 +82,9 @@ function api_video_checkin(mediaFile) {
 
     var ft = new FileTransfer();
     ft.onprogress = function(progressEvent) {
+       $(".swal-title").text(
+         parseInt(progressEvent.loaded/progressEvent.total*100) + "%")
+	return
 
         if (progressEvent.lengthComputable) {
             loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
