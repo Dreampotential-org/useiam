@@ -2,6 +2,7 @@ function init() {
     init_login_stuff();
     init_gps_stuff()
     init_video_event();
+    init_monitor()
 }
 
 
@@ -38,35 +39,12 @@ function log_error_to_slack(msg) {
     })
 }
 
-
-
-//$('#locationAuth').on('click', function(e) {
-//  e.preventDefault();
-//  $('#LocationModal').addClass('is-visible');
-//});
 $('.modal-overlay').on('click', function(e) {
   $('.modal').removeClass('is-visible');
 });
 $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
     $(this).toggleClass('toggleClose');
-});
-
-
-//For Firefox we have to handle it in JavaScript
-var vids = $("video");
-$.each(vids, function(){
-       this.controls = false;
-});
-//Loop though all Video tags and set Controls as false
-
-$("video").click(function() {
-  //console.log(this);
-  if (this.paused) {
-    this.play();
-  } else {
-    this.pause();
-  }
 });
 
 //for singup form tabs
@@ -156,23 +134,6 @@ function fixStepIndicator(n) {
 /*****************SWAPPING PAGE CONTENTS HERE******************/
 var parentDiv = $('#page-contents');
 
-//show dashboard after login or signup
-/*$('.loginToDashboard').on('click',function(e){
-    //validate login or signup here
-
-    //after successful login or signup show dashboard contents
-    showATab('dashboard');
-
-    //hide info button if visible
-
-
-    //close modals
-    closeAllModals();
-
-});
-*/
-
-
 $('.btnRecord').on('click',function(e){
     showATab('submitVideo');
     //hide info button if visible
@@ -181,8 +142,6 @@ $('.btnRecord').on('click',function(e){
 
 $('.submitRecordingBtn').on('click',function(e){
     //hide info button if visible
-
-
     showATab('success');
 
     //removing old notifications
@@ -198,29 +157,6 @@ $('.submitRecordingBtn').on('click',function(e){
                 appendTo(parentDiv.find('#success .chat')).show("slow");
         }, 1000);
 });
-
-/*
-$('.submitEventBtn').on('click',function(e){
-    //hide info button if visible
-    closeAllModals();
-    showATab('success');
-
-    //removing old notifications
-    $('ol.chat li:not(:first-child)').remove();
-    //showing notifications
-    $('<li class="notification" style="display: none"> <div class="msg"> <p>Event Added!</p> </div> </li>').
-        appendTo(parentDiv.find('#success .chat')).show("slow");
-    setTimeout(
-        function()
-        {
-            $('<li class="other" style="display: none"><div class="avatar"><img src="images/avater.png" draggable="false"/></div><div class="msg">' +
-            '<p>Your event was submitted successfully!</p> </div> </li>').
-                appendTo(parentDiv.find('#success .chat')).show("slow");
-        }, 1000);
-});
-*/
-
-
 
 var backBtn = $('.btnBack');
 var toggleBar = $('.toggleBar');
@@ -281,6 +217,7 @@ function closeAllModals(){
     $('#signupModal').removeClass("is-visible");
     $('#LocationModal').removeClass("is-visible");
     $('#videoInfo').removeClass('is-visible');
+    $('#setmonitorModal').removeClass('is-visible');
 }
 
 

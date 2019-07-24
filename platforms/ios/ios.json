@@ -98,6 +98,9 @@
     },
     "cordova-ios-plugin-no-export-compliance": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {},
@@ -352,6 +355,14 @@
       "clobbers": [
         "navigator.device.capture"
       ]
+    },
+    {
+      "id": "cordova-plugin-android-permissions.Permissions",
+      "file": "plugins/cordova-plugin-android-permissions/www/permissions-dummy.js",
+      "pluginId": "cordova-plugin-android-permissions",
+      "clobbers": [
+        "cordova.plugins.permissions"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -359,6 +370,7 @@
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-ios-camera-permissions": "1.2.0",
-    "cordova-ios-plugin-no-export-compliance": "0.0.5"
+    "cordova-ios-plugin-no-export-compliance": "0.0.5",
+    "cordova-plugin-android-permissions": "1.0.0"
   }
 }

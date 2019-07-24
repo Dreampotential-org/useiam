@@ -21,6 +21,65 @@ function handle_logout() {
         localStorage.clear();
         location.reload();
     });
+
+    $("#setMonitor").on('click', function(e) {
+        closeAllModals();
+        $('#setmonitorModal').addClass('is-visible');
+    });
+
+    $("#setmonitorModal #nextBtn").on('click', function(e) {
+        do_set_monitor();
+    });
+
+
+
+}
+
+
+function do_set_monitor() {
+    if($("#monitor_email").val().trim().length != 0) {
+        if (!(validateEmail($("#monitor_email").val().trim()))) {
+            $("#monitor_email").addClass("invalid")
+            return
+        }
+    }
+
+    var form = new FormData();
+    form.append("notify_email", $("#monitor_email").val().trim());
+    alert( $("#monitor_email").val().trim())
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+       "headers": {
+       "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + "/api/profile/",
+      "method": "PUT",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+
+    $.ajax(settings).done(function (response) {
+        var msg = JSON.parse(response).message
+        //after successful login or signup show dashboard contents
+        showATab('dashboard');
+        //close modals
+        closeAllModals();
+    }).fail(function(err) {
+        $("#setmonitorModal #nextBtn").removeClass("running")
+        console.log(err);
+        swal({
+            'title': 'Error',
+            'text': '',
+            'icon': 'error',
+        });
+
+    });
+
+
 }
 
 function handle_signup() {
@@ -77,9 +136,9 @@ function signup_api(params) {
     var form = new FormData();
     form.append("name", params.name);
     form.append("email", params.email);
-    form.append("days_sober", '0');
+    //form.append("days_sober", '0');
     form.append("password", params.password);
-    form.append("notify_email", 'aaronorosen@gmail.com');
+    //form.append("notify_email", 'aaronorosen@gmail.com');
 
     var settings = {
       "async": true,
@@ -112,6 +171,7 @@ function signup_api(params) {
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
+	alert(err)
         swal({
             'title': 'Error',
             'text': 'Invalid email or password',

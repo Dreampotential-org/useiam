@@ -21,66 +21,8 @@ function handle_logout() {
         localStorage.clear();
         location.reload();
     });
-
-    $("#setMonitor").on('click', function(e) {
-        closeAllModals();
-        $('#setmonitorModal').addClass('is-visible');
-    });
-
-    $("#setmonitorModal #nextBtn").on('click', function(e) {
-        do_set_monitor();
-    });
-
-
-
 }
 
-
-function do_set_monitor() {
-    if($("#monitor_email").val().trim().length != 0) {
-        if (!(validateEmail($("#monitor_email").val().trim()))) {
-            $("#monitor_email").addClass("invalid")
-            return
-        }
-    }
-
-    var form = new FormData();
-    form.append("notify_email", $("#monitor_email").val().trim());
-    alert( $("#monitor_email").val().trim())
-
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-       "headers": {
-       "Authorization": "Token " + localStorage.getItem("session_id"),
-      },
-      "url": SERVER + "/api/profile/",
-      "method": "PUT",
-      "processData": false,
-      "contentType": false,
-      "mimeType": "multipart/form-data",
-      "data": form
-    }
-
-    $.ajax(settings).done(function (response) {
-        var msg = JSON.parse(response).message
-        //after successful login or signup show dashboard contents
-        showATab('dashboard');
-        //close modals
-        closeAllModals();
-    }).fail(function(err) {
-        $("#setmonitorModal #nextBtn").removeClass("running")
-        console.log(err);
-        swal({
-            'title': 'Error',
-            'text': '',
-            'icon': 'error',
-        });
-
-    });
-
-
-}
 
 function handle_signup() {
 
@@ -122,21 +64,20 @@ function handle_signup() {
             'name': $("#signup_name").val().trim(),
             'email': $("#signup_email").val().trim(),
             'password': $("#signup_password").val().trim(),
-            //'monitor_email': '',
-            //'days_sober': '1',
+            'days_sober': $("#days_sober").val().trim(),
         })
     });
 }
 
-//signup_api({'name': 'aaron', 'email': 'sdxxfasdf@asdfasdf.com',
-//            'password': 'asfasdfasdf',
-//    'monitor_email': 'asdfasdfsd@adasd.com', 'days_sober': '1'});
-
 function signup_api(params) {
+
+    if (params.days_sober == null) {
+        params.days_sober = '0'
+    }
     var form = new FormData();
     form.append("name", params.name);
     form.append("email", params.email);
-    //form.append("days_sober", '0');
+    form.append("days_sober", params.days_sober);
     form.append("password", params.password);
     //form.append("notify_email", 'aaronorosen@gmail.com');
 
