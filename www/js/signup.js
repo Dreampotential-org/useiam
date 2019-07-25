@@ -109,6 +109,14 @@ function signup_api(params) {
         showATab('dashboard');
         //close modals
         closeAllModals();
+
+        get_profile_info(function(msg) {
+            if (!(msg.notify_email)) {
+                show_set_monitor();
+            }
+        });
+
+
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
