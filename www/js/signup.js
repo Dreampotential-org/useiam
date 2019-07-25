@@ -139,6 +139,14 @@ function handle_signin() {
             showATab('dashboard');
             //close modals
             closeAllModals();
+
+            get_profile_info(function(msg) {
+                if (!(msg.notify_email)) {
+                    show_set_monitor();
+                }
+            });
+
+
         })
     })
 }
