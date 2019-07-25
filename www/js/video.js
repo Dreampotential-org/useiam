@@ -43,7 +43,7 @@ function api_video_checkin(mediaFile) {
         alert("Finished!");
     }
     function fail(error) {
-       
+       console.log(error);
         console.log("upload error source " + error.source);
         console.log("upload error target " + error.target);
         alert("An error has occurred: Code = " + error.code);
@@ -61,17 +61,46 @@ function api_video_checkin(mediaFile) {
         'Authorization': "Token " + localStorage.getItem("session_id")
     };
     options.headers = headers;
-    var ft = new FileTransfer();
-    ft.onprogress = function(progressEvent) {
-        console.log(progressEvent);
-        if (progressEvent.lengthComputable) {
-            // do not open this comment because we donot have loadingstatus
-            // loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
-            console.log(progressEvent.loaded / progressEvent.total);
-        } else {
-            // loadingStatus.increment();
-        }
-    };
-    // alert(mediaFile.fullPath)
-    ft.upload(mediaFile.fullPath, uri, win, fail, options);
+/* Developer */
+    var type = window.PERSISTENT;
+   var size = 500*1024*1024;//500 MB
+   var ft = new FileTransfer();
+
+    window.requestFileSystem(type, size, successCallback, errorCallback);
+    function successCallback(fs) {
+       fs.root.getFile("DCIM/Camera/"+mediaFile.name,{ create: false, exclusive: false }, function(fileEntry) {
+          fileEntry.file(function(file) {
+             ft.onprogress = function(progressEvent) {
+                if (progressEvent.lengthComputable) {
+                    // do not open this comment because we donot have loadingstatus
+                    // loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+                    console.log(progressEvent.loaded / progressEvent.total);
+                } else {
+                    // loadingStatus.increment();
+                }
+            };
+            ft.upload(mediaFile.fullPath, uri, win, fail, options);
+          }, errorCallbackFileEntry);
+       }, errorCallbackGetFile);
+    }
+ 
+    function errorCallbackGetFile(error) {
+        console.log("errorCallbackGetFile ",error);
+       alert("ERROR: " + error.code)
+    }
+
+    function errorCallbackFileEntry(error) {
+        console.log("errorCallbackFileEntry ",error);
+       alert("ERROR: " + error.code)
+    }
+    function errorCallback(error) {
+        console.log("errorCallback ",error);
+       alert("ERROR: " + error.code)
+    }
+
+/* Developer End */
+
+
+
+   
 }
