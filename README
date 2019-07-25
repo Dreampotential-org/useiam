@@ -1,2 +1,9 @@
 Release:
 https://codeburst.io/publish-a-cordova-generated-android-app-to-the-google-play-store-c7ae51cccdd5
+
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore android.keystore /home/arosen/useiam/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk   android-app-key
+
+
+zipalign -v 4 /home/arosen/useiam/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk  app-release.apk
+
