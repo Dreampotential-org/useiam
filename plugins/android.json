@@ -10,6 +10,9 @@
     "cordova-ios-plugin-no-export-compliance": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
+    "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "com.useiam.useiam"
+    },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
@@ -23,9 +26,6 @@
       "PACKAGE_NAME": "com.useiam.useiam"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.useiam.useiam"
-    },
-    "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.useiam.useiam"
     }
   },
