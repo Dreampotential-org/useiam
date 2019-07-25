@@ -7,22 +7,25 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.useiam.useiam"
-    },
-    "cordova-plugin-geolocation": {
+    "cordova-ios-plugin-no-export-compliance": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
-    "cordova-plugin-media-capture": {
+    "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
     "cordova-plugin-ios-camera-permissions": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
-    "cordova-ios-plugin-no-export-compliance": {
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.useiam.useiam"
     }
   },

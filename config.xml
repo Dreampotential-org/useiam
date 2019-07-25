@@ -55,6 +55,7 @@
 	<icon src="res/icon/ios/icon-83.5@2x.png" width="167" height="167"/>
     </platform>
 
+	<preference name="DisallowOverscroll" value="true" />
 	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
 	    <string>Need location to perform gps checkin</string>
 	</edit-config>

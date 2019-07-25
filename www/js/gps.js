@@ -14,6 +14,8 @@ function init_gps_event() {
         showATab('addEvent');
         //hide info button if visible
         $("#LocationModal").addClass("is-visible")
+        // clear text area content
+        $("#addEvent textarea").val("")
     });
 
     $("#allowGPS").on("click", function(e) {
@@ -94,8 +96,6 @@ function found_gps_or_timeout() {
                 console.log("No GPS Signal. Try again");
             } else {
                 // XXX These values are not getting correctly set on android.
-                alert(JSON.stringify(CURRENT_POSITION))
-                alert(JSON.stringify(CURRENT_POSITION_LOW))
                 swal({
                     title: "GPS Location Found",
                     text: "Now, enter event and submit",

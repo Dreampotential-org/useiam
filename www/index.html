@@ -151,6 +151,7 @@
         </div>
         <div class="modal-body">
             <div class="modal-content">
+                <img src='images/x.png' class='close' style='margin-top:-15px;width:30px;height:30px;cursor:pointer' />
                 <form id="regForm" action="#">
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab get-monitor">
@@ -196,6 +197,8 @@
                           oninput="this.className = ''" type="email">
                         <input type="password" id='signup_password'
                          placeholder="Password" oninput="this.className=''"/>
+                        <input type="number" id='days_sober'
+                         placeholder="Days Sober" oninput="this.className=''"/>
                     </div>
 
                     <!--
@@ -288,6 +291,7 @@
 <script src="js/signup.js"></script>
 <script src="js/gps.js"></script>
 <script src="js/video.js"></script>
+<script src="js/monitor.js"></script>
 <script type="text/javascript">
     $("#page-contents").children().hide();
     //show the dashboard div if already logged in. or else show login div.

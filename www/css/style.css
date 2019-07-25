@@ -381,6 +381,7 @@ header{
 /*Form*/
 input[type=text],
 input[type=email],
+input[type=number],
 input[type=tel],
 input[type=password]{
     font-size: 24px;
@@ -400,7 +401,7 @@ input[type=password]{
 
 }
 
-input[type=text], input[type=email], input[type=tel], input[type=password]{
+input[type=number], input[type=text], input[type=email], input[type=tel], input[type=password]{
     width: inherit;
     width: -webkit-fill-available;
     padding: 12px 30px;
@@ -597,7 +598,7 @@ video::-webkit-media-controls {
     	width: 120px;
     	top: -60px;
     }
-    input[type="text"], input[type="email"], input[type="password"] {
+    input[type="text"], input[type="email"], input[type="password"], input[type='number'] {
     	font-size: 20px;
     }
 }

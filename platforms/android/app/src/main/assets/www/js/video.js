@@ -28,7 +28,6 @@ function init_video_event() {
                 'Error code: ' + error.code, null, 'Capture Error');
         };
 
-        alert("STarting video recording")
         // start video capture
         navigator.device.capture.captureVideo(
             captureSuccess, captureError, {limit:1});
@@ -41,38 +40,38 @@ function api_video_checkin(mediaFile) {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-        alert("Finished!")
+        alert("Finished!");
     }
-
     function fail(error) {
-        alert("An error has occurred: Code = " + error.code);
+       
         console.log("upload error source " + error.source);
         console.log("upload error target " + error.target);
+        alert("An error has occurred: Code = " + error.code);
     }
-
     var uri = encodeURI(SERVER + "/api/video-upload/");
     var options = new FileUploadOptions();
     options.fileKey = "video";
-    options.fileName = mediaFile.name
-    options.mimeType = mediaFile.type
+    options.fileName = mediaFile.name;
+    options.mimeType = mediaFile.type;
     options.contentType = "multipart/form-data";
-    options.httpMethod = "POST";
-    options.chunkedMode = false
 
+    options.httpMethod = "POST";
+    options.chunkedMode = false;
     var headers = {
         'Authorization': "Token " + localStorage.getItem("session_id")
     };
-
     options.headers = headers;
-
     var ft = new FileTransfer();
     ft.onprogress = function(progressEvent) {
+        console.log(progressEvent);
         if (progressEvent.lengthComputable) {
-            loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+            // do not open this comment because we donot have loadingstatus
+            // loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+            console.log(progressEvent.loaded / progressEvent.total);
         } else {
-            loadingStatus.increment();
+            // loadingStatus.increment();
         }
     };
-    alert(mediaFile.fullPath)
+    // alert(mediaFile.fullPath)
     ft.upload(mediaFile.fullPath, uri, win, fail, options);
 }
