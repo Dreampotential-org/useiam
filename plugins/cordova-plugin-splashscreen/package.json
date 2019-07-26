@@ -1,0 +1,185 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-splashscreen@5.0.3",
+        "scope": null,
+        "escapedName": "cordova-plugin-splashscreen",
+        "name": "cordova-plugin-splashscreen",
+        "rawSpec": "5.0.3",
+        "spec": "5.0.3",
+        "type": "version"
+      },
+      "/home/arosen/useiam"
+    ]
+  ],
+  "_from": "cordova-plugin-splashscreen@5.0.3",
+  "_hasShrinkwrap": false,
+  "_id": "cordova-plugin-splashscreen@5.0.3",
+  "_inCache": true,
+  "_integrity": "",
+  "_location": "/cordova-plugin-splashscreen",
+  "_nodeVersion": "12.3.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-splashscreen_5.0.3_1562087680236_0.6635237149222113"
+  },
+  "_npmUser": {
+    "name": "sujan12",
+    "email": "piotrowski+npmjs.com@gmail.com"
+  },
+  "_npmVersion": "6.9.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-splashscreen@5.0.3",
+    "scope": null,
+    "escapedName": "cordova-plugin-splashscreen",
+    "name": "cordova-plugin-splashscreen",
+    "rawSpec": "5.0.3",
+    "spec": "5.0.3",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-5.0.3.tgz",
+  "_shasum": "02820472771c3e10b43ceedd54b0a1e4674efa6d",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-splashscreen@5.0.3",
+  "_where": "/home/arosen/useiam",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-splashscreen/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-splashscreen",
+    "platforms": [
+      "android",
+      "ubuntu",
+      "ios",
+      "windows",
+      "browser"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Splashscreen Plugin",
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-rnoDXMDfzoeHDBvsnu6JmzDE/pV5YJCAfc5hYX/Mb2BIXGgSjFJheByt0tU6kp3Wl40tSyFX4pYfBwFblBGyRg==",
+    "shasum": "02820472771c3e10b43ceedd54b0a1e4674efa6d",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-5.0.3.tgz",
+    "fileCount": 44,
+    "unpackedSize": 229374,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJdG5EBCRA9TVsSAnZWagAASlkP/096r799oA4GBTZmIZBJ\n/F65rahqvnUBEPad7b/JaveXvyuxNh3qOBkI0yHY2LUGlmnBQrOzQpzACKsJ\niSKPw1hTMba4uzOJJxo/eHN9dDAdn8IqDNKsyzgiJvwqlC8FkA01/gArOh+6\nm7q8TMiRuO0ux8KhI1qIe0YgRcbjbPYUUBw6nUKLYStGVb7IgZpSHzQTVucA\nOONVZZ7l6Z/x4mdaMkA2Mcb+tHC1NQhYz4YeWujCEn2vOUTXq8U+LwaSsP4K\n2Cj2ku+losS3545pq7hB+bTqmcB9ARnPt6biK+NZyUJZDDdO5cUSuywLynco\nnV/6OI0dcXXz4oieMe4jbdCZPdv2V4huMDV7c0IaKBwVavzNkiltD1RIbaZE\nlwtFA4u6yBNGeG5WVxlLlfExo5pNnXq2JiRNMbAwLQrMR04MwXJgLnX0Xb/5\nJaWiRJD3HX7ZeP79422H4LXTvjB73fcOzrfKUdKZ2Pj/vfPcZcAFU+NxEZ8a\nmK2kC/OYz7ryYqkkQsEa/7sxgrdWGtSTjbT3wnRFlY44YdpQnKwriypx4s7J\nDNwptFvIAW+/ShwfePout91sYwXvWCTRE0j99vaYn+n2N5K8OVg9gvxG4vqi\nh9rZayAKp1o5dinjtbTqKbkcqDHPRGdi95SHJpFzCShPicJ42T5n11/4Nwjs\nPm7j\r\n=kfcS\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova-android": ">=3.6.0"
+      },
+      "4.0.0": {
+        "cordova-android": ">=3.6.0",
+        "cordova-windows": ">=4.4.0"
+      },
+      "6.0.0": {
+        "cordova": ">100"
+      }
+    },
+    "node": ">=6.0.0"
+  },
+  "homepage": "https://cordova.apache.org/",
+  "keywords": [
+    "cordova",
+    "splashscreen",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "license": "Apache-2.0",
+  "maintainers": [
+    {
+      "name": "anis",
+      "email": "anis.kadri@gmail.com"
+    },
+    {
+      "name": "bowserj",
+      "email": "bowserj@apache.org"
+    },
+    {
+      "name": "brodybits",
+      "email": "chris@brody.consulting"
+    },
+    {
+      "name": "cordovaowner",
+      "email": "apachecordovabot@gmail.com"
+    },
+    {
+      "name": "csantanapr",
+      "email": "csantana23@gmail.com"
+    },
+    {
+      "name": "dpogue",
+      "email": "darryl@dpogue.ca"
+    },
+    {
+      "name": "erisu",
+      "email": "erisu.dev@outlook.jp"
+    },
+    {
+      "name": "filmaj",
+      "email": "maj.fil@gmail.com"
+    },
+    {
+      "name": "jcesarmobile",
+      "email": "jcesarmobile@gmail.com"
+    },
+    {
+      "name": "kotikov.vladimir",
+      "email": "kotikov.vladimir@gmail.com"
+    },
+    {
+      "name": "macdonst",
+      "email": "simon.macdonald@gmail.com"
+    },
+    {
+      "name": "purplecabbage",
+      "email": "purplecabbage@gmail.com"
+    },
+    {
+      "name": "shazron",
+      "email": "shazron@gmail.com"
+    },
+    {
+      "name": "stevegill",
+      "email": "stevengill97@gmail.com"
+    },
+    {
+      "name": "sujan12",
+      "email": "piotrowski+npmjs.com@gmail.com"
+    },
+    {
+      "name": "surajpindoria",
+      "email": "suraj.pindoria@yahoo.com"
+    }
+  ],
+  "name": "cordova-plugin-splashscreen",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-splashscreen.git"
+  },
+  "scripts": {
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests",
+    "test": "npm run jshint"
+  },
+  "types": "./types/index.d.ts",
+  "version": "5.0.3"
+}

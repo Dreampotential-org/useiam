@@ -16,7 +16,11 @@ function init_video_event() {
             for (i = 0, len = mediaFiles.length; i < len; i += 1) {
                 path = mediaFiles[i].fullPath;
                 // do something interesting with the file
-                api_video_checkin(mediaFiles[i]);
+                if (window.cordova.platformId == "android") {
+                    api_video_checkin_android(mediaFiles[i]);
+                } else {
+                    api_video_checkin(mediaFiles[i])
+                }
 
             }
         };
@@ -34,7 +38,7 @@ function init_video_event() {
 }
 
 
-function api_video_checkin(mediaFile) {
+function api_video_checkin_android(mediaFile) {
     swal({
         title: "0%",
         text: "Video uploading please wait.",
@@ -104,5 +108,68 @@ function api_video_checkin(mediaFile) {
         console.log("errorCallback ",error);
        alert("ERROR: " + error.code)
     }
-
 }
+
+
+function api_video_checkin(mediaFile) {
+
+    swal({
+        title: "0%",
+        text: "Video uploading please wait.",
+        icon: "info",
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+    });
+
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+        swal({
+          title: "Good job!",
+          text: "Video submitted successfully!",
+          icon: "success",
+        });
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+
+    var uri = encodeURI(SERVER + "/api/video-upload/");
+    var options = new FileUploadOptions();
+    options.fileKey = "video";
+    options.fileName = mediaFile.name
+    options.mimeType = mediaFile.type
+    options.contentType = "multipart/form-data";
+    options.httpMethod = "POST";
+    options.chunkedMode = false
+
+    var headers = {
+        'Authorization': "Token " + localStorage.getItem("session_id")
+    };
+
+    options.headers = headers;
+
+    var ft = new FileTransfer();
+    ft.onprogress = function(progressEvent) {
+       $(".swal-title").text(
+         parseInt(progressEvent.loaded/progressEvent.total*100) + "%")
+	return
+
+        if (progressEvent.lengthComputable) {
+            loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+            $(".swal-title").text(
+                parseInt(progressEvent.loaded/progressEvent.total*100) + "%")
+        } else {
+            loadingStatus.increment();
+        }
+    };
+    ft.upload(mediaFile.fullPath, uri, win, fail, options);
+}
+
+
+

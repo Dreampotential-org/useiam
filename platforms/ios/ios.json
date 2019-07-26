@@ -19,6 +19,10 @@
             {
               "xml": "<feature name=\"Capture\"><param name=\"ios-package\" value=\"CDVCapture\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -100,6 +104,9 @@
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     },
     "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
@@ -363,6 +370,14 @@
       "clobbers": [
         "cordova.plugins.permissions"
       ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -371,6 +386,7 @@
     "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-ios-camera-permissions": "1.2.0",
     "cordova-ios-plugin-no-export-compliance": "0.0.5",
-    "cordova-plugin-android-permissions": "1.0.0"
+    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-splashscreen": "5.0.3"
   }
 }
