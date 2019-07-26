@@ -64,7 +64,6 @@ function do_set_monitor() {
 
     });
 }
-
 function get_profile_info(callback) {
     var settings = {
       "async": true,
@@ -83,6 +82,5 @@ function get_profile_info(callback) {
         var msg = JSON.parse(response)
         callback(msg)
     }).fail(function(err) {
-
     });
 }
