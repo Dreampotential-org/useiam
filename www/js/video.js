@@ -10,7 +10,63 @@ function init_video_event() {
         $("#videoInfo").addClass("is-visible")
     });
 
+    $('#upload_vid_form').submit(function(e) {
+        e.preventDefault();
+        var data = new FormData();
+        data.append("video", GLOBAL_FILE, GLOBAL_FILE.name);
+
+        var xhr = new XMLHttpRequest();
+        // xhr.withCredentials = true;
+        function updateProgress(e) {
+            if (e.lengthComputable) {
+                console.log(e.loaded)
+                console.log(e.loaded+  " / " + e.total)
+                $(".swal-title").text(parseInt(e.loaded/e.total*100) + "%")
+            }
+        }
+
+        xhr.upload.addEventListener('progress', updateProgress, false)
+        xhr.addEventListener("readystatechange", function() {
+            if (this.readyState === 4) {
+                if (this.status == 200) {
+                    swal({
+                      title: "Good job!",
+                      text: "Video submitted successfully!",
+                      icon: "success",
+                    });
+                    $("#overlay_loading").hide()
+                    $("#takeavideoModal").removeClass("is-visible")
+                } else {
+                    alert('data upload failed');
+                }
+            }
+        });
+        $("#overlay_loading").show()
+        xhr.open("POST", SERVER + "/api/video-upload/");
+        xhr.setRequestHeader(
+            "Authorization", "Token " + localStorage.getItem("session_id"))
+        xhr.send(data);
+    });
+
+    $('#upload-vid').on('change', function(e) {
+        e.preventDefault();
+        var file = e.target.files[0];
+        GLOBAL_FILE = file;
+        $("#upload_vid_form").submit()
+        swal({
+            title: "0%",
+            text: "Video uploading please wait.",
+            icon: "info",
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
+        });
+    });
     $("#videoInfo .btnOk").on('click', function(e) {
+        e.preventDefault();
+        $('#upload-vid').click()
+
+        return
         var captureSuccess = function(mediaFiles) {
             var i, path, len;
             for (i = 0, len = mediaFiles.length; i < len; i += 1) {

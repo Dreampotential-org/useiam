@@ -265,7 +265,11 @@
                         <li>If not taking medication, submit short video of plans for a day</li>
                     </ul>
                     <div class="textCenter">
+                      <form id='upload_vid_form' method='post' enctype="multipart/form-data">
+                      <input type="file" accept="video/*" id='upload-vid'
+                          capture="environment" style='display:none;'>
                         <button class="btnSubmit btnGradient btnOk">OK</button>
+                    </form>
                     </div>
                 </div>
             </div>
