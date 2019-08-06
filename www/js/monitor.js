@@ -5,9 +5,11 @@ function init_monitor() {
 
             // closes side menu
             $('.toggleBar').click()
-            if (msg.notify_email) {
-                $("#monitor_email").val(msg.notify_email)
+            $(".current-monitors").empty()
+            for(var monitor of msg.monitors) {
+                display_monitor(monitor)
             }
+
         })
     });
 
@@ -16,6 +18,33 @@ function init_monitor() {
     });
 }
 
+function display_monitor(monitor) {
+    $(".current-monitors").append(
+        "<div>" +
+            monitor + " - <a val='" + monitor +
+            "' class='remove-monitor' href='#'>remove</a></div>"
+    )
+
+    $(".remove-monitor").on('click', function(e) {
+        var remove_monitor = $(this).attr('val')
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, " + remove_monitor +
+            " will no longer get updates from you.",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            api_remove_monitor(remove_monitor)
+            swal("Monitor has been removed", {
+              icon: "success",
+            });
+          }
+        });
+    });
+}
 
 function show_set_monitor() {
     closeAllModals();
@@ -39,7 +68,8 @@ function do_set_monitor() {
        "headers": {
        "Authorization": "Token " + localStorage.getItem("session_id"),
       },
-      "url": SERVER + "/api/profile/",
+      // "url": SERVER + "/api/profile/",
+      "url": SERVER + "/api/add-monitor/",
       "method": "PUT",
       "processData": false,
       "contentType": false,
@@ -64,6 +94,40 @@ function do_set_monitor() {
 
     });
 }
+
+function api_remove_monitor(notify_email) {
+    var form = new FormData();
+    form.append("notify_email", notify_email);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+       "headers": {
+       "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + "/api/remove-monitor/",
+      "method": "PUT",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+
+    $.ajax(settings).done(function (response) {
+        var msg = JSON.parse(response).message
+        //after successful login or signup show dashboard contents
+        showATab('dashboard');
+        //close modals
+        closeAllModals();
+    }).fail(function(err) {
+        swal({
+            'title': 'Error',
+            'text': '',
+            'icon': 'error',
+        });
+
+    });
+}
+
 function get_profile_info(callback) {
     var settings = {
       "async": true,
@@ -82,5 +146,28 @@ function get_profile_info(callback) {
         var msg = JSON.parse(response)
         callback(msg)
     }).fail(function(err) {
+        console.log(err)
+    });
+}
+
+function list_monitors(callback) {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+       "headers": {
+       "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + "/api/list-monitors/",
+      "method": "GET",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+    }
+
+    $.ajax(settings).done(function (response) {
+        //var msg = JSON.parse(response)
+        callback(response)
+    }).fail(function(err) {
+        console.log(err)
     });
 }

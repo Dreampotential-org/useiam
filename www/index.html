@@ -155,17 +155,22 @@
                 <form id="regForm" action="#">
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab get-monitor">
-                        <h2 class="modal-heading" style="padding: 30px 0">Set your monitor</h2>
-                        <p>This is the person you trust that will help you through the recovery process and receive videos and GPS events</p>
-                        <input placeholder="Recover Email" id='monitor_email'
+                        <h2 class="modal-heading" style="padding: 10px 0">
+                          Set your monitor
+                        </h2>
+                        <p>These person you trust that will help you through the recovery process and receive videos / GPS events</p>
+                        <input placeholder="Add Monitor" id='monitor_email'
                               oninput="this.className = ''" type="email">
                     </div>
-
                     <div style="overflow:auto;">
                         <div style="float:right;">
                             <button class="btnNext" type="button"
-                                id="nextBtn">Set</button>
+                                id="nextBtn">Add</button>
                         </div>
+                    </div>
+                    <div>
+                        <div><b>Active Monitors:</b></div>
+                        <div class='current-monitors'></div>
                     </div>
                     <!--
                     <div style="text-align:center;margin-top:10px;">
