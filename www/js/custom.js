@@ -1,8 +1,27 @@
 function init() {
+    init_logo()
     init_login_stuff();
     init_gps_stuff()
     init_video_event();
     init_monitor()
+}
+
+
+function init_logo() {
+    var full = window.location.host
+    //window.location.host is subdomain.domain.com
+    var parts = full.split('.')
+    var sub = parts[0]
+    var domain = parts[1]
+    var type = parts[2]
+
+    if (sub == 'futures') {
+        $(".logo img").attr("src", 'img/futuresLogo.png')
+    }
+    if (sub == 'urbanrecovery') {
+        $(".logo img").attr("src", 'img/urbanRecover.png')
+    }
+
 }
 
 
