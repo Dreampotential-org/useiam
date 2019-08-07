@@ -19,7 +19,7 @@ function init_logo() {
         $(".logo").append("<img src='img/futuresLogo.png' />")
     }
     else if (sub == 'urbanrecovery') {
-        $(".logo").append("<img src='img/urbanRecovery.png' />")
+        $(".logo").append("<img src='img/urbanRecover.png' />")
         $(".logo img").css("width", '220px')
         $(".logo img").css("padding-top", '22px')
     } else {
