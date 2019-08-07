@@ -16,14 +16,15 @@ function init_logo() {
     var type = parts[2]
 
     if (sub == 'futures') {
-        $(".logo img").attr("src", 'img/futuresLogo.png')
+        $(".logo").append("<img src='img/futuresLogo.png' />")
     }
     else if (sub == 'urbanrecovery') {
+        $(".logo").append("<img src='img/ubanRecovery.png' />")
         $(".logo img").css("width", '220px')
         $(".logo img").css("padding-top", '22px')
-        $(".logo img").attr("src", 'img/urbanRecover.png')
     } else {
-        $(".logo img").attr("src", 'images/iam.png')
+        $(".logo").append("<img src='images/iam.png' />")
+        $(".logo img").css("width", '100px')
     }
     $(".logo img").show()
 }
