@@ -18,10 +18,14 @@ function init_logo() {
     if (sub == 'futures') {
         $(".logo img").attr("src", 'img/futuresLogo.png')
     }
-    if (sub == 'urbanrecovery') {
+    else if (sub == 'urbanrecovery') {
+        $(".logo img").css("width", '220px')
+        $(".logo img").css("padding-top", '22px')
         $(".logo img").attr("src", 'img/urbanRecover.png')
+    } else {
+        $(".logo img").attr("src", 'images/iam.png')
     }
-
+    $(".logo img").show()
 }
 
 
