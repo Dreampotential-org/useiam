@@ -1,6 +1,7 @@
 function init() {
     $("#signup_email").val(getUrlVars()['email'])
     signup_monitor()
+    login_monitor()
 }
 
 function getUrlVars() {
@@ -10,6 +11,51 @@ function getUrlVars() {
     });
     return vars;
 }
+
+function login_monitor() {
+    // create their account
+    $("#login").on('click', function(e) {
+        login_api($("#signin_email").val().trim(),
+                  $("#signin_password").val().trim(), function() {
+            swal({
+                'title': 'Login Success!',
+                'text': 'You will now be able to view video links from email',
+                'icon': 'success',
+            });
+        })
+    })
+}
+
+function login_api(email, password, callback) {
+    var form = new FormData();
+    form.append("username", email);
+    form.append("password", password);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": SERVER + "/api/api-token-auth/",
+      "method": "POST",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+
+    $.ajax(settings).done(function (response) {
+        localStorage.setItem("session_id", JSON.parse(response).token)
+        console.log("user logged in")
+        callback();
+    }).fail(function(err) {
+        swal({
+            'title': 'Error',
+            'text': 'Invalid email or password',
+            'icon': 'error',
+        });
+
+    });
+}
+
+
 
 
 function signup_monitor() {
