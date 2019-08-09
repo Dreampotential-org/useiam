@@ -154,8 +154,6 @@ function get_profile_info(callback) {
     });
 }
 
-get_profile_info(function(a) {});
-
 function list_monitors(callback) {
     var settings = {
       "async": true,

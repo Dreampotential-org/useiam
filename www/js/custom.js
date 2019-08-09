@@ -4,6 +4,7 @@ function init() {
     init_gps_stuff()
     init_video_event();
     init_monitor()
+    init_activity()
 }
 
 
@@ -194,8 +195,6 @@ function showBackButton(backTabID){
 
 backBtn.on('click',function(e){
     //hide info button if visible
-
-
     var tabToShow  = backBtn.id;
     showATab(tabToShow);
     showMenuBar();

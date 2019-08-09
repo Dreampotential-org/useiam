@@ -736,7 +736,7 @@ textarea:focus, input:focus,button:focus{
     background: linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));
 }
 /*hiding all divs*/
-div#login,div#dashboard,#takeVideo,#submitVideo,#addEvent{
+div#login,div#dashboard,#takeVideo,#submitVideo,#addEvent,#activity{
     display: none;
 }
 
