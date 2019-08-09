@@ -14,6 +14,7 @@ function init_video_event() {
         e.preventDefault();
         var data = new FormData();
         data.append("video", GLOBAL_FILE, GLOBAL_FILE.name);
+        data.append("source", window.location.host);
 
         var xhr = new XMLHttpRequest();
         // xhr.withCredentials = true;

@@ -62,13 +62,13 @@ function do_set_monitor() {
 
     var form = new FormData();
     form.append("notify_email", $("#monitor_email").val().trim());
+    form.append("source", window.location.host);
     var settings = {
       "async": true,
       "crossDomain": true,
        "headers": {
        "Authorization": "Token " + localStorage.getItem("session_id"),
       },
-      // "url": SERVER + "/api/profile/",
       "url": SERVER + "/api/add-monitor/",
       "method": "PUT",
       "processData": false,
@@ -79,6 +79,10 @@ function do_set_monitor() {
 
     $.ajax(settings).done(function (response) {
         var msg = JSON.parse(response).message
+        swal("Monitor has been added", {
+            icon: "success",
+        });
+
         //after successful login or signup show dashboard contents
         showATab('dashboard');
         //close modals
@@ -149,6 +153,8 @@ function get_profile_info(callback) {
         console.log(err)
     });
 }
+
+get_profile_info(function(a) {});
 
 function list_monitors(callback) {
     var settings = {
