@@ -4,7 +4,14 @@ function init_activity() {
         closeAllModals();
         showBackButton('dashboard');
         showATab('activity');
+        get_activity(function(resp) {
+            display_activities(resp.events)
+        });
     })
+    /* $("#viewActivity").click()
+    $(".toggleBar").click()
+    get_activity(function(resp) {  display_activities(resp.events) });
+    */
 }
 
 function get_activity(callback) {
@@ -14,7 +21,7 @@ function get_activity(callback) {
        "headers": {
        "Authorization": "Token " + localStorage.getItem("session_id"),
       },
-      "url": SERVER + "/api/activity/",
+      "url": SERVER + "/api/get-activity/",
       "method": "GET",
       "processData": false,
       "contentType": false,
@@ -25,6 +32,26 @@ function get_activity(callback) {
         var msg = JSON.parse(response)
         callback(msg)
     }).fail(function(err) {
+        alert("Got err")
         console.log(err)
     });
+}
+
+function display_activities(activities) {
+    for (var activity of activities) {
+        if (activity.type == 'gps') {
+            $(".activity-log").append(
+                "<div><span>" + activity.type + "</span> - " +
+                    "<span>" + activity.msg + "</span> - " +
+                    "<span>" + new Date(activity.created_at*1000) + "</span></div>"
+            )
+        }
+        if (activity.type == 'video') {
+            $(".activity-log").append(
+                "<div><span>" + activity.type + "</span> - " +
+                    "<span>" + activity.url + "</span> - " +
+                    "<span>" + new Date(activity.created_at*1000) + "</span></div>"
+            )
+        }
+    }
 }
