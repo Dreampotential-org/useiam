@@ -78,6 +78,7 @@ function signup_api(params) {
     form.append("days_sober", params.days_sober);
     form.append("password", params.password);
     //form.append("notify_email", 'aaronorosen@gmail.com');
+    form.append("source", window.location.host);
 
     var settings = {
       "async": true,
@@ -153,6 +154,7 @@ function login_api(email, password, callback) {
     var form = new FormData();
     form.append("username", email);
     form.append("password", password);
+    form.append("source", window.location.host);
     var settings = {
       "async": true,
       "crossDomain": true,
