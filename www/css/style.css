@@ -39,6 +39,7 @@ header{
     padding-top: 30px;
 }
 .toggleBar{
+	 display: none;
     cursor: pointer;
     width: 40px;
     margin-top: 25px;

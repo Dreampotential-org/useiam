@@ -6,6 +6,13 @@ function init() {
     init_video_event();
     init_monitor()
     init_activity()
+    init_display();
+}
+
+function init_display() {
+    if (localStorage.getItem("session_id")) {
+        $(".toggleBar").show()
+    }
 }
 
 function init_reset_password() {

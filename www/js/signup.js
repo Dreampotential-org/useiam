@@ -103,6 +103,8 @@ function signup_api(params) {
             return
         }
         localStorage.setItem("session_id", JSON.parse(response).token)
+        // show toggle bar
+        $(".toggleBar").show()
         console.log("user logged in");
         //after successful login or signup show dashboard contents
         showATab('dashboard');
@@ -169,6 +171,8 @@ function login_api(email, password, callback) {
     $.ajax(settings).done(function (response) {
         localStorage.setItem("session_id", JSON.parse(response).token)
         console.log("user logged in")
+        // show toggle bar
+        $(".toggleBar").show()
         callback();
     }).fail(function(err) {
         swal({
