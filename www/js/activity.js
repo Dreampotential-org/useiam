@@ -49,8 +49,12 @@ function display_activities(activities) {
         if (activity.type == 'video') {
             $(".activity-log").append(
                 "<div><span>" + activity.type + "</span> - " +
-                    "<span>" + activity.url + "</span> - " +
-                    "<span>" + new Date(activity.created_at*1000) + "</span></div>"
+                    "<span><a url=" +
+                            activity.url +
+                        " href='#'>Play</a></span> - " +
+                    "<span>" +
+                        new Date(activity.created_at * 1000) +
+                    "</span></div>"
             )
         }
     }

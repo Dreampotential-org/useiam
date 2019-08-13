@@ -18,8 +18,10 @@ function init_logo() {
 
     if (sub == 'futures') {
         $(".logo").append("<img src='img/futuresLogo.png' />")
-    }
-    else if (sub == 'urbanrecovery') {
+    } else if (true  || sub == 'pbbhw') {
+        $(".logo").append("<img src='img/pbbhw.png' />")
+        $(".logo img").css("width", '327px')
+    } else if (sub == 'urbanrecovery') {
         $(".logo").append("<img src='img/urbanRecover.png' />")
         $(".logo img").css("width", '220px')
         $(".logo img").css("padding-top", '22px')
@@ -27,6 +29,7 @@ function init_logo() {
         $(".logo").append("<img src='images/iam.png' />")
         $(".logo img").css("width", '100px')
     }
+
     $(".logo img").show()
 }
 
