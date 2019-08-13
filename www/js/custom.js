@@ -1,10 +1,15 @@
 function init() {
+    init_reset_password()
     init_logo()
     init_login_stuff();
     init_gps_stuff()
     init_video_event();
     init_monitor()
     init_activity()
+}
+
+function init_reset_password() {
+    $("#forgot_password").attr("href", SERVER + "/password_reset");
 }
 
 
