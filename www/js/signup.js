@@ -140,14 +140,11 @@ function handle_signin() {
             showATab('dashboard');
             //close modals
             closeAllModals();
-
             get_profile_info(function(msg) {
-                if (!(msg.notify_email)) {
+                if (!(msg.monitors.length)) {
                     show_set_monitor();
                 }
             });
-
-
         })
     })
 }
