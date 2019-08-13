@@ -18,7 +18,7 @@ function init_logo() {
 
     if (sub == 'futures') {
         $(".logo").append("<img src='img/futuresLogo.png' />")
-    } else if (true  || sub == 'pbbhw') {
+    } else if (sub == 'pbbhw') {
         $(".logo").append("<img src='img/pbbhw.png' />")
         $(".logo img").css("width", '327px')
     } else if (sub == 'urbanrecovery') {
