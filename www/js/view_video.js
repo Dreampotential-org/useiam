@@ -3,8 +3,30 @@ function init() {
         window.location = 'login.html'
     }
     $("#signup_email").val(getUrlVars()['email'])
-    //validate_video_and_token()
+
+    get_video_info()
+    init_feedback();
     load_video()
+}
+
+function init_feedback() {
+    console.log("INIT")
+    $("#send_feedback").on('click', function(e) {
+        var id = getUrlVars()['id'];
+        var user = getUrlVars()['user'];
+        $.ajax({
+            'type': "POST",
+            'url': SERVER + "/api/send-feedback/?token=" +
+                localStorage.getItem("session_id") + "&user=" + user +
+                "&id=" + id,
+            'data': {'message': $("#message").val()}}).done(function(resp) {
+
+                console.log(resp)
+
+                alert("DONE")
+            })
+
+    })
 }
 
 
@@ -17,14 +39,33 @@ function getUrlVars() {
     return vars;
 }
 
+function formatDate(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return date.toLocaleDateString("en-US") + " " + strTime;
+}
 
-function validate_video_and_token() {
+function get_video_info() {
     var id = getUrlVars()['id'];
     var user = getUrlVars()['user'];
-    $.get(SERVER + "/api/validate-token-and-video?token=" +
+    $.get(SERVER + "/api/get-video-info/?token=" +
         localStorage.getItem("session_id") + "&user=" + user +
         "&id=" + id, function(res) {
-        alert(res)
+        console.log(res)
+
+        $("#patient_name").text(res.owner_name)
+        $("#created_at").text(formatDate(new Date(res.created_at*1000)))
+
+        for(var message of res.feedback) {
+            $(".feedback_received").append(
+                "<div><b>" + message.user + "</b> - " + message.message + "</div>"
+            )
+        }
     })
 }
 
