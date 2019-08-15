@@ -150,7 +150,10 @@ function get_profile_info(callback) {
         var msg = JSON.parse(response)
         callback(msg)
     }).fail(function(err) {
+        console.log("ERR")
         console.log(err)
+        localStorage.clear();
+        location.reload();
     });
 }
 
