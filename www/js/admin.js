@@ -8,12 +8,38 @@ function init() {
             display_events(response.events)})
 }
 
+function init_street_view(e) {
+    var spot = {lat: parseFloat(e.lat), lng: parseFloat(e.lng)}
+
+    panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('gps-' + e.id),
+            {
+              position: spot,
+              pov: {heading: 165, pitch: 0},
+              zoom: 1
+            });
+
+    // Set up the map.
+    //map = new google.maps.Map(document.getElementById('map'), {
+    //  center: spot,
+    //  zoom: 16,
+    //  streetViewControl: false
+    //});
+    // Set the initial Street View camera to the center of the map
+
+}
+
 function display_events(events) {
 
     for(var e of events) {
 
         if (e.type == 'gps') {
-            $(".events").append("")
+            console.log(e)
+            $(".events").append(
+                formatDate((new Date(e.created_at * 1000))) +
+                "<div style='height:240px;width:320px;' id='gps-" + e.id + "'><div>"
+            )
+            init_street_view(e)
         }
 
         if (e.type == 'video') {

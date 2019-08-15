@@ -135,7 +135,7 @@ function start_gps() {
        //alert('ERROR(' + err.code + '): ' + err.message);
        //log_error_to_slack(
        //     'ERROR(' + err.code + '): ' + err.message);
-       init_gps()
+       start_gps()
     }
 
     geo_options = {
