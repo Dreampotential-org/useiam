@@ -7,7 +7,6 @@ body{
     height: 100vh;
     overflow-x: hidden;
     font-family: 'IBM Plex Sans', sans-serif;
-    background-image: url('../images/backgrounds/art-background-blank-951240.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -20,10 +19,7 @@ body::before{
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 188, 212, .70);
-    background: -webkit-linear-gradient(320deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
-    background: -o-linear-gradient(320deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
-    background: linear-gradient(130deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
+    background: #ffffff;
     z-index: -1;
 }
 a, a:hover{
@@ -51,7 +47,7 @@ header{
     height: 4px;
     width: 40px;
     margin-bottom: 7px;
-    background: #fff;
+    background: #000;
     display: block;
 }
 .toggleClose .bar1 {
