@@ -213,7 +213,12 @@ function showMenuBar(){
 
 function showATab(tabID){
     parentDiv.children().hide();
-    parentDiv.find('#'+tabID).show("fast");
+    parentDiv.find('#' + tabID).show("fast");
+
+    if (tabID == 'activity') {
+        showBackButton('dashboard');
+    }
+
     // show info button for specific tabs else hide it
     if(tabID == 'takeVideo'){
         showInfoBtn('videoInfo');

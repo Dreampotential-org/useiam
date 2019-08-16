@@ -8,6 +8,42 @@ function init_activity() {
             display_activities(resp.events)
         });
     })
+
+    $("body").delegate(".view-video", "click", function(e) {
+        showBackButton('activity');
+        var video_url = $(this).attr("url")
+        showATab('eventView');
+        $("#eventView .content").html(
+            '<video controls="" autoplay="" name="media" ' +
+            ' id="video" width="320" height="240"></video>'
+        )
+        var id = getUrlVars(video_url)['id']
+        var user = getUrlVars(video_url)['user']
+        $("#video").html(
+            '<source src=' + SERVER + '/api/review-video/?id=' + id +
+                '&user=' + user + '&token=' +
+                localStorage.getItem("session_id") + ' type="video/mp4">')
+
+    });
+
+
+    $("body").delegate(".view-gps", "click", function(e) {
+        showBackButton('activity');
+        showATab('eventView');
+        $("#eventView .content").html(
+            "<div id='gps-view' style='width:400px;height:400px;'></div>"
+        )
+        var spot = {lat: parseFloat($(this).attr("lat")),
+                    lng: parseFloat($(this).attr("lng"))}
+        var panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('gps-view'),
+                {
+                  position: spot,
+                  pov: {heading: 165, pitch: 0},
+                  zoom: 1
+                });
+    })
+
     /*
     $("#viewActivity").click()
     $(".toggleBar").click()
@@ -53,22 +89,40 @@ function formatDate(date) {
 function display_activities(activities) {
     for (var activity of activities) {
         if (activity.type == 'gps') {
+            console.log(activity)
             $(".activity-log").append(
-                "<div><span>" + activity.type + "</span> - " +
+                "<div><span>" +
+                    "<a href='#' class='view-gps' lat=" + activity.lat + " " +
+                        "lng=" + activity.lng + "> " +
+                        activity.type +
+                    "</a></span> - " +
                     "<span>" + activity.msg + "</span> - " +
-                    "<span>" + formatDate(new Date(activity.created_at*1000)) + "</span></div>"
+                    "<span>" +
+                        formatDate(new Date(activity.created_at*1000)) +
+                    "</span></div>"
             )
         }
         if (activity.type == 'video') {
             $(".activity-log").append(
-                "<div><span>" + activity.type + "</span> - " +
-                    "<span><a href=" +
-                            activity.url +
-                        ">Play</a></span> - " +
-                    "<span>" +
+                "<div><span><a url=" +
+                        activity.url +
+                    " href='#' class='view-video'>" +
+                    activity.type +
+                    "</a></span> - " +
+                     "<span>" +
                         formatDate(new Date(activity.created_at * 1000)) +
-                    "</span></div>"
+                     "</span></div>"
             )
         }
     }
+}
+
+
+function getUrlVars(url) {
+    var vars = {};
+    var parts = url.replace(
+        /[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
 }
