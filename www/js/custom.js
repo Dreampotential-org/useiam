@@ -7,6 +7,9 @@ function init() {
     init_monitor()
     init_activity()
     init_display();
+
+    // populates days sober in left side pannel
+    get_profile_info();
 }
 
 function init_display() {

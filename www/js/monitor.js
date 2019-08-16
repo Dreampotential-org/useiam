@@ -148,7 +148,10 @@ function get_profile_info(callback) {
 
     $.ajax(settings).done(function (response) {
         var msg = JSON.parse(response)
-        callback(msg)
+        localStorage.setItem("days_sober", msg.days_sober)
+        $("#sober_count").text(msg.days_sober + " Days Sober")
+        if (callback)
+            callback(msg)
     }).fail(function(err) {
         console.log("ERR")
         console.log(err)
