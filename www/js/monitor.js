@@ -133,6 +133,9 @@ function api_remove_monitor(notify_email) {
 }
 
 function get_profile_info(callback) {
+    if (!(localStorage.getItem("session_id"))) {
+        return
+    }
     var settings = {
       "async": true,
       "crossDomain": true,
