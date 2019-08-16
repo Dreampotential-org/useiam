@@ -8,7 +8,9 @@ function init_logo() {
 
     if (sub == 'futures') {
         $(".logo").append("<img src='img/futuresLogo.png' />")
-
+    } else if (sub == 'pbdwi') {
+        $(".logo").append("<img src='img/pbdwi.jpg' />")
+        $(".logo img").css("width", '115px')
     } else if (sub == 'beachcomber') {
         $(".logo").append("<img src='img/beachlogo.png' />")
         $(".logo img").css("width", '200px')
