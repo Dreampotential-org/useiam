@@ -29,7 +29,10 @@ body::before{
     right: 0;
     bottom: 0;
     left: 0;
-    background: #ffffff;
+    background: rgba(0, 188, 212, .70);
+    background: -webkit-linear-gradient(320deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
+    background: -o-linear-gradient(320deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
+    background: linear-gradient(130deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
     z-index: -1;
 }
 header{
@@ -63,7 +66,7 @@ header{
     height: 4px;
     width: 40px;
     margin-bottom: 7px;
-    background: #000;
+    background: #fff;
     display: block;
 }
 .toggleClose .bar1 {
