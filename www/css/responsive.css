@@ -39,11 +39,11 @@
     }
     .secAction{
         display: block;
-        bottom: 10%;
+        bottom: 1%;
     }
     .actionBtn{
         width:70%;
-        margin:5px 0;
+        margin:auto;
     }
     .btnVideo,.btnEvent{
         padding:0;
@@ -56,5 +56,25 @@
     }
     .actionBtn.btnSwitchCamera{
         margin-bottom: 8%;
+    }
+}
+@media (max-width:460px){
+    .actionBtn.video,.actionBtn.location{
+        font-size: 22px;
+    }
+    .secAction{
+        bottom: 10vh;
+    }
+    .activity-log .chat .other .icon {
+        width: 80px;
+    }
+    .activity-log .chat .other .icon img{
+        width: 30px;
+    }
+}
+
+@media (max-width:400px){
+    .activity-log .chat .other .icon {
+        width: 60px;
     }
 }

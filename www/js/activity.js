@@ -90,28 +90,28 @@ function display_activities(activities) {
     for (var activity of activities) {
         if (activity.type == 'gps') {
             console.log(activity)
-            $(".activity-log").append(
-                "<div><span>" +
-                    "<a href='#' class='view-gps' lat=" + activity.lat + " " +
-                        "lng=" + activity.lng + "> " +
-                        activity.type +
-                    "</a></span> - " +
-                    "<span>" + activity.msg + "</span> - " +
-                    "<span>" +
-                        formatDate(new Date(activity.created_at*1000)) +
-                    "</span></div>"
+            $("#activity-log").append(
+                '<li class="other"><div class="msg"> <p>' + formatDate(new Date(activity.created_at*1000)) +
+                '</p>' +
+                    "<p><a href='#' class='view-gps' lat=" + activity.lat + " " +
+                "lng=" + activity.lng + "> " +
+                activity.type +
+                "</a> <br>"+ activity.msg +"</p>" +
+                '<div class="icon"><img src="images/location_icon.png" alt=""/></div>'+
+                '</div> </li>'
             )
         }
         if (activity.type == 'video') {
-            $(".activity-log").append(
-                "<div><span><a url=" +
-                        activity.url +
-                    " href='#' class='view-video'>" +
-                    activity.type +
-                    "</a></span> - " +
-                     "<span>" +
-                        formatDate(new Date(activity.created_at * 1000)) +
-                     "</span></div>"
+            $("#activity-log").append(
+                '<li class="other dark"><div class="msg"> <p>' + formatDate(new Date(activity.created_at*1000)) +
+                '</p><br>' +
+                "<p><a url=" +
+                activity.url +
+                " href='#' class='view-video'>" +
+                activity.type +
+                "</a></p>"+
+                '<div class="icon"><img src="images/play_icon.png" alt=""/></div>'+
+                '</div> </li>'
             )
         }
     }

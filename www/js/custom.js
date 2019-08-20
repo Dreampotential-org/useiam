@@ -62,6 +62,14 @@ $('.modal-overlay').on('click', function(e) {
 $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
     $(this).toggleClass('toggleClose');
+    if($(this).hasClass('toggleClose')){
+        $('header').css('margin-left','400px');
+        $('#page-contents').css('margin-left','400px');
+    }
+    else{
+        $('header').css('margin-left','0');
+        $('#page-contents').css('margin-left','0');
+    }
 });
 
 //for singup form tabs
