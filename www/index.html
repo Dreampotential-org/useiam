@@ -14,7 +14,8 @@
 <body>
 <header>
     <div class="mainContainer" style="position: relative">
-        <button class="btnBack"><img src="images/arrow_back_white.png" alt=""/></button>
+        <button class="btnBack"><img src="images/arrow-left-black-32.png" alt=""/>
+            <input type="hidden" id="backTabID"/></button>
         <button class="btnInfo"><img src="images/nfo.png" alt=""/></button>
         <nav class="toggleBar">
             <span class="bar bar1"></span>
@@ -29,7 +30,6 @@
         <div class="mainContainer">
             <ol class="chat">
                 <li class="other">
-                    <div class="avatar"><img src="images/iam.png" draggable="false"/></div>
                     <div class="msg">
                         <p>Hello, meet IAM, your Personal Accountability Manager</p><br>
                         <p>You are on your way to recovery</p>
@@ -38,25 +38,26 @@
             </ol>
         </div>
         <div class="secAction">
-            <button class="actionBtn" id="signup">I am new</button>
-            <button class="actionBtn" id="signin">Sign in</button>
+            <button class="actionBtn dark" id="signup">I'AM NEW</button>
+            <button class="actionBtn" id="signin">SIGN IN</button>
         </div>
     </div>
 
     <div id="dashboard">
-        <div class="mainContainer">
+        <!--<div class="mainContainer">
             <ol class="chat">
                 <li class="other">
-                    <div class="avatar"><img src="images/iam.png" draggable="false"/></div>
                     <div class="msg">
                         <p>Hi, what would you like to do?</p>
                     </div>
                 </li>
             </ol>
-        </div>
+        </div>-->
         <div class="secAction">
-            <button class="actionBtn btnVideo">Take a Video</button>
-            <button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>
+            <button class="actionBtn btnVideo video dark">TAKE VIDEO</button>
+            <button class="actionBtn btnEvent location">MY LOCATION</button>
+            <!--<button class="actionBtn btnVideo">Take a Video</button>-->
+            <!--<button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>-->
         </div>
     </div>
 
@@ -85,16 +86,18 @@
 
     <div id="activity">
         <div class="mainContainer">
-          LOG OF ACTIVITY
-          <div class='activity-log'></div>
+            <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
+          <div class='activity-log'>
+              <ol class="chat" id="activity-log"></ol>
+          </div>
         </div>
     </div>
 
     <div id="addEvent">
         <div class="mainContainer">
+            <h3 class="locAuthTitle textCenter">ENTER NOTE</h3>
             <div class="eventBox">
-                <label>Enter a note</label>
-                <textarea placeholder="Add Description of Event"></textarea>
+                <textarea class="note" rows="5" placeholder="Add Description"></textarea>
             </div>
         </div>
         <div class="secAction">
@@ -133,19 +136,21 @@
 <div class="modal" id="signinModal">
     <div class="modal-overlay"></div>
     <div class="modal-wrapper modal-transition">
-        <div class="modal-header">
+        <!--<div class="modal-header">
             <img src="images/modalLogo.png" alt="Modal Logo" class="modalLogo">
-            <h2 class="modal-heading">Hello, Please login</h2>
-        </div>
+            <h2 class="modal-heading locAuthTitle">LOGIN</h2>
+        </div>-->
         <div class="modal-body">
             <div class="modal-content">
+                <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                <h3 class="locAuthTitle textCenter">LOGIN</h3>
                 <form class="popupForm">
                     <input type="Email" placeholder="Email" id='signin_email'>
                     <input type="password" placeholder="Password" id='signin_password'>
                     <p class="textCenter">
-                      <a id='forgot_password'href="">Forgot password?</a>
+                      <a class="text-lightblue" id='forgot_password' href="">Forgot password?</a>
                     </p>
-                    <input type="button" value="Login" class="btnSubmit loginToDashboard">
+                    <input type="button" value="Login" class="actionBtn loginToDashboard">
                 </form>
                 <p class="textCenter signupNeed">Don’t have an account? <a href="#">SignUp</a></p>
             </div>
@@ -156,29 +161,26 @@
 <div class="modal" id="setmonitorModal">
     <div class="modal-overlay"></div>
     <div class="modal-wrapper modal-transition">
-        <div class="modal-header">
-            <!--<h2 class="modal-heading">Create an account</h2>-->
-        </div>
+
         <div class="modal-body">
             <div class="modal-content">
-                <img src='images/x.png' class='close' style='margin-top:-15px;width:30px;height:30px;cursor:pointer' />
+                <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                <h3 class="locAuthTitle textCenter">SET MONITOR</h3>
+
                 <form id="regForm" action="#">
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab get-monitor">
-                        <h2 class="modal-heading" style="padding: 10px 0">
-                          Set your monitor(s)
-                        </h2>
                         <p>This person is someone you trust that will help you through the recovery process and receive videos / GPS events</p>
                         <input placeholder="Add Monitor" id='monitor_email'
                               oninput="this.className = ''" type="email">
                     </div>
-                    <div style="overflow:auto;">
-                        <div style="float:right;">
-                            <button class="btnNext" type="button"
-                                id="nextBtn">Add</button>
+                    <div>
+                        <div style="display: flex">
+                            <button class="actionBtn btnNext" type="button"
+                                id="nextBtn">ADD</button>
                         </div>
                     </div>
-                    <div>
+                    <div style="margin-top: 20px">
                         <div><b>Active Monitors:</b></div>
                         <div class='current-monitors'></div>
                     </div>
@@ -197,15 +199,14 @@
 <div class="modal" id="signupModal">
     <div class="modal-overlay"></div>
     <div class="modal-wrapper modal-transition">
-        <div class="modal-header">
-            <!--<h2 class="modal-heading">Create an account</h2>-->
-        </div>
+
         <div class="modal-body">
             <div class="modal-content">
+                <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                <h3 class="locAuthTitle textCenter">SIGN UP</h3>
                 <form id="regForm" action="#">
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab user-info">
-                        <h2 class="modal-heading" style="padding: 30px 0">Create an account</h2>
                         <input placeholder="Name" id='signup_name'
                           oninput="this.className = ''" type="text">
                         <input placeholder="Email" id='signup_email'
@@ -216,28 +217,15 @@
                          placeholder="Days Sober" oninput="this.className=''"/>
                     </div>
 
-                    <!--
-                    <div class="tab get-monitor">
-                        <h2 class="modal-heading" style="padding: 30px 0">Set your monitor</h2>
-                        <p>This is the person you trust that will help you through the recovery process and receive videos and GPS events</p>
-                        <input placeholder="Recover Email" id='monitor_email'
-                              oninput="this.className = ''" type="email">
-                    </div>
-                    -->
-
-                    <div style="overflow:auto;">
-                        <div style="float:right;">
-                            <button class="btnNext" type="button"
-                                id="nextBtn">Sign up</button>
+                    <div>
+                        <div style="display: flex">
+                            <button class="actionBtn btnNext" type="button"
+                                    id="nextBtn">SUBMIT</button>
                         </div>
                     </div>
-                    <!--
-                    <div style="text-align:center;margin-top:10px;">
-                        <span class="step"></span>
-                        <span class="step"></span>
-                    </div>
-                    -->
+
                 </form>
+                <p class="textCenter signupNeed">Have an account? <a href="#">Log In</a></p>
             </div>
         </div>
     </div>
@@ -255,10 +243,10 @@
         <div class="modal-body">
             <div class="modal-content">
                 <div class="textCenter">
-                    <img src="images/location.png" style="width: 100px">
-                    <h3 class="locAuthTitle">Location Permission</h3>
+                    <img src="images/location_icon.png" style="width: 100px">
+                    <h3 class="locAuthTitle">GPS PERMISSION</h3>
                     <p class="locAuthDesc">Please allow permissions for accessing your location through GPS.</p>
-                    <button id='allowGPS' class="btnSubmit btnGradient submitEventBtn">Allow</button>
+                    <button id='allowGPS' class="actionBtn btnSubmit m-0 submitEventBtn">Allow</button>
                 </div>
             </div>
         </div>
@@ -271,10 +259,10 @@
         <div class="modal-body">
             <div class="modal-content">
                 <div class="">
-                    <img src='images/x.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
-                    <h3 class="locAuthTitle textCenter">Take a Video</h3>
-                    <p class="locAuthDesc">1) Ensure you are connected to wifi</p>
-                    <p class="locAuthDesc">2) When you click record:</p>
+                    <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                    <h3 class="locAuthTitle textCenter">TAKE VIDEO</h3>
+                    <p class="locAuthDesc">Step 1 <br/> Ensure you are connected to wifi</p>
+                    <p class="locAuthDesc">Step 2 <br/> When you click record:</p>
                     <ul>
                         <li>show your medicine prescription bottle to the camera and take pill.</li>
                         <li>If not taking medication, submit short video of plans for a day</li>
@@ -283,8 +271,29 @@
                       <form id='upload_vid_form' method='post' enctype="multipart/form-data">
                       <input type="file" accept="video/*" id='upload-vid'
                           capture="environment" style='display:none;'>
-                        <button class="btnSubmit btnGradient btnOk">OK</button>
+                        <button class="actionBtn btnOk">OK</button>
                     </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="proTip">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                    <h3 class="locAuthTitle textCenter">PRO TIP</h3>
+                    <p class="locAuthDesc">Make finding this webapp easy by installing it your phones home screen.</p>
+                    <p class="locAuthDesc">Tap <img src="images/upload_icon.png" width="24" alt=""/> below and select add to home screen.</p>
+
+
+                    <div class="textCenter">
+                        <button class="actionBtn btnClose"><img src="images/upload-16.png" height="100%" alt=""/></button>
                     </div>
                 </div>
             </div>
@@ -294,19 +303,19 @@
 
 
 <div class="slideMenu">
-    <h4 class="textCenter">
+    <h4 class="textMenu">
       <a href="#" id='logout'>Logout</a>
     </h4>
 
-    <h4 class="textCenter">
+    <h4 class="textMenu">
       <a href="#" id='setMonitor'>Set Monitor(s)</a>
     </h4>
 
-    <h4 class="textCenter">
+    <h4 class="textMenu">
       <a href="#" id='viewActivity'>View Activity<a>
     </h4>
 
-    <h4 class="textCenter" id='sober_count'>
+    <h4 class="textMenu" id='sober_count'>
     </h4>
 
 </div>

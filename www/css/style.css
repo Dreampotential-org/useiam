@@ -1,4 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700');
+/*@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600,700');*/
+@font-face {
+    font-family: "Nunito";
+    src: url("../fonts/Nunito-Light.ttf");
+    src: url("../fonts/Nunito-Light.ttf") format("ttf"),
+    url("../fonts/Nunito-Light.ttf");
+}
+html{
+    overflow: hidden;
+}
 body{
     margin:0;
     padding: 0;
@@ -6,12 +15,13 @@ body{
     min-height: 100vh;
     height: 100vh;
     overflow-x: hidden;
-    font-family: 'IBM Plex Sans', sans-serif;
-    background-image: url('../images/backgrounds/art-background-blank-951240.jpg');
+    overflow-y: hidden;
+    font-family: 'Nunito', sans-serif;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center ;
+	display: none;
 }
 body::before{
     content: "";
@@ -26,6 +36,9 @@ body::before{
     background: linear-gradient(130deg, rgba(0, 188, 212, .70), #4766c8, rgba(100, 48, 148, .70));
     z-index: -1;
 }
+header{
+    transition: all 0.5s;
+}
 a, a:hover{
     text-decoration: none;
 }
@@ -38,6 +51,9 @@ a, a:hover{
 header{
     padding-top: 30px;
 }
+.toggleBar.toggleClose{
+    margin-left: -350px;
+}
 .toggleBar{
 	 display: none;
     cursor: pointer;
@@ -48,10 +64,10 @@ header{
     z-index: 10000;
 }
 .bar{
-    height: 4px;
+    height: 2px;
     width: 40px;
-    margin-bottom: 7px;
-    background: #fff;
+    margin-bottom: 10px;
+    background: #000;
     display: block;
 }
 .toggleClose .bar1 {
@@ -72,15 +88,15 @@ header{
     position: fixed;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    color: #fff;
+    width: 400px;
+    height: 100vh;
+    color: #000;
     font-size: 30px;
-
-    background: rgba(0, 188, 212, .70);
-    background: -webkit-linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));
-    background: -o-linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));
-    background: linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));
+    background: #dddddd;
+    /*background: rgba(0, 188, 212, .70);*/
+    /*background: -webkit-linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));*/
+    /*background: -o-linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));*/
+    /*background: linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));*/
 
     display: none;
     z-index: 9999;
@@ -88,32 +104,38 @@ header{
     /*transition: all 0.5s;*/
 }
 .slideMenu a{
-    color: #fff;
+    color: #000;
     z-index: 999;
 }
 .secAction {
 	text-align: center;
 	position: absolute;
-	bottom: 50px;
+	bottom: 1%;
     width: 100%;
-    display: flex;
+    display: inline-grid;
+}
+.btnClose{
+    margin: auto!important;
 }
 .actionBtn{
-    background: rgb(0, 188, 212);
+    background: #00a0cc;
     color: #fff;
     padding:5px;
-    margin: auto;
+    margin: 1% 20%;
     display: inline-block;
     min-width: 250px;
     height: 60px;
-    border-radius: 40px;
+    border-radius: 10px;
     font-size: 22px;
     text-decoration: none;
-    font-weight: 700;
+    text-transform: uppercase;
     border: 0;
     cursor: pointer;
     line-height: 1;
     position: relative;
+}
+.actionBtn.dark{
+    background: #2A318B;
 }
 .actionBtn span{
     font-size: 12px;
@@ -128,7 +150,7 @@ header{
     padding:  5px 30px 5px 75px;
     /*margin-right: 0;*/
 }
-.btnVideo:before{
+/*.btnVideo:before{
     content: "";
     width: 34px;
     height: 30px;
@@ -146,7 +168,7 @@ header{
     background-size: 100% auto;
     position: absolute;
     left: 25px;
-}
+}*/
 .eventBox{
     background: #fff;
     padding: 40px;
@@ -168,7 +190,7 @@ header{
     resize: none;
     color: #343434;
     font-size: 24px;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 /* M E S S A G E S */
 
@@ -181,7 +203,7 @@ header{
     margin-bottom: 10px;
 }
 .chat li {
-    padding: 0.5rem;
+    padding: 0;
     display: inline-flex;
     position: relative;
 }
@@ -197,20 +219,122 @@ header{
     width: 80px;
     height: 80px;
 }
+.activity-log{
+    border-left: 1px solid #dddddd;
+    height: 70vh;
+    overflow-y: scroll;
+}
+.activity-log .chat {
 
+    padding: 0 0 0 30px;
+}
+.activity-log .chat .other{
+    padding-bottom: 10px;
+}
+.activity-log .chat:before{
+    content:'';
+    position: absolute;
+    left: -40px;
+    top: 60%;
+    margin-top: -18px;
+    width: 1px;
+    height: 50%;
+    border-radius: 50px;
+    background: #DDDDDD;
+}
+.activity-log .chat .other .msg:before{
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 55%;
+    margin-top: -18px;
+    width: 10px;
+    height: 30px;
+    background: #ffffff;
+}
+.activity-log .chat .other .msg:after{
+    content:'';
+    position: absolute;
+    left: -40px;
+    top: 60%;
+    margin-top: -18px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50px;
+    background: #00a0cc;
+    /*border-right: solid 18px #fff;
+    border-bottom: solid 18px transparent;
+    border-top: solid 18px transparent;*/
+}
+.activity-log .chat .other.dark .msg:after{
+    background: #2A318B;
+}
+.activity-log .chat .other .msg{
+    border: 2px solid #00a0cc;
+    padding: 0;
+    position: relative;
+}
+.activity-log .chat .other .msg p{
+    width: 70%;
+    padding: 10px 0 5px 15px;
+}
+.activity-log .chat .other .icon{
+     display: inline-flex;
+    border-radius: 0 10px 10px 0;
+     position: absolute;
+     background: #00a0cc;
+     margin: auto;
+     width: 100px;
+     height: 100%;
+     right: 0;
+     top: 0;
+ }
+.activity-log .chat .other.dark .icon{
+    background: #2A318B;
+}
+.activity-log .chat .other .icon img{
+    margin: auto;
+    box-shadow: none;
+    width: 60px;
+}
+.activity-log .chat .other.dark .msg{
+    border: 2px solid #2A318B;
+}
 
+.activity-log .chat .other.dark:before{
+    border-right: solid 18px #2A318B;
+}
+.activity-log .chat .other:after{
+    left: -17px;
+    border-right: solid 19px #fff;
+}
 .other .msg {
     order: 1;
     font-size: 22px;
 }
+.other:after {
+    content:'';
+    position: absolute;
+    left: -18px;
+    top: 50%;
+    margin-top: -18px;
+    width: 1px;
+    height: 1px;
+    border-right: solid 18px #fff;
+    border-bottom: solid 18px transparent;
+    border-top: solid 18px transparent;
+}
 .other:before {
-    content: "";
-    position:absolute;
-    bottom: 8px;
-    left: 80px;
-    width: 32px;
-    height: 23px;
-    background: url(../images/bubbleAngle.png) no-repeat;
+    content:'';
+    position: absolute;
+    left: -19px;
+    top: 50%;
+    margin-top: -19px;
+    width: 1px;
+    height: 1px;
+    border-right: solid 19px #00a0cc;
+    border-bottom: solid 19px transparent;
+    border-top: solid 19px transparent;
 }
 
 .self {
@@ -243,9 +367,10 @@ header{
     background: white;
     width: 100%;
     padding: 15px 30px;
-    border-radius: 10px 10px 10px 0px;
-    box-shadow: 0px 8px 32px 0px rgba(3, 3, 3, 0.61); 
-    -webkit-box-shadow: 0px 8px 32px 0px rgba(3, 3, 3, 0.61); 
+    border-radius: 10px;
+    border: 1px solid #00a0cc;
+    /*box-shadow: 0px 8px 32px 0px rgba(3, 3, 3, 0.61); */
+    /*-webkit-box-shadow: 0px 8px 32px 0px rgba(3, 3, 3, 0.61); */
 }
 .msg p {
     margin: 0 0 0.2rem 0;
@@ -330,7 +455,7 @@ header{
     padding: 30px 20px 20px;
 }
 .modal-content {
-  padding:0 40px 30px;
+  padding:0 20px 30px;
 }
 .modalLogo{
     width: 200px;
@@ -379,20 +504,24 @@ header{
 .modal-content > *:last-child {
   margin-bottom: 0;
 }
+.text-lightblue{
+    color: #00a0cc!important;
+}
 /*Form*/
 input[type=text],
 input[type=email],
 input[type=number],
 input[type=tel],
 input[type=password]{
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 100;
     margin-bottom: 25px;
     width: 100%;
-    box-shadow: 0 2px 2px rgba(230, 232, 234, 1) inset;
+    /*box-shadow: 0 2px 2px rgba(230, 232, 234, 1) inset;*/
     padding:20px 0px;
-    border: 1px solid #f7f7f7;
-    border-radius: 25px;
-    background-color: #f7f7f7;
+    border: 2px solid #00a0cc;
+    border-radius: 10px;
+    background-color: #fff;
     color: #000;
 
     -webkit-user-select: text; /* Chrome, Opera, Safari */
@@ -401,6 +530,11 @@ input[type=password]{
     user-select: text; /* Standard syntax */
 
 }
+textarea.note{
+    border: 1px solid #00a0cc;
+    border-radius: 10px;
+    padding: 2%;
+}
 
 input[type=number], input[type=text], input[type=email], input[type=tel], input[type=password]{
     width: inherit;
@@ -408,12 +542,15 @@ input[type=number], input[type=text], input[type=email], input[type=tel], input[
     padding: 12px 30px;
 }
 
+.m-0{
+    margin: 0!important;
+}
 
 .btnSubmit{
     width: 100%;
     padding: 20px;
     border: 0;
-    border-radius: 50px;
+    /*border-radius: 50px;*/
     font-size: 30px;
     font-weight: 500;
     cursor: pointer;
@@ -424,8 +561,14 @@ input[type=number], input[type=text], input[type=email], input[type=tel], input[
     background: linear-gradient(to right, #9014ee 0%,#3905cd 100%);*/
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9014ee', endColorstr='#3905cd',GradientType=1 );
 }
+.textMenu{
+    text-align: left;
+    font-weight: 100;
+    margin-left: 20%;
+}
 .textCenter{
     text-align: center;
+    font-weight: 100;
 }
 .popupForm a{
     font-size: 22px;
@@ -440,11 +583,13 @@ input[type=number], input[type=text], input[type=email], input[type=tel], input[
     color: #828282;
 }
 .signupNeed a{
-    color: #4407d1;
+    color: #00a0cc;
 }
 .locAuthTitle{
-    color: #8f14ee;
+    color: #00a0cc;
     font-size: 30px;
+    font-weight: 100;
+    margin-top: 10px;
 }
 .locAuthDesc{
     font-size: 22px;
@@ -455,12 +600,18 @@ video{
 video::-webkit-media-controls {
   display: none;
 }
+
+.loginToDashboard{
+    margin: 0;
+    text-transform: uppercase;
+}
+
 @media screen and (max-width: 640px) {
     .actionBtn {
         min-width: 200px;
-        height: 50px;
+        /*height: 50px;*/
         font-size: 20px;
-        margin: auto;
+        /*margin: auto;*/
     }
     .other .msg {
         font-size: 18px;
@@ -471,6 +622,7 @@ video::-webkit-media-controls {
     .btnEvent{
         margin-right: 0;
     }
+
 }
 @media screen and (max-width: 560px) {
     .other .msg {
@@ -478,9 +630,9 @@ video::-webkit-media-controls {
     }
     .actionBtn {
         min-width: 160px;
-        height: 50px;
+        /*height: 50px;*/
         font-size: 18px;
-        margin: auto;
+        /*margin: auto;*/
     }
     .btnVideo::before {
         width: 24px;
@@ -512,7 +664,7 @@ video::-webkit-media-controls {
     }
     .actionBtn {
         min-width: 120px;
-        height: 40px;
+        /*height: 40px;*/
         font-size: 16px;
     }
     .singleBtn{
@@ -529,8 +681,8 @@ video::-webkit-media-controls {
         width: 70px;
         height: 70px;
     }
-    .other::before {
-        left: 70px;
+    ol li.other {
+        margin-left: 20px;
     }
     .eventBox label {
         font-size: 26px;
@@ -607,6 +759,7 @@ video::-webkit-media-controls {
 .page-contents{
     height: inherit;
     width: inherit;
+    transition: all 0.5s;
 }
 
 /*****************SIGN UP FORM TABS*****************/
@@ -627,12 +780,14 @@ video::-webkit-media-controls {
     border: 1px solid #aaaaaa;
 }*/
 .btnPrev,.btnNext{
-    border: 1px solid #00BCD4;
-    background: #00BCD4;
+    border: 1px solid #00a0cc;
+    background: #00a0cc;
     color: #fff;
     padding: 5px 24px;
-    border-radius: 20px;
-    font-size: 19px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: 100;
+    margin: auto;
 }
 .btnPrev{
     border: 1px solid lightgrey;
@@ -674,7 +829,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #f7f7f7 inset !important;
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
     -webkit-text-fill-color: #000; !important;
 }
 textarea:focus, input:focus,button:focus{
@@ -693,7 +848,11 @@ textarea:focus, input:focus,button:focus{
     display: block;
     background-color: rgba(119, 119, 119, 0.51);
 }
-
+.actionBtn.video,.actionBtn.location{
+    height: 20vh;
+    font-size: 40px;
+    margin: 5vh 20%;
+}
 .actionBtn.btnSwitchCamera{
     position: absolute;
     min-width: 5px!important;
@@ -715,7 +874,7 @@ textarea:focus, input:focus,button:focus{
     min-width: 5px;
     width: 40px;
     background-color: #890000c7;
-    height: 40px;
+    /*height: 40px;*/
     border: 2px solid rgba(255, 255, 255, 0.73);
 }
 #takeVideo{

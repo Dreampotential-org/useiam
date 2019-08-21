@@ -11,6 +11,7 @@ function user_logged_in() {
         showATab('dashboard');
         //close modals
         closeAllModals();
+
     }
 }
 
@@ -52,7 +53,6 @@ function handle_signup() {
             return
         }
         if ($("#signupModal #nextBtn").hasClass("running")) {
-            alert("API COmmand in process")
             return
         }
 
@@ -117,6 +117,8 @@ function signup_api(params) {
             }
         });
 
+        //$("#proTip").addClass("is-visible");
+
 
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
@@ -145,6 +147,8 @@ function handle_signin() {
                     show_set_monitor();
                 }
             });
+
+            //$("#proTip").addClass("is-visible");
         })
     })
 }
@@ -204,5 +208,3 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
-
-

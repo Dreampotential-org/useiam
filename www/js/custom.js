@@ -10,6 +10,7 @@ function init() {
 
     // populates days sober in left side pannel
     get_profile_info();
+    $("body").show()
 }
 
 function init_display() {
@@ -62,6 +63,14 @@ $('.modal-overlay').on('click', function(e) {
 $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
     $(this).toggleClass('toggleClose');
+    if($(this).hasClass('toggleClose')){
+        $('header').css('margin-left','400px');
+        $('#page-contents').css('margin-left','400px');
+    }
+    else{
+        $('header').css('margin-left','0');
+        $('#page-contents').css('margin-left','0');
+    }
 });
 
 //for singup form tabs
@@ -182,14 +191,22 @@ var infoBtn = $('.btnInfo');
 function showBackButton(backTabID){
     toggleBar.hide();
     backBtn.show();
+    $('input[id=backTabID]').val(backTabID);
     backBtn.id = backTabID;
+    //alert("showbackbutton: "+backTabID);
 }
 
 backBtn.on('click',function(e){
     //hide info button if visible
-    var tabToShow  = backBtn.id;
+
+    //alert("onclickbackbutton: "+$('input[id=backTabID]').val());
+
+    //var tabToShow  = backBtn.id;
+    var tabToShow = $('input[id=backTabID]').val();
     showATab(tabToShow);
-    showMenuBar();
+
+    if(tabToShow == 'dashboard')
+        showMenuBar();
 });
 
 function showInfoBtn(modalID){
@@ -219,6 +236,10 @@ function showATab(tabID){
         showBackButton('dashboard');
     }
 
+    if (tabID == 'eventView') {
+        showBackButton('activity');
+    }
+
     // show info button for specific tabs else hide it
     if(tabID == 'takeVideo'){
         showInfoBtn('videoInfo');
@@ -238,6 +259,8 @@ function closeAllModals(){
     $('#LocationModal').removeClass("is-visible");
     $('#videoInfo').removeClass('is-visible');
     $('#setmonitorModal').removeClass('is-visible');
+    $("#proTip").removeClass("is-visible");
+
 }
 
 
