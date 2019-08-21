@@ -53,7 +53,6 @@ function handle_signup() {
             return
         }
         if ($("#signupModal #nextBtn").hasClass("running")) {
-            alert("API COmmand in process")
             return
         }
 
