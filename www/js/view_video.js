@@ -1,5 +1,6 @@
 function init() {
     if (!(localStorage.getItem("session_id"))) {
+        localStorage.setItem("redirect_url", window.location.href)
         window.location = 'login.html'
     }
     $("#signup_email").val(getUrlVars()['email'])

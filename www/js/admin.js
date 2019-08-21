@@ -2,16 +2,19 @@ function init() {
     if (!(localStorage.getItem("session_id"))) {
         window.location = 'login.html'
     }
-    list_patients(function(response) {display_patients(response.patients); })
+    list_patients(function(response) {
+        display_patients(response.patients);
+    })
+
     list_patient_events(
-        "aaron.orosen@gmail.com", "", function(response) {
+        getUrlVars()['email'], "", function(response) {
             display_events(response.events)})
 }
 
 function init_street_view(e) {
     var spot = {lat: parseFloat(e.lat), lng: parseFloat(e.lng)}
 
-    panorama = new google.maps.StreetViewPanorama(
+    new google.maps.StreetViewPanorama(
             document.getElementById('gps-' + e.id),
             {
               position: spot,
@@ -19,39 +22,47 @@ function init_street_view(e) {
               zoom: 1
             });
 
-    // Set up the map.
-    //map = new google.maps.Map(document.getElementById('map'), {
-    //  center: spot,
-    //  zoom: 16,
-    //  streetViewControl: false
-    //});
-    // Set the initial Street View camera to the center of the map
-
 }
+
 
 function display_events(events) {
 
-    for(var e of events) {
+    var html = (
+        "<table border='1'>" +
+            "<tr>" +
+                "<th>Date</th>" +
+                "<th>Submission</th>" +
+            "</tr>"
+    )
 
+    var gps_views = []
+    for(var e of events) {
+        html += "<tr>"
+        html += "<td>" + formatDate((new Date(e.created_at * 1000))) + "</td>"
         if (e.type == 'gps') {
-            console.log(e)
-            $(".events").append(
-                formatDate((new Date(e.created_at * 1000))) +
-                "<div style='height:240px;width:320px;' id='gps-" + e.id + "'><div>"
+            html += (
+                "<td>" +
+                    "<div style='height:240px;width:320px;'  id='gps-" + e.id + "'></div>" +
+                "</td>"
             )
-            init_street_view(e)
+            gps_views.push(e);
         }
 
         if (e.type == 'video') {
-            $(".events").append("<div>" +
-                formatDate((new Date(e.created_at * 1000))) +
+            html += (
+                "<td>" +
                 '<video controls="" name="media" width="320" height="240">' +
                     '<source src=' + SERVER + "" + e.url + "&token=" +
                         localStorage.getItem("session_id") + ' type="video/mp4">' +
-                '</video></div>'
-            )
+                '</video></td>')
 
         }
+        html += "</tr>"
+    }
+
+    $(".events").html(html)
+    for(var e of gps_views) {
+        init_street_view(e)
     }
 
 }
@@ -61,9 +72,11 @@ function display_patients(patients) {
 
     for(var patient of patients) {
         $(".patients").append(
-            "<div class='patient'><a href='#'>" +
-                patient.name + " - " + patient.email +
-            "</a></div>"
+            "<div class='patient'>" +
+                "<a href='/admin-events.html?email=" + patient.email + "'>" +
+                    patient.name + " - " + patient.email +
+                "</a>" +
+            "</div>"
         )
     }
 
@@ -118,9 +131,18 @@ function list_patient_events(patient_email, filter_type, callback) {
         callback(JSON.parse(response))
     }).fail(function(err) {
         console.log(err)
+        localStorage.clear()
+        window.location.reload()
     });
 }
 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 function formatDate(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();

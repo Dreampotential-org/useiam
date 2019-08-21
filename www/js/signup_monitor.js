@@ -22,6 +22,16 @@ function login_monitor() {
                 'text': 'You will now be able to view video links from email',
                 'icon': 'success',
             });
+
+            if (localStorage.getItem("redirect_url")) {
+                var redirect = localStorage.getItem("redirect_url")
+                localStorage.removeItem("redirect_url")
+                window.location = redirect
+            } else {
+                window.location = '/admin.html'
+            }
+
+
         })
     })
 }
