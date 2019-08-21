@@ -117,9 +117,7 @@ function signup_api(params) {
             }
         });
 
-        setTimeout(function() {
-            $("#proTip").addClass("is-visible");
-        }, 5000);
+        //$("#proTip").addClass("is-visible");
 
 
     }).fail(function(err) {
@@ -150,9 +148,7 @@ function handle_signin() {
                 }
             });
 
-                setTimeout(function() {
-                    $("#proTip").addClass("is-visible");
-                }, 5000);
+            //$("#proTip").addClass("is-visible");
         })
     })
 }
@@ -212,5 +208,3 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
-
-

@@ -10,6 +10,7 @@ function init() {
 
     // populates days sober in left side pannel
     get_profile_info();
+    $("body").show()
 }
 
 function init_display() {
