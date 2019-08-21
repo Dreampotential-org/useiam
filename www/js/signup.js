@@ -11,6 +11,7 @@ function user_logged_in() {
         showATab('dashboard');
         //close modals
         closeAllModals();
+
     }
 }
 
@@ -117,6 +118,10 @@ function signup_api(params) {
             }
         });
 
+        setTimeout(function() {
+            $("#proTip").addClass("is-visible");
+        }, 5000);
+
 
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
@@ -145,6 +150,10 @@ function handle_signin() {
                     show_set_monitor();
                 }
             });
+
+                setTimeout(function() {
+                    $("#proTip").addClass("is-visible");
+                }, 5000);
         })
     })
 }

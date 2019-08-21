@@ -12,7 +12,7 @@ function init_gps_event() {
         showBackButton('dashboard');
         showATab('addEvent');
         //hide info button if visible
-        $("#LocationModal").addClass("is-visible")
+        $("#LocationModal").addClass("is-visible");
         // clear text area content
         $("#addEvent textarea").val("")
     });

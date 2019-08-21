@@ -1,4 +1,7 @@
 @media (max-width:680px){
+    .other:after{
+        left: -17px;
+    }
     .modalLogo{
         width: 115px;
         top: -65px;
@@ -43,7 +46,7 @@
     }
     .actionBtn{
         width:70%;
-        margin:auto;
+        /*margin:auto;*/
     }
     .btnVideo,.btnEvent{
         padding:0;

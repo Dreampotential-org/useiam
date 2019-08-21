@@ -1,8 +1,8 @@
 function init_activity() {
     $("#viewActivity").on('click', function(e) {
-        $(".toggleBar").click()
+        $(".toggleBar").click();
         closeAllModals();
-        showBackButton('dashboard');
+        //showBackButton('dashboard');
         showATab('activity');
         get_activity(function(resp) {
             display_activities(resp.events)
@@ -10,12 +10,13 @@ function init_activity() {
     })
 
     $("body").delegate(".view-video", "click", function(e) {
-        showBackButton('activity');
+
         var video_url = $(this).attr("url")
         showATab('eventView');
+        showBackButton('activity');
         $("#eventView .content").html(
             '<video controls="" autoplay="" name="media" ' +
-            ' id="video" width="320" height="240"></video>'
+            ' id="video" width="100%" height="240"></video>'
         )
         var id = getUrlVars(video_url)['id']
         var user = getUrlVars(video_url)['user']
@@ -28,10 +29,12 @@ function init_activity() {
 
 
     $("body").delegate(".view-gps", "click", function(e) {
-        showBackButton('activity');
+
         showATab('eventView');
+        showBackButton('activity');
+
         $("#eventView .content").html(
-            "<div id='gps-view' style='width:400px;height:400px;'></div>"
+            "<div id='gps-view' style='width:100%;height:400px;'></div>"
         )
         var spot = {lat: parseFloat($(this).attr("lat")),
                     lng: parseFloat($(this).attr("lng"))}
