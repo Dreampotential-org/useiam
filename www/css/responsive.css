@@ -68,6 +68,10 @@
     .secAction{
         bottom: 16vh;
     }
+	.secActionGPS {
+		top: 469px !important;
+	}
+
     .activity-log .chat .other .icon {
         width: 80px;
     }
