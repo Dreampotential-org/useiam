@@ -7,29 +7,34 @@ function init_logo() {
     var type = parts[2]
 
     if (sub == 'futures') {
-        $(".logo").append("<img src='img/futuresLogo.png' />")
+        _append_logo_and_icon("img/futuresLogo.png")
     } else if (sub == 'turnbridge') {
-        $(".logo").append("<img src='img/turnbidge.png' />")
+        _append_logo_and_icon("img/turnbidge.png")
         $(".logo img").css("width", '115px')
     } else if (sub == 'pbdwi') {
-        $(".logo").append("<img src='img/pbdwi.jpg' />")
+        _append_logo_and_icon("img/pbdwi.jpg")
         $(".logo img").css("width", '115px')
     } else if (sub == 'beachcomber') {
-        $(".logo").append("<img src='img/beachlogo.png' />")
+        _append_logo_and_icon("img/beachlogo.png")
         $(".logo img").css("width", '200px')
     } else if (sub == 'pbbhw') {
-        $(".logo").append("<img src='img/pbbhw.png' />")
+        _append_logo_and_icon("img/pbbhw.png")
         $(".logo img").css("width", '327px')
     } else if (sub == 'urbanrecovery') {
-        $(".logo").append("<img src='img/urbanRecover.png' />")
+        _append_logo_and_icon("img/urbanRecover.png")
         $(".logo img").css("width", '220px')
         $(".logo img").css("padding-top", '22px')
     } else {
-        $(".logo").append("<img src='images/iam.png' />")
+        _append_logo_and_icon("images/iam.png")
         $(".logo img").css("width", '100px')
-        $('head').append(
-            '<link rel="apple-touch-icon" href="images/iam.png">')
-    }
+   }
 
     $(".logo img").show()
+}
+
+
+function _append_logo_and_icon(icon_path) {
+    $(".logo").append("<img src='" + icon_path + "'/>")
+    $('head').append(
+        '<link rel="apple-touch-icon" href="' + icon_path + '">')
 }
