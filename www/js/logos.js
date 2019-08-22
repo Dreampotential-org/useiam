@@ -27,6 +27,8 @@ function init_logo() {
     } else {
         $(".logo").append("<img src='images/iam.png' />")
         $(".logo img").css("width", '100px')
+        $('head').append(
+            '<link rel="apple-touch-icon" href="images/iam.png">')
     }
 
     $(".logo img").show()
