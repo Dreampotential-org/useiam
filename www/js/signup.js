@@ -210,6 +210,12 @@ function signup_signin_buttons() {
       $('#signupModal').addClass('is-visible');
     });
 
+    $(".loginNeed").on("click", function(e) {
+      e.preventDefault();
+      $('#signupModal').removeClass('is-visible');
+      $('#signinModal').addClass('is-visible');
+    })
+
     $(".signupNeed").on("click", function(e) {
       e.preventDefault();
       $('#signupModal').addClass('is-visible');
