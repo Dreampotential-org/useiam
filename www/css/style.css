@@ -21,7 +21,8 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center ;
-	display: none;
+	 display: none;
+	 background-color: #fdfd;
 }
 body::before{
     content: "";
@@ -117,6 +118,7 @@ header{
 .btnClose{
     margin: auto!important;
 }
+
 .actionBtn{
     background: #00a0cc;
     color: #fff;
@@ -376,6 +378,7 @@ header{
     margin: 0 0 0.2rem 0;
     color: #0d0e10;
     font-weight: 500;
+	font-size: 18px;
 }
 .msg img {
     position: relative;

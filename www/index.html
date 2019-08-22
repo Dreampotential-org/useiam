@@ -33,14 +33,14 @@
             <ol class="chat">
                 <li class="other">
                     <div class="msg">
-                        <p>Hello, meet IAM, your Personal Accountability Manager</p><br>
-                        <p>You are on your way to recovery</p>
+                        <p>Hello, meet IAM, your Interactive Accountability Manager.</p><br>
+                        <p>Signup or Login below</p><br>
                     </div>
                 </li>
             </ol>
         </div>
         <div class="secAction">
-            <button class="actionBtn dark" id="signup">I'AM NEW</button>
+            <button class="actionBtn dark" id="signup">I AM NEW</button>
             <button class="actionBtn" id="signin">SIGN IN</button>
         </div>
     </div>
@@ -102,7 +102,7 @@
                 <textarea class="note" rows="5" placeholder="Add Description"></textarea>
             </div>
         </div>
-        <div class="secAction secActionGPS">
+        <div class="secAction">
             <div class="mainContainer">
                 <button class="actionBtn" id="locationAuth">Submit</button>
             </div>
@@ -172,7 +172,7 @@
                 <form id="regForm" action="#">
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab get-monitor">
-                        <p>This person is someone you trust that will help you through the recovery process and receive videos / GPS events</p>
+                        <p>Email address of person monitoring you who will receive your video and gps submissions</p>
                         <input placeholder="Add Monitor" id='monitor_email'
                               oninput="this.className = ''" type="email">
                     </div>
@@ -197,6 +197,40 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="instructionsModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                    <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
+                    <p class="locAuthDesc">Video Submission<br/>
+                    <ul>
+                        <ol style='padding-inline-start: 0px;'>A) Take a selfie video showing that you are taking your medication.</ol>
+                        <br/>
+                        <ol style='padding-inline-start: 0px;'>B) Submit short video of plans for the day.</ol>
+                    </ul>
+
+                    <p class="locAuthDesc">Location Submission<br/>
+                    <ul>
+                        <ol style='padding-inline-start: 0px;'>
+                        When attending event such as work, yoga, etc. Tab the <b>MY LOCATION</b> button and describe the event.
+
+                        </ol>
+                    </ul>
+                    <div class="textCenter">
+                        <button class="actionBtn close">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <div class="modal" id="signupModal">
     <div class="modal-overlay"></div>
@@ -266,7 +300,7 @@
                     <p class="locAuthDesc">Step 1 <br/> Ensure you are connected to wifi</p>
                     <p class="locAuthDesc">Step 2 <br/> When you click record:</p>
                     <ul>
-                        <li>show your medicine prescription bottle to the camera and take pill.</li>
+                        <li>Show your medicine prescription bottle to the camera and take pill.</li>
                         <li>If not taking medication, submit short video of plans for a day</li>
                     </ul>
                     <div class="textCenter">
@@ -306,7 +340,7 @@
 
 <div class="slideMenu">
     <h4 class="textMenu">
-      <a href="#" id='logout'>Logout</a>
+      <a href="#" id='showInstructions'>Instructions<a>
     </h4>
 
     <h4 class="textMenu">
@@ -318,6 +352,10 @@
     </h4>
 
     <h4 class="textMenu" id='sober_count'>
+    </h4>
+
+    <h4 class="textMenu">
+      <a href="#" id='logout'>Logout</a>
     </h4>
 
 </div>

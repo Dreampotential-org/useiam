@@ -260,7 +260,7 @@ function closeAllModals(){
     $('#videoInfo').removeClass('is-visible');
     $('#setmonitorModal').removeClass('is-visible');
     $("#proTip").removeClass("is-visible");
-
+    $("#instructionsModal").removeClass("is-visible");
 }
 
 

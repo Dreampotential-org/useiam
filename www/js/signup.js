@@ -4,6 +4,8 @@ function init_login_stuff() {
     handle_signup();
     handle_signin();
     handle_logout();
+
+    handle_show_instructions();
 }
 
 function user_logged_in() {
@@ -22,6 +24,12 @@ function handle_logout() {
     });
 }
 
+function handle_show_instructions() {
+    $("body").delegate("#showInstructions", "click", function(e) {
+        $('.toggleBar').click()
+        $('#instructionsModal').addClass('is-visible');
+    })
+}
 
 function handle_signup() {
 
@@ -114,6 +122,9 @@ function signup_api(params) {
         get_profile_info(function(msg) {
             if (!(msg.monitors.length)) {
                 show_set_monitor();
+            } else {
+                $('.toggleBar').click()
+                $("#showInstructions").click()
             }
         });
 
@@ -145,6 +156,9 @@ function handle_signin() {
             get_profile_info(function(msg) {
                 if (!(msg.monitors.length)) {
                     show_set_monitor();
+                } else {
+                    $('.toggleBar').click()
+                    $("#showInstructions").click()
                 }
             });
 

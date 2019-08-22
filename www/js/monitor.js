@@ -46,6 +46,7 @@ function display_monitor(monitor) {
     });
 }
 
+
 function show_set_monitor() {
     closeAllModals();
     $('#setmonitorModal').addClass('is-visible');
@@ -87,6 +88,11 @@ function do_set_monitor() {
         showATab('dashboard');
         //close modals
         closeAllModals();
+
+        $('.toggleBar').click()
+        $("#showInstructions").click()
+
+
     }).fail(function(err) {
         $("#setmonitorModal #nextBtn").removeClass("running")
         console.log(err);
