@@ -22,7 +22,7 @@ body{
     background-attachment: fixed;
     background-position: center ;
 	 display: none;
-	 background-color: #fdfd;
+	 background-color: #faf884;
 }
 body::before{
     content: "";
@@ -41,7 +41,7 @@ header{
     transition: all 0.5s;
 }
 a, a:hover{
-    text-decoration: none;
+    /*text-decoration: none; */
 }
 .mainContainer{
     max-width: 90%;
@@ -93,7 +93,7 @@ header{
     height: 100vh;
     color: #000;
     font-size: 30px;
-    background: #dddddd;
+    background: #87CEEB;
     /*background: rgba(0, 188, 212, .70);*/
     /*background: -webkit-linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));*/
     /*background: -o-linear-gradient(320deg,rgb(100, 48, 148), #4766c8,  rgb(0, 188, 212));*/
@@ -252,7 +252,7 @@ header{
     margin-top: -18px;
     width: 10px;
     height: 30px;
-    background: #ffffff;
+	 background-color: #faf884;
 }
 .activity-log .chat .other .msg:after{
     content:'';
@@ -378,8 +378,13 @@ header{
     margin: 0 0 0.2rem 0;
     color: #0d0e10;
     font-weight: 500;
-	font-size: 18px;
+	 font-size: 18px;
 }
+
+.msg-bold p {
+    font-weight: 600;
+}
+
 .msg img {
     position: relative;
     display: block;
