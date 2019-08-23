@@ -172,8 +172,7 @@ header{
     left: 25px;
 }*/
 .eventBox{
-    background: #fff;
-    padding: 40px;
+    padding: 10px;
     border-radius: 20px;
     margin-top: 20px;
 }
@@ -201,7 +200,7 @@ header{
     background: none;
     margin: 0;
     padding: 0 0 50px 0;
-    margin-top: 60px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 .chat li {
@@ -383,6 +382,7 @@ header{
 
 .msg-bold p {
     font-weight: 600;
+	 color: #2A318B;
 }
 
 .msg img {
