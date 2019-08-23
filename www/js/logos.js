@@ -8,6 +8,9 @@ function init_logo() {
 
     if (sub == 'futures') {
         _append_logo_and_icon("img/futuresLogo.png")
+    } else if (sub == 'wellnessretreat') {
+        _append_logo_and_icon("img/wellnessretreat.jpg")
+        $(".logo img").css("width", '126px')
     } else if (sub == 'turnbridge') {
         _append_logo_and_icon("img/turnbidge.png")
         $(".logo img").css("width", '115px')
