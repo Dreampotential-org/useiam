@@ -42,7 +42,7 @@
     }
     .secAction{
         display: block;
-        bottom: 1%;
+        /* bottom: 1%; */
     }
     .actionBtn{
         width:70%;
@@ -66,7 +66,7 @@
         font-size: 22px;
     }
     .secAction{
-        bottom: 16vh;
+        /* bottom: 16vh; */
     }
 	.secActionGPS {
 		top: 469px !important;
