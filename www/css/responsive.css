@@ -65,8 +65,9 @@
     .actionBtn.video,.actionBtn.location{
         font-size: 22px;
     }
-    .secAction{
-        /* bottom: 16vh; */
+    .secAction.login {
+        bottom: 16vh;
+		  position: absolute;
     }
 	.secActionGPS {
 		top: 469px !important;

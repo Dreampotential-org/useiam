@@ -24,7 +24,6 @@ function init_activity() {
             '<source src=' + SERVER + '/api/review-video/?id=' + id +
                 '&user=' + user + '&token=' +
                 localStorage.getItem("session_id") + ' type="video/mp4">')
-
     });
 
 
