@@ -34,8 +34,8 @@ function init_logo() {
         $(".logo img").css("width", '327px')
     } else if (sub == 'urbanrecovery') {
         _append_logo_and_icon("img/urbanRecover.png")
-        $(".logo img").css("width", '220px')
-        $(".logo img").css("padding-top", '22px')
+        $(".logo img").css("width", '200px')
+        $(".logo img").css("padding-top", '10px')
     } else {
         _append_logo_and_icon("images/iam.png")
         $(".logo img").css("width", '100px')
@@ -52,5 +52,5 @@ function _append_logo_and_icon(icon_path) {
         return;
     }
     $(".logo2").append("<img src='images/iam.png'/>")
-    $(".logo2 img").css("width", '88px')
+    $(".logo2 img").css("width", '80px')
 }
