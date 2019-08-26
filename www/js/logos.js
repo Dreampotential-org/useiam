@@ -8,6 +8,10 @@ function init_logo() {
 
     if (sub == 'futures') {
         _append_logo_and_icon("img/futuresLogo.png")
+    } else if (sub == 'manorofhope') {
+        _append_logo_and_icon("img/manorofhope.png")
+        $(".logo img").css("width", '150px')
+        $("body").css("background", "#fff")
     } else if (sub == 'victorybay') {
         _append_logo_and_icon("img/victory-bay.jpg")
         $(".logo img").css("width", '180px')
