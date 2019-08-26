@@ -11,6 +11,7 @@ function init_logo() {
     } else if (sub == 'victorybay') {
         _append_logo_and_icon("img/victory-bay.jpg")
         $(".logo img").css("width", '180px')
+        $("body").css("background", "#fff")
     } else if (sub == 'rca') {
         _append_logo_and_icon("img/rca.jpg")
         $(".logo img").css("width", '60px')
