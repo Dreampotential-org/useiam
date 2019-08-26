@@ -8,6 +8,9 @@ function init_logo() {
 
     if (sub == 'futures') {
         _append_logo_and_icon("img/futuresLogo.png")
+    } else if (sub == 'victorybay') {
+        _append_logo_and_icon("img/victory-bay.jpg")
+        $(".logo img").css("width", '180px')
     } else if (sub == 'rca') {
         _append_logo_and_icon("img/rca.jpg")
         $(".logo img").css("width", '60px')
