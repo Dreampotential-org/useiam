@@ -16,6 +16,7 @@ function init() {
 function init_display() {
     if (localStorage.getItem("session_id")) {
         $(".toggleBar").show()
+        $(".moto").show()
     }
 }
 

@@ -67,5 +67,5 @@ function _append_logo_and_icon(icon_path) {
         return;
     }
     $(".logo2").append("<img src='images/iam.png'/>")
-    $(".logo2 img").css("width", '80px')
+    $(".logo2 img").css("width", '70px')
 }

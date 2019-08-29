@@ -21,7 +21,7 @@ function handle_logout() {
     $("#logout").on('click', function(e) {
         localStorage.clear();
         location.reload();
-        //$(".logo2").show()
+        $(".moto").hide()
     });
 }
 
@@ -119,7 +119,7 @@ function signup_api(params) {
         showATab('dashboard');
         //close modals
         closeAllModals();
-        //$(".logo2").hide()
+        $(".moto").show()
 
         get_profile_info(function(msg) {
             if (!(msg.monitors.length)) {
@@ -190,7 +190,7 @@ function login_api(email, password, callback) {
         console.log("user logged in")
         // show toggle bar
         $(".toggleBar").show()
-        //$(".logo2").hide()
+        $(".moto").show()
         callback();
     }).fail(function(err) {
         swal({
