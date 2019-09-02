@@ -1,48 +1,50 @@
-function init() {
-    if (!(localStorage.getItem("session_id"))) {
-        window.location = 'login.html'
+    function init() {
+        if (!(localStorage.getItem("session_id"))) {
+            window.location = 'login.html'
+        }
+        list_patients(function(response) {
+            display_patients(response.patients);
+        })
+        list_patient_events(
+            getUrlVars()['email'], "", function(response) {
+                display_events(response.events)})
     }
-    list_patients(function(response) {
-        display_patients(response.patients);
-    })
 
-    list_patient_events(
-        getUrlVars()['email'], "", function(response) {
-            display_events(response.events)})
-}
+    function init_street_view(e) {
+        var spot = {lat: parseFloat(e.lat), lng: parseFloat(e.lng)}
+        new google.maps.StreetViewPanorama(
+                document.getElementById('gps-' + e.id),
+                {
+                  position: spot,
+                  pov: {heading: 165, pitch: 0},
+                  zoom: 1
+                });
+    }
 
-function init_street_view(e) {
-    var spot = {lat: parseFloat(e.lat), lng: parseFloat(e.lng)}
+    function display_events(events) {
 
-    new google.maps.StreetViewPanorama(
-            document.getElementById('gps-' + e.id),
-            {
-              position: spot,
-              pov: {heading: 165, pitch: 0},
-              zoom: 1
-            });
+        var html = (
+            "<table border='1'>" +
+                "<tr>" +
+                    "<th>Date</th>" +
+                    "<th>User</th>" +
+                    "<th>Submission</th>" +
+                "</tr>"
+        )
 
-}
-
-
-function display_events(events) {
-
-    var html = (
-        "<table border='1'>" +
-            "<tr>" +
-                "<th>Date</th>" +
-                "<th>Submission</th>" +
-            "</tr>"
-    )
-
-    var gps_views = []
-    for(var e of events) {
-        html += "<tr>"
-        html += "<td>" + formatDate((new Date(e.created_at * 1000))) + "</td>"
-        if (e.type == 'gps') {
-            html += (
-                "<td>" +
-                    "<div style='height:240px;width:320px;'  id='gps-" + e.id + "'></div>" +
+        var gps_views = []
+        for(var e of events) {
+            html += "<tr>"
+            html += "<td>" + formatDate((new Date(e.created_at * 1000))) + "</td>"
+            html += "<td>" + e.email + "</td>"
+            if (e.type == 'gps') {
+                html += (
+                    "<td>" +
+                        "<div><a target='_blank' href='" +
+                            "https://www.google.com/maps/place/" +
+                                e.lat +","+ e.lng + "'>GPS Location</a> NOTE: - " +
+                            e.msg + "</div></td>" +
+                    //"<div style='height:240px;width:320px;'  id='gps-" + e.id + "'></div>" +
                 "</td>"
             )
             gps_views.push(e);
@@ -69,11 +71,15 @@ function display_events(events) {
 
 
 function display_patients(patients) {
+    $(".patients").append(
+        "<div class='patient'>" +
+            "<a href='/admin.html?email='>All</a>" +
+        "</div>")
 
     for(var patient of patients) {
         $(".patients").append(
             "<div class='patient'>" +
-                "<a href='/admin-events.html?email=" + patient.email + "'>" +
+                "<a href='/admin.html?email=" + patient.email + "'>" +
                     patient.name + " - " + patient.email +
                 "</a>" +
             "</div>"
@@ -105,6 +111,9 @@ function list_patients(callback) {
 }
 
 function list_patient_events(patient_email, filter_type, callback) {
+    if (!(patient_email)) {
+        patient_email = ''
+    }
     var url = SERVER + "/api/list-patient-events/?email=" + patient_email
 
     if (filter_type == 'gps') {
@@ -153,4 +162,5 @@ function formatDate(date) {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return date.toLocaleDateString("en-US") + " " + strTime;
 }
+
 window.addEventListener("DOMContentLoaded", init, false);
