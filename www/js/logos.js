@@ -8,6 +8,11 @@ function init_logo() {
 
     if (sub == 'futures') {
         _append_logo_and_icon("img/futuresLogo.png")
+
+    } else if (sub == 'gatewayfoundation') {
+        _append_logo_and_icon("img/gateway.png")
+        $(".logo img").css("width", '140px')
+        $("body").css("background", "#fff")
     } else if (sub == 'discoveryhb') {
         _append_logo_and_icon("img/discoveryhb.jpg")
         $(".logo img").css("width", '180px')
