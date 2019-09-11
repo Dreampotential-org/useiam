@@ -49,7 +49,11 @@ function init_logo() {
     } else if (sub == 'beachcomber') {
         _append_logo_and_icon("img/beachlogo.png")
         $(".logo img").css("width", '200px')
-    } else if (sub == 'pbbhw') {
+    } else if (sub == 'fouraze') {
+        _append_logo_and_icon("img/fouraze.webp")
+        $(".logo img").css("width", '200px')
+        $(".logo img").css("margin-top", '-40px')
+    } else if (true || sub == 'pbbhw') {
         _append_logo_and_icon("img/pbbhw.png")
         $(".logo img").css("width", '327px')
     } else if (sub == 'urbanrecovery') {
