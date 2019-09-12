@@ -53,7 +53,7 @@ function init_logo() {
         _append_logo_and_icon("img/fouraze.webp")
         $(".logo img").css("width", '200px')
         $(".logo img").css("margin-top", '-40px')
-    } else if (true || sub == 'pbbhw') {
+    } else if (sub == 'pbbhw') {
         _append_logo_and_icon("img/pbbhw.png")
         $(".logo img").css("width", '327px')
     } else if (sub == 'urbanrecovery') {
