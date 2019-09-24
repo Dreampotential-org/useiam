@@ -24,12 +24,26 @@ function init_gps_event() {
 
 
     $("#locationAuth").on('click', function(e) {
+        if ($("#locationAuth").hasClass("running")) {
+            return
+        }
         api_gps_checkin();
     });
 }
 
 function api_gps_checkin() {
     var form = new FormData();
+    if (!($("#addEvent textarea").val().length)) {
+        swal({
+            'title': 'Missing Description',
+            'text': 'You must provide a description of the event.',
+            'icon': 'error',
+        });
+        return
+    }
+
+    $("#locationAuth").addClass("running")
+
     form.append("msg", $("#addEvent textarea").val());
 
     if (CURRENT_POSITION != null) {
@@ -54,25 +68,25 @@ function api_gps_checkin() {
       "data": form
     }
     $.ajax(settings).done(function (response) {
+        $("#locationAuth").removeClass("running")
         swal({
                 title: "Good job!",
                 text: "Gps and Note submitted successfully!",
                 showCancelButton: false,
                 confirmButtonText: "ok",
-                allowOutsideClick: false,
-                type: "success",
+                icon: "success",
         })
         showATab('dashboard');
         //close modals
         closeAllModals();
         showMenuBar();
     }).fail(function(err) {
+        $("#locationAuth").removeClass("running")
         swal({
             'title': 'Error',
             'text': 'Try again',
             'icon': 'error',
         });
-
     });
 }
 
