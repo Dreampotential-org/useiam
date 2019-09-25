@@ -7,6 +7,7 @@ function init() {
     init_monitor()
     init_activity()
     init_display();
+    init_stripe()
 
     // populates days sober in left side pannel
     get_profile_info();
@@ -262,6 +263,7 @@ function closeAllModals(){
     $('#setmonitorModal').removeClass('is-visible');
     $("#proTip").removeClass("is-visible");
     $("#instructionsModal").removeClass("is-visible");
+    $("#paymentForm").removeClass("is-visible");
 }
 
 
