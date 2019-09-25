@@ -976,6 +976,8 @@ ol li.other{
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
+  margin-bottom: 5px;
+  border-color: #000;
 }
 
 .StripeElement--focus {
@@ -988,4 +990,13 @@ ol li.other{
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.submit-payment {
+    color: #fff;
+    background: #00a0cc;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    border: 0;
 }
