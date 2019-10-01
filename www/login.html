@@ -6,15 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--CSS -->
     <title>IAM</title>
+    <style>
+      input {
+        width: 200px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+
+    </style>
 
 </head>
 <body>
-
+  <center>
+    <img src='images/iam.png' style='width:70px;'>
+    <div>IAM Admin Interface</div>
+    <br>
   <div>
-    <input type='email' id='signin_email' placeholder='email'><br>
+    <input type='email' id='signin_email' placeholder='Email Address'><br>
     <input type='password' id='signin_password' placeholder='password'><br>
+    <br>
     <button id='login'>login</button>
+    <br>
+    <br>
+    <a href='https://prod-api.useiam.net/password_reset/'>Forgot Password?</a>
   </div>
+  </center>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
