@@ -150,6 +150,8 @@ function list_patients(callback) {
 function list_patient_events(patient_email, filter_type, callback) {
     if (!(patient_email)) {
         patient_email = ''
+    } else {
+        patient_email = encodeURIComponent(patient_email)
     }
     var url = SERVER + "/api/list-patient-events/?email=" + patient_email
 
