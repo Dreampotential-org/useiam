@@ -1,4 +1,7 @@
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 function init() {
+    block_desktop()
     init_reset_password()
     init_logo()
     init_login_stuff();
@@ -12,6 +15,19 @@ function init() {
     // populates days sober in left side pannel
     get_profile_info();
     $("body").show()
+}
+
+function block_desktop() {
+    if (!(isMobile)) {
+    swal({
+        title: "Computer not supported",
+        text: "Use IAM with your smartphone or tablet.",
+        icon: "info",
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+    });
+    }
 }
 
 function init_display() {
