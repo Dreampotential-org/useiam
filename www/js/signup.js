@@ -2,6 +2,7 @@ function init_login_stuff() {
 
     // setup calender
     $("#sober_date").datepicker()
+    $("#sober_date_update").datepicker()
 
     user_logged_in()
     signup_signin_buttons()

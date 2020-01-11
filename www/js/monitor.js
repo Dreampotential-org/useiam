@@ -1,4 +1,24 @@
 function init_monitor() {
+
+    $("#sober_count").on('click', function(e) {
+        get_profile_info(function(msg) {
+            show_set_sober_date()
+
+            // closes side menu
+            $('.toggleBar').click()
+            $(".current-monitors").empty()
+            for(var monitor of msg.monitors) {
+                display_monitor(monitor)
+            }
+
+        })
+    });
+
+
+    $("#setSoberDate #nextBtn").on('click', function(e) {
+        do_set_sober_date();
+    });
+
     $("#setMonitor").on('click', function(e) {
         get_profile_info(function(msg) {
             show_set_monitor()
@@ -47,11 +67,63 @@ function display_monitor(monitor) {
 }
 
 
+function show_set_sober_date() {
+    closeAllModals();
+    $('#setSoberDate').addClass('is-visible');
+}
+
 function show_set_monitor() {
     closeAllModals();
     $('#setmonitorModal').addClass('is-visible');
 }
 
+
+
+function do_set_sober_date() {
+
+    var form = new FormData();
+    form.append("sober_date", $("#sober_date_update").val().trim());
+    form.append("source", window.location.host);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+       "headers": {
+       "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + "/api/profile/",
+      "method": "PUT",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+
+    $.ajax(settings).done(function (response) {
+        var msg = JSON.parse(response).message
+        // update sober date text on page
+        get_profile_info()
+        swal("Sober Date has been updated", {
+            icon: "success",
+        });
+
+        //after successful login or signup show dashboard contents
+        showATab('dashboard');
+        //close modals
+        closeAllModals();
+
+
+        $('.toggleBar').click()
+
+    }).fail(function(err) {
+        $("#setmonitorModal #nextBtn").removeClass("running")
+        console.log(err);
+        swal({
+            'title': 'Error',
+            'text': '',
+            'icon': 'error',
+        });
+    });
+}
 
 function do_set_monitor() {
     if($("#monitor_email").val().trim().length != 0) {

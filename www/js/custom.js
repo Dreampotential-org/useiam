@@ -277,6 +277,7 @@ function closeAllModals(){
     $('#LocationModal').removeClass("is-visible");
     $('#videoInfo').removeClass('is-visible');
     $('#setmonitorModal').removeClass('is-visible');
+    $('#setSoberDate').removeClass('is-visible');
     $("#proTip").removeClass("is-visible");
     $("#instructionsModal").removeClass("is-visible");
     $("#paymentForm").removeClass("is-visible");
