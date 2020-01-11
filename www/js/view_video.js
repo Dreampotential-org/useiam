@@ -28,6 +28,10 @@ function init_feedback() {
             })
 
     })
+    $("body").delegate(".logout", "click", function(e) {
+        localStorage.clear()
+        window.location = 'login.html'
+    });
 }
 
 
@@ -57,7 +61,16 @@ function get_video_info() {
     $.get(SERVER + "/api/get-video-info/?token=" +
         localStorage.getItem("session_id") + "&user=" + user +
         "&id=" + id, function(res) {
-        console.log(res)
+
+        if('status' in res && res.status == 'error') {
+            swal({
+                'title': 'Access Denied',
+                'text': 'The video was not sent to the email address ' +
+                        'you are logged in with.',
+                'icon': 'error',
+            });
+            return
+        }
 
         $("#patient_name").text(res.owner_name)
         $("#created_at").text(formatDate(new Date(res.created_at*1000)))
