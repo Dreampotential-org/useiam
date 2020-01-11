@@ -1,4 +1,8 @@
 function init_login_stuff() {
+
+    // setup calender
+    $("#sober_date").datepicker()
+
     user_logged_in()
     signup_signin_buttons()
     handle_signup();
@@ -71,7 +75,8 @@ function handle_signup() {
             'name': $("#signup_name").val().trim(),
             'email': $("#signup_email").val().trim(),
             'password': $("#signup_password").val().trim(),
-            'days_sober': $("#days_sober").val().trim(),
+            'days_sober': null,
+            'sober_date': $("#sober_date").val().trim(),
         })
     });
 }
@@ -85,6 +90,7 @@ function signup_api(params) {
     form.append("name", params.name);
     form.append("email", params.email);
     form.append("days_sober", params.days_sober);
+    form.append("sober_date", params.sober_date);
     form.append("password", params.password);
     //form.append("notify_email", 'aaronorosen@gmail.com');
     form.append("source", window.location.host);

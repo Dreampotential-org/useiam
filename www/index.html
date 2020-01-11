@@ -259,8 +259,8 @@
                           oninput="this.className = ''" type="email">
                         <input type="password" id='signup_password'
                          placeholder="Password" oninput="this.className=''"/>
-                        <input type="number" id='days_sober'
-                         placeholder="Days Sober" oninput="this.className=''"/>
+                        <input READONLY=READONLY type="text" id='sober_date'
+                         placeholder="Sober Since (Optional)" oninput="this.className=''"/>
                     </div>
 
                     <div>
@@ -418,6 +418,10 @@
 <!-- jQuery -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <script src="js/sweetalert.min.js"></script>
 <script src="js/custom.js?v=1.4"></script>
 <script src="js/signup.js?v=1.4"></script>

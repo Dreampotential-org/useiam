@@ -158,14 +158,13 @@ function get_profile_info(callback) {
     $.ajax(settings).done(function (response) {
         var msg = JSON.parse(response)
         console.log(response)
-        localStorage.setItem("days_sober", msg.days_sober)
         localStorage.setItem("stribe_subscription_id",
                              msg.stripe_subscription_id)
         if (msg.stripe_subscription_id) {
             $("#cancel_plan").show()
         }
 
-        $("#sober_count").text(msg.days_sober + " Days Sober")
+        //$("#sober_count").text(msg.days_sober + " Days Sober")
         if (callback)
             callback(msg)
     }).fail(function(err) {
