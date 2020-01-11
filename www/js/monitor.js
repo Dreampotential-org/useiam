@@ -164,7 +164,11 @@ function get_profile_info(callback) {
             $("#cancel_plan").show()
         }
 
-        $("#sober_count").text(msg.days_sober + " Days Sober")
+        if (msg.days_sober != null) {
+            $("#sober_count").text(msg.days_sober + " Days Sober")
+        } else {
+            $("#sober_count").text("Set your Sober Date")
+        }
         if (callback)
             callback(msg)
     }).fail(function(err) {
