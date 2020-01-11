@@ -164,7 +164,7 @@ function get_profile_info(callback) {
             $("#cancel_plan").show()
         }
 
-        //$("#sober_count").text(msg.days_sober + " Days Sober")
+        $("#sober_count").text(msg.days_sober + " Days Sober")
         if (callback)
             callback(msg)
     }).fail(function(err) {
