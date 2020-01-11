@@ -2,15 +2,13 @@ function init_monitor() {
 
     $("#sober_count").on('click', function(e) {
         get_profile_info(function(msg) {
-            show_set_sober_date()
 
+            if (msg.sober_date) {
+                $("#sober_date_update").val(msg.sober_date)
+            }
+            show_set_sober_date()
             // closes side menu
             $('.toggleBar').click()
-            $(".current-monitors").empty()
-            for(var monitor of msg.monitors) {
-                display_monitor(monitor)
-            }
-
         })
     });
 
