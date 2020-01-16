@@ -18,8 +18,8 @@
     input[type=text], input[type=email], input[type=tel], input[type=password], input[type=time]{
         width: inherit;
         width: -webkit-fill-available;
-        padding: 12px 30px;
-        margin-bottom:12px;
+        padding: 12px 15px;  
+        margin-bottom:20px;
     }
     .popupForm{
         text-align: center;
@@ -41,14 +41,14 @@
     }
     .modal-content{  
         /* padding: 0 15px 30px; */
-        padding: 0px 0px 30px;
+        padding: 0px 0px 25px;
     }
     .secAction{
         display: block;
         /* bottom: 1%; */
     }
     .actionBtn{
-        width:55%;
+        width:50%;
         /*margin:auto;*/
     }
     .btnVideo,.btnEvent{
@@ -70,7 +70,8 @@
         margin-top: 50px;
     }
     .actionBtn.video,.actionBtn.location{
-        font-size: 18px;
+        font-size: 16px;
+        
     }
     .secAction.login {
         bottom: 15vh;

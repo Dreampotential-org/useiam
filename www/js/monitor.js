@@ -3,6 +3,7 @@ function init_monitor() {
   $("#sober_count").on("click", function(e) {
 
     console.log("In updtate date function....")
+    console.log("SRVER",SERVER);
 
     // var inputEle = document.getElementById('timeInput');
     // onTimeChange(inputEle);
