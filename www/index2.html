@@ -311,26 +311,38 @@
                     <div class="tab get-monitor">
                         <input READONLY=READONLY placeholder="Sober Since" id='sober_date_update'
                               oninput="this.className = ''" type="email"> 
-
-                        <!-- <input type="time" (onchange)="onTimeChange()" id="timeInput" /> -->
-
-                        <input type="text" placeholder="Select Time"  class="timepicker" />
-
                     </div>
                     <div>
                         <div style="text-align: center;">
-                            <!-- <button class="actionBtn btnNext" type="button"
-                                id="nextBtn">UPDATE</button> -->
                             <input type="button" value="UPDATE" id="nextBtn" class="actionBtn dark loginToDashboard">
-
                         </div>
                     </div>
-                    <!--
-                    <div style="text-align:center;margin-top:10px;">
-                        <span class="step"></span>
-                        <span class="step"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="setTimeModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition sub-modal">
+
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"  aria-hidden="true"></i></div>
+                <h3 class="locAuthTitle textCenter">SET REMINDER TIME</h3>
+
+                <form id="regForm" action="#">
+                    <div class="tab get-monitor">
+                        <input type="text" placeholder="Select Time"  class="timepicker" />
                     </div>
-                    -->
+                    <div>
+                        <div style="text-align: center;">
+                        <input type="button" value="SET" id="nextBtn" class="actionBtn dark loginToDashboard">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -340,7 +352,7 @@
 
 <div class="modal" id="instructionsModal">
     <div class="modal-overlay"></div>
-    <div class="modal-wrapper modal-transition">
+    <div class="modal-wrapper modal-transition sub-modal">
         <div class="modal-body">
             <div class="modal-content">
                 <div class="">
@@ -502,10 +514,8 @@
                     <h3 class="locAuthTitle textCenter">PRO TIP</h3>
                     <p class="locAuthDesc">Make finding this webapp easy by installing it your phones home screen.</p>
                     <p class="locAuthDesc">Tap <img src="images/upload_icon.png" width="24" alt=""/> below and select add to home screen.</p>
-
-
                     <div class="textCenter">
-                        <button class="actionBtn btnClose"><img src="images/upload-16.png" height="100%" alt=""/></button>
+                        <button class="actionBtn btnClose"><img src="images/upload-16.png" height="100%" alt="" /></button>
                     </div>
                 </div>
             </div>
@@ -573,6 +583,10 @@
 
     <h5 class="textMenu">
       <a href='#' id='sober_count'></a>
+    </h5>
+
+    <h5 class="textMenu">
+        <a href="#" id='setTime'>Set Reminder Time</a>
     </h5>
 
     <h5 class="textMenu" style='display: none;' id='cancel_plan'>

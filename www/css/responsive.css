@@ -18,7 +18,7 @@
     input[type=text], input[type=email], input[type=tel], input[type=password], input[type=time]{
         width: inherit;
         width: -webkit-fill-available;
-        padding: 12px 15px;  
+        padding: 12px 15px; 
         margin-bottom:20px;
     }
     .popupForm{

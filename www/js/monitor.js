@@ -5,9 +5,6 @@ function init_monitor() {
     console.log("In updtate date function....")
     console.log("SRVER",SERVER);
 
-    // var inputEle = document.getElementById('timeInput');
-    // onTimeChange(inputEle);
-
     get_profile_info(function(msg) {
       if (msg.sober_date) {
         $("#sober_date_update").val(msg.sober_date);
@@ -40,29 +37,19 @@ function init_monitor() {
   });
 }
 
+function init_time(){
+  console.log("In Init Time fun()......................")
+  $("#setTime").on("click", function(e) {
+    get_profile_info(function(msg) {
+      show_set_time();
 
-// function onTimeChange(inputEle) {
-//     console.log("InTime change function....")
-//   var timeSplit = inputEle.value.split(':'),
-//     hours,
-//     minutes,
-//     meridian;
-//   hours = timeSplit[0];
-//   minutes = timeSplit[1];
-//   if (hours > 12) {
-//     meridian = 'PM';
-//     hours -= 12;
-//   } else if (hours < 12) {
-//     meridian = 'AM';
-//     if (hours == 0) {
-//       hours = 12;
-//     }
-//   } else {
-//     meridian = 'PM';
-//   }
-//   alert(hours + ':' + minutes + ' ' + meridian);
-// }
+      // closes side menu
+      $(".toggleBar").click();
+ 
+    });
+  });
 
+}
 
 
 function display_monitor(monitor) {
@@ -104,6 +91,11 @@ function show_set_sober_date() {
 function show_set_monitor() {
   closeAllModals();
   $("#setmonitorModal").addClass("is-visible");
+}
+
+function show_set_time() {
+  closeAllModals();
+  $("#setTimeModal").addClass("is-visible");
 }
 
 function do_set_sober_date() {

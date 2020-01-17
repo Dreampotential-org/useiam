@@ -1057,8 +1057,8 @@ li.notification .msg {
 }
 .btnBack img,
 .btnInfo img {
-  height: 50px;
-}
+  height: 35px;
+}  
 
 ol li.other {
   width: 90%;
@@ -1273,6 +1273,14 @@ i {
 }
 .modal-content {
   padding: 0px 0px 30px;
+}
+
+.modal-wrapper.modal-transition {
+  border-radius: 5px;
+}
+.modal-wrapper.modal-transition.sub-modal {
+  top: 20%;
+  border-radius: 6px;
 }
 
 .ui-timepicker-container{ 

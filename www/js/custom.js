@@ -1,5 +1,5 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
+   
 function init() {
     block_desktop()
     init_reset_password()
@@ -7,8 +7,9 @@ function init() {
     init_login_stuff();
     init_gps_stuff()
     init_video_event();
-    init_monitor()
-    init_activity()
+    init_monitor();
+    init_time();
+    init_activity();
     init_display();
     init_stripe()
 
@@ -277,6 +278,7 @@ function closeAllModals(){
     $('#LocationModal').removeClass("is-visible");
     $('#videoInfo').removeClass('is-visible');
     $('#setmonitorModal').removeClass('is-visible');
+    $('#setTimeModal').removeClass('is-visible');
     $('#setSoberDate').removeClass('is-visible');
     $("#proTip").removeClass("is-visible");
     $("#instructionsModal").removeClass("is-visible");
