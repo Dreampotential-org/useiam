@@ -246,10 +246,14 @@ header {
   width: 80px;
   height: 80px;
 }
+#activity{
+  margin-top: 45px;
+}
 .activity-log {
-  border-left: 1px solid #dddddd;
-  height: 70vh;
+ /* border-left: 1px solid #dddddd; */
+  height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .activity-log .chat {
   padding: 0 0 0 30px;
@@ -271,12 +275,14 @@ header {
 .activity-log .chat .other .msg:before {
   content: "";
   position: absolute;
-  left: -37px;
+  left: -36px;
   top: 55%;
-  margin-top: -18px;
-  width: 10px;
-  height: 30px;
-  background-color: #faf884;
+  margin-top: -14px;
+  width: 7px;
+  /* height: 30px; */
+  height: 115px;
+  background-color: #ffffff7a;
+  /* background-color: #faf884; */
 }
 .activity-log .chat .other .msg:after {
   content: "";
@@ -297,12 +303,12 @@ header {
 }
 .activity-log .chat .other .msg {
   border: 2px solid #00a0cc;
-  padding: 0;
+  padding: 12px;
   position: relative;
 }
 .activity-log .chat .other .msg p {
-  width: 70%;
-  padding: 10px 0 5px 15px;
+  width: 80%;
+  /* padding: 10px 0 5px 15px; */
 }
 .activity-log .chat .other .icon {
   display: inline-flex;
@@ -399,10 +405,11 @@ header {
   /*-webkit-box-shadow: 0px 8px 32px 0px rgba(3, 3, 3, 0.61); */
 }
 .msg p {
-  margin: 0 0 0.2rem 0;
+  /* margin: 0 0 0.2rem 0; */
+  margin: 0 0 0 0;
   color: #0d0e10;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .msg-bold p {
@@ -674,6 +681,9 @@ video {
 }
 video::-webkit-media-controls {
   display: none;
+}
+#gps-view{
+  margin-top: 50px;
 }
 
 .loginToDashboard {
@@ -1348,11 +1358,46 @@ i {
 }
 .noteDiv{
   background: #fff;
-  padding: 10px;
-  margin: 14px auto;
+  padding: 12px 0px 15px;
+  margin: 9px auto;
   max-width: 92%;
+  /* transform: translate(0px, -300px); */
+  border-radius: 5px;
+  transform: translateY(-100%);
 }
+
+
 .allowBtnDiv{
   text-align: center;
   padding: 15px;
+}
+.blank{
+  background: red;
+}
+.borderDiv{
+  margin: auto;
+}
+.customLinkBtn{
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.9px;
+  /* border: 1px solid #9ba3fc; */
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #000;
+  margin-top: 10px;
+  display: inline-block;
+}
+p.alignTag {
+  text-align: end;
+}
+.msg .dateClass{
+  font-size: 12px;
+  letter-spacing: 0.9px;
+  font-weight: 400;
+}
+.msg .msgText{
+  margin-top: 5px;
 }

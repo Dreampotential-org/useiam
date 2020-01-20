@@ -208,6 +208,7 @@ var toggleBar = $('.toggleBar');
 var infoBtn = $('.btnInfo');
 //showing back button instead of the side menu bars
 function showBackButton(backTabID){
+   
     toggleBar.hide();
     backBtn.show();
     $('input[id=backTabID]').val(backTabID);
@@ -216,12 +217,19 @@ function showBackButton(backTabID){
 }
 
 backBtn.on('click',function(e){
+    console.log("On Back Button Click()___&&&&&&&");
+
     //hide info button if visible
 
     //alert("onclickbackbutton: "+$('input[id=backTabID]').val());
 
     //var tabToShow  = backBtn.id;
     var tabToShow = $('input[id=backTabID]').val();
+    if (tabToShow=="activity") {
+        document.getElementById("logoDivId").style.display = "none";
+      } else {
+        document.getElementById("logoDivId").style.display = "block";
+      }
     showATab(tabToShow);
 
     if(tabToShow == 'dashboard')
