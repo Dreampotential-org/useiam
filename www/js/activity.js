@@ -24,8 +24,9 @@ function init_activity() {
     showATab("eventView");
     showBackButton("activity");
     $("#eventView .content").html(
-      '<video controls="" autoplay="" name="media" ' +
-        ' id="video" width="100%" height="240"></video>'
+      '<div class="detailsDiv"><video controls autoplay="" name="media" id="video" width="170" height="240"></video> <div class="videoDetailsDiv"><b>Patient Name : </b> <span id="patient_name">Aaron Rosen</span><br> <b>Created at : </b><span id="created_at">1/21/2020 7:02 am</span></div>'
+        +'<hr>'+ '<div class="videoDetailsDiv"><b>Feedback received :</b><br> <div class="feedback_received">aaronorosen@gmail.com  - dsfadsf </div></div>'
+        +'<hr>'+'<div class="feedbackDiv"><textarea id="message" placeholder="Great Job"></textarea><br><button id="send_feedback" class="feedbackBtn">Send Feedback</button></div> </div>'
     );
     var id = getUrlVars(video_url)["id"];
     var user = getUrlVars(video_url)["user"];
@@ -87,6 +88,16 @@ function get_activity(callback) {
   $.ajax(settings)
     .done(function(response) {
       var msg = JSON.parse(response);
+      console.log("Activity List...",msg.events.length);
+
+      if(msg.events.length==0){
+          document.getElementById("eventData").style.height = "auto";
+          document.getElementById("activity-log").style.padding = "0px";
+
+        $("#activity-log.chat").html(
+            '<div class="noActivityDiv"><h3>No Activities in List</h3> </div>'
+          );
+      }
       callback(msg);
     })
     .fail(function(err) {

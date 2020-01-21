@@ -9,6 +9,7 @@ function init() {
     init_video_event();
     init_monitor();
     init_time();
+    init_invite()
     init_activity();
     init_display();
     init_stripe()
@@ -287,6 +288,7 @@ function closeAllModals(){
     $('#videoInfo').removeClass('is-visible');
     $('#setmonitorModal').removeClass('is-visible');
     $('#setTimeModal').removeClass('is-visible');
+    $('#inviteModal').removeClass('is-visible');
     $('#setSoberDate').removeClass('is-visible');
     $("#proTip").removeClass("is-visible");
     $("#instructionsModal").removeClass("is-visible");

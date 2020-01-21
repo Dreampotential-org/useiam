@@ -677,11 +677,19 @@ input[type="password"] {
   margin-left: 15px;
 }
 video {
-  margin-top: 50px;
+  /* margin-left: 5px; */
+  width: 338px;
+  /* background: #fff; */
+  /* padding: 10px; */
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 12px 0px;
+  /* height: auto;*/
+
 }
-video::-webkit-media-controls {
+/* video::-webkit-media-controls {
   display: none;
-}
+} */
 #gps-view{
   margin-top: 50px;
 }
@@ -1400,4 +1408,41 @@ p.alignTag {
 }
 .msg .msgText{
   margin-top: 5px;
+}
+.videoDetailsDiv{
+  padding: 15px; 
+  color: #000;
+  letter-spacing: 0.8px;
+}
+hr{
+  margin: 0px 8px;
+}
+.feedbackDiv{
+  margin: 12px;
+}
+.detailsDiv{
+  background: #fff;
+  margin: 8px;
+  border-radius: 5px;
+  margin-top: 20%;
+  padding: 0px 10px 1px 10px;
+}
+.noActivityDiv{
+  background: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 20%;
+}
+.feedbackBtn{
+  background: #2a318b;
+  color: #ffff;
+  border: 1px solid #2a318b;
+  border-radius: 3px;
+  padding: 8px;
+  margin: 5px 0px 10px;
+}
+textarea#message::placeholder {
+  color: #6e6d6d;
 }

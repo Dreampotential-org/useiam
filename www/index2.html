@@ -176,7 +176,7 @@
     <div id="activity">
         <div class="mainContainer">
             <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
-          <div class='activity-log'>
+          <div class='activity-log' id="eventData">
               <ol class="chat" id="activity-log"></ol>
           </div>
         </div>
@@ -215,9 +215,9 @@
     </div>
 
   <div id="eventView">
-    <div class="mainContainer">
+    <!-- <div class="mainContainer"> -->
       <div class='content'></div>
-    </div>
+    <!-- </div> -->
   </div>
 
 </div>
@@ -341,6 +341,30 @@
                     <div>
                         <div style="text-align: center;">
                         <input type="button" value="SET" id="nextBtn" class="actionBtn dark loginToDashboard">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="inviteModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition sub-modal">
+
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"  aria-hidden="true"></i></div>
+                <h3 class="locAuthTitle textCenter">Invite</h3>
+
+                <form id="regForm" action="#">
+                    <div class="tab get-monitor">
+                        <input type="text" placeholder="Enter Email"/>
+                    </div>
+                    <div>
+                        <div style="text-align: center;">
+                        <input type="button" value="SUBMIT" id="nextBtn" class="actionBtn dark loginToDashboard">
                         </div>
                     </div>
                 </form>
@@ -587,6 +611,10 @@
 
     <h5 class="textMenu">
         <a href="#" id='setTime'>Set Reminder Time</a>
+    </h5>
+
+    <h5 class="textMenu">
+        <a href="#" id='invite'>Invite</a>
     </h5>
 
     <h5 class="textMenu" style='display: none;' id='cancel_plan'>

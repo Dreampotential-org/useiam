@@ -51,6 +51,20 @@ function init_time(){
 
 }
 
+function init_invite(){
+  console.log("In Invite fun()......................")
+  $("#invite").on("click", function(e) {
+    get_profile_info(function(msg) {
+      show_invite();
+
+      // closes side menu
+      $(".toggleBar").click();
+ 
+    });
+  });
+
+}
+
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
@@ -96,6 +110,11 @@ function show_set_monitor() {
 function show_set_time() {
   closeAllModals();
   $("#setTimeModal").addClass("is-visible");
+}
+
+function show_invite() {
+  closeAllModals();
+  $("#inviteModal").addClass("is-visible");
 }
 
 function do_set_sober_date() {
