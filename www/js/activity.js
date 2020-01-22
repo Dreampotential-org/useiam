@@ -26,7 +26,7 @@ function init_activity() {
     $("#eventView .content").html(
       '<div class="detailsDiv"><video controls autoplay="" name="media" id="video" width="170" height="240"></video> <div class="videoDetailsDiv"><b>Patient Name : </b> <span id="patient_name">Aaron Rosen</span><br> <b>Created at : </b><span id="created_at">1/21/2020 7:02 am</span></div>'
         +'<hr>'+ '<div class="videoDetailsDiv"><b>Feedback received :</b><br> <div class="feedback_received">aaronorosen@gmail.com  - dsfadsf </div></div>'
-        +'<hr>'+'<div class="feedbackDiv"><textarea id="message" placeholder="Great Job"></textarea><br><button id="send_feedback" class="feedbackBtn">Send Feedback</button></div> </div>'
+        +'<hr>'+'<div class="feedbackDiv"><textarea id="message" class="feedbackTextarea" rows="5" placeholder="Great Job"></textarea><br><button id="send_feedback" class="feedbackBtn">Send Feedback</button></div> </div>'
     );
     var id = getUrlVars(video_url)["id"];
     var user = getUrlVars(video_url)["user"];

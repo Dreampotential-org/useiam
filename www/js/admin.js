@@ -66,8 +66,8 @@ var PREV_PAGE_URL = null;
 function display_events(response) {
 
     var html = (
-        "<table border='1'>" +
-            "<tr>" +
+        "<table style='border-collapse: collapse;background: #f7f7f7d1; color='black'' border='1'>" +
+            "<tr style='color:black'>" +
                 "<th>Date</th>" +
                 "<th>User</th>" +
                 "<th>Submission</th>" +
@@ -76,12 +76,18 @@ function display_events(response) {
 
     var gps_views = []
     for(var e of response.results) {
-        html += "<tr>"
-        html += "<td>" + formatDate((new Date(e.created_at * 1000))) + "</td>"
-        html += "<td>" + e.name + "</td>"
+        var i = response.results.indexOf(e);
+        console.log(i)
+
+        console.log(e.type, e.url)
+        console.log(SERVER + "" + e.url + "&token=" +localStorage.getItem("session_id") )
+
+        html += "<tr style=color:black>"
+        html += "<td style='text-align:center; font-size:13px'>" + formatDate((new Date(e.created_at * 1000))) + "</td>"
+        html += "<td style='text-align:center; font-size:13px'>" + e.name + "</td>"
         if (e.type == 'gps') {
             html += (
-                "<td>" +
+                "<td style='text-align:center; font-size:13px; color:black'>" +
                     "<div><a target='_blank' href='" +
                         "https://www.google.com/maps/place/" +
                             e.lat +","+ e.lng + "'>GPS Location</a> NOTE: - " +
@@ -94,11 +100,13 @@ function display_events(response) {
 
         if (e.type == 'video') {
             html += (
-                "<td>" +
-                '<video controls="" name="media" width="320" height="240">' +
+                "<td style='text-align:center'>" + '<button id="myBtn" class="videoBtn" onclick="openModal('+i+')">Video</button>'+
+                '<div id="myModal'+i+'" class="modal">'+ 
+                '<div class="modal-content">'+'<div><p  onclick="closeModal('+i+')" class="close" id="closeModal">&times;</p></div><br/>'+
+                '<video controls="" name="media"  class="video">' +
                     '<source src=' + SERVER + "" + e.url + "&token=" +
                         localStorage.getItem("session_id") + ' type="video/mp4">' +
-                '</video></td>')
+                '</video></div></div></td>')
 
         }
         html += "</tr>"
@@ -109,7 +117,23 @@ function display_events(response) {
         //init_street_view(e)
     }
 }
+function openModal(ind){
+    
+    console.log("In  myFunction......",ind)
 
+    var modal = document.getElementById("myModal"+ind);
+    console.log(modal)
+
+    var btn = document.getElementById("myBtn");
+    console.log(btn)
+    
+    modal.style.display = "block";
+
+}
+
+function closeModal(ind){
+    document.getElementById("myModal"+ind).style.display="none";
+}
 
 function display_patients(patients) {
     $(".select-patient").append(

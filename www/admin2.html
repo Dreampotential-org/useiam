@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <!--CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <title>IAM Admin</title>
+
+    <style>
+        body{
+            font-family: "Poppins", sans-serif;
+            background-image: url(img/bg-img.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .modal{
+            display: none;
+            position: fixed; 
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content{
+            background-color: #fefefe;
+            margin: 80%;
+            padding: 0px;
+            border: 1px solid #888;
+            width: fit-content;
+            border-radius: 5px;
+            margin: 15px;
+            position: relative;
+        }
+        .close {
+            color: #fff;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            background: #2a318b;
+            padding: 0px 5px;
+            border-radius: 43px;
+            height: 30px;
+            /* margin-right: -14px; */
+            /* margin-top: -13px; */
+            font-family: auto;
+            position: absolute;
+            right: 3px;
+            top: 2px;
+            margin: 0px;
+            height: 25px;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .video{
+            width: 80%;
+            height:240px
+        }
+        .videoBtn{
+            background: #2a318b;
+            color: #fff;
+            padding: 2px 15px;
+            border-radius: 2px;
+            border: 1px solid #2a318b;
+        }
+        .select-patient{
+            padding: 5px;
+        }
+        .results{
+            margin-bottom: 10px;
+        }
+        .titleDiv{
+            font-size: 30px;
+            font-weight: 500;
+            width: 90px;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.9px;
+            color: #fff;
+
+        }
+        .txtColor{
+            color: #fff;
+            text-decoration: none;
+        }
+        .logout{
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+        
+
+</head>
+<body>
+    <div style='text-align:right;'>
+      <a class='logout' href='#'>Logout <i class="fa fa-sign-out"></i></a>
+    </div>
+    <div>
+      <center>
+        <img src='images/iam.png' style='width:90px;'>
+        <div class="titleDiv">IAM Admin Interface</div>
+      </center>
+    </div>
+  <br>
+  <div class='patients'></div>
+  <span class="txtColor">Filter Patient :</sapn> <select class='select-patient'><select>
+
+  <h4 class="txtColor">Events</h4>
+  <div class='events'></div>
+  <div class='results'></div>
+   <span class="txtColor">Number of results :</span>  <span class='count txtColor'></span></span>>
+    <span class='prev'><a  class="txtColor" href='#'>Prev</a></span>
+    <span class='next'><a class="txtColor" href='#'>Next</a></span>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

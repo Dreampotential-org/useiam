@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!--CSS -->
+    <title>IAM</title>
+    <style>
+      input {
+        /* width: 200px; */
+        padding: 12px 20px;
+        margin: 8px 0;
+        /* box-sizing: border-box; */
+      }
+      body{
+        background-image: url(img/bg-img.jpg);
+        min-height: 100vh;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+      }
+      .logoDiv{
+        margin-top: 15%;
+      }
+      .loginBtn{
+        background: #283190;
+        color: #fff;
+        letter-spacing: 0.7px;
+        padding: 10px 40px;
+        border: 1px solid #283190;
+        border-radius: 3px;
+        text-transform: uppercase;
+      }
+      .loginTitle{
+        font-family: 'Bebas Neue', cursive;
+        color: #fff;
+        font-weight: 500;
+        font-size: 38px;
+        max-width: 100%;
+        width: 250px;
+        margin: 0 auto;
+        line-height: 45px;
+        letter-spacing: 0.5px;
+      }
+      .forgotPassword{
+        color: #fff;
+        text-decoration: none;
+      }
+
+    </style>
+
+</head>
+
+<body>
+  <center>
+      <div class="logoDiv">
+        <img src='images/iam.png' style='width:100px;'>
+      </div>
+  
+    <div class="loginTitle">IAM Admin Interface</div>
+    <br>
+  <div>
+    <input type='email' id='signin_email' placeholder='Email Address'><br>
+    <input type='password' id='signin_password' placeholder='Password'><br>
+    <br>
+    <button id='login' class="loginBtn">login</button>
+    <br>
+    <br>
+    <a class="forgotPassword" href='https://prod-api.useiam.net/password_reset/'>Forgot Password?</a>
+  </div>
+  </center>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/sweetalert.min.js"></script>
+<script src="js/signup_monitor.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>

@@ -87,8 +87,8 @@ header {
 }
 .toggleClose .bar1 {
   -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-55deg) translate(-6px, 6px);
-  /* transform: rotate(-45deg) translate(-9px, 6px); */
+  /* transform: rotate(-55deg) translate(-6px, 6px); */
+  transform: rotate(-61deg) translate(-7px, 5px);
 }
 
 .toggleClose .bar2 {
@@ -97,8 +97,8 @@ header {
 
 .toggleClose .bar3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(61deg) translate(-7px, -7px);
-  /* transform: rotate(45deg) translate(-8px, -8px); */
+  /* transform: rotate(61deg) translate(-7px, -7px); */
+  transform: rotate(62deg) translate(-7px, -6px);
 }
 .logo {
   text-align: center;
@@ -677,15 +677,10 @@ input[type="password"] {
   margin-left: 15px;
 }
 video {
-  /* margin-left: 5px; */
-  width: 338px;
-  /* background: #fff; */
-  /* padding: 10px; */
+  width: 100%;
   box-sizing: border-box;
   border-radius: 5px;
   margin: 12px 0px;
-  /* height: auto;*/
-
 }
 /* video::-webkit-media-controls {
   display: none;
@@ -951,12 +946,12 @@ button:focus {
   height: auto;
   font-size: 40px;
   margin: 0;
-  padding: 15px 20px;
+  padding: 15px 5px;
   color: #fff;
   font-family: "Poppins", sans-serif;
   background: #283190;
   border: none;
-  min-width: 160px;
+  /* min-width: 160px; */
   cursor: pointer;
   border-radius: 3px;
 }
@@ -1176,18 +1171,18 @@ ol li.other {
 }
 .action-btns button {
   margin: 0px;
-  padding: 9px 42px;
-  font-size: 16px;
+  padding: 9px 38px;
+  font-size: 14px;
   color: #fff;
   font-family: "Poppins", sans-serif;
   background: #283190;
   border: none;
-  min-width: 155px;
+  /* min-width: 155px; */
   cursor: pointer;
   border-radius: 3px;
 }
 .action-btns .btn2 {
-  text-align: left;
+  /* text-align: left; */
 }
 
 .forgotPassword {
@@ -1297,7 +1292,7 @@ i {
   border-radius: 5px;
 }
 .modal-wrapper.modal-transition.sub-modal {
-  top: 20%;
+  top: 10%;
   border-radius: 6px;
 }
 
@@ -1331,7 +1326,7 @@ i {
 }
 
 .mainDiv{
-  padding: 20px;
+  padding: 15px;
 }
 .step1Div{
   height:auto;
@@ -1341,7 +1336,7 @@ i {
 }
 
 .stepText{
-  width: 20%;
+  width: 25%;
   background: #2a318b;
   color: white;
   margin-left: 10px;
@@ -1445,4 +1440,7 @@ hr{
 }
 textarea#message::placeholder {
   color: #6e6d6d;
+}
+.feedbackTextarea{
+  width: 100%;
 }
