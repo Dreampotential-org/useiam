@@ -24,9 +24,11 @@ function init_activity() {
     showATab("eventView");
     showBackButton("activity");
     $("#eventView .content").html(
-      '<div class="detailsDiv"><video controls autoplay="" name="media" id="video" width="170" height="240"></video> <div class="videoDetailsDiv"><b>Patient Name : </b> <span id="patient_name">Aaron Rosen</span><br> <b>Created at : </b><span id="created_at">1/21/2020 7:02 am</span></div>'
+      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><video controls autoplay="" name="media" id="video" width="170" height="240"></video> <div class="videoDetailsDiv"><b>Patient Name : </b> <span id="patient_name">Aaron Rosen</span><br> <b>Created at : </b><span id="created_at">1/21/2020 7:02 am</span></div>'
         +'<hr>'+ '<div class="videoDetailsDiv"><b>Feedback received :</b><br> <div class="feedback_received">aaronorosen@gmail.com  - dsfadsf </div></div>'
-        +'<hr>'+'<div class="feedbackDiv"><textarea id="message" class="feedbackTextarea" rows="5" placeholder="Great Job"></textarea><br><button id="send_feedback" class="feedbackBtn">Send Feedback</button></div> </div>'
+        +'<hr>'+'<div class="feedbackDiv"><div class="textareaClass"><textarea id="message" class="feedbackTextarea" rows="5" placeholder="Select message or type your own"></textarea></div>'+
+        '<div class="rowMsg"><div class="colMsg" id=msgId1><p class="messages">Is there deposite or other fees?<p></div> <div class="colMsg" id=msgId2><p class="messages">Are utilities included?</p></div> <div class="colMsg" id=msgId3><p class="messages">Is the the lease start date flexible?<p></div> </div>'+
+        '<div class="feedbackBtnDiv"><button id="send_feedback" class="feedbackBtn">Send Feedback</button></div> </div>'
     );
     var id = getUrlVars(video_url)["id"];
     var user = getUrlVars(video_url)["user"];
@@ -41,7 +43,22 @@ function init_activity() {
         localStorage.getItem("session_id") +
         ' type="video/mp4">'
     );
+
+    $('button').on('click', fav);
+    function fav(e) {
+        $(this).find('.fa').toggleClass('fa-star-o fa-star');
+    }
+
+    $(document).ready(function(){
+       $( "p" ).click(function() {
+        var text = $( this ).text();
+        console.log("TEXT____",text)
+        $( "textarea" ).val( text );
+      });
+    });
+
   });
+
 
   $("body").delegate(".view-gps", "click", function(e) {
     showATab("eventView");
@@ -70,6 +87,7 @@ function init_activity() {
     get_activity(function(resp) {  display_activities(resp.events) });
     */
 }
+
 
 function get_activity(callback) {
   var settings = {
@@ -125,7 +143,7 @@ function display_activities(activities) {
         '<li class="other"><div class="msg"> <p class="dateClass">' +
           formatDate(new Date(activity.created_at * 1000)) +
           "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
-          "<p class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
+          "<div style='width:80%'><span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
           activity.lat +
           " " +
           "lng=" +
@@ -134,7 +152,7 @@ function display_activities(activities) {
           activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
           "</a>" +
          
-          "</p>" +
+          "</span></div>" +
           '<div class="icon"><img src="images/place.png" alt=""/></div>' +
           "</div> </li>"
       );
@@ -144,11 +162,11 @@ function display_activities(activities) {
         '<li class="other dark"><div class="msg"> <p class="dateClass">' +
           formatDate(new Date(activity.created_at * 1000)) +
           "</p>" +
-          "<p class='alignTag'><a url=" +
+          "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
           activity.url +
           " href='#' class='view-video customLinkBtn'>" +
           activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
-          "</a></p>" +
+          "</a></span></div>" +
           '<div class="icon"><div class="borderDiv"><img src="images/Play_Video.png" alt=""/></div></div>' +
           "</div> </li>"
         //   <img src="images/play_icon.png" alt=""/>

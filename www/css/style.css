@@ -1393,8 +1393,10 @@ i {
   margin-top: 10px;
   display: inline-block;
 }
-p.alignTag {
+.alignTag {
   text-align: end;
+  float: right;
+  margin-top: -12px;
 }
 .msg .dateClass{
   font-size: 12px;
@@ -1443,4 +1445,77 @@ textarea#message::placeholder {
 }
 .feedbackTextarea{
   width: 100%;
+  border: none;
 }
+.feedbackBtnDiv{
+  border-top: 0.55px solid lightgray;
+  text-align: end;
+  padding: 12px 0px 0px;
+}
+.textareaClass{
+  border-bottom: 0.55px solid lightgray;
+}
+.messages{
+  background: #d3d3d354;
+  border-radius: 20px;
+  padding: 7px 15px;
+  margin-top: 7px;
+}
+
+.favBtn{
+  float: right;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  margin-right: -7px;  
+}
+i.fa.starIcon.fa-star-o {
+  font-size: 25px;
+  color: gold;
+}
+.fa-star:before {
+  font-size: 25px;
+  color: gold;
+}
+.iconStar:before{
+  font-size: 15px;
+  color: gold;
+}
+
+
+.rowMsg {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.colMsg {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: fit-content;
+  padding: 0 4px;
+}
+
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .colMsg {
+    -ms-flex: 50%;
+    flex: 50%;
+    /* max-width: 50%; */
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 320px) {
+  .colMsg {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+

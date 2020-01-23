@@ -101,6 +101,7 @@ function display_events(response) {
         if (e.type == 'video') {
             html += (
                 "<td style='text-align:center'>" + '<button id="myBtn" class="videoBtn" onclick="openModal('+i+')">Video</button>'+
+                '<span class="starIconSpan"><i class="fa fa-star"></i></span>'+
                 '<div id="myModal'+i+'" class="modal">'+ 
                 '<div class="modal-content">'+'<div><p  onclick="closeModal('+i+')" class="close" id="closeModal">&times;</p></div><br/>'+
                 '<video controls="" name="media"  class="video">' +
