@@ -1393,10 +1393,8 @@ i {
   margin-top: 10px;
   display: inline-block;
 }
-.alignTag {
+p.alignTag {
   text-align: end;
-  float: right;
-  margin-top: -12px;
 }
 .msg .dateClass{
   font-size: 12px;
@@ -1416,6 +1414,10 @@ hr{
 }
 .feedbackDiv{
   margin: 12px;
+}
+.feedbackBtnDiv{
+  border-top: 0.55px solid lightgray;
+  text-align: end;
 }
 .detailsDiv{
   background: #fff;
@@ -1438,7 +1440,7 @@ hr{
   border: 1px solid #2a318b;
   border-radius: 3px;
   padding: 8px;
-  margin: 5px 0px 10px;
+  margin: 16px 0px 0px;
 }
 textarea#message::placeholder {
   color: #6e6d6d;
@@ -1447,19 +1449,15 @@ textarea#message::placeholder {
   width: 100%;
   border: none;
 }
-.feedbackBtnDiv{
-  border-top: 0.55px solid lightgray;
-  text-align: end;
-  padding: 12px 0px 0px;
-}
 .textareaClass{
   border-bottom: 0.55px solid lightgray;
 }
 .messages{
+
   background: #d3d3d354;
   border-radius: 20px;
   padding: 7px 15px;
-  margin-top: 7px;
+
 }
 
 .favBtn{
@@ -1467,7 +1465,7 @@ textarea#message::placeholder {
   background: transparent;
   box-shadow: none;
   border: none;
-  margin-right: -7px;  
+  margin-right: -7px;
 }
 i.fa.starIcon.fa-star-o {
   font-size: 25px;
@@ -1477,7 +1475,12 @@ i.fa.starIcon.fa-star-o {
   font-size: 25px;
   color: gold;
 }
-.iconStar:before{
+
+span.alignTag{
+  float: right;
+  margin-top: -13px;
+}
+.iconStar:before {
   font-size: 15px;
   color: gold;
 }
@@ -1495,7 +1498,7 @@ i.fa.starIcon.fa-star-o {
 .colMsg {
   -ms-flex: 25%; /* IE10 */
   flex: 25%;
-  max-width: fit-content;
+  max-width: 25%;
   padding: 0 4px;
 }
 
@@ -1518,4 +1521,16 @@ i.fa.starIcon.fa-star-o {
   }
 }
 
+.swal-button {
+  background-color: #2a318b !important;
+  color: #fff;
+  border: none;
+  box-shadow: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 24px;
+  margin: 0;
+  cursor: pointer;
+}
 

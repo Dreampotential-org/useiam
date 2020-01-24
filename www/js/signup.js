@@ -11,6 +11,7 @@ function init_login_stuff() {
     handle_logout();
 
     handle_show_instructions();
+    
 }
 
 function user_logged_in() {
@@ -156,8 +157,9 @@ function signup_api(params) {
 function handle_signin() {
     // create their account
     $("#signinModal .loginToDashboard").on('click', function(e) {
+        
         login_api($("#signin_email").val().trim(),
-                  $("#signin_password").val().trim(), function() {
+        $("#signin_password").val().trim(), function() {
             //after successful login or signup show dashboard contents
             showATab('dashboard');
             //close modals
@@ -176,7 +178,10 @@ function handle_signin() {
     })
 }
 
+
+
 function login_api(email, password, callback) {
+
     var form = new FormData();
     form.append("username", email);
     form.append("password", password);
@@ -189,13 +194,16 @@ function login_api(email, password, callback) {
       "processData": false,
       "contentType": false,
       "mimeType": "multipart/form-data",
-      "data": form
+      "data": form,
+      
     }
 
+    
     $.ajax(settings).done(function (response) {
+
         localStorage.setItem("session_id", JSON.parse(response).token)
         console.log("user logged in")
-        // show toggle bar
+
         $(".toggleBar").show()
         $(".moto").show()
         callback();
@@ -211,11 +219,14 @@ function login_api(email, password, callback) {
 
 
 function signup_signin_buttons() {
+    
     $('#signin').on('click', function(e) {
       e.preventDefault();
       $('#signinModal').addClass('is-visible');
     });
+
     $('#signup').on('click', function(e) {
+        console.log("SIGNUP Need......__________")
       e.preventDefault();
       $('#signupModal').addClass('is-visible');
     });
@@ -238,3 +249,5 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+
+

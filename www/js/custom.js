@@ -1,5 +1,5 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-   
+
 function init() {
     block_desktop()
     init_reset_password()
@@ -12,13 +12,15 @@ function init() {
     init_invite()
     init_activity();
     init_display();
-    init_stripe()
+    init_stripe();
 
+   //  init_doctor_login_stuff();
+    
     // populates days sober in left side pannel
     get_profile_info();
     $("body").show()
 }
-
+ 
 function block_desktop() {
     if (!(isMobile)) {
     swal({
@@ -143,6 +145,7 @@ function nextPrev(n) {
     // Otherwise, display the correct tab:
     //showTab(currentTab);
 }
+
 
 function validateForm() {
     // This function deals with validation of the form fields

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!--CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>IAM</title>
     <style>
       input {
@@ -40,6 +41,7 @@
         border: 1px solid #283190;
         border-radius: 3px;
         text-transform: uppercase;
+        margin-top: 15px;
       }
       .loginTitle{
         font-family: 'Bebas Neue', cursive;
@@ -50,12 +52,225 @@
         width: 250px;
         margin: 0 auto;
         line-height: 45px;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.9px;
       }
       .forgotPassword{
         color: #fff;
         text-decoration: none;
       }
+      .signUpTag{
+        color: #fff;
+      }
+      .doctorSignUpClass{
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .modal {
+        position: absolute;
+        /* z-index: 10000;  */
+        z-index: 999;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+
+      .modal.is-visible {
+        visibility: visible;
+        display: block;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.64);
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s linear 0.3s, opacity 0.3s;
+      }
+
+      .modal.is-visible .modal-overlay {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+      }
+
+      .modal-wrapper {
+        position: absolute;
+        z-index: 9999;
+        top: 1em;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 90%;
+        background-color: #fff;
+        box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+      }
+
+      .modal-transition {
+        transition: all 0.3s 0.12s;
+        transform: translateY(-10%);
+        opacity: 0;
+        top: 3%;
+        transform: translate(-50%, -50%);
+      }
+
+      .modal.is-visible .modal-transition {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .modal-header {
+        padding: 30px 20px 20px;
+      }
+      .modal-content {
+        padding: 0 20px 30px;
+      }
+      .modalLogo {
+        width: 200px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -100px;
+        margin: auto;
+      }
+      #LocationModal .modalLogo {
+        width: 80px;
+        height: 80px;
+        top: -40px;
+      }
+      .modal-header {
+        position: relative;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1em;
+        color: #aaa;
+        background: none;
+        border: 0;
+      }
+
+      .modal-close:hover {
+        color: #777;
+      }
+
+      .modal-heading {
+        font-size: 35px;
+        text-align: center;
+        font-weight: 400;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .modal-content{  
+        /* padding: 0 15px 30px; */
+        padding: 0px 0px 25px;
+      }
+      .closeIcon {
+        cursor: pointer;
+        background: #2a318b;
+        color: white;
+        display: inline-block;
+        border-radius: 60px;
+        box-shadow: 0px 0px 2px #888;
+        padding: 3px 0px 6px !important;
+        border: 0.55px solid #fff;
+        height: auto;
+        width: 25px;
+        text-align: center;
+        line-height: 16px !important;
+      }
+      .locAuthTitle {
+        color: #2a318b;
+        margin: auto;
+        font-family: 'Bebas Neue', cursive;
+        font-weight: 500;
+        font-size: 42px;
+      }
+      .textCenter {
+        text-align: center;
+        font-weight: 100;
+        margin-bottom: 0px;
+        margin-top: 0px;
+      }
+      input[type="text"],
+      input[type="date"],
+      input[type="email"],
+      input[type="number"],
+      input[type="tel"],
+      input[type="password"],
+      input[type=time] {
+          font-size: 20px;
+          font-weight: 100;
+          margin: 10px 10px 0px 10px;
+          width: 100%;
+          padding: 20px 0px;
+          border: 0.55px solid lightgray;
+          background-color: #fff;
+          color: #000;
+
+          -webkit-user-select: text; /* Chrome, Opera, Safari */
+          -moz-user-select: text; /* Firefox 2+ */
+          -ms-user-select: text; /* IE 10+ */
+          user-select: text; /* Standard syntax */
+      }
+      input[type="number"],
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="password"] {
+        width: inherit;
+        width: -webkit-fill-available;
+        padding: 12px 15px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="number"] {
+          font-size: 15px;
+      }   
+      @media (max-width:680px){
+        input[type=text], input[type=email], input[type=tel], input[type=password], input[type=time]{
+          width: inherit;
+          width: -webkit-fill-available;
+          padding: 12px 15px; 
+          margin: 10px 10px 0px 10px;
+        }
+      }
+      .actionBtn.dark {
+        background: #2a318b;
+        border-radius: 3px;
+        font-size: 16px;
+        color: #fff;
+        padding: 9px 25px;
+        border: 1px solid #2a318b;
+      }
+      .loginNeed {
+        font-size: 14px;
+        font-weight: 500;
+        font-family: "Poppins", sans-serif;
+        /* color: #828282; */
+      }
+      .loginNeed a {
+        color: #2a318b;
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        /* color: #00a0cc; */
+      }
+
 
     </style>
 
@@ -67,22 +282,65 @@
         <img src='images/iam.png' style='width:100px;'>
       </div>
   
-    <div class="loginTitle">IAM Admin Interface</div>
+    <div class="loginTitle">Monitor signup/login</div>
     <br>
   <div>
-    <input type='email' id='signin_email' placeholder='Email Address'><br>
+    <input type='email'class id='signin_email' placeholder='Email Address'><br>
     <input type='password' id='signin_password' placeholder='Password'><br>
-    <br>
+  
     <button id='login' class="loginBtn">login</button>
     <br>
-    <br>
+    <!-- <button id='login' class="loginBtn">Doctor Signup</button> -->
+   <p class="signUpTag">Dont have an account?  &nbsp;<a  href="#" id="doctorSignUp" class="doctorSignUpClass">Doctor Signup</a></p> 
+
     <a class="forgotPassword" href='https://prod-api.useiam.net/password_reset/'>Forgot Password?</a>
   </div>
   </center>
 
+  <div class="modal" id="doctorSignupModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+
+        <div class="modal-body">
+            <div class="modal-content">
+                <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
+
+                <div class='close' id="colseId" style="text-align: end; padding: 5px;"><i class="fa fa-times closeIcon"  aria-hidden="true"></i></div>
+
+                <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div>
+
+                <h3 class="locAuthTitle textCenter">SIGN UP</h3>
+                <form id="doctorRegForm" action="#">
+                    <!-- One "tab" for each step in the form: -->
+                    <div class="tab user-info">
+                        <input placeholder="Name" id='signup_name'
+                          oninput="this.className = ''" type="text">
+                        <input placeholder="Email" id='signup_email'
+                          oninput="this.className = ''" type="email">
+                        <input type="password" id='signup_password'
+                         placeholder="Password" oninput="this.className=''"/>
+                    </div>
+                   
+                    <div>
+                        <div style="text-align: center; padding: 6px;">
+                            <!-- <button class="actionBtn btnNext" type="button"
+                                    id="nextBtn">SIGN UP</button> -->
+                            <input type="button" value="SIGN UP"  id="nextBtn" class="actionBtn dark loginToDashboard">
+                        </div>
+                    </div>
+
+                </form>
+                <p class="textCenter loginNeed">Have an account? <a href="#" id="loginLink">Log In</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
-<script src="js/signup_monitor.js"></script>
+<script src="js/logos.js?v=1.4"></script>
+<script src="js/doctor_signup.js?v=1.4"></script> 
 <script src="js/config.js"></script>
 </body>
 </html>
