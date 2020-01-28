@@ -144,7 +144,6 @@ function signup_api(params) {
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
-        alert(err)
         swal({
             'title': 'Error',
             'text': 'Invalid email or password',
@@ -157,7 +156,7 @@ function signup_api(params) {
 function handle_signin() {
     // create their account
     $("#signinModal .loginToDashboard").on('click', function(e) {
-        
+
         login_api($("#signin_email").val().trim(),
         $("#signin_password").val().trim(), function() {
             //after successful login or signup show dashboard contents
@@ -195,10 +194,7 @@ function login_api(email, password, callback) {
       "contentType": false,
       "mimeType": "multipart/form-data",
       "data": form,
-      
     }
-
-    
     $.ajax(settings).done(function (response) {
 
         localStorage.setItem("session_id", JSON.parse(response).token)
@@ -219,7 +215,7 @@ function login_api(email, password, callback) {
 
 
 function signup_signin_buttons() {
-    
+
     $('#signin').on('click', function(e) {
       e.preventDefault();
       $('#signinModal').addClass('is-visible');
