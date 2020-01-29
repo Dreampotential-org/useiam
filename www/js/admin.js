@@ -16,7 +16,8 @@ function init_page_events() {
 
     $("body").delegate(".logout", "click", function(e) {
         localStorage.clear()
-        window.location = 'login.html'
+      //  window.location = 'login.html'
+        window.location = 'login2.html'
     });
 
     $("body").delegate(".select-patient", "change", function(e) {

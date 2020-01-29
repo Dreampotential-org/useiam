@@ -83,7 +83,7 @@
             padding: 5px;
         }
         .results{
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
         }
         .titleDiv{
             font-size: 30px;
@@ -108,32 +108,44 @@
             margin-left: 15px;
             font-size: 20px;
         }
+        .paginationDiv{
+            padding: 15px 0px;
+        }
+        .spanText{
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
 
     </style>
         
 
 </head>
 <body>
-    <div style='text-align:right;'>
-      <a class='logout' href='#'>Logout <i class="fa fa-sign-out"></i></a>
-    </div>
-    <div>
-      <center>
-        <img src='images/iam.png' style='width:90px;'>
-        <div class="titleDiv">IAM Admin Interface</div>
-      </center>
-    </div>
-  <br>
-  <div class='patients'></div>
-  <span class="txtColor">Filter Patient :</sapn> <select class='select-patient'><select>
+    <div id="admin">
+        <div style='text-align:right;'>
+        <a class='logout' href='#'>Logout <i class="fa fa-sign-out"></i></a>
+        </div>
+        <div>
+        <center>
+            <img src='images/iam.png' style='width:90px;'>
+            <div class="titleDiv">IAM Admin Interface</div>
+        </center>
+        </div>
+        <br>
+        <div class='patients'></div>
+        <span class="txtColor">Filter Patient :</sapn> <select class='select-patient'><select>
 
-  <h4 class="txtColor">Events</h4>
-  <div class='events'></div>
-  <div class='results'></div>
-   <span class="txtColor">Number of results :</span>  <span class='count txtColor'></span></span>>
-    <span class='prev'><a  class="txtColor" href='#'>Prev</a></span>
-    <span class='next'><a class="txtColor" href='#'>Next</a></span>
-  </div>
+        <h4 class="txtColor">Events</h4>
+        <div class='events'></div>
+        <div class='results'></div>
+            <div class="paginationDiv">
+                <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>>
+                <span class='prev'><a  class="spanText" href='#'>Prev</a></span>
+                <span class='next'><a class="spanText" href='#'>Next</a></span>
+            </div>
+        </div>
+    </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/sweetalert.min.js"></script>

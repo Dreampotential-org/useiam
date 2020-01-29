@@ -17,25 +17,26 @@ function login_monitor() {
     $("#login").on('click', function(e) {
         login_api($("#signin_email").val().trim(),
                   $("#signin_password").val().trim(), function() {
-            swal({
-                'title': 'Login Success!',
-                'text': 'You will now be able to view video links from email',
-                'icon': 'success',
-            });
+            // swal({
+            //     'title': 'Login Success!',
+            //     'text': 'You will now be able to view video links from email',
+            //     'icon': 'success',
+            // });
 
             if (localStorage.getItem("redirect_url")) {
                 var redirect = localStorage.getItem("redirect_url")
                 localStorage.removeItem("redirect_url")
                 window.location = redirect
             } else {
-                window.location = '/admin.html'
+                // window.location = '/admin.html';
+                window.location = './admin2.html'
             }
 
 
         })
     })
-}
-
+}  
+  
 function login_api(email, password, callback) {
     var form = new FormData();
     form.append("username", email);
