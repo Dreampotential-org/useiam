@@ -11,7 +11,7 @@ function init_login_stuff() {
     handle_logout();
 
     handle_show_instructions();
-    
+
 }
 
 function user_logged_in() {
@@ -156,6 +156,7 @@ function signup_api(params) {
 function handle_signin() {
     // create their account
     $("#signinModal .loginToDashboard").on('click', function(e) {
+        e.preventDefault();
 
         login_api($("#signin_email").val().trim(),
         $("#signin_password").val().trim(), function() {
