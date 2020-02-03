@@ -14,8 +14,6 @@ function init_doctor_login_stuff() {
 function handle_doctorSignup() {
 
     $("#doctorSignupModal #nextBtn").on('click', function(e) {
-        debugger;
-     
         // $("#doctorSignupModal #nextBtn").addClass("running");
 
         // validate inputs
@@ -121,7 +119,6 @@ function doctorSignup_button(){
 // }
 
 function doctorSignup_api(params) {
-    debugger;
     if (params.days_sober == null) {
         params.days_sober = '0'
     }
