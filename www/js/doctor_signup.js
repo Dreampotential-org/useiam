@@ -14,7 +14,6 @@ function init_doctor_login_stuff() {
 function handle_doctorSignup() {
 
     $("#doctorSignupModal #nextBtn").on('click', function(e) {
-        debugger;
      
         // $("#doctorSignupModal #nextBtn").addClass("running");
 
@@ -121,7 +120,6 @@ function doctorSignup_button(){
 // }
 
 function doctorSignup_api(params) {
-    debugger;
     if (params.days_sober == null) {
         params.days_sober = '0'
     }
@@ -160,23 +158,6 @@ function doctorSignup_api(params) {
         // show toggle bar
         $(".toggleBar").show()
         console.log("user logged in");
-        //after successful login or signup show dashboard contents
-        showATab('admin');
-        //close modals
-        closeAllModals();
-        $(".moto").show()
-
-        get_profile_info(function(msg) {
-            if (!(msg.monitors.length)) {
-                show_set_monitor();
-            } else {
-                $('.toggleBar').click()
-                $("#showInstructions").click()
-            }
-        });
-
-        //$("#proTip").addClass("is-visible");
-
 
     }).fail(function(err) {
         $("#doctorSignupModal #nextBtn").removeClass("running")
