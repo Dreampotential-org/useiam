@@ -1072,6 +1072,10 @@ li.notification .msg {
 .btnInfo img {
   height: 35px;
 }  
+.btnBack img{
+  margin: 10px 0px;
+  height: 30px;
+}
 
 ol li.other {
   width: 90%;
