@@ -30,11 +30,20 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.useiam.useiam2"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.useiam.useiam2"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.useiam.useiam2"
     }
   }
 }

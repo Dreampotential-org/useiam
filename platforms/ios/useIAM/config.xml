@@ -104,4 +104,13 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="iosPersistentFileLocation" value="Compatibility" />
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="Badge">
+        <param name="ios-package" value="APPBadge" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="ios-package" value="APPLocalNotification" />
+    </feature>
 </widget>
