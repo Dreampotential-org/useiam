@@ -21,6 +21,8 @@
 		D6D3B5BF8B5D4F92AB0ED318 /* CDVCapture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B698184E78554CBAAFAF69C1 /* CDVCapture.bundle */; };
 		E4068F02774E493BBB2E7426 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A992CA08CFE4394880DF66D /* CDVSplashScreen.m */; };
 		714E60256546493A839FB6A0 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D544B6BD331641DE90723F96 /* CDVViewController+SplashScreen.m */; };
+		B7063305A53541849CCB19EE /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 142263395C61444B98647A2E /* CDVLocation.m */; };
+		B19B07518C3040FFB4BD1307 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7054706752D24CBAB339C4B8 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,9 @@
 		D544B6BD331641DE90723F96 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		C99C27CFEAC34A1FAB419DFB /* CDVSplashScreen.h */ = {isa = PBXFileReference; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		6FF05C13F67C4CAEB9ECEAB5 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		142263395C61444B98647A2E /* CDVLocation.m */ = {isa = PBXFileReference; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		365BE12E2AB3442F9FBA3099 /* CDVLocation.h */ = {isa = PBXFileReference; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7054706752D24CBAB339C4B8 /* CoreLocation.framework */ = {isa = PBXFileReference; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				B19B07518C3040FFB4BD1307 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +168,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7054706752D24CBAB339C4B8 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +209,8 @@
 				D544B6BD331641DE90723F96 /* CDVViewController+SplashScreen.m */,
 				C99C27CFEAC34A1FAB419DFB /* CDVSplashScreen.h */,
 				6FF05C13F67C4CAEB9ECEAB5 /* CDVViewController+SplashScreen.h */,
+				142263395C61444B98647A2E /* CDVLocation.m */,
+				365BE12E2AB3442F9FBA3099 /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = useIAM/Plugins;
@@ -339,6 +348,7 @@
 				25E6552D4CA0467DAA145C99 /* CDVCapture.m in Sources */,
 				E4068F02774E493BBB2E7426 /* CDVSplashScreen.m in Sources */,
 				714E60256546493A839FB6A0 /* CDVViewController+SplashScreen.m in Sources */,
+				B7063305A53541849CCB19EE /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +456,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.useiam.useiam;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 			};
 			name = Debug;
 		};
@@ -487,7 +496,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.useiam.useiam;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 			};
 			name = Release;
 		};

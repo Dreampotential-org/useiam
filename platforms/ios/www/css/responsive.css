@@ -1,4 +1,7 @@
 @media (max-width:680px){
+    .other:after{
+        left: -17px;
+    }
     .modalLogo{
         width: 115px;
         top: -65px;
@@ -12,38 +15,41 @@
     #signupModal .modal-heading{
         padding: 15px 0;
     }
-    input[type=text], input[type=email], input[type=tel], input[type=password]{
+    input[type=text], input[type=email], input[type=tel], input[type=password], input[type=time]{
         width: inherit;
         width: -webkit-fill-available;
-        padding: 12px 30px;
+        padding: 12px 15px; 
+        margin-bottom:20px;
     }
     .popupForm{
         text-align: center;
     }
     .popupForm a{
-        font-size: 19px;
+        font-size: 12px;
     }
     .btnSubmit{
         padding: 10px;
-        font-size: 24px;
+        font-size: 18px;
         width:50%;
     }
     .signupNeed{
-        font-size: 19px;
+        font-size: 14px;
+        margin-top: 0px;
     }
     #regForm{
-        width: 100%;
+        width: 90%;
     }
-    .modal-content{
-        padding: 0 15px 30px;
+    .modal-content{  
+        /* padding: 0 15px 30px; */
+        padding: 0px 0px 25px;
     }
     .secAction{
         display: block;
-        bottom: 10%;
+        /* bottom: 1%; */
     }
     .actionBtn{
-        width:70%;
-        margin:5px 0;
+        width:50%;
+        /*margin:auto;*/
     }
     .btnVideo,.btnEvent{
         padding:0;
@@ -56,5 +62,35 @@
     }
     .actionBtn.btnSwitchCamera{
         margin-bottom: 8%;
+    }
+}
+@media (max-width:460px){
+    .action-btns .column1{
+        text-align: center;
+        margin-top: 50px;
+    }
+    .actionBtn.video,.actionBtn.location{
+        font-size: 14px;
+        
+    }
+    .secAction.login {
+        bottom: 15vh;
+		  position: absolute;
+    }
+	.secActionGPS {
+		top: 469px !important;
+	}
+
+    .activity-log .chat .other .icon {
+        width: 80px;
+    }
+    .activity-log .chat .other .icon img{
+        width: 30px;
+    }
+}
+
+@media (max-width:400px){
+    .activity-log .chat .other .icon {
+        width: 60px;
     }
 }

@@ -132,9 +132,11 @@ function start_gps() {
         timeout           : 27000
     };
 
-    navigator.geolocation.watchPosition(
-        geo_success_low, geo_error, geo_options_low
-    );
+    document.addEventListener('deviceready', function(){
+      navigator.geolocation.watchPosition(
+          geo_success_low, geo_error, geo_options_low
+      );
+    }, false);
 
    function geo_error(err) {
         if (err.code  == 1) {
@@ -159,9 +161,11 @@ function start_gps() {
     };
 
     // Start gps prob with high accuracy
+    document.addEventListener('deviceready', function(){
     navigator.geolocation.watchPosition(
         geo_success, geo_error, geo_options
     );
+    }, false);
 
     function geo_success_low(position) {
         CURRENT_POSITION_LOW = position
