@@ -1,17 +1,11 @@
+//var SERVER = 'http://127.0.0.1:8001'
+var SERVER = 'https://dev.usepam.com'
 function init_login_stuff() {
-
-    // setup calender
-    $("#sober_date").datepicker()
-    $("#sober_date_update").datepicker()
-
     user_logged_in()
     signup_signin_buttons()
     handle_signup();
     handle_signin();
     handle_logout();
-
-    handle_show_instructions();
-
 }
 
 function user_logged_in() {
@@ -19,7 +13,6 @@ function user_logged_in() {
         showATab('dashboard');
         //close modals
         closeAllModals();
-
     }
 }
 
@@ -27,16 +20,9 @@ function handle_logout() {
     $("#logout").on('click', function(e) {
         localStorage.clear();
         location.reload();
-        $(".moto").hide()
     });
 }
 
-function handle_show_instructions() {
-    $("body").delegate("#showInstructions", "click", function(e) {
-        $('.toggleBar').click()
-        $('#instructionsModal').addClass('is-visible');
-    })
-}
 
 function handle_signup() {
 
@@ -68,6 +54,7 @@ function handle_signup() {
             return
         }
         if ($("#signupModal #nextBtn").hasClass("running")) {
+            alert("API COmmand in process")
             return
         }
 
@@ -77,8 +64,7 @@ function handle_signup() {
             'name': $("#signup_name").val().trim(),
             'email': $("#signup_email").val().trim(),
             'password': $("#signup_password").val().trim(),
-            'days_sober': null,
-            'sober_date': $("#sober_date").val().trim(),
+            'days_sober': $("#days_sober").val().trim(),
         })
     });
 }
@@ -92,10 +78,8 @@ function signup_api(params) {
     form.append("name", params.name);
     form.append("email", params.email);
     form.append("days_sober", params.days_sober);
-    form.append("sober_date", params.sober_date);
     form.append("password", params.password);
     //form.append("notify_email", 'aaronorosen@gmail.com');
-    form.append("source", window.location.host);
 
     var settings = {
       "async": true,
@@ -120,30 +104,23 @@ function signup_api(params) {
             return
         }
         localStorage.setItem("session_id", JSON.parse(response).token)
-        // show toggle bar
-        $(".toggleBar").show()
         console.log("user logged in");
         //after successful login or signup show dashboard contents
         showATab('dashboard');
         //close modals
         closeAllModals();
-        $(".moto").show()
 
         get_profile_info(function(msg) {
-            if (!(msg.monitors.length)) {
+            if (!(msg.notify_email)) {
                 show_set_monitor();
-            } else {
-                $('.toggleBar').click()
-                $("#showInstructions").click()
             }
         });
-
-        //$("#proTip").addClass("is-visible");
 
 
     }).fail(function(err) {
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
+	alert(err)
         swal({
             'title': 'Error',
             'text': 'Invalid email or password',
@@ -156,36 +133,28 @@ function signup_api(params) {
 function handle_signin() {
     // create their account
     $("#signinModal .loginToDashboard").on('click', function(e) {
-        e.preventDefault();
-
         login_api($("#signin_email").val().trim(),
-        $("#signin_password").val().trim(), function() {
+                  $("#signin_password").val().trim(), function() {
             //after successful login or signup show dashboard contents
             showATab('dashboard');
             //close modals
             closeAllModals();
+
             get_profile_info(function(msg) {
-                if (!(msg.monitors.length)) {
+                if (!(msg.notify_email)) {
                     show_set_monitor();
-                } else {
-                    $('.toggleBar').click()
-                    $("#showInstructions").click()
                 }
             });
 
-            //$("#proTip").addClass("is-visible");
+
         })
     })
 }
 
-
-
 function login_api(email, password, callback) {
-
     var form = new FormData();
     form.append("username", email);
     form.append("password", password);
-    form.append("source", window.location.host);
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -194,15 +163,12 @@ function login_api(email, password, callback) {
       "processData": false,
       "contentType": false,
       "mimeType": "multipart/form-data",
-      "data": form,
+      "data": form
     }
-    $.ajax(settings).done(function (response) {
 
+    $.ajax(settings).done(function (response) {
         localStorage.setItem("session_id", JSON.parse(response).token)
         console.log("user logged in")
-
-        $(".toggleBar").show()
-        $(".moto").show()
         callback();
     }).fail(function(err) {
         swal({
@@ -216,23 +182,14 @@ function login_api(email, password, callback) {
 
 
 function signup_signin_buttons() {
-
     $('#signin').on('click', function(e) {
       e.preventDefault();
       $('#signinModal').addClass('is-visible');
     });
-
     $('#signup').on('click', function(e) {
-        console.log("SIGNUP Need......__________")
       e.preventDefault();
       $('#signupModal').addClass('is-visible');
     });
-
-    $(".loginNeed").on("click", function(e) {
-      e.preventDefault();
-      $('#signupModal').removeClass('is-visible');
-      $('#signinModal').addClass('is-visible');
-    })
 
     $(".signupNeed").on("click", function(e) {
       e.preventDefault();

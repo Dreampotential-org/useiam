@@ -30,6 +30,7 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
+      "cordova-plugin-geolocation": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-media-capture": {},
       "cordova-plugin-ios-camera-permissions": {
@@ -40,8 +41,7 @@
       },
       "cordova-ios-plugin-no-export-compliance": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "android"

@@ -1,48 +1,8 @@
-var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
 function init() {
-    block_desktop()
-    init_reset_password()
-    init_logo()
     init_login_stuff();
     init_gps_stuff()
     init_video_event();
-    init_monitor();
-    init_time();
-    init_invite()
-    init_activity();
-    init_display();
-    init_stripe();
-
-   //  init_doctor_login_stuff();
-    
-    // populates days sober in left side pannel
-    get_profile_info();
-    $("body").show()
-}
- 
-function block_desktop() {
-    if (!(isMobile)) {
-    swal({
-        title: "Computer not supported",
-        text: "Use IAM with your smartphone or tablet.",
-        icon: "info",
-        buttons: false,
-        closeOnEsc: false,
-        closeOnClickOutside: false,
-    });
-    }
-}
-
-function init_display() {
-    if (localStorage.getItem("session_id")) {
-        $(".toggleBar").show()
-        $(".moto").show()
-    }
-}
-
-function init_reset_password() {
-    $("#forgot_password").attr("href", SERVER + "/password_reset");
+    init_monitor()
 }
 
 
@@ -85,14 +45,6 @@ $('.modal-overlay').on('click', function(e) {
 $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
     $(this).toggleClass('toggleClose');
-    if($(this).hasClass('toggleClose')){
-        $('header').css('margin-left','400px');
-        $('#page-contents').css('margin-left','400px');
-    }
-    else{
-        $('header').css('margin-left','0');
-        $('#page-contents').css('margin-left','0');
-    }
 });
 
 //for singup form tabs
@@ -145,7 +97,6 @@ function nextPrev(n) {
     // Otherwise, display the correct tab:
     //showTab(currentTab);
 }
-
 
 function validateForm() {
     // This function deals with validation of the form fields
@@ -212,32 +163,18 @@ var toggleBar = $('.toggleBar');
 var infoBtn = $('.btnInfo');
 //showing back button instead of the side menu bars
 function showBackButton(backTabID){
-   
     toggleBar.hide();
     backBtn.show();
-    $('input[id=backTabID]').val(backTabID);
     backBtn.id = backTabID;
-    //alert("showbackbutton: "+backTabID);
 }
 
 backBtn.on('click',function(e){
-    console.log("On Back Button Click()___&&&&&&&");
-
     //hide info button if visible
 
-    //alert("onclickbackbutton: "+$('input[id=backTabID]').val());
 
-    //var tabToShow  = backBtn.id;
-    var tabToShow = $('input[id=backTabID]').val();
-    if (tabToShow=="activity") {
-        document.getElementById("logoDivId").style.display = "none";
-      } else {
-        document.getElementById("logoDivId").style.display = "block";
-      }
+    var tabToShow  = backBtn.id;
     showATab(tabToShow);
-
-    if(tabToShow == 'dashboard')
-        showMenuBar();
+    showMenuBar();
 });
 
 function showInfoBtn(modalID){
@@ -261,16 +198,7 @@ function showMenuBar(){
 
 function showATab(tabID){
     parentDiv.children().hide();
-    parentDiv.find('#' + tabID).show("fast");
-
-    if (tabID == 'activity') {
-        showBackButton('dashboard');
-    }
-
-    if (tabID == 'eventView') {
-        showBackButton('activity');
-    }
-
+    parentDiv.find('#'+tabID).show("fast");
     // show info button for specific tabs else hide it
     if(tabID == 'takeVideo'){
         showInfoBtn('videoInfo');
@@ -290,12 +218,6 @@ function closeAllModals(){
     $('#LocationModal').removeClass("is-visible");
     $('#videoInfo').removeClass('is-visible');
     $('#setmonitorModal').removeClass('is-visible');
-    $('#setTimeModal').removeClass('is-visible');
-    $('#inviteModal').removeClass('is-visible');
-    $('#setSoberDate').removeClass('is-visible');
-    $("#proTip").removeClass("is-visible");
-    $("#instructionsModal").removeClass("is-visible");
-    $("#paymentForm").removeClass("is-visible");
 }
 
 
