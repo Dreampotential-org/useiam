@@ -14,7 +14,6 @@ function init_doctor_login_stuff() {
 function handle_doctorSignup() {
 
     $("#doctorSignupModal #nextBtn").on('click', function(e) {
-     
         // $("#doctorSignupModal #nextBtn").addClass("running");
 
         // validate inputs
