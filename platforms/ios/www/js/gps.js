@@ -131,7 +131,7 @@ function start_gps() {
         maximumAge        : 30000,
         timeout           : 27000
     };
-
+    alert(window.cordova.platformId);
     document.addEventListener('deviceready', function(){
       navigator.geolocation.watchPosition(
           geo_success_low, geo_error, geo_options_low

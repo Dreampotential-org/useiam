@@ -6,3 +6,4 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore android.keystor
 
 zipalign -v 4 /home/arosen/useiam/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk  app-release.apk
 
+aaronorosen@gmail.com / password
