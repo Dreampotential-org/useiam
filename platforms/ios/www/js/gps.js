@@ -12,7 +12,7 @@ function init_gps_event() {
         showBackButton('dashboard');
         showATab('addEvent');
         //hide info button if visible
-        $("#LocationModal").addClass("is-visible")
+        $("#LocationModal").addClass("is-visible");
         // clear text area content
         $("#addEvent textarea").val("")
     });
@@ -24,12 +24,26 @@ function init_gps_event() {
 
 
     $("#locationAuth").on('click', function(e) {
+        if ($("#locationAuth").hasClass("running")) {
+            return
+        }
         api_gps_checkin();
     });
 }
 
 function api_gps_checkin() {
     var form = new FormData();
+    if (!($("#addEvent textarea").val().length)) {
+        swal({
+            'title': 'Missing Description',
+            'text': 'You must provide a description of the event.',
+            'icon': 'error',
+        });
+        return
+    }
+
+    $("#locationAuth").addClass("running")
+
     form.append("msg", $("#addEvent textarea").val());
 
     if (CURRENT_POSITION != null) {
@@ -54,25 +68,25 @@ function api_gps_checkin() {
       "data": form
     }
     $.ajax(settings).done(function (response) {
+        $("#locationAuth").removeClass("running")
         swal({
                 title: "Good job!",
                 text: "Gps and Note submitted successfully!",
                 showCancelButton: false,
                 confirmButtonText: "ok",
-                allowOutsideClick: false,
-                type: "success",
+                icon: "success",
         })
         showATab('dashboard');
         //close modals
         closeAllModals();
         showMenuBar();
     }).fail(function(err) {
+        $("#locationAuth").removeClass("running")
         swal({
             'title': 'Error',
             'text': 'Try again',
             'icon': 'error',
         });
-
     });
 }
 
@@ -118,9 +132,11 @@ function start_gps() {
         timeout           : 27000
     };
 
-    navigator.geolocation.watchPosition(
-        geo_success_low, geo_error, geo_options_low
-    );
+    document.addEventListener('deviceready', function(){
+      navigator.geolocation.watchPosition(
+          geo_success_low, geo_error, geo_options_low
+      );
+    }, false);
 
    function geo_error(err) {
         if (err.code  == 1) {
@@ -135,7 +151,7 @@ function start_gps() {
        //alert('ERROR(' + err.code + '): ' + err.message);
        //log_error_to_slack(
        //     'ERROR(' + err.code + '): ' + err.message);
-       init_gps()
+       start_gps()
     }
 
     geo_options = {
@@ -145,9 +161,11 @@ function start_gps() {
     };
 
     // Start gps prob with high accuracy
+    document.addEventListener('deviceready', function(){
     navigator.geolocation.watchPosition(
         geo_success, geo_error, geo_options
     );
+    }, false);
 
     function geo_success_low(position) {
         CURRENT_POSITION_LOW = position

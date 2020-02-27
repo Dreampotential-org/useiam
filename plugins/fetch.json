@@ -7,14 +7,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-geolocation": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-geolocation@4.0.2"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-file": {
     "source": {
       "type": "registry",
@@ -76,28 +68,12 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-local-notification": {
+  "cordova-plugin-geolocation": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-local-notification"
+      "id": "cordova-plugin-geolocation@4.0.2"
     },
     "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-device": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-device"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-badge": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-badge@>=0.8.5"
-    },
-    "is_top_level": false,
     "variables": {}
   }
 }

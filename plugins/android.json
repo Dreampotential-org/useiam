@@ -16,9 +16,6 @@
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
-    "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.useiam.useiam"
-    },
     "cordova-plugin-ios-camera-permissions": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
@@ -31,19 +28,13 @@
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
-    "cordova-plugin-local-notification": {
+    "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.useiam.useiam2"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.useiam.useiam"
-    },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.useiam.useiam2"
-    },
-    "cordova-plugin-badge": {
-      "PACKAGE_NAME": "com.useiam.useiam2"
     }
   }
 }

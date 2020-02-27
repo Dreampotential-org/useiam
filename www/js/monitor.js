@@ -19,9 +19,10 @@ function init_monitor() {
     do_set_sober_date();
   });
 
-  $("#setTimeModal #nextBtn").on("click", function (e) {
-    do_set_reminder_time(e);
-  });
+  // $('#setTimeModal #nextBtn').on("click", function (e) {
+  //   console.log('#setTimeModal #nextBtn click');
+  //   do_set_remainder_time();
+  // });
 
   $("#setMonitor").on("click", function (e) {
     get_profile_info(function (msg) {
@@ -114,6 +115,9 @@ function show_set_monitor() {
 function show_set_time() {
   closeAllModals();
   $("#setTimeModal").addClass("is-visible");
+  $('.timepicker').timepicker({
+    interval: 10,
+  });
 }
 
 function show_invite() {
@@ -172,19 +176,20 @@ function do_set_sober_date() {
     });
 }
 
-function do_set_reminder_time(e) {
-  e.preventDefault();
-  document.addEventListener('deviceready', function () {
-    //$("#reminder_time")
-    //.val()
-    cordova.plugins.notification.local.schedule({
-      title: 'My first notification',
-      text: 'Thats pretty easy...',
-      trigger: { every: { minute: 1 } },
-      foreground: true
-    });
-  }, false);
-}
+// function do_set_remainder_time(e) {
+//   console.log('in function');
+//   document.addEventListener('deviceready', function () {
+//     //$("#reminder_time")
+//     //.val()
+//     console.log('in device ready');
+//     cordova.plugins.notification.local.schedule({
+//       title: 'My first notification',
+//       text: 'Thats pretty easy...',
+//       trigger: { every: { minute: 1 } },
+//       foreground: true
+//     });
+//   }, false);
+// }
 
 function do_set_monitor() {
   if (
