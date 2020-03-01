@@ -893,6 +893,7 @@ video {
 /* Hide all steps by default: */
 #regForm .tab {
 }
+.hide{display: none;}
 
 /* Make circles that indicate the steps of the form: */
 #regForm .step {
