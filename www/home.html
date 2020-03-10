@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--CSS -->
+    <title>IAM</title>
+    <style>
+    body{
+        background: url(img/bg_main.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        margin: 0px;
+    }
+    .main-wrapper{
+        position: relative;
+        transform: translateY(-50%);
+        top: 50%;
+        color: white;
+    }
+    .iam_text{
+        text-align: center;
+        word-spacing: 10px;
+        font-size: 30px;
+    }
+    .available_text{
+            letter-spacing: 20px;
+            padding: 0px 25px 0px 25px;
+            font-size: 25px;
+            font-weight: 200;
+            font-family:'Poppins', sans-serif!important;
+    }
+    /* .btns{
+        padding-top: 40px;
+    } */
+    .button-item{
+        text-align: center;
+        padding: 10px;
+    }
+    .button-item button{
+        background: transparent;
+        color: white;
+        border: 1px solid white;
+        font-size: 15px;
+        letter-spacing: 1px;
+        border-radius: 10px;
+       
+    }
+    .btn-1{
+        margin-top: 50px;
+        padding: 10px 25px;
+    }
+    .btn-2{
+        padding: 10px 20px;
+    }
+    .img_div{
+        margin: 0 auto;
+        width: 100px;
+    }
+    
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  background: #242e4c;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+  color: white;
+  font-family:'Poppins', sans-serif!important;
+  /* font-family: Poppins-SemiBold !important; */
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.img_a{
+    border-bottom: 1px solid white;
+    padding: 0px 10px 10px 10px !important;
+}
+.image_div{
+    width: 50px;
+    margin: 0 auto;
+}
+    </style>
+
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+       <a class="img_a">
+            <div class="image_div">
+            <img style="width:100%" src="img/logo_iam.png">
+            </div>
+        </a> 
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+     
+        <a href="#">SUBMIT LOCATION</a>
+        <a href="#">HOW IT WORKS</a>
+        <a href="#">HOW TO SUBMIT</a>
+        <a href="#">SET MONITOR</a>
+        <a href="#">VIEW ACTIVITY</a>
+        <a href="#">WHAT WE DO</a>
+        <a href="#">LOGOUT</a>
+      </div>
+      <span style="font-size:30px;cursor:pointer;color: white;" onclick="openNav()">&#9776; </span>
+    <div class="main-wrapper">
+
+        <div class="logo-item">
+            <div class="img_div">
+                <img style="width: 100%;" src="img/logo_iam.png">
+            </div>
+           
+            <h3 class="available_text">AVAILABLE</h3>
+        </div>
+        <div class="button-item">
+          <button class="btn btn-1"> SUBMIT VIDEO</button>
+        </div>
+        <div class="button-item">
+            <button class="btn btn-2">POST LOCATION </button>
+          </div>
+       
+      </div>
+    <!-- <div class="title_div">
+        <h2 class="iam_text">I AM</h2>
+        <h3 class="available_text">AVAILABLE</h3>
+        <div class="btns">
+            <div class="button_div">
+                <button class="btn btn1 ">SUBMIT VIDEO</button>
+            </div>
+            <div class="button_div">
+                <button class="btn btn2">POST LOCATION </button>
+            </div>
+        </div>
+      
+    </div> -->
+    
+   
+    <script>
+        
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+</body>
+</html>

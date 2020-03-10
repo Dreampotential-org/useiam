@@ -5,6 +5,13 @@
   src: url("../fonts/Nunito-Light.ttf") format("ttf"),
     url("../fonts/Nunito-Light.ttf");
 }
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+  src: url("../fonts/Poppins/Poppins-Light.ttf") format("ttf");
+}
+
+
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
