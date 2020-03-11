@@ -19,12 +19,15 @@ var app = {
     },
 
     pluginInitialize: function () {
-        console.log('pluginInitialize');
+        
         document.getElementById('setRemainder').onclick = app.scheduleInterval;
         var details = cordova.plugins.notification.local.launchDetails;
 
         if (details) {
             // alert('Launched by notification with ID ' + details.id);
+        }
+        if (window.cordova.platformId == 'ios' || window.cordova.platformId == 'android') {
+            $("#reminderMenu").show();
         }
     },
 
