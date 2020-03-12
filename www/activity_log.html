@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!--CSS -->
     <title>IAM</title>
     <style>
@@ -250,15 +243,120 @@ ol li.other {
    color: white;
    text-align: center;
 }
+.images{
+  width: 100%;
+    padding: 8px;
+}
+/* .img_div{
+  width: 30px;
+    background: #21e7b6;
+    border-radius: 50%;
+} */
+.row{
+  padding: 10px 0px;
+}
+.row p{
+  margin-top: 4px;
+}
+.row2 p{
+  color:#fbf1f145 !important;
+}
+.row3 p{
+  color: #e8e7e724 !important;
+}
+.avatar {
+  vertical-align: middle;
+  width:35px;
+  height:35px;
+  border-radius: 50%;
+  background: #21e7b6;
+}
+
+.avatarimg {
+  vertical-align: middle;
+  width:35px;
+  height:35px;
+  border-radius: 50%;
+  background: #20636a;
+}
+.avatarimg1 {
+  vertical-align: middle;
+  width:35px;
+  height:35px;
+  border-radius: 50%;
+  background: #204659;
+
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  background: #242e4c;
+}
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+  color: white;
+  font-family:'Poppins', sans-serif!important;
+  /* font-family: Poppins-SemiBold !important; */
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.img_a{
+    border-bottom: 1px solid white;
+    padding: 0px 10px 10px 10px !important;
+}
+.image_div{
+    width: 50px;
+    margin: 0 auto;
+}
+
     </style>
 
 </head>
 <body>
+  <div id="mySidenav" class="sidenav">
+    <a class="img_a">
+         <div class="image_div">
+         <img style="width:100%" src="img/logo_iam.png">
+         </div>
+     </a> 
+     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  
+     <a href="#">SUBMIT LOCATION</a>
+     <a href="#">HOW IT WORKS</a>
+     <a href="#">HOW TO SUBMIT</a>
+     <a href="/set-monitor.html" id='setMonitor'>SET MONITOR</a>
+     <a href="#">VIEW ACTIVITY</a>
+     <a href="#">WHAT WE DO</a>
+     <a href="#">LOGOUT</a>
+   </div>
     <nav class="navbar navbar-default" style="background-color: #212b48;border: none;">
         <div class="container-fluid">
           <div class="navbar-header">
-            <p>Activity Log
-            <span><i style="color: white;"class="fa fa-bars"></i></span></p>
+            <p>ACTIVITY LOG
+            <span><i style="color: white;"class="fa fa-bars" onclick="openNav()"></i></span></p>
           </div>
         </div>
       </nav>
@@ -269,50 +367,88 @@ ol li.other {
                 <li class="other"><div class="msg"> 
                     <p class="dateClass">2/23/2020</p>
                     <p class='msgText'>Location Check In</p>
-                    <div class="icon"><img src="img/card_img.png" alt=""/></div>
+                    <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>
                     </div> 
                 </li>
                 <li class="other"><div class="msg msg_last"> 
                     <p class="dateClass">2/23/2020</p>
                     <p class='msgText'>Location Check In</p>
-                    <div class="icon"><img src="img/card_img.png" alt=""/></div>
+                    <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>
                     </div> 
                 </li>
                 <li class="other"><div class="msg msg_last"> 
                     <p class="dateClass">2/23/2020</p>
                     <p class='msgText'>Location Check In</p>
-                    <div class="icon"><img src="img/card_img.png" alt=""/></div>
+                    <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>
                     </div> 
                 </li>
                 <li class="other"><div class="msg msg_last"> 
                     <p class="dateClass">2/23/2020</p>
                     <p class='msgText'>Location Check In</p>
-                    <div class="icon"><img src="img/card_img.png" alt=""/></div>
+                    <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>
                     </div> 
                 </li>
                 <li class="other "><div class="msg msg_last last_list"> 
                     <p class="dateClass">2/23/2020</p>
                     <p class='msgText'>Location Check In</p>
-                    <div class="icon"><img src="img/card_img.png" alt=""/></div>
+                    <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>
                     </div> 
                 </li>
               </ol>
           </div>
         </div>
     </div>
-    <!-- <div class="footer">
+    <div class="footer">
         <div class="row">
-            <div class="col-6 col-md-6">
-                <p>Location Check In</p>
+            <div class="col-6 col-md-6 col-xs-6 col-sm-6">
+                <p>LOCATION CHECK-IN</p>
             </div>
-            <div class="col-3 col-md-3">
+            <div class="col-3 col-md-3 col-xs-3 col-sm-3">
                 <p>2/23/2020</p>
             </div>
-            <div class="col-3 col-md-3">
-                <img src="img/card_img.png" alt="Avatar" class="avatar">
+            <div class="col-3 col-md-3 col-xs-3 col-sm-3">
+              <div class="img_div">
+                <img src="img/wifi-signal.svg" alt="Avatar" class="avatar images">
+              </div>
             </div>
         </div>
-      </div> -->
+        <div class="row row2">
+          <div class="col-6 col-md-6 col-xs-6 col-sm-6">
+              <p>VIDEO SUBMISSION</p>
+          </div>
+          <div class="col-3 col-md-3 col-xs-3 col-sm-3">
+              <p>2/23/2020</p>
+          </div>
+          <div class="col-3 col-md-3 col-xs-3 col-sm-3">
+            <div class="img_div">
+              <img src="img/play-button.svg" alt="Avatar" class="avatarimg images ">
+            </div>
+          </div>
+      </div>
+      <div class="row row3">
+        <div class="col-6 col-md-6 col-xs-6 col-sm-6">
+            <p>LOCATION CHECK-IN</p>
+        </div>
+        <div class="col-3 col-md-3 col-xs-3 col-sm-3">
+            <p>2/23/2020</p>
+        </div>
+        <div class="col-3 col-md-3 col-xs-3 col-sm-3">
+          <div class="img_div">
+            <img src="img/wifi-signal.svg" alt="Avatar" class="avatarimg1 images">
+          </div>
+        </div>
+    </div>
+      </div>
+      <script>
+        
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
    
 </body>
 </html>
