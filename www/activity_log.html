@@ -293,7 +293,7 @@ ol li.other {
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
+  /* left: 0; */
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
@@ -319,9 +319,9 @@ ol li.other {
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
+  /* right: 25px; */
   font-size: 36px;
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 .img_a{
     border-bottom: 1px solid white;
@@ -336,7 +336,7 @@ ol li.other {
 
 </head>
 <body>
-  <div id="mySidenav" class="sidenav">
+  <div id="mySidenav" class="sidenav" style="display:none;right:0;">
     <a class="img_a">
          <div class="image_div">
          <img style="width:100%" src="img/logo_iam.png">
@@ -443,10 +443,12 @@ ol li.other {
         
         function openNav() {
           document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("mySidenav").style.display = "block";
         }
         
         function closeNav() {
           document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("mySidenav").style.display = "none";
         }
         </script>
    
