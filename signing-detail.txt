@@ -1,0 +1,21 @@
+keytool -genkey -v -keystore useiam.keystore -alias useiam -keyalg RSA -keysize 2048 -validity 10000
+
+password: useiam
+
+What is your first and last name?
+  [Unknown]:  useIAM
+What is the name of your organizational unit?
+  [Unknown]:  useIAM
+What is the name of your organization?
+  [Unknown]:  useIAM        
+What is the name of your City or Locality?
+  [Unknown]:  FL
+What is the name of your State or Province?
+  [Unknown]:  FL
+What is the two-letter country code for this unit?
+  [Unknown]:  US
+
+
+  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore useiam.keystore app-release-unsigned.apk useiam
+
+  zipalign -v 4 app-release-unsigned.apk useIAM.apk 

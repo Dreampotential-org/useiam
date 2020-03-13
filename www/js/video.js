@@ -65,9 +65,8 @@ function init_video_event() {
     });
     $("#videoInfo .btnOk").on('click', function(e) {
         e.preventDefault();
-        $('#upload-vid').click()
+        //$('#upload-vid').click()
 
-        return
         var captureSuccess = function(mediaFiles) {
             var i, path, len;
             for (i = 0, len = mediaFiles.length; i < len; i += 1) {
