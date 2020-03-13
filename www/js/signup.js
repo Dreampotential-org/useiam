@@ -224,8 +224,8 @@ function signup_signin_buttons() {
 
     $('#signup').on('click', function(e) {
         console.log("SIGNUP Need......__________")
-      e.preventDefault();
-      $('#signupModal').addClass('is-visible');
+        // e.preventDefault();
+        $('#signupModal').addClass('is-visible');
     });
 
     $(".loginNeed").on("click", function(e) {
