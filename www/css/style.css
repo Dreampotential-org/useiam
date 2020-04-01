@@ -717,7 +717,70 @@ video {
   margin: 0;
   text-transform: uppercase;
 }
+.loginTitle{
+  letter-spacing: 20px;
+  color: white;
+  text-align: center;
+  font-family:'Poppins', sans-serif!important;
+}
+.loginform input{
+  outline: 0;
+  border-width: 0 0 3px;
+  border-color: #56608d;
+  background: none;
+  width: 100%;
+  font-size: 17px;
+  padding: 10px;
+  color: white;
+}
+.loginform div{
+  padding: 16px;
+}
+.emailDiv{
+  padding-top: 70px;
+  font-family:'Poppins', sans-serif!important;
+}
+.loginform input::placeholder {
+  color: white !important;
+  opacity: 1; /* Firefox */
+  font-family:'Poppins', sans-serif!important;
+}
+.avatar {
+  vertical-align: middle;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #21e7b6;
+  margin: 0 auto;
+}
+.avatar i{
+  color: white;
+  font-size: 28px;
+  margin-top: 8px;
+}
+.iconDiv{
+  background: none;
+border: none;
+}
+.accountP{
+  color: white;
+  font-size: 18px;
+  font-family:'Poppins', sans-serif!important;
+}
+.passwordA{
+  font-size: 17px;
+  color: #56608d;
+  font-family:'Poppins', sans-serif!important;
 
+}
+.btnP{
+  background: none;
+  border: none;
+  color: white;
+}
+.accountbtn{
+  text-align: center;
+}
 @media screen and (max-width: 640px) {
   .actionBtn {
     min-width: 200px;
@@ -765,6 +828,7 @@ video {
   .actionBtn span {
     font-size: 10px;
   }
+ 
 }
 @media screen and (max-width: 520px) {
   .mainContainer {
@@ -1598,5 +1662,8 @@ span.alignTag{
   text-align: inherit;
   margin-left: 16px;
 }
+/* .backgroundPopup{
+  background: url(img/popup_login.jpg);
+} */
 
 

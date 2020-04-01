@@ -156,12 +156,16 @@ function signup_api(params) {
 function handle_signin() {
     // create their account
     $("#signinModal .loginToDashboard").on('click', function(e) {
+        // $(".loginToDashboard").on('click', function(e) {
+            alert("fdgbjhgfdfghj");
         e.preventDefault();
 
         login_api($("#signin_email").val().trim(),
         $("#signin_password").val().trim(), function() {
             //after successful login or signup show dashboard contents
+
             showATab('dashboard');
+
             //close modals
             closeAllModals();
             get_profile_info(function(msg) {
@@ -225,6 +229,8 @@ function signup_signin_buttons() {
     $('#signup').on('click', function(e) {
         console.log("SIGNUP Need......__________")
       e.preventDefault();
+      console.log("SIGNUP Need.ghgfdfgh.....__________")
+      $('#signinModal').removeClass('is-visible');
       $('#signupModal').addClass('is-visible');
     });
 

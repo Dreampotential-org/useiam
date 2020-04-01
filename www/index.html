@@ -229,31 +229,57 @@
 
 <div class="modal" id="signinModal">
     <div class="modal-overlay"></div>
-    <div class="modal-wrapper modal-transition">
+    <div class="modal-wrapper modal-transition " style="background: url(img/popup_login.jpg)">
         <!--<div class="modal-header">
             <img src="images/modalLogo.png" alt="Modal Logo" class="modalLogo">
             <h2 class="modal-heading locAuthTitle">LOGIN</h2>
         </div>-->
-        <div class="modal-body">
+        <div class="modal-body ">
             <div class="modal-content">
 
                 <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
                 <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"  aria-hidden="true"></i></div>
 
-                <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div>
+                <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div>
 
                 <h3 class="locAuthTitle textCenter">LOGIN</h3>
                 <form class="popupForm" action='#'>
                     <input type="Email" placeholder="Email" id='signin_email'>
                     <input type="password" placeholder="Password" id='signin_password'>
                     <button id="loginBtn" class="actionBtn dark loginToDashboard">Login</button>
-                    <!-- <input type="button" value="Login" class="actionBtn dark loginToDashboard">    -->
                     <p class="textCenter">
                         <a id='forgot_password' href="">Forgot password?</a>
                     </p>
 
-                </form>
-                <p class="textCenter signupNeed">Don’t have an account? <a href="#">SignUp</a></p>
+                </form> -->
+                <div class="container">
+                    <h2 class="loginTitle">LOGIN</h2>
+                    <form class="popupForm loginform" action='#'>
+                        <div class="emailDiv">
+                            <input type="Email" placeholder="Email" id='signin_email'>
+                        </div>
+                        <div>
+                            <input type="password" placeholder="Password" id='signin_password'>
+                        </div>
+                        
+                            <button id="loginBtn" class=" loginToDashboard iconDiv">
+                            <div class= "avatar" >
+                                <i class="fa fa-arrow-right"  aria-hidden="true"></i>
+                            </div>
+                        </button>
+                        </div>
+                        <div class="column btn1 accountbtn">
+                         
+                            <button class=" dark btnP accountP" id="signup"> New Account</button>
+                        </div>
+                        <!-- <button id="loginBtn" class="actionBtn dark loginToDashboard">Login</button> -->
+                        <p class="textCenter">
+                            <a class="passwordA" id='forgot_password' href="">Forgot password?</a>
+                        </p>
+            
+                    </form>
+                </div>
+                <!-- <p class="textCenter signupNeed">Don’t have an account? <a href="#">SignUp</a></p> -->
             </div>
         </div>
     </div>
@@ -715,6 +741,19 @@
     });
 
     $('#addEvent').hide();
+
+    // $("#signup").click(function(){
+    //     alert()
+    //     $('#signinModal').removeClass("is-visible");
+    //     $("#signupModal").addClass("is-visible");
+    // })
+
+    // $("#signup").on("click", function(e) {
+    //     alert("dfghgfd")
+    //   e.preventDefault();
+    //   $('#signupModal').addClass('is-visible');
+    //   $('#signinModal').removeClass('is-visible');
+    // });
 </script>
 </body>
 </html>

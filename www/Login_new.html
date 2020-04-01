@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/responsive.css?v=1.3"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <title>IAM</title>
+    <style>
+    body{
+        background: url(img/Copy-of-IAM_login.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        margin: 0px;
+    }
+    .container {
+        padding:40px; 
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .navbar p{
+        padding: 0px !important;
+        color: white;
+        margin: 0px;
+        letter-spacing: 5px;
+    }
+    .navbar-header{
+        text-align: center;
+        padding: 15px 0px;
+    }
+    .navbar-header i{
+        color: white;
+        float: right;
+        padding-right: 10px;
+    }
+    .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+    color: white;
+    font-family:'Poppins', sans-serif!important;
+    font-size: 15px;
+    margin-top: 20px;
+    }
+    .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    background: #242e4c;
+    }
+    .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+    color: white;
+    font-family:'Poppins', sans-serif!important;
+    font-size: 15px;
+    margin-top: 20px;
+    }
+    .sidenav a:hover {
+    color: #f1f1f1;
+    }
+    .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    font-size: 36px;
+    }
+    .loginTitle{
+        letter-spacing: 20px;
+        color: white;
+        font-family:'Poppins', sans-serif!important;
+    }
+    .loginform input{
+        outline: 0;
+        border-width: 0 0 3px;
+        border-color: #56608d;
+        background: none;
+        width: 100%;
+        font-size: 17px;
+        padding: 10px;
+        color: white;
+    }
+    .loginform div{
+        padding: 16px;
+    }
+    .emailDiv{
+        padding-top: 70px;
+        font-family:'Poppins', sans-serif!important;
+    }
+    .loginform input::placeholder {
+        color: white;
+        opacity: 1; /* Firefox */
+        font-family:'Poppins', sans-serif!important;
+    }
+    .avatar {
+        vertical-align: middle;
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        background: #21e7b6;
+        margin: 0 auto;
+    }
+    .avatar i{
+        color: white;
+        font-size: 28px;
+        margin-top: 8px;
+    }
+    .iconDiv{
+        background: none;
+    border: none;
+    }
+    .accountP{
+        color: white;
+        font-size: 18px;
+        font-family:'Poppins', sans-serif!important;
+    }
+    .passwordA{
+        font-size: 17px;
+        color: #8a98d3;;
+        font-family:'Poppins', sans-serif!important;
+
+    }
+    .btnP{
+        background: none;
+        border: none;
+        color: white;
+    }
+    .Accountdiv{
+        text-align: center;
+    }
+    .img_a{
+    border-bottom: 1px solid white;
+    padding: 0px 10px 10px 10px !important;
+}
+.image_div{
+    width: 50px;
+    margin: 0 auto;
+}
+
+    
+    </style>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav" style="display:none;right:0;">
+        <a class="img_a">
+             <div class="image_div">
+             <img style="width:100%" src="img/logo_iam.png">
+             </div>
+         </a> 
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+         <a href="#">SUBMIT LOCATION</a>
+         <a href="#">HOW IT WORKS</a>
+         <a href="#">HOW TO SUBMIT</a>
+         <a href="/set-monitor.html" id='setMonitor'>SET MONITOR</a>
+         <a href="#">VIEW ACTIVITY</a>
+         <a href="#">WHAT WE DO</a>
+         <a href="#">LOGOUT</a>
+       </div>
+       <nav class="navbar navbar-default" style="background-color: #212b48;border: none;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <p>I AM
+            <span><i style="color: white;"class="fa fa-bars" onclick="openNav()"></i></span></p>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <h2 class="loginTitle">LOGIN</h2>
+        <form class="popupForm loginform" action='#'>
+            <div class="emailDiv">
+                <input type="Email" placeholder="Email" id='signin_email'>
+            </div>
+            <div>
+                <input type="password" placeholder="Password" id='signin_password'>
+            </div>
+            <button id="loginBtn" class=" loginToDashboard iconDiv">
+                <div class= "avatar" >
+                    <i class="fa fa-arrow-right"  aria-hidden="true"></i>
+                </div>
+            </button>
+            </div>
+            <div class="column btn1 Accountdiv">
+             
+                <button class=" dark btnP" id="signup"> <p class="accountP">New Account</p></button>
+            </div>
+            <!-- <button id="loginBtn" class="actionBtn dark loginToDashboard">Login</button> -->
+            <p class="textCenter" style="text-align: center;">
+                <a class="passwordA" id='forgot_password' href="">Forgot password?</a>
+            </p>
+
+        </form>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/custom.js?v=1.5"></script>
+    <script src="js/signup.js?v=1.5"></script>
+    <script src="js/gps.js?v=1.5"></script>
+    <script src="js/video.js?v=1.5"></script>
+    <script src="js/monitor.js?v=1.5"></script>
+    <script src="js/activity.js?v=1.5"></script>
+    <script src="js/logos.js?v=1.5"></script>
+    <script src="js/config.js?v=1.5"></script>
+   
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWJ2UbLhFeu3jVgd4ZwWMMNyGl4Kqx7V4">
+        </script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script>
+        
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("mySidenav").style.display = "block";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("mySidenav").style.display = "none";
+        }
+
+        $(document).ready(function(){
+            $("#loginBtn").click(function(e) {
+        // $(".loginToDashboard").on('click', function(e) {
+            e.preventDefault();
+
+                login_api($("#signin_email").val().trim(),
+                $("#signin_password").val().trim(), function() {
+                    window.location.href="file:///F:/netra%20projects/Client-%20Aaron/useiamold/useiam/www/index.html"
+                })
+            })
+        })
+        </script>
+    
+   
+</body>
+</html>
