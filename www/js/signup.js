@@ -26,7 +26,8 @@ function user_logged_in() {
 function handle_logout() {
     $("#logout").on('click', function(e) {
         localStorage.clear();
-        location.reload();
+        // location.reload();
+        window.location.href="file:///F:/netra%20projects/Client-%20Aaron/useiamold1-04-2020/useiamold/useiam/www/Login_new.html"
         $(".moto").hide()
     });
 }
@@ -41,7 +42,7 @@ function handle_show_instructions() {
 function handle_signup() {
 
     $("#signupModal #nextBtn").on('click', function(e) {
-
+debugger;
         // validate inputs
         var invalid = false;
         if($("#signup_name").val().trim().length == 0) {
@@ -84,7 +85,7 @@ function handle_signup() {
 }
 
 function signup_api(params) {
-
+    debugger;
     if (params.days_sober == null) {
         params.days_sober = '0'
     }
