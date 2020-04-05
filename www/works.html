@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--CSS -->
+    <title>IAM</title>
+    <style>
+    body{
+        background: url(img/map_bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        margin: 0px;
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        /* width: 40%; */
+        padding: 30px 20px;
+        background-color: white;
+        border-radius: 20px;
+        line-height: 25px;
+        color: #5d5d5d;
+       
+    }
+    .container {
+        padding:40px; 
+        position: relative;
+        top: 45%;
+        transform: translateY(-50%);
+        margin: 0 auto;
+        
+    }
+    .submit_btn{
+        background-color: #34e6b7;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 10px;
+        color: white;
+    }
+    .navbar p{
+        padding: 0px !important;
+        color: white;
+        margin: 0px;
+        letter-spacing: 5px;
+    }
+    .navbar-header{
+        text-align: center;
+        padding: 15px 0px;
+    }
+    .navbar-header i{
+        color: white;
+        float: right;
+        padding-right: 10px;
+    }
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  /* left: 0; */
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  background: #242e4c;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+  color: white;
+  font-family:'Poppins', sans-serif!important;
+  /* font-family: Poppins-SemiBold !important; */
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  /* right: 25px; */
+  font-size: 36px;
+  /* margin-left: 50px; */
+}
+.img_a{
+    border-bottom: 1px solid white;
+    padding: 0px 10px 10px 10px !important;
+}
+.image_div{
+    width: 50px;
+      margin: 0 auto;
+}
+    </style>
+
+</head>
+<body>
+    <div id="mySidenav" class="sidenav"  style="display:none;right:0;">
+        <a class="img_a">
+             <div class="image_div">
+             <img style="width:100%" src="img/logo_iam.png">
+             </div>
+         </a> 
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+         <a href="#">SUBMIT LOCATION</a>
+         <a href="#">HOW IT WORKS</a>
+         <a href="#" >HOW TO SUBMIT</a>
+         <a href="/set-monitor.html" id='setMonitor'>SET MONITOR</a>
+         <a href="/activity_log.html" id='viewActivity'>VIEW ACTIVITY</a>
+         <a href="#">WHAT WE DO</a>
+         <a href="#">LOGOUT</a>
+       </div>
+
+    <nav class="navbar navbar-default" style="background-color: #212b48;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <p>HOW TO WORK
+            <span><i style="color: white;"class="fa fa-bars"  onclick="openNav()"></i></span></p>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="card">
+            <!-- <div class="container"> -->
+              <h4><b>HOW IT WORKS</b></h4> 
+              <p>IAM enables you to keep a history of your whereabouts through video submissions or location reports.
+              </p> 
+              <p>To start,identify a monitor to whom all of your IAM activity will be sent.</p>
+              <p>Whenever you'd like to log actvity,either record a video or send a location status to your monitor.</p>
+              <p>Continue to use IAM on your path to establishing your newfound credibility.</p>
+              <div>
+                  <button class="btn submit_btn">HOW TO SUBMIT</button>
+              </div>
+            <!-- </div> -->
+          </div>
+    </div>
+    
+    <script>
+        
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("mySidenav").style.display = "block";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("mySidenav").style.display = "none";
+        }
+        </script>
+
+</body>
+</html>
