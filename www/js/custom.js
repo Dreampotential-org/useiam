@@ -260,13 +260,9 @@ function showMenuBar(){
 }
 
 function showATab(tabID){
-       
     parentDiv.children().hide();
     parentDiv.find('#' + tabID).show("fast");
 
-    // if(tabID=='dashboard'){
-    //     window.location.href="file:///F:/netra%20projects/Client-%20Aaron/useiamold/useiam/www/index.html"
-    // }
     if (tabID == 'activity') {
         showBackButton('dashboard');
     }

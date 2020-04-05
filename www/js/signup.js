@@ -26,8 +26,7 @@ function user_logged_in() {
 function handle_logout() {
     $("#logout").on('click', function(e) {
         localStorage.clear();
-        // location.reload();
-        window.location.href="file:///F:/netra%20projects/Client-%20Aaron/useiamold1-04-2020/useiamold/useiam/www/Login_new.html"
+        location.reload();
         $(".moto").hide()
     });
 }
@@ -42,7 +41,7 @@ function handle_show_instructions() {
 function handle_signup() {
 
     $("#signupModal #nextBtn").on('click', function(e) {
-debugger;
+
         // validate inputs
         var invalid = false;
         if($("#signup_name").val().trim().length == 0) {
@@ -85,7 +84,7 @@ debugger;
 }
 
 function signup_api(params) {
-    debugger;
+
     if (params.days_sober == null) {
         params.days_sober = '0'
     }
@@ -157,16 +156,12 @@ function signup_api(params) {
 function handle_signin() {
     // create their account
     $("#signinModal .loginToDashboard").on('click', function(e) {
-        // $(".loginToDashboard").on('click', function(e) {
-            alert("fdgbjhgfdfghj");
         e.preventDefault();
 
         login_api($("#signin_email").val().trim(),
         $("#signin_password").val().trim(), function() {
             //after successful login or signup show dashboard contents
-
             showATab('dashboard');
-
             //close modals
             closeAllModals();
             get_profile_info(function(msg) {
@@ -229,10 +224,8 @@ function signup_signin_buttons() {
 
     $('#signup').on('click', function(e) {
         console.log("SIGNUP Need......__________")
-      e.preventDefault();
-      console.log("SIGNUP Need.ghgfdfgh.....__________")
-      $('#signinModal').removeClass('is-visible');
-      $('#signupModal').addClass('is-visible');
+        // e.preventDefault();
+        $('#signupModal').addClass('is-visible');
     });
 
     $(".loginNeed").on("click", function(e) {
