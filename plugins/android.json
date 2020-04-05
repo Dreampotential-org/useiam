@@ -22,18 +22,27 @@
     "cordova-plugin-ios-camera-permissions": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
-    "cordova-plugin-media-capture": {
+    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-media-capture": {
       "PACKAGE_NAME": "com.useiam.useiam"
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.useiam.useiam"
     }
   },
   "dependent_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.useiam.useiam"
+    },
     "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.useiam.useiam"
+    },
+    "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.useiam.useiam"
     }
   }

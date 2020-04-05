@@ -1,11 +1,11 @@
 function init_monitor() {
 
-  $("#sober_count").on("click", function(e) {
+  $("#sober_count").on("click", function (e) {
 
     console.log("In updtate date function....")
-    console.log("SRVER",SERVER);
+    console.log("SRVER", SERVER);
 
-    get_profile_info(function(msg) {
+    get_profile_info(function (msg) {
       if (msg.sober_date) {
         $("#sober_date_update").val(msg.sober_date);
       }
@@ -15,12 +15,17 @@ function init_monitor() {
     });
   });
 
-  $("#setSoberDate #nextBtn").on("click", function(e) {
+  $("#setSoberDate #nextBtn").on("click", function (e) {
     do_set_sober_date();
   });
 
-  $("#setMonitor").on("click", function(e) {
-    get_profile_info(function(msg) {
+  // $('#setTimeModal #nextBtn').on("click", function (e) {
+  //   console.log('#setTimeModal #nextBtn click');
+  //   do_set_remainder_time();
+  // });
+
+  $("#setMonitor").on("click", function (e) {
+    get_profile_info(function (msg) {
       show_set_monitor();
 
       // closes side menu
@@ -32,34 +37,34 @@ function init_monitor() {
     });
   });
 
-  $("#setmonitorModal #nextBtn").on("click", function(e) {
+  $("#setmonitorModal #nextBtn").on("click", function (e) {
     do_set_monitor();
   });
 }
 
-function init_time(){
+function init_time() {
   console.log("In Init Time fun()......................")
-  $("#setTime").on("click", function(e) {
-    get_profile_info(function(msg) {
+  $("#setTime").on("click", function (e) {
+    get_profile_info(function (msg) {
       show_set_time();
 
       // closes side menu
       $(".toggleBar").click();
- 
+
     });
   });
 
 }
 
-function init_invite(){
+function init_invite() {
   console.log("In Invite fun()......................")
-  $("#invite").on("click", function(e) {
-    get_profile_info(function(msg) {
+  $("#invite").on("click", function (e) {
+    get_profile_info(function (msg) {
       show_invite();
 
       // closes side menu
       $(".toggleBar").click();
- 
+
     });
   });
 
@@ -69,13 +74,13 @@ function init_invite(){
 function display_monitor(monitor) {
   $(".current-monitors").append(
     "<div>" +
-      monitor +
-      " - <a val='" +
-      monitor +
-      "' class='remove-monitor' href='#'>remove</a></div>"
+    monitor +
+    " - <a val='" +
+    monitor +
+    "' class='remove-monitor' href='#'>remove</a></div>"
   );
 
-  $(".remove-monitor").on("click", function(e) {
+  $(".remove-monitor").on("click", function (e) {
     var remove_monitor = $(this).attr("val");
     swal({
       title: "Are you sure?",
@@ -110,6 +115,9 @@ function show_set_monitor() {
 function show_set_time() {
   closeAllModals();
   $("#setTimeModal").addClass("is-visible");
+  $('.timepicker').timepicker({
+    interval: 10,
+  });
 }
 
 function show_invite() {
@@ -119,7 +127,7 @@ function show_invite() {
 
 function do_set_sober_date() {
   var form = new FormData();
- 
+
   form.append(
     "sober_date",
     $("#sober_date_update")
@@ -142,7 +150,7 @@ function do_set_sober_date() {
   };
 
   $.ajax(settings)
-    .done(function(response) {
+    .done(function (response) {
       var msg = JSON.parse(response).message;
       // update sober date text on page
       get_profile_info();
@@ -157,7 +165,7 @@ function do_set_sober_date() {
 
       $(".toggleBar").click();
     })
-    .fail(function(err) {
+    .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
       console.log(err);
       swal({
@@ -167,6 +175,21 @@ function do_set_sober_date() {
       });
     });
 }
+
+// function do_set_remainder_time(e) {
+//   console.log('in function');
+//   document.addEventListener('deviceready', function () {
+//     //$("#reminder_time")
+//     //.val()
+//     console.log('in device ready');
+//     cordova.plugins.notification.local.schedule({
+//       title: 'My first notification',
+//       text: 'Thats pretty easy...',
+//       trigger: { every: { minute: 1 } },
+//       foreground: true
+//     });
+//   }, false);
+// }
 
 function do_set_monitor() {
   if (
@@ -209,7 +232,7 @@ function do_set_monitor() {
   };
 
   $.ajax(settings)
-    .done(function(response) {
+    .done(function (response) {
       var msg = JSON.parse(response).message;
       swal("Monitor has been added", {
         icon: "success"
@@ -223,7 +246,7 @@ function do_set_monitor() {
       $(".toggleBar").click();
       $("#showInstructions").click();
     })
-    .fail(function(err) {
+    .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
       console.log(err);
       swal({
@@ -252,14 +275,14 @@ function api_remove_monitor(notify_email) {
   };
 
   $.ajax(settings)
-    .done(function(response) {
+    .done(function (response) {
       var msg = JSON.parse(response).message;
       //after successful login or signup show dashboard contents
       showATab("dashboard");
       //close modals
       closeAllModals();
     })
-    .fail(function(err) {
+    .fail(function (err) {
       swal({
         title: "Error",
         text: "",
@@ -286,7 +309,7 @@ function get_profile_info(callback) {
   };
 
   $.ajax(settings)
-    .done(function(response) {
+    .done(function (response) {
       var msg = JSON.parse(response);
       console.log(response);
       localStorage.setItem(
@@ -304,7 +327,7 @@ function get_profile_info(callback) {
       }
       if (callback) callback(msg);
     })
-    .fail(function(err) {
+    .fail(function (err) {
       console.log("ERR");
       console.log(err);
       localStorage.clear();
@@ -327,11 +350,11 @@ function list_monitors(callback) {
   };
 
   $.ajax(settings)
-    .done(function(response) {
+    .done(function (response) {
       //var msg = JSON.parse(response)
       callback(response);
     })
-    .fail(function(err) {
+    .fail(function (err) {
       console.log(err);
     });
 }
