@@ -139,8 +139,8 @@ function display_activities(activities) {
       $("#activity-log").append(
         '<li class="other"><div class="msg"> <p class="dateClass">' +
           formatDate(new Date(activity.created_at * 1000)) +
-          // "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
-          "<div style='width:80%'>" + activity.msg +" <span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
+          "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
+          "<div style='width:80%'><span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
           activity.lat +
           " " +
           "lng=" +
@@ -150,7 +150,7 @@ function display_activities(activities) {
           "</a>" +
          
           "</span></div>" +
-          ' <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>' +
+          '<div class="icon"><img src="images/place.png" alt=""/></div>' +
           "</div> </li>"
       );
     }
@@ -164,52 +164,13 @@ function display_activities(activities) {
           " href='#' class='view-video customLinkBtn'>" +
           activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
           "</a></span></div>" +
-          '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
+          '<div class="icon"><div class="borderDiv"><img src="images/Play_Video.png" alt=""/></div></div>' +
           "</div> </li>"
         //   <img src="images/play_icon.png" alt=""/>
       );
     }
   }
 }
-// function display_activities(activities) {
-//   for (var activity of activities) {
-//     if (activity.type == "gps") {
-//       console.log(activity);
-//       $("#activity-log").append(
-//         '<li class="other"><div class="msg"> <p class="dateClass">' +
-//           formatDate(new Date(activity.created_at * 1000)) +
-//           "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
-//           "<div style='width:80%'><span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
-//           activity.lat +
-//           " " +
-//           "lng=" +
-//           activity.lng +
-//           "> " +
-//           activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
-//           "</a>" +
-         
-//           "</span></div>" +
-//           '<div class="icon"><img src="images/place.png" alt=""/></div>' +
-//           "</div> </li>"
-//       );
-//     }
-//     if (activity.type == "video") {
-//       $("#activity-log").append(
-//         '<li class="other dark"><div class="msg"> <p class="dateClass">' +
-//           formatDate(new Date(activity.created_at * 1000)) +
-//           "</p>" +
-//           "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
-//           activity.url +
-//           " href='#' class='view-video customLinkBtn'>" +
-//           activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
-//           "</a></span></div>" +
-//           '<div class="icon"><div class="borderDiv"><img src="images/Play_Video.png" alt=""/></div></div>' +
-//           "</div> </li>"
-//         //   <img src="images/play_icon.png" alt=""/>
-//       );
-//     }
-//   }
-// }
 
 function getUrlVars(url) {
   var vars = {};
