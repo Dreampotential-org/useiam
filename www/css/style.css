@@ -694,7 +694,8 @@ input[type="password"] {
 }
 
 .locAuthTitle {
-  color: #2a318b;
+  /* color: #2a318b; */
+  color: white;
   margin: auto;
   font-family: 'Bebas Neue', cursive;
   font-weight: 500;
@@ -703,6 +704,7 @@ input[type="password"] {
 .locAuthDesc {
   font-size: 20px;
   margin-left: 15px;
+  color: white;
 }
 video {
   width: 100%;
@@ -884,7 +886,7 @@ video {
 
 /* Style the form */
 #regForm {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   margin: auto;
   width: 100%;
 }
@@ -1367,6 +1369,7 @@ i {
   width:100%;
   border: 0.55px solid #8c8fc0;
   border-radius: 3px;
+  color: white;
 }
 
 .stepText{
@@ -1392,6 +1395,7 @@ i {
 }
 .listLocation{
   text-align: left;
+  color: white;
 }
 .noteDiv{
   background: #fff;
@@ -1593,6 +1597,40 @@ span.alignTag{
   opacity: 1; /* Firefox */
   font-family:'Poppins', sans-serif!important;
 }
+
+.setForm input{
+  outline: 0;
+  border-width: 0 0 3px;
+  border-color: #21e7b6;;
+  background: none;
+  width: 100%;
+  font-size: 17px;
+  padding: 10px;
+  color: white;
+}
+.setForm input::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+  font-family:'Poppins', sans-serif!important;
+}
+.signupform input{
+  outline: 0;
+  border-width: 0 0 3px;
+  border-color: #56608d;
+  background: none;
+  width: 100%;
+  font-size: 17px;
+  padding: 10px;
+  color: white;
+}
+.signupEmail{
+  font-family:'Poppins', sans-serif !important;
+}
+.signupform input::placeholder {
+  color: white;
+  opacity: 1; /* Firefox */
+  font-family:'Poppins', sans-serif!important;
+}
 .avatar {
   vertical-align: middle;
   width: 75px;
@@ -1645,12 +1683,7 @@ border: none;
   width: 50px;
     margin: 0 auto;
 }
-.emailInput{
-  width: 100%;
-  border: none !important;
-  border-bottom: 2px solid #34e6b7 !important;
-  padding: 10px 10px;
-}
+
 .emailTitle{
   color: #34e6b7;
   font-size: 42px;
@@ -1661,5 +1694,13 @@ border: none;
 
 }
 table.ui-datepicker-calendar{
-  margin-top:20px;
+  background: white;
+  padding: 10px;
+}
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all{
+  background: white;
+  padding: 10px;
+}
+.instruct_Data{
+  color: white;
 }

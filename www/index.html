@@ -227,7 +227,7 @@
 
     <div class="modal" id="signinModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg)">
+        <div class="modal-wrapper modal-transition "  style="background: url(img/popup_login.jpg)">
             <!--<div class="modal-header">
             <img src="images/modalLogo.png" alt="Modal Logo" class="modalLogo">
             <h2 class="modal-heading locAuthTitle">LOGIN</h2>
@@ -282,7 +282,7 @@
 
     <div class="modal" id="setmonitorModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition sub-modal">
+        <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg)">
 
             <div class="modal-body">
                 <div class="modal-content">
@@ -293,12 +293,12 @@
 
                     <h3 class="locAuthTitle textCenter emailTitle">SET MONITOR</h3>
 
-                    <form id="regForm" action="#">
+                    <form id="regForm " class="setForm" action="#">
                         <!-- One "tab" for each step in the form: -->
-                        <div class="tab get-monitor">
-                            <p>Email address of person monitoring you who will receive your video and gps submissions
+                        <div class="tab get-monitor" style="padding: 10px;">
+                            <p class="instruct_Data">Email address of person monitoring you who will receive your video and gps submissions
                             </p>
-                            <input class="emailInput" placeholder="Add Monitor" id='monitor_email' oninput="this.className = ''"
+                            <input  placeholder="Add Monitor" id='monitor_email' oninput="this.className = ''"
                                 type="email">
                         </div>
                         <div>
@@ -306,7 +306,7 @@
                                 <button class="actionBtn  dark" type="button"  style="background: #34e6b7;" id="nextBtn">ADD</button>
                             </div>
                         </div>
-                        <div style="margin-top: 20px">
+                        <div style="margin-top: 20px" class="instruct_Data">
                             <div><b>Active Monitors:</b></div>
                             <div class='current-monitors'></div>
                         </div>
@@ -324,7 +324,7 @@
 
     <div class="modal" id="setSoberDate">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition sub-modal" style="height: 55vh;">
+        <div class="modal-wrapper modal-transition sub-modal"style="background: url(img/popup_login.jpg);height: 55vh;">
 
             <div class="modal-body">
                 <div class="modal-content">
@@ -339,12 +339,10 @@
                             <input READONLY=READONLY placeholder="Sober Since" id='sober_date_update'
                                 oninput="this.className = ''" type="email">
                         </div>
-                        <div>
-                            <div style="text-align: center;">
+                            <div style="text-align: center;position: relative;top: 50px;">
                                 <!-- <input type="button" value="UPDATE" id="nextBtn" class="actionBtn dark loginToDashboard"> -->
                                 <button class="actionBtn dark close" id="nextBtn">Update</button>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -408,7 +406,7 @@
 
     <div class="modal" id="instructionsModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition sub-modal">
+        <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg);">
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="">
@@ -417,7 +415,7 @@
                                 aria-hidden="true"></i></div>
                         <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
                         <p class="locAuthDesc">Video Submission<br />
-                            <ul>
+                            <ul class="instruct_Data">
                                 <ol style='padding-inline-start: 0px;'>
                                     Take a selfie video showing that you are taking your medication. If not taking
                                     medication submit a short selfie video of plans for the day.
@@ -425,7 +423,7 @@
                             </ul>
 
                             <p class="locAuthDesc">Location Submission<br />
-                                <ul>
+                                <ul class="instruct_Data">
                                     <ol style='padding-inline-start: 0px;'>
                                         When attending events such as work, meetings, yoga, etc, tap the <b>MY
                                             LOCATION</b> button and describe the event.
@@ -445,7 +443,7 @@
 
     <div class="modal" id="signupModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition">
+        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg)">
 
             <div class="modal-body">
                 <div class="modal-content">
@@ -454,12 +452,34 @@
                     <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
 
-                    <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
-                            draggable="false" /></div>
+                    <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
+                            draggable="false" /></div> -->
 
-                    <h3 class="locAuthTitle textCenter">SIGN UP</h3>
-                    <form id="regForm" action="#">
-                        <!-- One "tab" for each step in the form: -->
+                    <h3 class="locAuthTitle textCenter" style="color:white">SIGN UP</h3>
+                    <form id="regForm"  class="signupform" action="#">
+                        <div class="tab user-info">
+                            <div class="signupEmail">
+                                <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text">
+                            </div>
+                            <div>
+                                <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
+                            </div>
+                            <div>
+                                <input type="password" id='signup_password' placeholder="Password"
+                                oninput="this.className=''" />
+                            </div>
+                            <div>
+                                <input READONLY=READONLY type="text" id='sober_date' placeholder="Sober Since (Optional)"
+                                oninput="this.className=''" />
+                            </div>
+                        </div>
+                        <div>
+                            <div style="text-align: center;">
+                                <button class="actionBtn dark close" id="nextBtn">Sign Up</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- <form id="regForm " action="#">
                         <div class="tab user-info">
                             <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text">
                             <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
@@ -470,15 +490,12 @@
                         </div>
                         <div>
                             <div style="text-align: center;">
-                                <!-- <button class="actionBtn btnNext" type="button"
-                                    id="nextBtn">SIGN UP</button> -->
-                                <!-- <input type="button" value="SIGN UP"  id="nextBtn" class="actionBtn dark loginToDashboard"> -->
                                 <button class="actionBtn dark close" id="nextBtn">Sign Up</button>
                             </div>
                         </div>
 
-                    </form>
-                    <p class="textCenter loginNeed">Have an account? <a href="#">Log In</a></p>
+                    </form> -->
+                    <p class="textCenter loginNeed" style="color: white;">Have an account? <a href="#" style="color: #b9befd">Log In</a></p>
                 </div>
             </div>
         </div>
@@ -489,7 +506,7 @@
 
     <div class="modal" id="LocationModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition">
+        <div class="modal-wrapper modal-transition"  style="background: url(img/popup_login.jpg);margin-top: 13px;height: 45vh;">
             <!-- <div class="modal-header">
             <img src="images/iam.png"  class="modalLogo">
         </div> -->
@@ -499,8 +516,8 @@
                         <!-- <img src="images/location.png" style="width: 100px"> -->
                         <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"
                                 aria-hidden="true"></i></div>
-                        <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
-                                draggable="false" /></div>
+                        <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
+                                draggable="false" /></div> -->
                         <h3 class="locAuthTitle textCenter">MY LOCATION</h3>
 
                         <!-- <p class="locAuthDesc">Please allow permissions for accessing your location through GPS.</p> -->
@@ -521,7 +538,8 @@
 
     <div class="modal" id="videoInfo">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition">
+
+        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg);">
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="">
