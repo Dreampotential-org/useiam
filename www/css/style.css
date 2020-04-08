@@ -35,7 +35,8 @@ body {
   background-position: center;
   display: none;
   /* background-color: #faf884; */
-  background-image: url("../img/bg-img2.jpg");
+  background-image: url(../img/popup_login.jpg);
+  /* background-image: url("../img/bg-img2.jpg"); */
 }
 body::before {
   content: "";
