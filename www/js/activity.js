@@ -21,14 +21,17 @@ function init_activity() {
 
   $("body").delegate(".view-video", "click", function(e) {
     var video_url = $(this).attr("url");
+    console.log("videooooooooooooo url",videourl)
     showATab("eventView");
     showBackButton("activity");
     $("#eventView .content").html(
-      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><video controls autoplay="" name="media" id="video" width="170" height="240"></video></div>'
+      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><div class="row"><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button id="previousBtn">Previous</button></p></div><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button id="nextBtn"> Next</button></p></div></div><video controls autoplay="" name="media" id="video" width="170" height="240"></video></div>'
         +'<hr>'+ '<div class="videoDetailsDiv"><b>Feedback received :</b><br> <div class="feedback_received"></div></div>'
     );
     var id = getUrlVars(video_url)["id"];
     var user = getUrlVars(video_url)["user"];
+    console.log("id",id);
+    console.log("user",user);
     $("#video").html(
       "<source src=" +
         SERVER +
@@ -54,6 +57,48 @@ function init_activity() {
       });
     });
 
+    // var $currVideo =videourl;
+    // console.log("old",$currVideo)
+    var $currVideo ="/review-video.html?id=" +id +"&user="+ user  
+
+    console.log("old",$currVideo);
+
+   
+    // alert(typeof(videoData.events))
+    var CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);
+    //var CurrVdeoIndex= videoData.events.indexOf($currVideo);
+
+   alert(CurrVdeoIndex);
+
+    $( "#nextBtn" ).click(function() {
+      console.log("currVideoIndex",CurrVdeoIndex+1);
+      console.log(videoData.events[CurrVdeoIndex+1].url)
+     var newUrl= videoData.events[CurrVdeoIndex+1].url
+      $("#video").html(+
+          newUrl+
+          "&token=" +
+          localStorage.getItem("session_id") +
+          ' type="video/mp4">'
+      );
+      var vid = document.getElementById("video");
+      vid.play();
+    });
+
+    
+    $( "#previousBtn" ).click(function() {
+      console.log("peviousVideoIndex",CurrVdeoIndex-1);
+      console.log(videoData.events[CurrVdeoIndex-1].url)
+     var newUrl= videoData.events[CurrVdeoIndex-1].url
+      $("#video").html(
+        "<source src=" +
+          newUrl+
+          "&token=" +
+          localStorage.getItem("session_id") +
+          ' type="video/mp4">'
+      );
+      var vid = document.getElementById("video");
+      vid.play();
+    });
   });
 
 
@@ -72,7 +117,7 @@ function init_activity() {
       document.getElementById("gps-view"),
       {
         position: spot,
-        pov: { heading: 165, pitch: 0 },
+        pov: { heading: 165, pitch: 0 },    
         zoom: 1
       }
     );
@@ -85,7 +130,8 @@ function init_activity() {
     */
 }
 
-
+var videoData;
+var videourl;
 function get_activity(callback) {
   var settings = {
     async: true,
@@ -102,7 +148,12 @@ function get_activity(callback) {
 
   $.ajax(settings)
     .done(function(response) {
-      var msg = JSON.parse(response);
+      var msg= JSON.parse(response);
+      videoData =JSON.parse(response);
+      console.log("videos uploaded",videoData)
+      videourl = videoData.events[0].url
+      console.log("videos urlllllllllllll",videourl)
+
       console.log("Activity List...",msg.events.length);
 
       if(msg.events.length==0){
@@ -119,6 +170,15 @@ function get_activity(callback) {
       alert("Got err");
       console.log(err);
     });
+   
+}
+function findIndexInData(data, property, value) {
+  for(var i = 0, l = data.length ; i < l ; i++) {
+    if(data[i][property] === value) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 function formatDate(date) {
