@@ -62,43 +62,88 @@ function init_activity() {
     var $currVideo ="/review-video.html?id=" +id +"&user="+ user  
 
     console.log("old",$currVideo);
-
-   
-    // alert(typeof(videoData.events))
     var CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);
-    //var CurrVdeoIndex= videoData.events.indexOf($currVideo);
 
-   alert(CurrVdeoIndex);
+   if(CurrVdeoIndex == 0)	
+   {	
+	   $( "#previousBtn" ).hide();	
+   }	
+   if(CurrVdeoIndex == videoData.events.length-1)	
+   {	
+	   $( "#nextBtn" ).hide();	
+   }
+
+
+
 
     $( "#nextBtn" ).click(function() {
       console.log("currVideoIndex",CurrVdeoIndex+1);
       console.log(videoData.events[CurrVdeoIndex+1].url)
-     var newUrl= videoData.events[CurrVdeoIndex+1].url
-      $("#video").html(+
-          newUrl+
-          "&token=" +
-          localStorage.getItem("session_id") +
-          ' type="video/mp4">'
-      );
-      var vid = document.getElementById("video");
-      vid.play();
-    });
-
+    //var newUrl= videoData.events[CurrVdeoIndex+1].url
     
-    $( "#previousBtn" ).click(function() {
-      console.log("peviousVideoIndex",CurrVdeoIndex-1);
-      console.log(videoData.events[CurrVdeoIndex-1].url)
-     var newUrl= videoData.events[CurrVdeoIndex-1].url
+     var idNext = getUrlVars(videoData.events[CurrVdeoIndex+1].url)["id"];
+		var userNext = getUrlVars(videoData.events[CurrVdeoIndex+1].url)["user"];
+		console.log("id==>videoData.events[CurrVdeoIndex+1].url==>",idNext);
+		console.log("user",userNext);
+      // var vid = document.getElementById("video");
+      // vid.play();
       $("#video").html(
         "<source src=" +
-          newUrl+
-          "&token=" +
-          localStorage.getItem("session_id") +
-          ' type="video/mp4">'
+        SERVER +
+        "/api/review-video/?id=" +
+        idNext +
+        "&user=" +
+        userNext +
+        "&token=" +
+        localStorage.getItem("session_id") +
+        ' type="video/mp4">'
       );
-      var vid = document.getElementById("video");
-      vid.play();
-    });
+      $currVideo ="/review-video.html?id=" +idNext +"&user="+ userNext;
+      CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);
+      if(CurrVdeoIndex == videoData.events.length-1)	
+      {	
+        $( "#nextBtn" ).hide();	
+      }	
+      else{	
+        $( "#previousBtn" ).show();	
+        $( "#nextBtn" ).show();	
+      }
+         var vid = document.getElementById("video");
+         vid.load();
+         vid.play();
+       });
+
+    
+       $( "#previousBtn" ).click(function() {	
+          var idPrev = getUrlVars(videoData.events[CurrVdeoIndex-1].url)["id"];	
+        var userPrev = getUrlVars(videoData.events[CurrVdeoIndex-1].url)["user"];	
+        console.log("id==>videoData.events[CurrVdeoIndex+1].url==>",idPrev);	
+        console.log("user",userPrev);	
+        $("#video").html(	
+          "<source src=" +	
+          SERVER +	
+          "/api/review-video/?id=" +	
+          idPrev +	
+          "&user=" +	
+          userPrev +	
+          "&token=" +	
+          localStorage.getItem("session_id") +	
+          ' type="video/mp4">'	
+        );	
+          $currVideo ="/review-video.html?id=" +idPrev +"&user="+ userPrev;	
+        CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);	
+        if(CurrVdeoIndex == 0)	
+         {	
+           $( "#previousBtn" ).hide();	
+         }	
+         else{	
+           $( "#previousBtn" ).show();	
+           $( "#nextBtn" ).show();	
+         }	
+          var vid = document.getElementById("video");	
+          vid.load();	
+          vid.play();	
+        });
   });
 
 
@@ -150,6 +195,17 @@ function get_activity(callback) {
     .done(function(response) {
       var msg= JSON.parse(response);
       videoData =JSON.parse(response);
+      var allData = JSON.parse(response);	
+      var events=[];	
+      for(var i=0;i<allData.events.length; i++)	
+      {	
+       if(allData.events[i].type=='video')	
+       {	
+        events.push(allData.events[i]);	
+       }	
+      }	
+      console.log('events===>'+events);	
+      videoData={'events' : events};
       console.log("videos uploaded",videoData)
       videourl = videoData.events[0].url
       console.log("videos urlllllllllllll",videourl)
