@@ -84,6 +84,7 @@ function get_video_info() {
 }
 
 function load_video() {
+    debugger;
     var id = getUrlVars()['id'];
     var user = getUrlVars()['user'];
     $("#video").html(

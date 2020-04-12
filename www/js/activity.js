@@ -21,14 +21,17 @@ function init_activity() {
 
   $("body").delegate(".view-video", "click", function(e) {
     var video_url = $(this).attr("url");
+    console.log("videooooooooooooo url",videourl)
     showATab("eventView");
     showBackButton("activity");
     $("#eventView .content").html(
-      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><video controls autoplay="" name="media" id="video" width="170" height="240"></video></div>'
+      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><div class="row"><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button id="previousBtn">Previous</button></p></div><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button id="nextBtn"> Next</button></p></div></div><video controls autoplay="" name="media" id="video" width="170" height="240"></video></div>'
         +'<hr>'+ '<div class="videoDetailsDiv"><b>Feedback received :</b><br> <div class="feedback_received"></div></div>'
     );
     var id = getUrlVars(video_url)["id"];
     var user = getUrlVars(video_url)["user"];
+    console.log("id",id);
+    console.log("user",user);
     $("#video").html(
       "<source src=" +
         SERVER +
@@ -54,6 +57,93 @@ function init_activity() {
       });
     });
 
+    // var $currVideo =videourl;
+    // console.log("old",$currVideo)
+    var $currVideo ="/review-video.html?id=" +id +"&user="+ user  
+
+    console.log("old",$currVideo);
+    var CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);
+
+   if(CurrVdeoIndex == 0)	
+   {	
+	   $( "#previousBtn" ).hide();	
+   }	
+   if(CurrVdeoIndex == videoData.events.length-1)	
+   {	
+	   $( "#nextBtn" ).hide();	
+   }
+
+
+
+
+    $( "#nextBtn" ).click(function() {
+      console.log("currVideoIndex",CurrVdeoIndex+1);
+      console.log(videoData.events[CurrVdeoIndex+1].url)
+    //var newUrl= videoData.events[CurrVdeoIndex+1].url
+    
+     var idNext = getUrlVars(videoData.events[CurrVdeoIndex+1].url)["id"];
+		var userNext = getUrlVars(videoData.events[CurrVdeoIndex+1].url)["user"];
+		console.log("id==>videoData.events[CurrVdeoIndex+1].url==>",idNext);
+		console.log("user",userNext);
+      // var vid = document.getElementById("video");
+      // vid.play();
+      $("#video").html(
+        "<source src=" +
+        SERVER +
+        "/api/review-video/?id=" +
+        idNext +
+        "&user=" +
+        userNext +
+        "&token=" +
+        localStorage.getItem("session_id") +
+        ' type="video/mp4">'
+      );
+      $currVideo ="/review-video.html?id=" +idNext +"&user="+ userNext;
+      CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);
+      if(CurrVdeoIndex == videoData.events.length-1)	
+      {	
+        $( "#nextBtn" ).hide();	
+      }	
+      else{	
+        $( "#previousBtn" ).show();	
+        $( "#nextBtn" ).show();	
+      }
+         var vid = document.getElementById("video");
+         vid.load();
+         vid.play();
+       });
+
+    
+       $( "#previousBtn" ).click(function() {	
+          var idPrev = getUrlVars(videoData.events[CurrVdeoIndex-1].url)["id"];	
+        var userPrev = getUrlVars(videoData.events[CurrVdeoIndex-1].url)["user"];	
+        console.log("id==>videoData.events[CurrVdeoIndex+1].url==>",idPrev);	
+        console.log("user",userPrev);	
+        $("#video").html(	
+          "<source src=" +	
+          SERVER +	
+          "/api/review-video/?id=" +	
+          idPrev +	
+          "&user=" +	
+          userPrev +	
+          "&token=" +	
+          localStorage.getItem("session_id") +	
+          ' type="video/mp4">'	
+        );	
+          $currVideo ="/review-video.html?id=" +idPrev +"&user="+ userPrev;	
+        CurrVdeoIndex=findIndexInData(videoData.events,'url',$currVideo);	
+        if(CurrVdeoIndex == 0)	
+         {	
+           $( "#previousBtn" ).hide();	
+         }	
+         else{	
+           $( "#previousBtn" ).show();	
+           $( "#nextBtn" ).show();	
+         }	
+          var vid = document.getElementById("video");	
+          vid.load();	
+          vid.play();	
+        });
   });
 
 
@@ -72,7 +162,7 @@ function init_activity() {
       document.getElementById("gps-view"),
       {
         position: spot,
-        pov: { heading: 165, pitch: 0 },
+        pov: { heading: 165, pitch: 0 },    
         zoom: 1
       }
     );
@@ -85,7 +175,8 @@ function init_activity() {
     */
 }
 
-
+var videoData;
+var videourl;
 function get_activity(callback) {
   var settings = {
     async: true,
@@ -102,7 +193,23 @@ function get_activity(callback) {
 
   $.ajax(settings)
     .done(function(response) {
-      var msg = JSON.parse(response);
+      var msg= JSON.parse(response);
+      videoData =JSON.parse(response);
+      var allData = JSON.parse(response);	
+      var events=[];	
+      for(var i=0;i<allData.events.length; i++)	
+      {	
+       if(allData.events[i].type=='video')	
+       {	
+        events.push(allData.events[i]);	
+       }	
+      }	
+      console.log('events===>'+events);	
+      videoData={'events' : events};
+      console.log("videos uploaded",videoData)
+      videourl = videoData.events[0].url
+      console.log("videos urlllllllllllll",videourl)
+
       console.log("Activity List...",msg.events.length);
 
       if(msg.events.length==0){
@@ -119,6 +226,15 @@ function get_activity(callback) {
       alert("Got err");
       console.log(err);
     });
+   
+}
+function findIndexInData(data, property, value) {
+  for(var i = 0, l = data.length ; i < l ; i++) {
+    if(data[i][property] === value) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 function formatDate(date) {
@@ -139,8 +255,8 @@ function display_activities(activities) {
       $("#activity-log").append(
         '<li class="other"><div class="msg"> <p class="dateClass">' +
           formatDate(new Date(activity.created_at * 1000)) +
-          "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
-          "<div style='width:80%'><span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
+          // "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
+          "<div style='width:80%'>" + activity.msg +" <span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
           activity.lat +
           " " +
           "lng=" +
@@ -150,10 +266,42 @@ function display_activities(activities) {
           "</a>" +
          
           "</span></div>" +
-          '<div class="icon"><img src="images/place.png" alt=""/></div>' +
+          ' <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>' +
           "</div> </li>"
       );
+      // $("#activity-log").append(
+      //   '<li class="other"><div class="msg"> <p class="dateClass">' +
+      //     formatDate(new Date(activity.created_at * 1000)) +
+      //     "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
+      //     "<div style='width:80%'><span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
+      //     activity.lat +
+      //     " " +
+      //     "lng=" +
+      //     activity.lng +
+      //     "> " +
+      //     activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
+      //     "</a>" +
+         
+      //     "</span></div>" +
+      //     '<div class="icon"><img src="images/place.png" alt=""/></div>' +
+      //     "</div> </li>"
+      // );
     }
+    // if (activity.type == "video") {
+    //   $("#activity-log").append(
+    //     '<li class="other dark"><div class="msg"> <p class="dateClass">' +
+    //       formatDate(new Date(activity.created_at * 1000)) +
+    //       "</p>" +
+    //       "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
+    //       activity.url +
+    //       " href='#' class='view-video customLinkBtn'>" +
+    //       activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
+    //       "</a></span></div>" +
+    //       '<div class="icon"><div class="borderDiv"><img src="images/Play_Video.png" alt=""/></div></div>' +
+    //       "</div> </li>"
+    //     //   <img src="images/play_icon.png" alt=""/>
+    //   );
+    // }
     if (activity.type == "video") {
       $("#activity-log").append(
         '<li class="other dark"><div class="msg"> <p class="dateClass">' +
@@ -164,7 +312,7 @@ function display_activities(activities) {
           " href='#' class='view-video customLinkBtn'>" +
           activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
           "</a></span></div>" +
-          '<div class="icon"><div class="borderDiv"><img src="images/Play_Video.png" alt=""/></div></div>' +
+          '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
           "</div> </li>"
         //   <img src="images/play_icon.png" alt=""/>
       );
