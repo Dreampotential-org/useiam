@@ -68,7 +68,7 @@ header {
 }
 .toggleBar.toggleClose {
   /* margin-left: -390px; */
-  margin-right: 23px;
+  /* margin-right: 23px; */
 }
 .toggleBar {
   /* display: none;
@@ -122,7 +122,8 @@ header {
   position: fixed;
   /* left: 0; */
   top: 0;
-  width: 235px;
+  /* width: 235px; */
+  width: 200px;
   height: 100vh;
   color: #000;
   font-size: 30px;
@@ -647,7 +648,8 @@ input[type="password"] {
   margin-bottom: 0px;
   font-size: 16px;
   border-bottom: 1px dotted #949bf3;
-  padding: 12px 5px 12px 15px;
+  /* padding: 12px 5px 12px 15px; */
+  padding:5px 5px 12px 15px;
   display: block;
 }
 .textMenu a:hover{
@@ -695,8 +697,8 @@ input[type="password"] {
 }
 
 .locAuthTitle {
-  /* color: #2a318b; */
-  color: white;
+  color: #2a318b;
+  /* color: white; */
   margin: auto;
   font-family: 'Bebas Neue', cursive;
   font-weight: 500;
@@ -723,6 +725,18 @@ video {
 .loginToDashboard {
   margin: 0;
   text-transform: uppercase;
+}
+.nextButton{
+  background: gold;
+  border: 1px solid #b7b4b4;
+  padding: 10px;
+  /* border-radius: 10px; */
+  /* border-radius: 50%; */
+  color: white;
+}
+.nextButton i{
+  color: gold;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 640px) {
@@ -1193,17 +1207,19 @@ ol li.other {
   padding: 0 10px;
 }
 
-.row1{
+/* .row1{
   display: -webkit-inline-box;
-}
+} */
 .column1{
   flex: 50%;
   padding: 12px;
+ margin-top:0px !important;
 }
 .action-btns {
   margin: 0 0 15px;
   padding: 0;
   text-align: center;
+  margin-top: 0px !important;
 }
 .action-btns button {
   margin: 0px;
@@ -1218,6 +1234,7 @@ ol li.other {
   border-radius: 3px;
 }
 .action-btns .btn2 {
+
   /* text-align: left; */
 }
 
@@ -1357,6 +1374,7 @@ i {
   width: 250px;
   margin: 0 auto;
   line-height: 45px;
+  letter-spacing: 15px;
 }
 .logoDiv{
   margin-top: 20%;
@@ -1405,7 +1423,8 @@ i {
   max-width: 92%;
   /* transform: translate(0px, -300px); */
   border-radius: 5px;
-  transform: translateY(-100%);
+  /* transform: translateY(-100%); */
+  transform: translateY(-60%);
 }
 
 
@@ -1445,7 +1464,7 @@ p.alignTag {
 }
 .videoDetailsDiv{
   padding: 15px; 
-  color: #000;
+  color: white;
   letter-spacing: 0.8px;
 }
 hr{
@@ -1539,6 +1558,9 @@ span.alignTag{
   flex: 25%;
   max-width: 25%;
   padding: 0 4px;
+}
+.buttonColor{
+  color: #34e6b7;
 }
 
 
@@ -1634,16 +1656,17 @@ span.alignTag{
 }
 .avatar {
   vertical-align: middle;
-  width: 75px;
-  height: 75px;
+  width: 55px;
+  height:55px;
   border-radius: 50%;
   background: #21e7b6;
   margin: 0 auto;
 }
 .avatar i{
   color: white;
-  font-size: 28px;
-  margin-top: 8px;
+  font-size: 23px;
+  margin-top: 0px;
+
 }
 .iconDiv{
   background: none;
@@ -1677,7 +1700,8 @@ border: none;
 }
 .img_a{
   border-bottom: 1px solid white  !important;
-  padding: 0px 10px 10px 10px !important;
+  /* padding: 0px 10px 10px 10px !important; */
+  padding: 0px 10px 0px 10px !important;
 }
 
 .image_div{
@@ -1705,3 +1729,11 @@ table.ui-datepicker-calendar{
 .instruct_Data{
   color: white;
 }
+.videoBtn{
+  background: transparent !important;
+  border: 1px solid !important;
+}
+.subVideoBtn{
+  margin-top: 50px !important;
+}
+

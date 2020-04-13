@@ -33,7 +33,7 @@ function handle_logout() {
 
 function handle_show_instructions() {
     $("body").delegate("#showInstructions", "click", function(e) {
-        $('.toggleBar').click()
+   
         $('#instructionsModal').addClass('is-visible');
     })
 }
@@ -133,7 +133,7 @@ function signup_api(params) {
             if (!(msg.monitors.length)) {
                 show_set_monitor();
             } else {
-                $('.toggleBar').click()
+                // $('.toggleBar').click()
                 $("#showInstructions").click()
             }
         });
@@ -168,7 +168,7 @@ function handle_signin() {
                 if (!(msg.monitors.length)) {
                     show_set_monitor();
                 } else {
-                    $('.toggleBar').click()
+                    // $('.toggleBar').click()
                     $("#showInstructions").click()
                 }
             });

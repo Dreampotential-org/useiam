@@ -25,7 +25,7 @@ function init_activity() {
     showATab("eventView");
     showBackButton("activity");
     $("#eventView .content").html(
-      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><div class="row"><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button id="previousBtn">Previous</button></p></div><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button id="nextBtn"> Next</button></p></div></div><video controls autoplay="" name="media" id="video" width="170" height="240"></video></div>'
+      '<div class="detailsDiv"><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button><div class="row"><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button class="nextButton" id="previousBtn">PREVIOUS</button></p></div><div class="col-6 col-md-6 col-sm-03"><p style="padding:10px"><button class="nextButton" id="nextBtn">NEXT</button></p></div></div><video controls autoplay="" name="media" id="video" width="170" height="240"></video></div>'
         +'<hr>'+ '<div class="videoDetailsDiv"><b>Feedback received :</b><br> <div class="feedback_received"></div></div>'
     );
     var id = getUrlVars(video_url)["id"];
