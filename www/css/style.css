@@ -727,7 +727,7 @@ video {
   text-transform: uppercase;
 }
 .nextButton{
-  background: gold;
+  background: #283190;
   border: 1px solid #b7b4b4;
   padding: 10px;
   /* border-radius: 10px; */

@@ -68,24 +68,25 @@ function init_logo() {
 
     $(".logo img").show()
 }
-function _append_logo_and_icon(icon_path) {
-    $(".logo").append("<img src='" + icon_path + "'/>")
-    $('head').append(
-        '<link rel="apple-touch-icon" href="' + icon_path + '">')
-    if (icon_path == 'img/logo_iam.png') {
-        return;
-    }
-    $(".logo2").append("<img src='images/iam.png'/>")
-    $(".logo2 img").css("width", '70px')
-}
-
 // function _append_logo_and_icon(icon_path) {
 //     $(".logo").append("<img src='" + icon_path + "'/>")
 //     $('head').append(
 //         '<link rel="apple-touch-icon" href="' + icon_path + '">')
-//     if (icon_path == 'images/iam.png') {
+//     if (icon_path == 'img/logo_iam.png') {
 //         return;
 //     }
 //     $(".logo2").append("<img src='images/iam.png'/>")
 //     $(".logo2 img").css("width", '70px')
 // }
+
+function _append_logo_and_icon(icon_path) {
+    // $(".logo").append("<img src=''img/pbdwi.jpg'" + icon_path + "'/>")
+    $(".logo").append("<img src='img/pbdwi.jpg'/>")
+    $('head').append(
+        '<link rel="apple-touch-icon" href="' + icon_path + '">')
+    if (icon_path == 'images/iam.png') {
+        return;
+    }
+    $(".logo2").append("<img src='images/iam.png'/>")
+    $(".logo2 img").css("width", '70px')
+}
