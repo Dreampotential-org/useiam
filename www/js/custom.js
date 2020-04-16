@@ -86,7 +86,7 @@ $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
     $(this).toggleClass('toggleClose');
     if($(this).hasClass('toggleClose')){
-        $('header').css('margin-left','400px');
+        // $('header').css('margin-left','400px');
         $('#page-contents').css('margin-left','400px');
     }
     else{

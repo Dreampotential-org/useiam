@@ -77,7 +77,7 @@ function display_monitor(monitor) {
     monitor +
     " - <a val='" +
     monitor +
-    "' class='remove-monitor' href='#'>remove</a></div>"
+    "' class='remove-monitor buttonColor' href='#'>remove</a></div>"
   );
 
   $(".remove-monitor").on("click", function (e) {
