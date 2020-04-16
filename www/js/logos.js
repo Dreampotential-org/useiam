@@ -61,27 +61,15 @@ function init_logo() {
         $(".logo img").css("width", '200px')
         $(".logo img").css("padding-top", '10px')
     } else {
-        // _append_logo_and_icon("images/iam.png")
-        _append_logo_and_icon("img/logo_iam.png")
+        _append_logo_and_icon("images/iam.png")
         $(".logo img").css("width", '100px')
    }
 
     $(".logo img").show()
 }
-// function _append_logo_and_icon(icon_path) {
-//     $(".logo").append("<img src='" + icon_path + "'/>")
-//     $('head').append(
-//         '<link rel="apple-touch-icon" href="' + icon_path + '">')
-//     if (icon_path == 'img/logo_iam.png') {
-//         return;
-//     }
-//     $(".logo2").append("<img src='images/iam.png'/>")
-//     $(".logo2 img").css("width", '70px')
-// }
 
 function _append_logo_and_icon(icon_path) {
-    // $(".logo").append("<img src=''img/pbdwi.jpg'" + icon_path + "'/>")
-    $(".logo").append("<img src='img/pbdwi.jpg'/>")
+    $(".logo").append("<img src='" + icon_path + "'/>")
     $('head').append(
         '<link rel="apple-touch-icon" href="' + icon_path + '">')
     if (icon_path == 'images/iam.png') {
