@@ -41,7 +41,7 @@ function handle_show_instructions() {
 function handle_signup() {
 
     $("#signupModal #nextBtn").on('click', function(e) {
-
+        e.preventDefault();
         // validate inputs
         var invalid = false;
         if($("#signup_name").val().trim().length == 0) {
@@ -142,6 +142,7 @@ function signup_api(params) {
 
 
     }).fail(function(err) {
+        console.log(err)
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
         swal({
@@ -223,8 +224,7 @@ function signup_signin_buttons() {
     });
 
     $('#signup').on('click', function(e) {
-        console.log("SIGNUP Need......__________")
-        // e.preventDefault();
+        e.preventDefault();
         $('#signupModal').addClass('is-visible');
     });
 
