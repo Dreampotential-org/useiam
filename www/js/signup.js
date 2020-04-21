@@ -59,12 +59,20 @@ function handle_signup() {
             invalid = true;
         }
 
+        if($("#signup_name").val().trim().length == 0) {
+            $("#signup_name").addClass("invalid")
+            invalid = true;
+        }
+
         if($("#signup_password").val().trim().length == 0) {
             $("#signup_password").addClass("invalid")
             invalid = true;
         }
 
         if (invalid == true) {
+            setTimeout(function() {
+                $("#signup").click()
+            }, 400)
             return
         }
         if ($("#signupModal #nextBtn").hasClass("running")) {
