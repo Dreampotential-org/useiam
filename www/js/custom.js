@@ -14,13 +14,13 @@ function init() {
     init_display();
     init_stripe();
 
-   //  init_doctor_login_stuff();
-    
+    //  init_doctor_login_stuff();
+
     // populates days sober in left side pannel
     get_profile_info();
     $("body").show()
 }
- 
+
 function block_desktop() {
     if (!(isMobile)) {
     swal({

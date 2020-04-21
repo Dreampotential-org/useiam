@@ -175,7 +175,7 @@ header {
   position: relative;
 }
 .actionBtn.dark {
-  background: #2a318b;
+  background: #34e6b7;
   border-radius: 3px;
   font-size: 16px;
 }
@@ -697,7 +697,7 @@ input[type="password"] {
 }
 
 .locAuthTitle {
-  color: #2a318b;
+  color: #34e6b7;
   /* color: white; */
   margin: auto;
   font-family: 'Bebas Neue', cursive;

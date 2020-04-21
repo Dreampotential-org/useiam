@@ -33,7 +33,7 @@ function handle_logout() {
 
 function handle_show_instructions() {
     $("body").delegate("#showInstructions", "click", function(e) {
-   
+        $(".toggleBar").click()
         $('#instructionsModal').addClass('is-visible');
     })
 }
