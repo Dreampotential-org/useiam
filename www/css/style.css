@@ -175,7 +175,7 @@ header {
   position: relative;
 }
 .actionBtn.dark {
-  background: #34e6b7;
+  background: rgb(0, 215, 119);
   border-radius: 3px;
   font-size: 16px;
 }
@@ -362,7 +362,7 @@ header {
 } */
 
 .activity-log .chat .other.dark:before {
-  border-right: solid 18px #2a318b;
+  border-right: solid 18px  rgb(0, 215, 119);
 }
 .activity-log .chat .other:after {
   left: -17px;
@@ -678,7 +678,7 @@ input[type="password"] {
   color: white;
 }
 .signupNeed a {
-  color: #2a318b;
+  color:  rgb(0, 215, 119);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   /* color: #00a0cc; */
@@ -690,14 +690,14 @@ input[type="password"] {
   /* color: #828282; */
 }
 .loginNeed a {
-  color: #2a318b;
+  color: rgb(0, 215, 119);
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   /* color: #00a0cc; */
 }
 
 .locAuthTitle {
-  color: #34e6b7;
+  color: rgb(0, 215, 119);
   /* color: white; */
   margin: auto;
   font-family: 'Bebas Neue', cursive;
@@ -1227,7 +1227,8 @@ ol li.other {
   font-size: 14px;
   color: #fff;
   font-family: "Poppins", sans-serif;
-  background: #283190;
+  /* background: #283190; */
+  background: rgb(0, 215, 119);
   border: none;
   /* min-width: 155px; */
   cursor: pointer;
@@ -1319,7 +1320,7 @@ i {
 }
 .closeIcon {
     cursor: pointer;
-    background: #2a318b;
+	 background: rgb(0, 215, 119);
     /* background: #34e6b7; */
     color: white;
     display: inline-block;
@@ -1393,7 +1394,7 @@ i {
 
 .stepText{
   width: 25%;
-  background: #2a318b;
+  background: rgb(0, 215, 119);
   color: white;
   margin-left: 10px;
   margin-top: -19px;
@@ -1493,9 +1494,9 @@ hr{
   margin-top: 20%;
 }
 .feedbackBtn{
-  background: #2a318b;
+  background: rgb(0, 215, 119);
   color: #ffff;
-  border: 1px solid #2a318b;
+  border: 1px solid rgb(0, 215, 119);
   border-radius: 3px;
   padding: 8px;
   margin: 16px 0px 0px;
@@ -1560,7 +1561,7 @@ span.alignTag{
   padding: 0 4px;
 }
 .buttonColor{
-  color: #34e6b7;
+  color: rgb(0, 215, 119);
 }
 
 
@@ -1583,7 +1584,7 @@ span.alignTag{
 }
 
 .swal-button {
-  background-color: #2a318b !important;
+  background-color: rgb(0, 215, 119); !important;
   color: #fff;
   border: none;
   box-shadow: none;
@@ -1624,7 +1625,7 @@ span.alignTag{
 .setForm input{
   outline: 0;
   border-width: 0 0 3px;
-  border-color: #21e7b6;;
+  border-color: rgb(0, 215, 119);
   background: none;
   width: 100%;
   font-size: 17px;
@@ -1659,7 +1660,7 @@ span.alignTag{
   width: 55px;
   height:55px;
   border-radius: 50%;
-  background: #21e7b6;
+  background: rgb(0, 215, 119);
   margin: 0 auto;
 }
 .avatar i{
@@ -1710,7 +1711,7 @@ border: none;
 }
 
 .emailTitle{
-  color: #34e6b7;
+  color: rgb(0, 215, 119);
   font-size: 42px;
   font-weight: 400;
   text-align: inherit;
