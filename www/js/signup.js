@@ -138,12 +138,7 @@ function signup_api(params) {
         $(".moto").show()
 
         get_profile_info(function(msg) {
-            if (!(msg.monitors.length)) {
-                show_set_monitor();
-            } else {
-                // $('.toggleBar').click()
-                $("#showInstructions").click()
-            }
+            show_set_monitor();
         });
 
         //$("#proTip").addClass("is-visible");
@@ -174,15 +169,8 @@ function handle_signin() {
             //close modals
             closeAllModals();
             get_profile_info(function(msg) {
-                if (!(msg.monitors.length)) {
-                    show_set_monitor();
-                } else {
-                    // $('.toggleBar').click()
-                    $("#showInstructions").click()
-                }
+                show_set_monitor();
             });
-
-            //$("#proTip").addClass("is-visible");
         })
     })
 }
@@ -234,6 +222,7 @@ function signup_signin_buttons() {
     $('#signup').on('click', function(e) {
         e.preventDefault();
         $('#signupModal').addClass('is-visible');
+        $("#signup_name").focus()
     });
 
     $(".loginNeed").on("click", function(e) {

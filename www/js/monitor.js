@@ -192,6 +192,16 @@ function do_set_sober_date() {
 // }
 
 function do_set_monitor() {
+
+    if (!(validateEmail($("#monitor_email").val().trim()))) {
+      swal({
+        title: "Error Invalid email address",
+        text: "",
+        icon: "error"
+      });
+      return
+    }
+
   if (
     $("#monitor_email")
       .val()
@@ -241,10 +251,11 @@ function do_set_monitor() {
       //after successful login or signup show dashboard contents
       showATab("dashboard");
       //close modals
-      closeAllModals();
+      //closeAllModals();
 
       $(".toggleBar").click();
       $("#showInstructions").click();
+      console.log("Show instructions")
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
