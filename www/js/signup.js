@@ -138,7 +138,7 @@ function signup_api(params) {
         $(".moto").show()
 
         get_profile_info(function(msg) {
-            show_set_monitor();
+            // show_set_monitor();
         });
 
         //$("#proTip").addClass("is-visible");
@@ -169,7 +169,7 @@ function handle_signin() {
             //close modals
             closeAllModals();
             get_profile_info(function(msg) {
-                show_set_monitor();
+                // show_set_monitor();
             });
         })
     })
