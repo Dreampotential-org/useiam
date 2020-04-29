@@ -88,6 +88,7 @@ function get_video_info() {
     })
 }
 
+// XXX @Santosh
 function get_activity(callback) {
   var settings = {
     async: true,
@@ -107,7 +108,6 @@ function get_activity(callback) {
       videoData =JSON.parse(response);
       var allData = JSON.parse(response);
       console.log(allData)
-      alert(allData)
       callback(msg);
     }).fail(function(err) {
       alert("Got err");
