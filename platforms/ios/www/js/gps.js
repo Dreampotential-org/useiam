@@ -122,6 +122,10 @@ function found_gps_or_timeout() {
     }, 20);
 }
 
+function isApp() {
+    return (typeof(cordova) !== 'undefined' ||
+            typeof(phonegap) !== 'undefined');
+}
 
 function start_gps() {
     // log_error_to_slack("GSP INIT")
@@ -131,7 +135,9 @@ function start_gps() {
         maximumAge: 30000,
         timeout: 27000
     };
-    if (window.cordova.platformId == 'ios' || window.cordova.platformId == 'android') {
+
+    if (isApp()) {
+    //if (window.cordova.platformId == 'ios' || window.cordova.platformId == 'android') {
         document.addEventListener('deviceready', function () {
             navigator.geolocation.watchPosition(
                 geo_success_low, geo_error, geo_options_low
@@ -166,7 +172,8 @@ function start_gps() {
     };
 
     // Start gps prob with high accuracy
-    if (window.cordova.platformId == 'ios' || window.cordova.platformId == 'android') {
+    //if (window.cordova.platformId == 'ios' || window.cordova.platformId == 'android') {
+    if (isApp()) {
         document.addEventListener('deviceready', function () {
             navigator.geolocation.watchPosition(
                 geo_success, geo_error, geo_options

@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.0.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>1.0.8</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -31,22 +31,20 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app require GPS to perform gps checkin</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This app require camera to be able to record video and send to your designated monitor</string>
+	<string>need camera access to take pictures</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app require GPS to perform gps checkin</string>
 	<key>NSMainNibFile</key>
-	<string></string>
+	<string/>
 	<key>NSMainNibFile~ipad</key>
-	<string></string>
+	<string/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app require microphone to be able to record audio with video and send to your designated monitor</string>
+	<string>need microphone access to record sounds</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app require photo library to be able to capture image and send to your designated monitor</string>
+	<string>your photo library usage message here</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app require photo library to be able to capture image and send to your designated monitor</string>
+	<string>need to photo library access to get pictures from there</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -68,5 +66,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need location to perform gps checkin</string>
 </dict>
 </plist>

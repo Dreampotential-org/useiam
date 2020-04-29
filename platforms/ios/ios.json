@@ -17,36 +17,24 @@
           ],
           "NSCameraUsageDescription": [
             {
-              "xml": "<string>your usage message</string>",
-              "count": 1
-            },
-            {
               "xml": "<string>need camera access to take pictures</string>",
-              "count": 1,
+              "count": 2,
               "mode": "merge",
               "id": "config.xml"
             }
           ],
           "NSMicrophoneUsageDescription": [
             {
-              "xml": "<string>your microphone usage message here</string>",
-              "count": 1
-            },
-            {
               "xml": "<string>need microphone access to record sounds</string>",
-              "count": 1,
+              "count": 2,
               "mode": "merge",
               "id": "config.xml"
             }
           ],
           "NSPhotoLibraryUsageDescription": [
             {
-              "xml": "<string>your photo library usage message here</string>",
-              "count": 1
-            },
-            {
               "xml": "<string>need to photo library access to get pictures from there</string>",
-              "count": 1,
+              "count": 2,
               "mode": "merge",
               "id": "config.xml"
             }

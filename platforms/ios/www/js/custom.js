@@ -14,13 +14,13 @@ function init() {
     init_display();
     init_stripe();
 
-   //  init_doctor_login_stuff();
-    
+    //  init_doctor_login_stuff();
+
     // populates days sober in left side pannel
     get_profile_info();
     $("body").show()
 }
- 
+
 function block_desktop() {
     if (!(isMobile)) {
     swal({
@@ -86,7 +86,7 @@ $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
     $(this).toggleClass('toggleClose');
     if($(this).hasClass('toggleClose')){
-        $('header').css('margin-left','400px');
+        // $('header').css('margin-left','400px');
         $('#page-contents').css('margin-left','400px');
     }
     else{

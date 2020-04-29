@@ -33,7 +33,7 @@ function handle_logout() {
 
 function handle_show_instructions() {
     $("body").delegate("#showInstructions", "click", function(e) {
-        $('.toggleBar').click()
+        $(".toggleBar").click()
         $('#instructionsModal').addClass('is-visible');
     })
 }
@@ -41,7 +41,7 @@ function handle_show_instructions() {
 function handle_signup() {
 
     $("#signupModal #nextBtn").on('click', function(e) {
-
+        e.preventDefault();
         // validate inputs
         var invalid = false;
         if($("#signup_name").val().trim().length == 0) {
@@ -59,12 +59,20 @@ function handle_signup() {
             invalid = true;
         }
 
+        if($("#signup_name").val().trim().length == 0) {
+            $("#signup_name").addClass("invalid")
+            invalid = true;
+        }
+
         if($("#signup_password").val().trim().length == 0) {
             $("#signup_password").addClass("invalid")
             invalid = true;
         }
 
         if (invalid == true) {
+            setTimeout(function() {
+                $("#signup").click()
+            }, 400)
             return
         }
         if ($("#signupModal #nextBtn").hasClass("running")) {
@@ -130,18 +138,14 @@ function signup_api(params) {
         $(".moto").show()
 
         get_profile_info(function(msg) {
-            if (!(msg.monitors.length)) {
-                show_set_monitor();
-            } else {
-                $('.toggleBar').click()
-                $("#showInstructions").click()
-            }
+            // show_set_monitor();
         });
 
         //$("#proTip").addClass("is-visible");
 
 
     }).fail(function(err) {
+        console.log(err)
         $("#signupModal #nextBtn").removeClass("running")
         console.log(err);
         swal({
@@ -165,15 +169,8 @@ function handle_signin() {
             //close modals
             closeAllModals();
             get_profile_info(function(msg) {
-                if (!(msg.monitors.length)) {
-                    show_set_monitor();
-                } else {
-                    $('.toggleBar').click()
-                    $("#showInstructions").click()
-                }
+                // show_set_monitor();
             });
-
-            //$("#proTip").addClass("is-visible");
         })
     })
 }
@@ -223,9 +220,9 @@ function signup_signin_buttons() {
     });
 
     $('#signup').on('click', function(e) {
-        console.log("SIGNUP Need......__________")
-      e.preventDefault();
-      $('#signupModal').addClass('is-visible');
+        e.preventDefault();
+        $('#signupModal').addClass('is-visible');
+        $("#signup_name").focus()
     });
 
     $(".loginNeed").on("click", function(e) {
