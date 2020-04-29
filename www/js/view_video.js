@@ -8,6 +8,11 @@ function init() {
     get_video_info()
     init_feedback();
     load_video()
+    get_activity(function(results) {
+        /// XXX Santosh display users videos on screen
+        console.log(results)
+
+    });
 }
 
 function init_feedback() {
@@ -82,6 +87,34 @@ function get_video_info() {
         }
     })
 }
+
+function get_activity(callback) {
+  var settings = {
+    async: true,
+    crossDomain: true,
+    headers: {
+      Authorization: "Token " + localStorage.getItem("session_id")
+    },
+    url: SERVER + "/api/get-activity/",
+    method: "GET",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data"
+  };
+
+  $.ajax(settings).done(function(response) {
+      var msg= JSON.parse(response);
+      videoData =JSON.parse(response);
+      var allData = JSON.parse(response);
+      console.log(allData)
+      alert(allData)
+      callback(msg);
+    }).fail(function(err) {
+      alert("Got err");
+      console.log(err);
+    });
+}
+
 
 function load_video() {
     debugger;
