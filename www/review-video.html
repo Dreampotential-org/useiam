@@ -11,7 +11,9 @@
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
      <!-- <link rel="stylesheet" href="css/style.css?v=1.4">
      <link rel="stylesheet" href="css/responsive.css?v=1.3"/> -->
-
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
      body{
         font-family: "Poppins", sans-serif;
@@ -71,12 +73,30 @@
         font-size: 15px;
         letter-spacing: 0.5px;
         color: #2a318b;
+        float:right;
     }
     .logoutIcon{
         margin-left: 4px;
         font-size: 17px;
     }
-
+    .container-fluid{
+        margin-top:1%;
+    }
+    .colBorder{
+        border: 1px solid lightgray;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    .panelCls{
+        margin-top: 3%;
+    }
+    video {
+  width: 100%;
+  height: 600px;
+}
+.txtRight{
+    float: right;
+}
     /* Responsive layout - makes a two column-layout instead of four columns */
     @media screen and (max-width: 812px) and (min-width: 320px) {
         .colMsg {
@@ -88,62 +108,196 @@
 
     @media screen and (max-width: 812px) and (min-width: 320px)  {
         .custom_video{
-            width: 100%;
+            width: 100%!important;
             box-sizing: border-box;
             border-radius: 5px;
             margin: 12px 0px;
+            height: 448px!important;
         }
     }
 </style>
 
 </head>
 <body>
-    <div style='text-align:right;'>
+    <!-- <div style='text-align:right;'>
       <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
-    </div>
+    </div> -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="./img/logo1.png" width="30" height="30" alt="">
+        </a>
+        <span class="navbar-text txtRight">
+            <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
+        </span>
+    </nav>
+    <div class="container-fluid">
+        <!-- <div class="row">
+            <div class="col-md-6"><h5>Logo</h5></div>
+            <div class="col-md-6"><a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a></div>
+        </div> -->
+        <hr>
+        <!-- <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3">Last 30 days</div>
+        </div> -->
+        <div class="row">
+            <div class="col-md-9">
+                <div>
+                    <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
+                </div>
+                <div class="videoDetailsDiv">
+                    <b>Client Name : </b><span id='patient_name'></span><br>
+                    <b>Created at : </b><span id='created_at'></span>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" id="comment" placeholder="Add Public Comment"></textarea>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success" style="float: right;">Post</button>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-12">
+                        <b>Comments:</b>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6>Greate Job!</h6>
+                        </div>
+                    </div> -->
+                    <div class="panel panel-default panelCls">
+                        <div class="panel-heading">Comments</div>
+                        <div class="panel-body">
+                            <div class='feedback_received'></div>
+                        </div>
+                    </div>
+                    <hr>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        Last 30 days
+                    </div>
+                </div>
+                <div class="col-md-12 colBorder">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panelCls">
+                                <div class="panel-heading">Panel Heading</div>
+                                <div class="panel-body">Panel Content</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <!-- <div>
+        <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
+        </div> -->
+    
+        <!-- <div class="videoDetailsDiv">
+            <b>Client Name : </b><span id='patient_name'></span><br>
+            <b>Created at : </b><span id='created_at'></span>
+        </div> -->
+       
+        <!-- <div class="videoDetailsDiv">
+            <b>Feedback received :</b><br>
+            <div class='feedback_received'></div>
+           
+        </div> -->
+    
+      
 
-    <div>
-    <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
+    <!-- <div>
+      <textarea id='message' placeholder='Great Job'></textarea>
+      <br>
+      <button id='send_feedback'>Send Feedback</button>
+    </div> -->
+    
+    <div class="feedbackDiv">
+        <!-- <div class="textareaClass">
+            <textarea id="message" class="feedbackTextarea" rows="5" placeholder="Select message or type your own"></textarea>
+        </div> -->
+    <!--
+    <div class="rowMsg"><div class="colMsg" id=msgId1>
+            <p class="messages">Is there deposite or other fees?<p>
+        </div>
+        <div class="colMsg" id=msgId2>
+            <p class="messages">Are utilities included?</p>
+        </div>
+        <div class="colMsg" id=msgId3>
+            <p class="messages">Is the the lease start date flexible?<p>
+        </div>
     </div>
-
-    <div class="videoDetailsDiv">
-        <b>Client Name : </b><span id='patient_name'></span><br>
-        <b>Created at : </b><span id='created_at'></span>
+    -->
+    
+    <!-- <div class="feedbackBtnDiv">
+        <button id="send_feedback" class="feedbackBtn">Send Feedback</button>
+    </div> -->
     </div>
-    <hr>
-    <div class="videoDetailsDiv">
-        <b>Feedback received :</b><br>
-        <div class='feedback_received'></div>
     </div>
-    <hr>
-
-<!-- <div>
-  <textarea id='message' placeholder='Great Job'></textarea>
-  <br>
-  <button id='send_feedback'>Send Feedback</button>
-</div> -->
-
-<div class="feedbackDiv">
-    <div class="textareaClass">
-        <textarea id="message" class="feedbackTextarea" rows="5" placeholder="Select message or type your own"></textarea>
-    </div>
-<!--
-<div class="rowMsg"><div class="colMsg" id=msgId1>
-        <p class="messages">Is there deposite or other fees?<p>
-    </div>
-    <div class="colMsg" id=msgId2>
-        <p class="messages">Are utilities included?</p>
-    </div>
-    <div class="colMsg" id=msgId3>
-        <p class="messages">Is the the lease start date flexible?<p>
-    </div>
-</div>
--->
-
-<div class="feedbackBtnDiv">
-    <button id="send_feedback" class="feedbackBtn">Send Feedback</button>
-</div>
-</div>
+    
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/sweetalert.min.js"></script>
