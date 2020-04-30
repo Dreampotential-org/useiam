@@ -136,6 +136,12 @@ function signup_api(params) {
         closeAllModals();
         $(".moto").show()
 
+        swal({
+          title: "Good job!",
+          text: "You're logged in",
+          icon: "success",
+        });
+
         get_profile_info(function(msg) {
             // show_set_monitor();
         });
@@ -167,6 +173,11 @@ function handle_signin() {
             showATab('dashboard');
             //close modals
             closeAllModals();
+            swal({
+              title: "Good job!",
+              text: "You're logged in",
+              icon: "success",
+            });
             get_profile_info(function(msg) {
                 // show_set_monitor();
             });
