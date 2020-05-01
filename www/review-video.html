@@ -59,7 +59,7 @@
     .feedbackBtnDiv {
         border-top: 0.55px solid lightgray;
         text-align: end;
-    }
+    } 
     .feedbackBtn {
         background: #2a318b;
         color: #ffff;
@@ -90,13 +90,42 @@
     .panelCls{
         margin-top: 3%;
     }
-    video {
-  width: 100%;
-  height: 600px;
-}
-.txtRight{
-    float: right;
-}
+    .custom_video {
+        width: 80%;
+        height: 550px;
+    }
+    .txtRight{
+        float: right;
+    }
+    .panel_video{
+        width: 100%;
+        height: 175px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin: 12px 0px;
+        cursor: pointer;
+    }
+    .panelVid:hover{
+        opacity:0.5;
+    }
+    .panelVid{
+      position: relative;
+      }
+    .panelVid 
+        i {
+             display:none;
+        }
+    .panelVid i.playBtn {
+        position: absolute;
+        color: white; 
+        font-size: 24px;
+        top:50%;
+        width: 100%;
+        left:50%;
+    }
+    .panelVid:hover i {
+         display: block;
+    }
     /* Responsive layout - makes a two column-layout instead of four columns */
     @media screen and (max-width: 812px) and (min-width: 320px) {
         .colMsg {
@@ -112,9 +141,114 @@
             box-sizing: border-box;
             border-radius: 5px;
             margin: 12px 0px;
-            height: 448px!important;
+            height: 272px!important;
         }
+        .panel_video{
+            width: 100%!important;
+            box-sizing: border-box;
+            border-radius: 5px;
+            margin: 12px 0px;
+            height: 175px!important;
+        }
+        .panelVid input.playBtn {
+            position: absolute;
+            margin-left: 33%!important;
+            margin-top: -34%!important;
     }
+    }
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: grey;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  /*right: 25px;*/
+  font-size: 27px;
+  /*margin-left: 50px;*/
+}
+
+.sidenav .imgSideLogo{
+    position: absolute;
+    top: 13px;
+    left: 100px;
+}
+.sidenav .iconSidebar{
+    margin-right: 11%;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 16px;}
+}
+.toggleBtn{
+    font-size:30px;
+    cursor:pointer;
+    float:left
+}
+.panelSidebar{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.navbar-brand{
+    padding: 8px 20px!important;
+}
+.mainVideoDiv{
+    text-align: center;
+}
+.active{
+    background-color: #dcdcdc;
+    color:black!important;
+}
+.paginationDiv{
+            padding: 15px 0px;
+        }
+        .spanText{
+            color: black;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .starIconSpan{
+            color: #d3b512;
+            margin-left: 5px;
+            font-size: 20px;
+        }
+        .videoBtn{
+            background: #2a318b;
+            color: #fff;
+            padding: 2px 4px;
+            border-radius: 2px;
+            border: 1px solid #2a318b;
+        }
+   .events td{
+           padding: 4px;
+           text-align: left!important;
+       }
+   .events th{
+           padding: 4px;
+           text-align: left!important;
+   }
 </style>
 
 </head>
@@ -123,31 +257,63 @@
       <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
     </div> -->
     <nav class="navbar navbar-light bg-light">
+        <span class="toggleBtn" onclick="openNav()">&#9776;</span>
         <a class="navbar-brand" href="#">
-            <img src="./img/logo1.png" width="30" height="30" alt="">
+            <img src="./img/logoReviewVideo.png" width="30" height="25" alt="">
         </a>
         <span class="navbar-text txtRight">
             <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
         </span>
     </nav>
+    <div id="mySidenav" class="sidenav">
+        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
+        <img src="./img/logoReviewVideo.png" width="30" height="25" alt="" class="imgSideLogo">
+        <hr>
+        <a href="#" class="aLink active"><i class="fa fa-home iconSidebar" ></i>Home</a>
+        <a href="#" class="aLink"><i class="fa fa-info-circle iconSidebar"></i>Help</a>
+        <a href="#" class="aLink"><i class="fa fa-users iconSidebar"></i>Patients</a>
+        <hr>
+        <div class="panel panel-default panelSidebar">
+            <div class="panel-heading">
+                <div class="search-container">
+                      <!-- <input type="text" placeholder="Search.." name="search" class="form-control"> -->
+                      <span class="txtColor">Filter Patient :</sapn>
+                      <select class='select-patient form-control'><select>
+                  </div>
+            </div>
+            <div class="panel-body">
+                <h4 class="txtColor">Events</h4>
+                <div class='events'></div>
+                <div class='results'></div>
+                <div class="paginationDiv">
+                    <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>
+                    <span class='prev'><a  class="spanText" href='#'><span><</span>Prev</a></span>
+                    <span class='next'><a class="spanText" href='#'>>Next</a></span>
+                </div>
+            </div>
+        </div>
+      </div>
     <div class="container-fluid">
         <!-- <div class="row">
             <div class="col-md-6"><h5>Logo</h5></div>
             <div class="col-md-6"><a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a></div>
         </div> -->
         <hr>
-        <!-- <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">Last 30 days</div>
-        </div> -->
         <div class="row">
-            <div class="col-md-9">
-                <div>
+            <div class="col-md-8">
+                <div class="mainVideoDiv">
                     <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
                 </div>
                 <div class="videoDetailsDiv">
-                    <b>Client Name : </b><span id='patient_name'></span><br>
-                    <b>Created at : </b><span id='created_at'></span>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-11">
+                            <b>Client Name : </b><span id='patient_name'></span><br>
+                            <b>Created at : </b><span id='created_at'></span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <hr>
                 <div class="form-group">
@@ -170,86 +336,27 @@
                         </div>
                     </div> -->
                     <div class="panel panel-default panelCls">
-                        <div class="panel-heading">Comments</div>
+                        <div class="panel-heading"><b>Comments</b></div>
                         <div class="panel-body">
                             <div class='feedback_received'></div>
                         </div>
                     </div>
                     <hr>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-12">
-                        Last 30 days
+                        <b>Last 30 days</b>
                     </div>
                 </div>
                 <div class="col-md-12 colBorder">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default panelCls">
-                                <div class="panel-heading">Panel Heading</div>
-                                <div class="panel-body">Panel Content</div>
-                            </div>
+                        <div class="col-md-12" id="video-list"> 
                         </div>
                     </div>
                 </div>
-               
             </div>
         </div>
         <!-- <div>
@@ -303,5 +410,102 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/view_video.js"></script>
 <script src="js/config.js"></script>
+
+<!-- <script src="js/gps.js?v=1.6"></script>
+<script src="js/video.js?v=1.7"></script>
+<script src="js/monitor.js?v=1.7"></script> -->
+
+<script src="js/activity.js?v=1.7"></script>
+
+<!-- <script src="js/logos.js?v=1.7"></script>
+<script src="js/config.js?v=1.7"></script> -->
+
+<script src="js/admin.js"></script>
+
+<script>
+    function openNav() {
+    //   document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("mySidenav").style.width = "350px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+     // Add active class to the current button (highlight it)
+     var header = document.getElementById("mySidenav");
+        var btns = header.getElementsByClassName("aLink");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("active");
+          if (current.length > 0) { 
+            current[0].className = current[0].className.replace(" active", "");
+          }
+          this.className += " active";
+          });
+        }
+    $(document).ready(function(){
+        get_activity(function(resp) {
+            var c=0;
+            for (var activity of resp.events) {
+                
+                if (activity.type == "video") {
+                $("#activity-log").append(
+                    '<li class="other dark"><div class="msg"> <p class="dateClass">' +
+                    formatDate(new Date(activity.created_at * 1000)) +
+                    "</p>" +
+                    "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
+                    activity.url +
+                    " href='#' class='view-video customLinkBtn'>" +
+                    activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
+                    "</a></span></div>" +
+                    '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
+                    "</div> </li>"
+                    //   <img src="images/play_icon.png" alt=""/>
+                );
+
+                $("#video-list").append( 
+                '<div  class="panel panel-default panelCls"> '+
+                '<div class="panel-heading"><b>Created at :</b> ' +
+                    formatDate(new Date(activity.created_at * 1000))+'</div> '+
+                        '<div class="panel-body panelVid"> ' +
+                            '<video  preload="metadata" width="300" class="panel_video" id="videoPanel'+(c++)+'"> '+
+                                    '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"> '+
+                                '</video> '+
+                                // '<input class="playBtn" type="button" value="Play" />'+
+                                '<i class="fa fa-play playBtn" aria-hidden="true"></i>'+
+                        '</div></div>');
+                }
+
+            }
+        });
+    });
+
+    $("body").delegate(".panel-body", "click", function(){
+
+            var ele = $(this).find( "source" );
+            console.log(ele);
+            var video_url = $(ele).attr("src");
+            $(".mainVideoDiv").find("video").remove();
+            $(".mainVideoDiv").append(
+            "<video controls='controls' autoplay preload='metadata' width='320' height='240' class='custom_video'><source src=" +
+                getUrl(video_url)  +
+                ' type="video/mp4"></video>'    
+            );     
+    });
+
+    function getUrl(videoUrl){
+            var vars = {};
+            var parts = videoUrl.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            var id = vars["id"];
+            var user = vars["user"];
+            console.log("id",id);
+            console.log("user",user);
+            var vidSrc = SERVER +"/api/review-video/?id=" +id +"&user=" +user +"&token=" +localStorage.getItem("session_id");
+            console.log(vidSrc);
+           return vidSrc;
+    }     
+</script>
 </body>
 </html>
