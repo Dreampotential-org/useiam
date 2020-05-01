@@ -80,8 +80,11 @@ function init_feedback() {
             'data': {'message': $("#message").val()}}).done(function(resp) {
 
                 console.log(resp)
-
-                alert("DONE")
+                swal({
+                    'title': 'Comment',
+                    'text': 'Success',
+                    'icon': 'success',
+                });
             })
 
     })
@@ -145,7 +148,6 @@ function get_video_info(callback) {
 }
 
 function get_activity(video_info, callback) {
-  alert(video_info.owner_email)
   var settings = {
     async: true,
     crossDomain: true,
