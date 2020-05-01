@@ -131,6 +131,7 @@ function get_video_info(callback) {
 }
 
 function get_activity(video_info, callback) {
+    console.log(video_info)
   alert(video_info.owner_email)
   var settings = {
     async: true,
