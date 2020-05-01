@@ -67,6 +67,8 @@ function get_video_info() {
         localStorage.getItem("session_id") + "&user=" + user +
         "&id=" + id, function(res) {
 
+        console.log(res)
+
         if('status' in res && res.status == 'error') {
             swal({
                 'title': 'Access Denied',
@@ -96,7 +98,7 @@ function get_activity(callback) {
     headers: {
       Authorization: "Token " + localStorage.getItem("session_id")
     },
-    url: SERVER + "/api/get-activity/",
+    url: SERVER + "/api/get-activity-monitor/",
     method: "GET",
     processData: false,
     contentType: false,
