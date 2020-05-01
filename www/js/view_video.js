@@ -11,11 +11,10 @@ function init() {
 
         console.log(video_info)
 
-        get_activity(function(video_info) {
+        get_activity(video_info, function(results) {
             console.log(results)
             display_side_activity_log(results)
         });
-
     })
 }
 
@@ -131,7 +130,6 @@ function get_video_info(callback) {
 }
 
 function get_activity(video_info, callback) {
-    console.log(video_info)
   alert(video_info.owner_email)
   var settings = {
     async: true,
