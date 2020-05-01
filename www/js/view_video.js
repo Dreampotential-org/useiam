@@ -124,8 +124,8 @@ function get_video_info() {
     })
 }
 
-// XXX @Santosh
 function get_activity(video_info, callback) {
+  alert(video_info.owner_email)
   var settings = {
     async: true,
     crossDomain: true,
