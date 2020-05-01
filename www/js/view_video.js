@@ -5,14 +5,52 @@ function init() {
     }
     $("#signup_email").val(getUrlVars()['email'])
 
-    get_video_info()
     init_feedback();
     load_video()
-    get_activity(function(results) {
-        /// XXX Santosh display users videos on screen
-        console.log(results)
+    get_video_info(function(video_info) {
+        get_activity(function(results) {
+            console.log(results)
+            display_side_activity_log(results)
+        });
+    })
+}
 
-    });
+function display_side_activity_log(resp) {
+    var c = 0;
+    for (var activity of resp.events) {
+        if (activity.type == "video") {
+        $("#activity-log").append(
+            '<li class="other dark"><div class="msg"> <p class="dateClass">' +
+            formatDate(new Date(activity.created_at * 1000)) +
+            "</p>" +
+            "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
+            activity.url +
+            " href='#' class='view-video customLinkBtn'>" +
+            activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
+            "</a></span></div>" +
+            '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
+            "</div> </li>"
+            //   <img src="images/play_icon.png" alt=""/>
+        );
+
+        $("#video-list").append(
+        '<div  class="panel panel-default panelCls"> '+
+        '<div class="panel-heading"><b>Created at :</b> ' +
+            formatDate(new Date(activity.created_at * 1000))+'</div> '+
+                '<div class="panel-body panelVid"> ' +
+                    '<video  preload="metadata" width="300" class="panel_video" id="videoPanel'+(c++)+'"> '+
+                            '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"> '+
+                        '</video> '+
+                        // '<input class="playBtn" type="button" value="Play" />'+
+                        '<i class="fa fa-play playBtn" aria-hidden="true"></i>'+
+                '</div></div>');
+        }
+    }
+    // XXX add gps event
+}
+
+
+
 }
 
 function init_feedback() {
@@ -91,14 +129,14 @@ function get_video_info() {
 }
 
 // XXX @Santosh
-function get_activity(callback) {
+function get_activity(video_info, callback) {
   var settings = {
     async: true,
     crossDomain: true,
     headers: {
       Authorization: "Token " + localStorage.getItem("session_id")
     },
-    url: SERVER + "/api/get-activity-monitor/",
+    url: SERVER + "/api/list-patient-events-v2/?email=" + video_info.owner_email,
     method: "GET",
     processData: false,
     contentType: false,
