@@ -155,7 +155,6 @@ function get_activity(video_info, callback) {
 
 
 function load_video() {
-    debugger;
     var id = getUrlVars()['id'];
     var user = getUrlVars()['user'];
     $("#video").html(
