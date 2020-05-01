@@ -94,7 +94,7 @@ function formatDate(date) {
     return date.toLocaleDateString("en-US") + " " + strTime;
 }
 
-function get_video_info() {
+function get_video_info(callback) {
     var id = getUrlVars()['id'];
     var user = getUrlVars()['user'];
     $.get(SERVER + "/api/get-video-info/?token=" +
@@ -121,6 +121,8 @@ function get_video_info() {
                 "<div><b>" + message.user + "</b> - " + message.message + "</div>"
             )
         }
+
+        callback(res);
     })
 }
 
