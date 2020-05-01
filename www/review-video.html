@@ -105,6 +105,27 @@
         margin: 12px 0px;
         cursor: pointer;
     }
+    .panelVid:hover{
+        opacity:0.5;
+    }
+    .panelVid{
+      position: relative;
+      }
+    .panelVid 
+        i {
+             display:none;
+        }
+    .panelVid i.playBtn {
+        position: absolute;
+        color: white; 
+        font-size: 24px;
+        top:50%;
+        width: 100%;
+        left:50%;
+    }
+    .panelVid:hover i {
+         display: block;
+    }
     /* Responsive layout - makes a two column-layout instead of four columns */
     @media screen and (max-width: 812px) and (min-width: 320px) {
         .colMsg {
@@ -129,6 +150,11 @@
             margin: 12px 0px;
             height: 175px!important;
         }
+        .panelVid input.playBtn {
+            position: absolute;
+            margin-left: 33%!important;
+            margin-top: -34%!important;
+    }
     }
     .sidenav {
   height: 100%;
@@ -257,11 +283,6 @@
                   </div>
             </div>
             <div class="panel-body">
-                <!-- <h5>Name 1</h5>
-                <h5>Name 2</h5>
-                <h5>Name 3</h5>
-                <h5>Name 4</h5>
-                <h5>Name 5</h5> -->
                 <h4 class="txtColor">Events</h4>
                 <div class='events'></div>
                 <div class='results'></div>
@@ -279,10 +300,6 @@
             <div class="col-md-6"><a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a></div>
         </div> -->
         <hr>
-        <!-- <div class="row">
-            <div class="col-md-9"></div>
-            <div class="col-md-3">Last 30 days</div>
-        </div> -->
         <div class="row">
             <div class="col-md-8">
                 <div class="mainVideoDiv">
@@ -426,11 +443,9 @@
           this.className += " active";
           });
         }
-        //$("#viewActivity").trigger("click");
-        //document.getElementById("viewActivity").click();
     $(document).ready(function(){
         get_activity(function(resp) {
-            
+            var c=0;
             for (var activity of resp.events) {
                 
                 if (activity.type == "video") {
@@ -452,10 +467,12 @@
                 '<div  class="panel panel-default panelCls"> '+
                 '<div class="panel-heading"><b>Created at :</b> ' +
                     formatDate(new Date(activity.created_at * 1000))+'</div> '+
-                        '<div class="panel-body"> ' +
-                            '<video controls="controls" preload="metadata" width="300" class="panel_video"> '+
-                                '<source class="list-video" src=' + activity.url + '#t=0.5'+' type="video/mp4"> '+
+                        '<div class="panel-body panelVid"> ' +
+                            '<video  preload="metadata" width="300" class="panel_video" id="videoPanel'+(c++)+'"> '+
+                                    '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"> '+
                                 '</video> '+
+                                // '<input class="playBtn" type="button" value="Play" />'+
+                                '<i class="fa fa-play playBtn" aria-hidden="true"></i>'+
                         '</div></div>');
                 }
 
@@ -466,41 +483,29 @@
     $("body").delegate(".panel-body", "click", function(){
 
             var ele = $(this).find( "source" );
-
             console.log(ele);
-
             var video_url = $(ele).attr("src");
+            $(".mainVideoDiv").find("video").remove();
+            $(".mainVideoDiv").append(
+            "<video controls='controls' autoplay preload='metadata' width='320' height='240' class='custom_video'><source src=" +
+                getUrl(video_url)  +
+                ' type="video/mp4"></video>'    
+            );     
+    });
 
-            console.log(video_url);
-
+    function getUrl(videoUrl){
             var vars = {};
-            var parts = video_url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            var parts = videoUrl.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
                 vars[key] = value;
             });
-            
-
             var id = vars["id"];
             var user = vars["user"];
             console.log("id",id);
             console.log("user",user);
-            $(".mainVideoDiv").find("video").remove();
-            $(".mainVideoDiv").append(
-            "<video controls='controls' autoplay preload='metadata' width='320' height='240' class='custom_video'><source src=" +
-                SERVER +
-                "/api/review-video/?id=" +
-                id +
-                "&user=" +
-                user +
-                "&token=" +
-                localStorage.getItem("session_id") +
-                ' type="video/mp4"></video>'
-            );
-
-    });
-
-    
-        
+            var vidSrc = SERVER +"/api/review-video/?id=" +id +"&user=" +user +"&token=" +localStorage.getItem("session_id");
+            console.log(vidSrc);
+           return vidSrc;
+    }     
 </script>
-   
 </body>
 </html>
