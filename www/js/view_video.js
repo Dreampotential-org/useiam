@@ -18,6 +18,21 @@ function init() {
     })
 }
 
+function getUrl(videoUrl) {
+        var vars = {};
+        var parts = videoUrl.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            vars[key] = value;
+        });
+        var id = vars["id"];
+        var user = vars["user"];
+        console.log("id",id);
+        console.log("user",user);
+        var vidSrc = SERVER +"/api/review-video/?id=" +id +"&user=" +user +"&token=" +localStorage.getItem("session_id");
+        console.log(vidSrc);
+       return vidSrc;
+}
+
+
 function display_side_activity_log(resp) {
     var c = 0;
     for (var activity of resp.events) {
