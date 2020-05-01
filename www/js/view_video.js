@@ -18,6 +18,7 @@ function init() {
 function display_side_activity_log(resp) {
     var c = 0;
     for (var activity of resp.events) {
+        // XXX add gps event
         if (activity.type == "video") {
         $("#activity-log").append(
             '<li class="other dark"><div class="msg"> <p class="dateClass">' +
@@ -46,11 +47,6 @@ function display_side_activity_log(resp) {
                 '</div></div>');
         }
     }
-    // XXX add gps event
-}
-
-
-
 }
 
 function init_feedback() {
