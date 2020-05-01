@@ -8,10 +8,14 @@ function init() {
     init_feedback();
     load_video()
     get_video_info(function(video_info) {
+
+        console.log(video_info)
+
         get_activity(function(video_info) {
             console.log(results)
             display_side_activity_log(results)
         });
+
     })
 }
 
