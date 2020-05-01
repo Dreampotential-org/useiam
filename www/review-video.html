@@ -424,10 +424,8 @@
 
 <script>
     function openNav() {
-    //   document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("mySidenav").style.width = "350px";
+      document.getElementById("mySidenav").style.width = "350px";
     }
-    
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
     }
@@ -444,7 +442,6 @@
           });
         }
     $(document).ready(function(){
-
     $("body").delegate(".panel-body", "click", function(){
 
             var ele = $(this).find( "source" );
@@ -470,7 +467,8 @@
             var vidSrc = SERVER +"/api/review-video/?id=" +id +"&user=" +user +"&token=" +localStorage.getItem("session_id");
             console.log(vidSrc);
            return vidSrc;
-    }     
+    }
+    }
 </script>
 </body>
 </html>
