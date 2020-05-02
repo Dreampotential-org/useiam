@@ -77,7 +77,7 @@ function init_feedback() {
             'url': SERVER + "/api/send-feedback/?token=" +
                 localStorage.getItem("session_id") + "&user=" + user +
                 "&id=" + id,
-            'data': {'message': $("#message").val()}}).done(function(resp) {
+            'data': {'message': $("#comment").val()}}).done(function(resp) {
 
                 console.log(resp)
                 swal({
