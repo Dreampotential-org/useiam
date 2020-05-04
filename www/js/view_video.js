@@ -54,8 +54,8 @@ function display_side_activity_log(resp) {
 
         $("#video-list").append(
         '<div  class="panel panel-default panelCls"> '+
-        '<div class="panel-heading"><b>Created at :</b> ' +
-            formatDate(new Date(activity.created_at * 1000))+'</div> '+
+        '<div class="panel-heading"><b>Created at :</b><span> ' +
+            formatDate(new Date(activity.created_at * 1000))+'</span></div> '+
                 '<div class="panel-body panelVid"> ' +
                     '<video  preload="metadata" width="300" class="panel_video" id="videoPanel'+(c++)+'"> '+
                             '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"> '+
@@ -136,13 +136,18 @@ function get_video_info(callback) {
 
         $("#patient_name").text(res.owner_name)
         $("#created_at").text(formatDate(new Date(res.created_at*1000)))
-
-        for(var message of res.feedback) {
+        if(res.feedback.length==0){
             $(".feedback_received").append(
-                "<div><b>" + message.user + "</b> - " + message.message + "</div>"
+                "<div>No comments found!</div>"
             )
         }
-
+        else{
+            for(var message of res.feedback) {
+                $(".feedback_received").append(
+                    "<div><b>" + message.user + "</b> - " + message.message + "</div>"
+                )
+            }
+        }
         callback(res);
     })
 }
