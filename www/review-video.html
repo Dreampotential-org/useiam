@@ -129,6 +129,9 @@
     .panelVid:hover i {
          display: block;
     }
+    #btnOpenModal{
+        display: none;
+    }
     /* Responsive layout - makes a two column-layout instead of four columns */
     @media screen and (max-width: 812px) and (min-width: 320px) {
         .colMsg {
@@ -272,6 +275,31 @@
     <!-- <div style='text-align:right;'>
       <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
     </div> -->
+    <!-- Trigger the modal with a button -->
+  <button type="button" id="btnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Monitor Signup</h4>
+        </div>
+        <div class="modal-body">
+          <p><input type="text" class="form-control" placeholder="name" id="signup_name"></p>
+          <p><input type="email" class="form-control" placeholder="email" id="signup_email"></p>
+          <p><input type="password" class="form-control" placeholder="password" id="signup_password"></p> 
+        </div>
+        <div class="modal-footer">
+          <input type="button" id='signup' value="Sign up" class="btn btn-success">  
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     <nav class="navbar navbar-light bg-light">
         <span class="toggleBtn" onclick="openNav()">&#9776;</span>
         <a class="navbar-brand" href="#">
@@ -429,7 +457,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/view_video.js"></script>
 <script src="js/config.js"></script>
-
+<script src="js/signup_monitor.js"></script>
 <!-- <script src="js/gps.js?v=1.6"></script>
 <script src="js/video.js?v=1.7"></script>
 <script src="js/monitor.js?v=1.7"></script> -->
@@ -455,7 +483,7 @@
           this.className += " active";
           });
         }
-    $(document).ready(function(){
+    $(document).ready(function(){  
     $("body").delegate(".panel-body", "click", function(){
 
             var ele = $(this).find( "source" );

@@ -1,7 +1,11 @@
 function init() {
     if (!(localStorage.getItem("session_id"))) {
-        localStorage.setItem("redirect_url", window.location.href)
-        window.location = 'login.html'
+        // localStorage.setItem("redirect_url", window.location.href)
+        // window.location = 'login.html'
+        //document.getElementById("btnOpenModal").click();
+        
+        $("#btnOpenModal").click();
+        $(".logout").hide();
     }
     $("#signup_email").val(getUrlVars()['email'])
 
