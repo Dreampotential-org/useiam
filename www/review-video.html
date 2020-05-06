@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <!-- <link rel="stylesheet" href="css/style.css?v=1.4">
      <link rel="stylesheet" href="css/responsive.css?v=1.3"/> -->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     
 <style>
      body{
         font-family: "Poppins", sans-serif;
@@ -315,28 +318,50 @@
         <img src="./img/logoReviewVideo.png" width="30" height="25" alt="" class="imgSideLogo">
         <hr>
         <a href="#" class="aLink active"><i class="fa fa-home iconSidebar" ></i>Home</a>
-        <a href="#" class="aLink"><i class="fa fa-info-circle iconSidebar"></i>Help</a>
-        <a href="#" class="aLink"><i class="fa fa-users iconSidebar"></i>Patients</a>
-        <hr>
-        <div class="panel panel-default panelSidebar">
-            <div class="panel-heading">
-                <div class="search-container">
-                      <!-- <input type="text" placeholder="Search.." name="search" class="form-control"> -->
-                      <span class="txtColor">Filter Patient :</sapn>
-                      <select class='select-patient form-control'><select>
-                  </div>
-            </div>
-            <div class="panel-body">
-                <h4 class="txtColor">Events</h4>
-                <div class='events'></div>
-                <div class='results'></div>
-                <div class="paginationDiv">
-                    <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>
-                    <span class='prev'><a  class="spanText" href='#'><span><</span>Prev</a></span>
-                    <span class='next'><a class="spanText" href='#'>>Next</a></span>
+        
+        <a href="#" class="aLink collapsed"><i class="fa fa-info-circle iconSidebar"></i>Help</a>
+        <!-- <a href="#" class="aLink collapsible"><i class="fa fa-users iconSidebar "></i>Patients</a> -->
+        <a onclick="myAccFunc()">
+            <i class="fa fa-users iconSidebar "></i> Patients <i class="fa fa-caret-down"></i></a>
+        <div id="demoAcc" class="w3-hide">
+            <table border = "1" style="  width: 65%;margin: 13px auto;">
+                <tr >
+                    <th class="text-center">Number of days active</th>
+                    <th class="text-center">Videos last checkin</th>
+                </tr>
+                <tr class="text-center">
+                    <td>5</td>
+                    <td>4</td>
+                </tr>
+                
+                <tr class="text-center">
+                    <td>10</td>
+                    <td>2</td>
+                </tr>
+            </table>
+            <div class="panel panel-default panelSidebar">
+                <div class="panel-heading">
+                    <div class="search-container">
+                          <!-- <input type="text" placeholder="Search.." name="search" class="form-control"> -->
+                          <span class="txtColor">Filter Patient :</sapn>
+                          <select class='select-patient form-control'><select>
+                      </div>
+                </div>
+                <div class="panel-body">
+                    <h4 class="txtColor">Events</h4>
+                    <div class='events'></div>
+                    <div class='results'></div>
+                    <div class="paginationDiv">
+                        <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>
+                        <span class='prev'><a  class="spanText" href='#'><span><</span>Prev</a></span>
+                        <span class='next'><a class="spanText" href='#'>>Next</a></span>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <hr>
+       
       </div>
     <div class="container-fluid">
         <!-- <div class="row">
@@ -484,6 +509,7 @@
           });
         }
     $(document).ready(function(){  
+        
     $("body").delegate(".panel-body", "click", function(){
 
             var ele = $(this).find( "source" );
@@ -538,7 +564,20 @@
     })
     //
     });
+    
     });
+    function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-grey";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-grey", "");
+  }
+}
+
 </script>
 </body>
 </html>
