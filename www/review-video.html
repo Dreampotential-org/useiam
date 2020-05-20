@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <!-- <link rel="stylesheet" href="css/style.css?v=1.4">
      <link rel="stylesheet" href="css/responsive.css?v=1.3"/> -->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     
 <style>
      body{
         font-family: "Poppins", sans-serif;
@@ -128,6 +130,9 @@
     }
     .panelVid:hover i {
          display: block;
+    }
+    #btnOpenModal{
+        display: none;
     }
     /* Responsive layout - makes a two column-layout instead of four columns */
     @media screen and (max-width: 812px) and (min-width: 320px) {
@@ -265,6 +270,14 @@
            padding: 4px;
            text-align: left!important;
    }
+   .loginInput {
+    width: 100%;
+    padding: 7px 20px;
+    margin: 8px 0;
+    /* box-sizing: border-box; */
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+      }
 </style>
 
 </head>
@@ -272,6 +285,68 @@
     <!-- <div style='text-align:right;'>
       <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
     </div> -->
+    <!-- Trigger the modal with a button -->
+  <button type="button" id="btnOpenModal" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#signup">Monitor Signup</a></li>
+            <li><a data-toggle="tab" href="#login">Monitor Login</a></li>
+            <li style="float: inherit;padding: 10px;"><button type="button" class="close" data-dismiss="modal">&times;</button></li>
+          </ul>
+          <div class="tab-content">
+            <div id="signup" class="tab-pane fade in active">
+                <div class="modal-body" style="background: white;">
+                    <p><input type="text" class="form-control" placeholder="name" id="signup_name"></p>
+                    <p><input type="email" class="form-control" placeholder="email" id="signup_email"></p>
+                    <p><input type="password" class="form-control" placeholder="password" id="signup_password"></p> 
+                  </div>
+                  <div class="modal-footer" style="background: white;">
+                    <input type="button" id='signup' value="Sign up" class="btn btn-success">  
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  </div> 
+            </div>
+            <div id="login" class="tab-pane fade">
+                <center>
+                    <div class="modal-body" style="background: white;">
+                <p>
+                    <input type='email' class="loginInput" id='signin_email' value="" placeholder='Email Address'>
+                </p>
+                  <p>
+                    <input type='password' class="loginInput" id='signin_password' value="" placeholder='password'><br>
+                  </p>
+                   
+                    <br>
+                    <button id='login' class="btn btn-success">login</button>
+                    <br>
+                    <a href='https://prod-api.useiam.net/password_reset/'>Forgot Password?</a>
+                </div>
+            </center>
+            </div>
+            
+          </div>
+          
+        <!-- <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Monitor Signup</h4>
+        </div>
+        <div class="modal-body">
+          <p><input type="text" class="form-control" placeholder="name" id="signup_name"></p>
+          <p><input type="email" class="form-control" placeholder="email" id="signup_email"></p>
+          <p><input type="password" class="form-control" placeholder="password" id="signup_password"></p> 
+        </div>
+        <div class="modal-footer">
+          <input type="button" id='signup' value="Sign up" class="btn btn-success">  
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div> -->
+      </div>
+      
+    </div>
+  </div>
     <nav class="navbar navbar-light bg-light">
         <span class="toggleBtn" onclick="openNav()">&#9776;</span>
         <a class="navbar-brand" href="#">
@@ -287,28 +362,49 @@
         <img src="./img/logoReviewVideo.png" width="30" height="25" alt="" class="imgSideLogo">
         <hr>
         <a href="#" class="aLink active"><i class="fa fa-home iconSidebar" ></i>Home</a>
-        <a href="#" class="aLink"><i class="fa fa-info-circle iconSidebar"></i>Help</a>
-        <a href="#" class="aLink"><i class="fa fa-users iconSidebar"></i>Patients</a>
-        <hr>
-        <div class="panel panel-default panelSidebar">
-            <div class="panel-heading">
-                <div class="search-container">
-                      <!-- <input type="text" placeholder="Search.." name="search" class="form-control"> -->
-                      <span class="txtColor">Filter Patient :</sapn>
-                      <select class='select-patient form-control'><select>
-                  </div>
-            </div>
-            <div class="panel-body">
-                <h4 class="txtColor">Events</h4>
-                <div class='events'></div>
-                <div class='results'></div>
-                <div class="paginationDiv">
-                    <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>
-                    <span class='prev'><a  class="spanText" href='#'><span><</span>Prev</a></span>
-                    <span class='next'><a class="spanText" href='#'>>Next</a></span>
+        
+        <a href="#" class="aLink collapsed"><i class="fa fa-info-circle iconSidebar"></i>Help</a>
+        <a href="/patient.html" class="aLink collapsible"><i class="fa fa-users iconSidebar "></i>Patients</a>
+        <!-- <a onclick="myAccFunc()">
+            <i class="fa fa-users iconSidebar "></i> Patients <i class="fa fa-caret-down"></i></a> -->
+        <!-- <div id="demoAcc" class="w3-hide">
+            <table border = "1" style="  width: 65%;margin: 13px auto;">
+                <tr >
+                    <th class="text-center">Number of days active</th>
+                    <th class="text-center">Videos last checkin</th>
+                </tr>
+                <tr class="text-center">
+                    <td>5</td>
+                    <td>4</td>
+                </tr>
+                
+                <tr class="text-center">
+                    <td>10</td>
+                    <td>2</td>
+                </tr>
+            </table>
+            <div class="panel panel-default panelSidebar">
+                <div class="panel-heading">
+                    <div class="search-container">
+                          <span class="txtColor">Filter Patient :</sapn>
+                          <select class='select-patient form-control'><select>
+                      </div>
+                </div>
+                <div class="panel-body">
+                    <h4 class="txtColor">Events</h4>
+                    <div class='events'></div>
+                    <div class='results'></div>
+                    <div class="paginationDiv">
+                        <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>
+                        <span class='prev'><a  class="spanText" href='#'><span><</span>Prev</a></span>
+                        <span class='next'><a class="spanText" href='#'>>Next</a></span>
+                    </div>
                 </div>
             </div>
         </div>
+         -->
+        <hr>
+       
       </div>
     <div class="container-fluid">
         <!-- <div class="row">
@@ -429,7 +525,7 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/view_video.js"></script>
 <script src="js/config.js"></script>
-
+<script src="js/signup_monitor.js"></script>
 <!-- <script src="js/gps.js?v=1.6"></script>
 <script src="js/video.js?v=1.7"></script>
 <script src="js/monitor.js?v=1.7"></script> -->
@@ -455,7 +551,8 @@
           this.className += " active";
           });
         }
-    $(document).ready(function(){
+    $(document).ready(function(){  
+        
     $("body").delegate(".panel-body", "click", function(){
 
             var ele = $(this).find( "source" );
@@ -510,7 +607,20 @@
     })
     //
     });
+    
     });
+    function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-grey";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className = 
+    x.previousElementSibling.className.replace(" w3-grey", "");
+  }
+}
+
 </script>
 </body>
 </html>
