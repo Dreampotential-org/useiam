@@ -19,6 +19,15 @@ function init_activity() {
     });
   });
 
+  $(".open-pdf").on("click", function(e){
+      var pdfUrl = $(this).attr('href');
+      e.preventDefault();
+      document.addEventListener('deviceready', function(){
+          cordova.InAppBrowser.open(pdfUrl, '_blank', 'location=no');
+      }, false);
+    
+  });
+
   $("body").delegate(".view-video", "click", function(e) {
     var video_url = $(this).attr("url");
     console.log("videooooooooooooo url",videourl)

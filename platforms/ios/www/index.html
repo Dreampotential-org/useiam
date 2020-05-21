@@ -60,7 +60,6 @@
         <div class="logo"></div>
         <div class="logo2"></div>
         <div class='moto'>
-            <!-- <h1>CREDIBILITY THROUGH ACCOUNTABILITY</h1> -->
             <h1>AVAILABLE</h1>
         </div>
     </div>
@@ -68,31 +67,11 @@
     <div id="page-contents">
         <div id="login">
             <div class="mainContainer" style="text-align: -webkit-center;">
-                <!-- <div style="text-align:center;margin-top:30px;color:#2A318B;font-weight:600;">
-            <h2>
-              INTERACTIVE ACCOUNTABILITY MANAGER
-            </h2>
-          </div> -->
-
                 <div class="card-body customCard">
                     <h4 class="card-title">Hello, Meet I am,</h4>
                     <p class="card-text">Your Interactive Accountability Manager</p>
                 </div>
-
-                <!-- <ol class="chat">
-                <li class="other">
-                    <div class="msg msg-bold">
-                        <p>Hello, meet IAM™, your Interactive Accountability Manager.</p><br>
-                        <p>Signup or Login below</p><br>
-                    </div>
-                </li>
-            </ol> -->
-
             </div>
-        <!-- <div class="secAction login">
-                <button class="actionBtn dark" id="signup">I AM NEW</button>
-                <button class="actionBtn" id="signin">SIGN IN</button>
-            </div> -->
         <div class="action-btns">
         <div class="row">
             <div class="column btn1">
@@ -104,48 +83,15 @@
 
                 </div>
             </div>
-            <!--
-        <div class="forgotPassword">
-            <p>Forgot password?</p>
-            <p>Signin via Social Media</p>
-        </div>
-
-        <div class="divider-line">
-            <span><i class="fa fa-circle"></i></span>
-        </div>
-        <div class="socialIcons">
-            <a href="#" ><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-        </div>
-        -->
         </div>
 
         <div id="dashboard">
-            <!--<div class="mainContainer">
-            <ol class="chat">
-                <li class="other">
-                    <div class="msg">
-                        <p>Hi, what would you like to do?</p>
-                    </div>
-                </li>
-            </ol>
-        </div>-->
-            <div class="secAction">
-                <!-- <button class="actionBtn btnVideo video dark">TAKE VIDEO</button>
-            <button class="actionBtn btnEvent location">MY LOCATION</button> -->
-                <!--<button class="actionBtn btnVideo">Take a Video</button>-->
-                <!--<button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>-->
-            </div>
-
+            <div class="secAction"></div>
             <div class="action-btns">
                 <div class="row1">
                     <div class="column1 btn1 subVideoBtn ">
                         <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
                     </div>
-
-                    <!-- <div class="column1 btn2">
-                        <button class="actionBtn btnEvent location videoBtn">MY LOCATION</button>
-                    </div> -->
                 </div>
                 <div class="row1">
 
@@ -160,7 +106,6 @@
         <div id="takeVideo">
             <div class="mainContainer">
                 <video width="100%" height="auto" autoplay="true" id="videoElement">
-
                 </video>
             </div>
             <div class="secAction recording" id="recordingAction">
@@ -223,9 +168,7 @@
         </div>
 
         <div id="eventView">
-            <!-- <div class="mainContainer"> -->
             <div class='content'></div>
-            <!-- </div> -->
         </div>
 
     </div>
@@ -234,28 +177,11 @@
     <div class="modal" id="signinModal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition "  style="background: url(img/popup_login.jpg)">
-            <!--<div class="modal-header">
-            <img src="images/modalLogo.png" alt="Modal Logo" class="modalLogo">
-            <h2 class="modal-heading locAuthTitle">LOGIN</h2>
-        </div>-->
             <div class="modal-body modal_background">
                 <div class="modal-content">
                     <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
-
-                    <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
-                            draggable="false" /></div> -->
-
                     <h3 class="locAuthTitle textCenter" style="color:white">LOGIN</h3>
-                    <!-- <form class="popupForm" action='#'>
-                        <input type="Email" placeholder="Email" id='signin_email'>
-                        <input type="password" placeholder="Password" id='signin_password'>
-                        <button id="loginBtn" class="actionBtn dark loginToDashboard">Login</button>
-                        <p class="textCenter">
-                            <a id='forgot_password' href="">Forgot password?</a>
-                        </p>
-
-                    </form> -->
                     <form class="popupForm loginform" action='#'>
                         <div class="emailDiv">
                             <input type="Email" placeholder="Email" id='signin_email'>
@@ -272,12 +198,10 @@
                         <div class="column btn1 accountbtn">
                             <button class=" dark btnP accountP signupNeed" > New Account</button>
                         </div>
-                        <!-- <button id="loginBtn" class="actionBtn dark loginToDashboard">Login</button> -->
                         <p class="textCenter" style="padding-bottom:10px;">
                             <a class="passwordA" id='forgot_password' href="">Forgot password?</a>
                         </p>
                     </form>
-                    <!-- <p class="textCenter signupNeed">Don’t have an account? <a href="#">SignUp</a></p> -->
                 </div>
             </div>
         </div>
@@ -289,8 +213,6 @@
 
             <div class="modal-body">
                 <div class="modal-content">
-                    <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
-
                     <div class='close' style="text-align: end;"><i  style="background: #34e6b7 !important;" class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
 
@@ -313,12 +235,6 @@
                             <div><b>Active Monitors:</b></div>
                             <div class='current-monitors'></div>
                         </div>
-                        <!--
-                    <div style="text-align:center;margin-top:10px;">
-                        <span class="step"></span>
-                        <span class="step"></span>
-                    </div>
-                    -->
                     </form>
                 </div>
             </div>
@@ -331,7 +247,6 @@
 
             <div class="modal-body">
                 <div class="modal-content">
-                    <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
                     <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
                     <h3 class="locAuthTitle textCenter">SET SOBER DATE</h3>
@@ -343,7 +258,6 @@
                                 oninput="this.className = ''" type="email">
                         </div>
                             <div style="text-align: center;position: relative;top: 50px;">
-                                <!-- <input type="button" value="UPDATE" id="nextBtn" class="actionBtn dark loginToDashboard"> -->
                                 <button class="actionBtn dark close" id="nextBtn">Update</button>
                             </div>
                     </form>
@@ -370,7 +284,6 @@
                         </div>
                         <div>
                             <div style="text-align: center;">
-                                <!-- <input type="button" value="SET" id="nextBtn" class="actionBtn dark loginToDashboard"> -->
                                 <button class="actionBtn  dark close" id="setRemainder">SET</button>
                             </div>
                         </div>
@@ -469,10 +382,12 @@
                                 <input type="password" id='signup_password' placeholder="Password"
                                 oninput="this.className=''" />
                             </div>
+                          <!--
                             <div>
                                 <input READONLY=READONLY type="text" id='sober_date' placeholder="Sober Since (Optional)"
                                 oninput="this.className=''" />
                             </div>
+                          -->
                         </div>
                         <div>
                             <div style="text-align: center;">
@@ -480,22 +395,6 @@
                             </div>
                         </div>
                     </form>
-                    <!-- <form id="regForm " action="#">
-                        <div class="tab user-info">
-                            <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text">
-                            <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
-                            <input type="password" id='signup_password' placeholder="Password"
-                                oninput="this.className=''" />
-                            <input READONLY=READONLY type="text" id='sober_date' placeholder="Sober Since (Optional)"
-                                oninput="this.className=''" />
-                        </div>
-                        <div>
-                            <div style="text-align: center;">
-                                <button class="actionBtn dark close" id="nextBtn">Sign Up</button>
-                            </div>
-                        </div>
-
-                    </form> -->
                     <p class="textCenter loginNeed" style="color: white;">Have an account? <a href="#" style="color: #b9befd">Log In</a></p>
                 </div>
             </div>
@@ -508,9 +407,6 @@
     <div class="modal" id="LocationModal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition"  style="background: url(img/popup_login.jpg);margin-top: 13px;height:55vh;">
-            <!-- <div class="modal-header">
-            <img src="images/iam.png"  class="modalLogo">
-        </div> -->
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="textCenter">
@@ -683,10 +579,6 @@
         <h5 class="textMenu">
           <a href="#" id='logout'>LOGOUT</a>
         </h5>
-    
-        <h5 class="textMenu">
-          <a href='#' id='sober_count'></a>
-        </h5>
         <!--
         <h5 class="textMenu">
             <a target='_blank'
@@ -694,18 +586,14 @@
         </h5>
         -->
         <h5 class="textMenu">
-          <a target='_blank' href="/terms.pdf">TERMS OF SERVICE<a>
+          <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE<a>
         </h5>
         <h5 class="textMenu">
-          <a target='_blank' href="/service_agreement.pdf">SERVICE AGREEMENT<a>
+          <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT<a>
         </h5>
-
         <h5 class="textMenu" style='display: none;' id='cancel_plan'>
           <a href="#" id='cancel_subscription'>Cancel Subscription</a>
         </h5>
-    
-    
-    
     </div>
 
     <!-- <div class="slideMenu">
@@ -758,7 +646,6 @@
     <script src="js/logos.js?v=1.7"></script>
     <script src="js/config.js?v=1.7"></script>
     <script src="js/stripe.js?v=1.7"></script>
-    
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWJ2UbLhFeu3jVgd4ZwWMMNyGl4Kqx7V4">
     </script>
 
