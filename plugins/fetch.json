@@ -103,7 +103,7 @@
   "cordova-plugin-inappbrowser": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-inappbrowser@3.2.0"
+      "id": "cordova-plugin-inappbrowser@^3.2.0"
     },
     "is_top_level": true,
     "variables": {}
@@ -111,7 +111,7 @@
   "cordova-plugin-wkwebview-engine": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-wkwebview-engine"
+      "id": "cordova-plugin-wkwebview-engine@^1.2.1"
     },
     "is_top_level": true,
     "variables": {}
