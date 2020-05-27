@@ -83,7 +83,7 @@ header {
   width: 40px;
   margin-top: 25px;
   /* float: left; */
-  position: inherit;
+  position: relative;
   z-index: 10000;
   float: right;
 }
