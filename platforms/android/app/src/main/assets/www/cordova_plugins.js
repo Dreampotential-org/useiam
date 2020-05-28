@@ -9,6 +9,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-badge.Badge",
+      "file": "plugins/cordova-plugin-badge/www/badge.js",
+      "pluginId": "cordova-plugin-badge",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
       "id": "cordova-plugin-device.device",
       "file": "plugins/cordova-plugin-device/www/device.js",
       "pluginId": "cordova-plugin-device",
@@ -220,11 +228,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
-      "id": "cordova-plugin-badge.Badge",
-      "file": "plugins/cordova-plugin-badge/www/badge.js",
-      "pluginId": "cordova-plugin-badge",
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
       "clobbers": [
-        "cordova.plugins.notification.badge"
+        "cordova.InAppBrowser.open",
+        "window.open"
       ]
     },
     {
@@ -328,31 +337,22 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "navigator.splashscreen"
       ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
     }
   ];
   module.exports.metadata = {
     "cordova-ios-plugin-no-export-compliance": "0.0.5",
     "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-geolocation": "4.0.2",
+    "cordova-plugin-inappbrowser": "3.2.0",
     "cordova-plugin-ios-camera-permissions": "1.2.0",
-    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-splashscreen": "5.0.3",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-inappbrowser": "3.2.0",
     "cordova-plugin-wkwebview-engine": "1.2.1"
   };
 });

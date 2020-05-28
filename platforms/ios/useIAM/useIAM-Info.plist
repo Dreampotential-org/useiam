@@ -17,17 +17,42 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.9</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.9</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>need camera access to take pictures</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need location to perform gps checkin</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location to perform gps checkin</string>
 	<key>NSMainNibFile</key>
-	<string/>
+	<string></string>
 	<key>NSMainNibFile~ipad</key>
-	<string/>
+	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>need microphone access to record sounds</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>your photo library usage message here</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>need to photo library access to get pictures from there</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>CDVLaunchScreen</string>
 	<key>UIRequiresFullScreen</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
@@ -43,28 +68,5 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>CDVLaunchScreen</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>your photo library usage message here</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need location to perform gps checkin</string>
-	<key>NSCameraUsageDescription</key>
-	<string>need camera access to take pictures</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>need microphone access to record sounds</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>need to photo library access to get pictures from there</string>
 </dict>
 </plist>
