@@ -38,7 +38,11 @@ function init_video_event() {
                     $("#overlay_loading").hide()
                     $("#takeavideoModal").removeClass("is-visible")
                 } else {
-                    alert('data upload failed');
+                    swal({
+                      title: "Error Try Again",
+                      text: "Sorry, there is an error please try again later.",
+                      icon: "error",
+                    });
                 }
             }
         });
@@ -116,7 +120,13 @@ function api_video_checkin_android(mediaFile) {
 
     function fail(error) {
         console.log(error);
-        alert("An error has occurred: Code = " + error.code);
+
+        swal({
+          title: "Error Try Again",
+          text: "Sorry, there is an error please try again later.",
+          icon: "error",
+        });
+
         console.log("upload error source " + error.source);
         console.log("upload error target " + error.target);
     }
@@ -154,15 +164,32 @@ function api_video_checkin_android(mediaFile) {
     function errorCallbackGetFile(error) {
         console.log("errorCallbackGetFile ",error);
        alert("ERROR: " + error.code)
+        swal({
+          title: "Error Try Again",
+          text: "Sorry, there is an error please try again later.",
+          icon: "error",
+        });
     }
 
     function errorCallbackFileEntry(error) {
         console.log("errorCallbackFileEntry ",error);
        alert("ERROR: " + error.code)
+        swal({
+          title: "Error Try Again",
+          text: "Sorry, there is an error please try again later.",
+          icon: "error",
+        });
+
     }
     function errorCallback(error) {
         console.log("errorCallback ",error);
        alert("ERROR: " + error.code)
+        swal({
+          title: "Error Try Again",
+          text: "Sorry, there is an error please try again later.",
+          icon: "error",
+        });
+
     }
 }
 
