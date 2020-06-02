@@ -150,10 +150,12 @@ function start_gps() {
     }
 
     function geo_error(err) {
-        if (err.code == 1) {
+
+        if (err.code == 1 || err.code == err.PERMISSION_DENIED ||
+            err.code == err.UNKNOWN_ERROR) {
             swal({
-                title: "GPS Disabled.",
-                text: "Please enable this for Safari to Allow GPS checkin.",
+                title: "GPS Issue.",
+                text: "Please allow gps permission",
                 icon: "error",
             });
         }
