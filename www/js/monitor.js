@@ -248,6 +248,7 @@ function do_set_monitor() {
         icon: "success"
       });
 
+      $("#monitor_email").val('')
       //after successful login or signup show dashboard contents
       showATab("dashboard");
       //close modals
