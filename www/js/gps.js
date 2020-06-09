@@ -24,9 +24,15 @@ function init_gps_event() {
 
 
     $("#locationAuth").on('click', function (e) {
-        if ($("#locationAuth").hasClass("running")) {
-            return
-        }
+        swal({
+            title: "Uploading",
+            text: "Please wait.",
+            icon: "info",
+            buttons: false,
+            closeOnEsc: false,
+            closeOnClickOutside: false,
+        });
+
         api_gps_checkin();
     });
 }
@@ -42,7 +48,6 @@ function api_gps_checkin() {
         return
     }
 
-    $("#locationAuth").addClass("running")
 
     form.append("msg", $("#addEvent textarea").val());
 
@@ -68,7 +73,6 @@ function api_gps_checkin() {
         "data": form
     }
     $.ajax(settings).done(function (response) {
-        $("#locationAuth").removeClass("running")
         swal({
             title: "Good job!",
             text: "Gps and Note submitted successfully!",
@@ -81,7 +85,7 @@ function api_gps_checkin() {
         closeAllModals();
         showMenuBar();
     }).fail(function (err) {
-        $("#locationAuth").removeClass("running")
+        // Good on error we post
         swal({
             'title': 'Error',
             'text': 'Try again',
