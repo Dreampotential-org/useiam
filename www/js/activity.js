@@ -235,8 +235,8 @@ function get_activity(callback) {
       alert("Got err");
       console.log(err);
     });
-   
 }
+
 function findIndexInData(data, property, value) {
   for(var i = 0, l = data.length ; i < l ; i++) {
     if(data[i][property] === value) {

@@ -6,12 +6,18 @@ function init() {
     $("#signup_email").val(getUrlVars()['email'])
 
     init_feedback();
-    load_video()
-    get_video_info(function(video_info) {
 
-        console.log(video_info)
+    var id = getUrlVars()['id'];
+    var user = getUrlVars()['user'];
 
+    get_video_info(id, user, function(video_info) {
+        if (video_info.type == 'video') {
+            load_video()
+        } else if (video_info.type == 'gps') {
+            load_gps(video_info)
+        }
         get_activity(video_info, function(results) {
+
             console.log(results)
             display_side_activity_log(results)
         });
@@ -19,17 +25,17 @@ function init() {
 }
 
 function getUrl(videoUrl) {
-        var vars = {};
-        var parts = videoUrl.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-            vars[key] = value;
-        });
-        var id = vars["id"];
-        var user = vars["user"];
-        console.log("id",id);
-        console.log("user",user);
-        var vidSrc = SERVER +"/api/review-video/?id=" +id +"&user=" +user +"&token=" +localStorage.getItem("session_id");
-        console.log(vidSrc);
-       return vidSrc;
+    var vars = {};
+    var parts = videoUrl.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+        vars[key] = value;
+    });
+    var id = vars["id"];
+    var user = vars["user"];
+    console.log("id",id);
+    console.log("user",user);
+    var vidSrc = SERVER +"/api/review-video/?id=" +id +"&user=" +user +"&token=" +localStorage.getItem("session_id");
+    console.log(vidSrc);
+   return vidSrc;
 }
 
 
@@ -38,22 +44,9 @@ function display_side_activity_log(resp) {
     for (var activity of resp.events) {
         // XXX add gps event
         if (activity.type == "video") {
-        $("#activity-log").append(
-            '<li class="other dark"><div class="msg"> <p class="dateClass">' +
-            formatDate(new Date(activity.created_at * 1000)) +
-            "</p>" +
-            "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
-            activity.url +
-            " href='#' class='view-video customLinkBtn'>" +
-            activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
-            "</a></span></div>" +
-            '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
-            "</div> </li>"
-            //   <img src="images/play_icon.png" alt=""/>
-        );
-
         $("#video-list").append(
-        '<div  class="panel panel-default panelCls"> '+
+        '<div class="panel panel-default panelCls" id="' +
+            activity.id + '"> '+
         '<div class="panel-heading"><b>Created at :</b><span> ' +
             formatDate(new Date(activity.created_at * 1000))+'</span></div> '+
                 '<div class="panel-body panelVid"> ' +
@@ -64,6 +57,16 @@ function display_side_activity_log(resp) {
                         '<i class="fa fa-play playBtn" aria-hidden="true"></i>'+
                 '</div></div>');
         }
+    else {
+        $("#video-list").append(
+        '<div  class="panel panel-default panelCls" id="' + activity.id + '"> '+
+        '<div class="panel-heading"><b>Created at :</b><span> ' +
+            formatDate(new Date(activity.created_at * 1000))+'</span></div> '+
+                '<div class="panel-body panelVid"> ' +
+                    " GPS - Checkin<br>" + activity.msg +
+                '</div></div>');
+        }
+
     }
 }
 
@@ -92,7 +95,24 @@ function init_feedback() {
         localStorage.clear()
         window.location = 'login.html'
     });
+
+    $("body").delegate(".panelCls", "click", function(e) {
+        setGetParam('id', $(this).attr('id'))
+        window.location.reload()
+    });
+
 }
+function setGetParam(key,value) {
+  if (history.pushState) {
+    var params = new URLSearchParams(window.location.search);
+    params.set(key, value);
+    var newUrl = window.location.protocol + "//" +
+        window.location.host + window.location.pathname + '?'
+        + params.toString();
+    window.history.pushState({path:newUrl},'',newUrl);
+  }
+}
+
 
 
 function getUrlVars() {
@@ -115,9 +135,8 @@ function formatDate(date) {
     return date.toLocaleDateString("en-US") + " " + strTime;
 }
 
-function get_video_info(callback) {
-    var id = getUrlVars()['id'];
-    var user = getUrlVars()['user'];
+function get_video_info(id, user, callback) {
+
     $.get(SERVER + "/api/get-video-info/?token=" +
         localStorage.getItem("session_id") + "&user=" + user +
         "&id=" + id, function(res) {
@@ -141,7 +160,7 @@ function get_video_info(callback) {
                 "<div>No comments found!</div>"
             )
         }
-        else{
+        else {
             for(var message of res.feedback) {
                 $(".feedback_received").append(
                     "<div><b>" + message.user + "</b> - " + message.message + "</div>"
@@ -178,6 +197,24 @@ function get_activity(video_info, callback) {
     });
 }
 
+function load_gps(gps_info) {
+    console.log(gps_info)
+    $("#mainVideoDiv").html(
+      "<div id='gps-view' style='width:100%;height:400px;'></div>"
+    );
+    var spot = {
+      lat: parseFloat(gps_info.lat),
+      lng: parseFloat(gps_info.lng),
+    };
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("gps-view"),
+      {
+        position: spot,
+        pov: { heading: 165, pitch: 0 },
+        zoom: 1
+      }
+    );
+}
 
 function load_video() {
     var id = getUrlVars()['id'];

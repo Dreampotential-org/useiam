@@ -14,6 +14,8 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWJ2UbLhFeu3jVgd4ZwWMMNyGl4Kqx7V4">
+    </script>
 <style>
      body{
         font-family: "Poppins", sans-serif;
@@ -318,7 +320,7 @@
         <hr>
         <div class="row">
             <div class="col-md-8">
-                <div class="mainVideoDiv">
+                <div class="mainVideoDiv" id='mainVideoDiv'>
                     <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
                 </div>
                 <div class="videoDetailsDiv">
@@ -457,6 +459,7 @@
         }
     $(document).ready(function(){
     $("body").delegate(".panel-body", "click", function(){
+      return
 
             var ele = $(this).find( "source" );
             console.log(ele);
@@ -506,7 +509,6 @@
             )
         }
         }
-        
     })
     //
     });
