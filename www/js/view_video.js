@@ -88,6 +88,8 @@ function init_feedback() {
                     'text': 'Success',
                     'icon': 'success',
                 });
+
+                window.location.reload()
             })
 
     })
