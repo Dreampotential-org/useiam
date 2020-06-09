@@ -87,9 +87,9 @@ function init_feedback() {
                     'title': 'Comment',
                     'text': 'Success',
                     'icon': 'success',
-                });
-
-                window.location.reload()
+                }).then(function() {
+                    window.location.reload()
+                })
             })
 
     })
