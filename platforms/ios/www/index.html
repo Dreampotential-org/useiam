@@ -322,10 +322,11 @@
 
     <div class="modal" id="instructionsModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg);">
+        <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg);    margin-bottom: 15px;">
+            <div class="">
             <div class="modal-body">
                 <div class="modal-content">
-                    <div class="">
+                 
                         <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
                         <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"
                                 aria-hidden="true"></i></div>
@@ -334,22 +335,24 @@
 
                             <ul class="instruct_Data">
                                 <ol style='padding-inline-start: 0px;'>
-                                  Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes, fears, thoughts, etc
+Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes, fears, thoughts, etc. Then, submit video, which will be sent to your secure email address.
                                 </ol>
                             </ul>
+                        </p>
                         <p class="locAuthDesc">Step Two<br />
                             <ul class="instruct_Data">
                                 <ol style='padding-inline-start: 0px;'>
-                                  Share your journal with a monitor who can give you feedback. Add them via the "Add Monitor" menu option.
+If you choose to have an accountability buddy, share your journal entry with an observer, who can give you feedback, go to the menu bar (SET MONITOR)  and add the observer's secure email address.
                                 </ol>
                             </ul>
-
+                        </p>
                             <p class="locAuthDesc">Medication Monitoring<br />
                                 <ul class="instruct_Data">
                                     <ol style='padding-inline-start: 0px;'>
-                                      If using for medication confirmation. Show pill bottle to camera before taking the medication and submit video.
+In the menu bar add the set monitor bar to your monitor's secure email address. When recording the video, show your pill bottle, then take your medication, showing the medication being taken. Then submit video.
                                     </ol>
                                 </ul>
+                            </p>
                                 <div class="textCenter">
                                     <button class="actionBtn dark close">OK</button>
                                 </div>
@@ -441,7 +444,7 @@
     <div class="modal" id="videoInfo">
         <div class="modal-overlay"></div>
 
-        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg);">
+        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg); margin-bottom: 15px;">
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="">
@@ -450,28 +453,28 @@
                                 aria-hidden="true"></i></div>
 
                         <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div> -->
+                        <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
+                        <p class="locAuthDesc">Step One<br />
+                            <ul class="instruct_Data">
+                                <ol style='padding-inline-start: 0px;'>
+Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes, fears, thoughts, etc. Then, submit video, which will be sent to your secure email address.
+                                </ol>
+                            </ul>
+                        <p class="locAuthDesc">Step Two<br />
+                            <ul class="instruct_Data">
+                                <ol style='padding-inline-start: 0px;'>
+If you choose to have an accountability buddy, share your journal entry with an observer, who can give you feedback, go to the menu bar (SET MONITOR)  and add the observer's secure email address.
+                                </ol>
+                            </ul>
 
-                        <h3 class="locAuthTitle textCenter">TAKE VIDEO</h3>
+                            <p class="locAuthDesc">Medication Monitoring<br />
+                                <ul class="instruct_Data">
+                                    <ol style='padding-inline-start: 0px;'>
+In the menu bar add the set monitor bar to your monitor's secure email address. When recording the video, show your pill bottle, then take your medication, showing the medication being taken. Then submit video.
 
-
-                        <div class="mainDiv">
-                            <div class="step1Div">
-                                <div class="stepText">Step 1</div>
-                                <p class="pText">Ensure you are connected to wifi</p>
-                            </div>
-                        </div>
-
-                        <div class="mainDiv">
-                            <div class="step1Div">
-                                <div class="stepText">Step 2</div>
-                                <p class="pText2">When You Record:</p>
-                                <ul>
-                                    <li>Show your medicine prescription bottle to the camera and take pill.</li>
-                                    <li>If not taking medication, submit short video of plans for a day</li>
+                                    </ol>
                                 </ul>
-                            </div>
                         </div>
-
                         <div class="textCenter">
                             <form id='upload_vid_form' method='post' enctype="multipart/form-data">
                                 <input type="file" accept="video/*" id='upload-vid' capture="environment"

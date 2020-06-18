@@ -1,6 +1,18 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function init() {
+
+    //  https://github.com/apache/cordova-ios/issues/417
+    $(document).on('blur', 'input', function() {
+        window.scrollTo(0,NaN)
+    });
+
+    // fixes same issue though on textareas
+    $(document).on('blur', 'textarea', function() {
+        window.scrollTo(0,NaN)
+    });
+
+
     block_desktop()
     init_reset_password()
     init_logo()

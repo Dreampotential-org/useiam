@@ -33,9 +33,9 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>need camera access to take pictures</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need location to perform gps checkin</string>
 	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location to perform gps checkin</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need location to perform gps checkin</string>
 	<key>NSMainNibFile</key>
 	<string></string>
