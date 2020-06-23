@@ -167,9 +167,6 @@ function init_activity() {
       lat: parseFloat($(this).attr("lat")),
       lng: parseFloat($(this).attr("lng"))
     };
-    var name= '';
-    var latlng = spot;
-    var geocoder= new google.maps.Geocoder();
 
     var panorama = new google.maps.Map(
       document.getElementById("gps-view"),
@@ -178,32 +175,9 @@ function init_activity() {
         zoom: 8
       }
     );
-  
-    geocoder.geocode({'location': latlng}, function(results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-          name=results[0].formatted_address;
-          //alert(name);
-          var marker = new google.maps.Marker({
-            position: spot, 
-            map: panorama,
-            icon: 'images/map_icon.png',
-          });
-          var infowindow = new google.maps.InfoWindow({
-            content: name
-          });
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(panorama, marker);
-          marker.addListener('click', function() {
-            infowindow.open(panorama, marker);
-          });
-
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
+    var marker = new google.maps.Marker({
+      position: spot, 
+      map: panorama,
     });
     
   });
