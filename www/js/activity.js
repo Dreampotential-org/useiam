@@ -175,7 +175,7 @@ function init_activity() {
       document.getElementById("gps-view"),
       {
         center: {lat: spot.lat, lng: spot.lng},
-        zoom: 10
+        zoom: 11
       }
     );
   
