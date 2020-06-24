@@ -223,7 +223,7 @@ function load_gps(gps_info) {
         document.getElementById("gps-view"),
         {
           center: {lat: spot.lat, lng: spot.lng},
-          zoom: 11
+          zoom: 18
         }
     );
     geocoder.geocode({'location': latlng}, function(results, status) {
