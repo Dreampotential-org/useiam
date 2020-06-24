@@ -208,6 +208,17 @@ function load_gps(gps_info) {
       lat: parseFloat(gps_info.lat),
       lng: parseFloat(gps_info.lng),
     };
+    var name= '';
+    var latlng = spot;
+    var geocoder= new google.maps.Geocoder();
+    /*var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("gps-view"),
+      {
+        position: spot,
+        pov: { heading: 165, pitch: 0 },
+        zoom: 1
+      }
+    );*/
     var panorama = new google.maps.Map(
         document.getElementById("gps-view"),
         {
@@ -215,10 +226,32 @@ function load_gps(gps_info) {
           zoom: 8
         }
     );
-    var marker = new google.maps.Marker({
-        position: spot, 
-        map: panorama,
-    });
+    geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            name=results[0].formatted_address;
+            //alert(name);
+            var marker = new google.maps.Marker({
+              position: spot, 
+              map: panorama,
+              icon: 'images/map_icon.png',
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: name
+            });
+            infowindow.setContent(results[0].formatted_address);
+            infowindow.open(panorama, marker);
+            marker.addListener('click', function() {
+              infowindow.open(panorama, marker);
+            });
+  
+          } else {
+            window.alert('No results found');
+          }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
 }
 
 function load_video() {
