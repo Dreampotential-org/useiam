@@ -45,26 +45,23 @@ function display_side_activity_log(resp) {
         // XXX add gps event
         if (activity.type == "video") {
         $("#video-list").append(
-        '<div class="panel panel-default panelCls" id="' +
-            activity.id + '"> '+
-        '<div class="panel-heading"><b>Created at :</b><span> ' +
-            formatDate(new Date(activity.created_at * 1000))+'</span></div> '+
-                '<div class="panel-body panelVid"> ' +
-                    '<video  preload="metadata" width="300" class="panel_video" id="videoPanel'+(c++)+'"> '+
-                            '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"> '+
-                        '</video> '+
-                        // '<input class="playBtn" type="button" value="Play" />'+
-                        '<i class="fa fa-play playBtn" aria-hidden="true"></i>'+
-                '</div></div>');
+            '<div class="card mt-2"id="' + activity.id + '"> '+
+            '<div class="card-header font-weight-bold">Created at : '+formatDate(new Date(activity.created_at * 1000))+'</div>'+
+            '<div class="card-body">'+
+            '<video class="custom_video" preload="metadata" controls="" autoplay="" name="media" id="videoPanel'+(c++)+'" width="100%" height="200px" >'+
+            '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"></video>'+
+            '</div>'+
+            '</div>'    
+                );
         }
     else {
         $("#video-list").append(
-        '<div  class="panel panel-default panelCls" id="' + activity.id + '"> '+
-        '<div class="panel-heading"><b>Created at :</b><span> ' +
-            formatDate(new Date(activity.created_at * 1000))+'</span></div> '+
-                '<div class="panel-body panelVid"> ' +
+                '<div class="card mt-2"id="' + activity.id + '"> '+
+                '<div class="card-header font-weight-bold">Created at : '+formatDate(new Date(activity.created_at * 1000))+'</div>'+
+                '<div class="card-body">'+
                     " GPS - Checkin<br>" + activity.msg +
-                '</div></div>');
+                '</div>'+
+                '</div>');
         }
 
     }
@@ -159,13 +156,25 @@ function get_video_info(id, user, callback) {
         $("#created_at").text(formatDate(new Date(res.created_at*1000)))
         if(res.feedback.length==0){
             $(".feedback_received").append(
-                "<div>No comments found!</div>"
+                /*"<div>No comments found!</div>"*/
+                '<div class="d-flex mt-3">'+
+                '<div class="ml-3 border-bottom border-light">'+
+                    '<p class="font-weight-bold mb-0">No comments found!</p>'+
+                '</div>'+
+                '</div>'
             )
         }
         else {
             for(var message of res.feedback) {
                 $(".feedback_received").append(
-                    "<div><b>" + message.user + "</b> - " + message.message + "</div>"
+                    /*"<div><b>" + message.user + "</b> - " + message.message + "</div>"*/
+                    '<div class="d-flex mt-3">'+
+                    '<img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">'+
+                    '<div class="ml-3 border-bottom border-light">'+
+                        '<p class="font-weight-bold mb-0">'+message.user+'</p>'+
+                        '<p class="font-weight-normal">'+message.message+'</p>'+
+                    '</div>'+
+                    '</div>'
                 )
             }
         }

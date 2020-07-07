@@ -92,11 +92,11 @@
             <div class="col-8">
                 <div class="card mt-2">
                     <div class="card-header font-weight-bold">
-                        <video class="custom_video" controls="" autoplay="" name="media" id='video' width='100%'></video>
+                        <video class="custom_video" controls="" autoplay="" name="media" id='video' width='100%' height='500'></video>
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><span class="font-weight-bold">Client Name :</span> Aaron Rosen</p>
-                        <p class="card-text"><span class="font-weight-bold">Created at :</span> 6/27/2020 10:06 am</p>
+                        <p class="card-text"><span class="font-weight-bold">Client Name :</span> <span id='patient_name'></span></p>
+                        <p class="card-text"><span class="font-weight-bold">Created at :</span> <span id='created_at'></span></p>
                     </div>
                 </div>
 
@@ -112,56 +112,15 @@
                         <div class="text-right">
                             <button class="btn btn-primary active" role="button" aria-pressed="true">Comment</button>
                         </div>
-
-                        <div class="d-flex mt-3">
-                            <img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">
-                            <div class="ml-3 border-bottom border-light">
-                                <p class="font-weight-bold mb-0">leslieannrosen@gmail.com</p>
-                                <p class="font-weight-normal">Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text.</p>
-                            </div>
-                        </div>
-
-                        <div class="d-flex mt-3">
-                                <img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">
-                                <div class="ml-3 border-bottom border-light">
-                                    <p class="font-weight-bold mb-0">leslieannrosen@gmail.com</p>
-                                    <p class="font-weight-normal">Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="d-flex mt-3">
-                                    <img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">
-                                    <div class="ml-3 border-bottom border-light">
-                                        <p class="font-weight-bold mb-0">leslieannrosen@gmail.com</p>
-                                        <p class="font-weight-normal">Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text Normal weight text.</p>
-                                    </div>
-                                </div>
-
+                        <div class='feedback_received'></div>
                     </div>
                     
                 </div>
 
             </div>
             <div class="col-4">
-                <div class="card mt-2">
-                    <div class="card-header font-weight-bold">
-                        Created at : 6/27/2020 10:06 am
-                    </div>
-                    <div class="card-body">
-                        <video class="custom_video" controls="" autoplay="" name="media" id='video' width='100%' ></video>
-                    </div>
+                <div class="col-md-12" id="video-list"> 
                 </div>
-
-                <div class="card mt-2">
-                    <div class="card-header font-weight-bold">
-                        Created at : 6/27/2020 10:06 am
-                    </div>
-                    <div class="card-body">
-                        <video class="custom_video" controls="" autoplay="" name="media" id='video' width='100%' ></video>
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -173,8 +132,12 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    
+    <script src="js/view_video.js"></script>
+    <script src="js/config.js"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
   </body>
 </html>

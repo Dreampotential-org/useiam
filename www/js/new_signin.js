@@ -28,7 +28,7 @@ function login_monitor() {
                 localStorage.removeItem("redirect_url")
                 window.location = redirect
             } else {
-                // window.location = '/admin.html';
+                //window.location = './admin.html';
                 window.location = './review.html'
             }
 
