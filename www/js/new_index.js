@@ -22,8 +22,13 @@ function isSignIn(){
 }
 
 function getUrlVars() {
+
+    var ele = $("#video").find( "source" );
+    console.log(ele);
+    var video_url = $(ele).attr("src");
+
     var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    var parts = video_url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
         vars[key] = value;
     });
     return vars;
@@ -251,10 +256,48 @@ function videoPage(){
     get_activity(function(resp) {
         display_side_activity_log(resp);
     });
+
+    $("body").delegate(".video-body", "click", function(){
+
+        var ele = $(this).find( "source" );
+        console.log(ele);
+        var video_url = $(ele).attr("src");
+        // $("#video-tag").find("video").remove();
+        // $("#video-tag").append( 
+        // '<video class="" controls="" autoplay="" name="media" id="video" width="100%" height="500"><source src=' +
+        //     getUrl(video_url)  +
+        //     ' type="video/mp4"></video>'    
+        // );
+
+        getVideoInfo(video_url);
+
+    });
+
+
+    $("#send_feedback").on('click', function(e) {
+        var id = getUrlVars()['id'];
+        var user = getUrlVars()['user'];
+
+        $.ajax({
+            'type': "POST",
+            'url': SERVER + "/api/send-feedback/?token=" +
+                localStorage.getItem("session_id") + "&user=" + user +
+                "&id=" + id,
+            'data': {'message': $("#message").val()}}).done(function(resp) {
+
+                console.log(resp)
+
+            alert("DONE")
+            $("#message").val("");
+        })
+
+    })
     
 }
 
 function clientPage(){
+    
+    $("#myInput").val("");
 
     $("#custom-header").show();
     $("#signin-div").hide();
@@ -337,6 +380,14 @@ function activityPage(){
 
 }
 
+function invitePage(){
+    $('#inviteModal').modal('show')
+
+    $("#invite-btn").on('click', function(e){
+        // Call the invitation api here
+    });
+}
+
 function tabChange(){
     
     $("#home-tab").on('click', function(e) {
@@ -349,6 +400,10 @@ function tabChange(){
 
     $("#activity-tab").on('click', function(e) {
         activityPage()
+    });
+
+    $("#invite-tab").on('click', function(e) {
+        invitePage()
     });
 
 }
@@ -377,10 +432,13 @@ function list_patients(callback) {
 
 function display_patients(patients) {
     //$(".clientsList").remove();
-    for(var patient of patients) {
-        $(".clientsList").append(
 
-            `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
+    var html = "";
+
+    for(var patient of patients) {
+        //$(".clientsList").append(
+
+        html +=    `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
 
                 <div class="card">
                     <div class="text-center bg-secondary d-flex justify-content-center align-items-center clinetProfileImage">
@@ -391,9 +449,10 @@ function display_patients(patients) {
                     </div>
                 </div>
             </div>`
-        )
+        //)
     }
 
+    $(".clientsList").html(html);
 
     //var classes = ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'bg-5', 'bg-6'];
     var classes = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'];
@@ -488,23 +547,29 @@ function closeModal(ind){
 }
 
 function display_activity_patients(patients) {
-    $(".select-patient").append(
-        "<option text-primary' value=''>All Patients</option>"
-    )
+    // $(".select-patient").append(
+    //     "<option text-primary' value=''>All Patients</option>"
+    // )
+
+    // for(var patient of patients) {
+    //     $(".select-patient").append(
+    //         "<option value='" + patient.email + "'>" +
+    //             patient.name + "(" + patient.email +  ")" +
+    //         "</option>"
+    //     )
+    // }
+
+    var html = "<option text-primary' value=''>All Patients</option>";
 
     for(var patient of patients) {
-        $(".select-patient").append(
-            "<option value='" + patient.email + "'>" +
-                patient.name + "(" + patient.email +  ")" +
-            "</option>"
-        )
-
-        // $(".select-patient").append(
-        //     "<a class='dropdown-item' value='" + patient.email + "'>" +
-        //         patient.name + "(" + patient.email +  ")" +
-        //     "</a>"
-        // )
+        
+        html += "<option value='" + patient.email + "'>" +
+                    patient.name + "(" + patient.email +  ")" +
+                "</option>"
     }
+
+    $(".select-patient").html(html);
+
 }
 
 function list_patient_events(patient_email, filter_type, callback) {
@@ -620,33 +685,26 @@ function get_activity(callback) {
 function display_side_activity_log(resp) {
     
     var c = 0;
+    var html = "";
+
     for (var activity of resp.events) {
         // XXX add gps event
         if (activity.type == "video") {
 
         if(c == 0){
 
-            var vars = {};
-            var parts = activity.url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-                vars[key] = value;
-            });
-            var id = vars["id"];
-            var user = vars["user"];
-            debugger
-            get_video_info(id, user, function(activity) {
-                load_video(id, user);
-            })
+            getVideoInfo(activity.url);
         }    
 
-        $("#video-list").append(
-            '<div class="card mt-2"id="' + activity.id + '"> '+
+        //$("#video-list").append(
+        html +=    '<div class="card mt-2"id="' + activity.id + '"> '+
             '<div class="card-header font-weight-bold">Created at : '+formatDate(new Date(activity.created_at * 1000))+'</div>'+
-            '<div class="card-body">'+
-            '<video class="custom_video" preload="metadata" controls="" autoplay="" name="media" id="videoPanel'+(c++)+'" width="100%" height="200px" >'+
+            '<div class="card-body video-body">'+
+            '<video class="custom_video" id="videoPanel'+(c++)+'" width="100%" height="200px" >'+
             '<source class="list-video" src=' + getUrl(activity.url) +' type="video/mp4"></video>'+
-            '</div>'+
+            '<i class="material-icons playBtn">play_arrow</i></div>'+
             '</div>'    
-                );
+        //        );
         }
         else {
             // $("#video-list").append(
@@ -659,6 +717,22 @@ function display_side_activity_log(resp) {
         }
 
     }
+
+    $("#video-list").html(html);
+
+}
+
+function getVideoInfo(url){
+
+    var vars = {};
+    var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+        vars[key] = value;
+    });
+    var id = vars["id"];
+    var user = vars["user"];
+    get_video_info(id, user, function(activity) {
+        load_video(id, user);
+    })
 }
 
 function formatDate(date) {
@@ -706,30 +780,35 @@ function get_video_info(id, user, callback) {
 
         $("#patient_name").text(res.owner_name)
         $("#created_at").text(formatDate(new Date(res.created_at*1000)))
+
+        var html = "";
+
         if(res.feedback.length==0){
-            $(".feedback_received").append(
+            //$(".feedback_received").append(
                 /*"<div>No comments found!</div>"*/
-                '<div class="d-flex mt-3">'+
+            html +=    '<div class="d-flex mt-3">'+
                 '<div class="ml-3 border-bottom border-light">'+
                     '<p class="font-weight-bold mb-0">No comments found!</p>'+
                 '</div>'+
                 '</div>'
-            )
+            //)
         }
         else {
             for(var message of res.feedback) {
-                $(".feedback_received").append(
+                //$(".feedback_received").append(
                     /*"<div><b>" + message.user + "</b> - " + message.message + "</div>"*/
-                    '<div class="d-flex mt-3">'+
+                html +=    '<div class="d-flex mt-3">'+
                     '<img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">'+
                     '<div class="ml-3 border-bottom border-light">'+
                         '<p class="font-weight-bold mb-0">'+message.user+'</p>'+
                         '<p class="font-weight-normal">'+message.message+'</p>'+
                     '</div>'+
                     '</div>'
-                )
+                //)
             }
         }
+
+        $(".feedback_received").html(html);
         callback(res);
     })
 }
@@ -738,7 +817,8 @@ function load_video(id, user) {
     $("#video").html(
         '<source src=' + SERVER + '/api/review-video/?id=' + id +
             '&user=' + user + '&token=' +
-            localStorage.getItem("session_id") + ' type="video/mp4">')
+            localStorage.getItem("session_id") + ' type="video/mp4">'
+    );
 
 }
 
