@@ -278,18 +278,57 @@ function videoPage(){
         var id = getUrlVars()['id'];
         var user = getUrlVars()['user'];
 
-        $.ajax({
-            'type': "POST",
-            'url': SERVER + "/api/send-feedback/?token=" +
-                localStorage.getItem("session_id") + "&user=" + user +
-                "&id=" + id,
-            'data': {'message': $("#message").val()}}).done(function(resp) {
+        if($("#message").val().trim() != ""){
 
-                console.log(resp)
+            $.ajax({
+                'type': "POST",
+                'url': SERVER + "/api/send-feedback/?token=" +
+                    localStorage.getItem("session_id") + "&user=" + user +
+                    "&id=" + id,
+                'data': {'message': $("#message").val()}}).done(function(resp) {
+    
+                    console.log(resp)
+    
+                    if(resp.status == 'okay'){
 
-            alert("DONE")
-            $("#message").val("");
-        })
+                        get_video_info(getUrlVars()['id'], getUrlVars()['user']);
+    
+                        swal({
+                            'title': 'Feedback Send',
+                            'text': 'Your feedback send successfully',
+                            'icon': 'success',
+                        });
+    
+                    }else{
+    
+                        swal({
+                            'title': 'Please try again later.',
+                            'icon': 'error',
+                        });
+    
+                    }
+
+                $("#message").val("");
+
+            }).fail(function(err) {
+                console.log(err)
+                swal({
+                    'title': 'Something wrong',
+                    'icon': 'error',
+                });
+            });
+
+
+        }else{
+
+            swal({
+                'text': 'Comment field should not be empty.',
+                'icon': 'error',
+            });
+
+        }
+
+        
 
     })
     
