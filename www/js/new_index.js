@@ -211,13 +211,30 @@ function createAccount(){
 
 function headerButtons(){
     $("#notification-btn").on('click', function(e) {
+
+        $('.bmd-drawer-f-l').removeClass('bmd-drawer-in');
+
+        videoPause();
         activityPage();
     });
 
     $("#logout-btn").on('click', function(e) {
+        videoPause();
         localStorage.removeItem("session_id");
         loggedInPage();
     });
+}
+
+function videoPause(){
+    $('#video').trigger('pause');
+}
+
+function isActive(ele){
+
+    if($( "#menu-ul" ).children( "a" ).hasClass( "active" )){
+        $( "#menu-ul" ).children( "a" ).removeClass( "active" )
+        $( ele ).addClass( "active" )
+    }
 }
 
 
@@ -430,19 +447,33 @@ function invitePage(){
 function tabChange(){
     
     $("#home-tab").on('click', function(e) {
+        isActive(this)
         videoPage()
     });
 
     $("#client-tab").on('click', function(e) {
+        
+        isActive(this)
+
+        videoPause()
         clientPage()
     });
 
     $("#activity-tab").on('click', function(e) {
+        isActive(this)
+        videoPause()
         activityPage()
     });
 
     $("#invite-tab").on('click', function(e) {
+        isActive(this)
+        videoPause()
         invitePage()
+    });
+
+    $("#manage-tab").on('click', function(e) {
+        isActive(this)
+        videoPause()
     });
 
 }
