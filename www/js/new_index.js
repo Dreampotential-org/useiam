@@ -207,6 +207,10 @@ function createAccount(){
     $("#already-account").on('click', function(e) {
         loggedInPage();
     });
+
+    $("#user-interface").on('click', function(e) {
+        window.location = "index.html"
+    });
 }
 
 function headerButtons(){

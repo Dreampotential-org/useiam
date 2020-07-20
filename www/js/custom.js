@@ -39,9 +39,12 @@ function block_desktop() {
         title: "Computer not supported",
         text: "Use IAM with your smartphone or tablet.",
         icon: "info",
-        buttons: false,
+        buttons: {cancel: "Admin Interface"},
         closeOnEsc: false,
         closeOnClickOutside: false,
+    }).then((value) => {
+        console.log("test");
+        window.location = "new_index.html"
     });
     }
 }
