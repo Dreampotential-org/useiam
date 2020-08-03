@@ -246,6 +246,10 @@ function signup_signin_buttons() {
       $('#signupModal').addClass('is-visible');
       $('#signinModal').removeClass('is-visible');
     });
+
+    $('#admin').on('click', function(e) {
+        window.location = "new_index.html";
+    });
 }
 
 
