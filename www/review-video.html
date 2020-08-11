@@ -1,518 +1,369 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--CSS -->
-    <title>IAM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
-     <!-- <link rel="stylesheet" href="css/style.css?v=1.4">
-     <link rel="stylesheet" href="css/responsive.css?v=1.3"/> -->
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWJ2UbLhFeu3jVgd4ZwWMMNyGl4Kqx7V4">
-    </script>
-<style>
-     body{
-        font-family: "Poppins", sans-serif;
-        font-size: 14px;
-     }
-    .custom_video{
-        /* width: 100%; */
-        box-sizing: border-box;
-        border-radius: 5px;
-        margin: 12px 0px;
-    }
-    .videoDetailsDiv {
-        padding: 8px;
-        color: #000;
-        letter-spacing: 0.8px;
-    }
-    .textareaClass {
-        border-bottom: 0.55px solid lightgray;
-    }
-    textarea#message:focus {
-        outline: none;
-    }
-    .feedbackTextarea {
-        width: 100%;
-        border: none;
-    }
-    .rowMsg {
-        display: flex;
-        flex-wrap: wrap;
 
-    }
-    .colMsg {
-        -ms-flex: 25%; /* IE10 */
-        flex: 25%;
-        max-width: 30%;
-        padding: 0 4px;
-    }
-    .messages {
-        background: #d3d3d354;
-        border-radius: 20px;
-        padding: 7px 15px;
-    }
-    .feedbackBtnDiv {
-        border-top: 0.55px solid lightgray;
-        text-align: end;
-    } 
-    .feedbackBtn {
-        background: #2a318b;
-        color: #ffff;
-        border: 1px solid #2a318b;
-        border-radius: 3px;
-        padding: 8px;
-        margin: 10px 0px 0px;
-    }
-    .logout{
-        text-decoration: none;
-        font-size: 15px;
-        letter-spacing: 0.5px;
-        color: #2a318b;
-        float:right;
-    }
-    .logoutIcon{
-        margin-left: 4px;
-        font-size: 17px;
-    }
-    .container-fluid{
-        margin-top:1%;
-    }
-    .colBorder{
-        border: 1px solid lightgray;
-        margin-top: 1%;
-        margin-bottom: 5%;
-        width: 100%;
-        height: 800px;
-        overflow: scroll;
-    }
-    .panelCls{
-        margin-top: 3%;
-    }
-    .custom_video {
-        width: 80%;
-        height: 550px;
-    }
-    .txtRight{
-        float: right;
-    }
-    .panel_video{
-        width: 100%;
-        height: 175px;
-        box-sizing: border-box;
-        border-radius: 5px;
-        margin: 12px 0px;
-        cursor: pointer;
-    }
-    .panelVid:hover{
-    opacity:0.3; 
-    }
-    .panelVid{
-      position: relative;
-      }
-    .panelVid 
-        i {
-             display:none;
-        }
-    .panelVid i.playBtn {
-        position: absolute;
-        color: white; 
-        font-size: 24px;
-        top:50%;
-        width: 100%;
-        left:50%;
-    }
-    .panelVid:hover i {
-         display: block;
-    }
-    /* Responsive layout - makes a two column-layout instead of four columns */
-    @media screen and (max-width: 812px) and (min-width: 320px) {
-        .colMsg {
-            -ms-flex: 50%;
-            flex: 50%;
-             max-width: 47%; 
-        }
-    }
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
-    @media screen and (max-width: 812px) and (min-width: 320px)  {
-        .custom_video{
-            width: 100%!important;
-            box-sizing: border-box;
-            border-radius: 5px;
-            margin: 12px 0px;
-            height: 272px!important;
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <title>USEIAM</title>
+
+    <style>
+
+        body{
+            height: 100vh;
         }
-        .panel_video{
-            width: 100%!important;
-            box-sizing: border-box;
-            border-radius: 5px;
-            margin: 12px 0px;
-            height: 175px!important;
+
+        .review-video .comment-img, .activity-log .comment-img{
+            height: 50px;
+            width: 50px;
         }
-        .panelVid input.playBtn {
+
+        .activity-log .custom-img, .clientsList .clinetProfileImage{
+            height: 200px;
+        }
+
+        .clientsList .card{
+            cursor: pointer;
+        }
+
+        .activity-log .card, .clientsList .card{
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .searchIcon {
             position: absolute;
-            margin-left: 33%!important;
-            margin-top: -34%!important;
-            
-    }
-    .panelVid{
-        /*background-color: black; */
-    }
-    .panelVid 
-        i {
-             display:block;
+            left: 3px;
+            top: 7px;
         }
-    .colBorder{
-        width: 100%;
-        height: 600px;
-        overflow: scroll;
-    }
-    }
-    .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 16px;
-  color: black;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: grey;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  /*right: 25px;*/
-  font-size: 27px;
-  /*margin-left: 50px;*/
-}
-
-.sidenav .imgSideLogo{
-    position: absolute;
-    top: 13px;
-    left: 100px;
-}
-.sidenav .iconSidebar{
-    margin-right: 11%;
-}
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 16px;}
-}
-.toggleBtn{
-    font-size:30px;
-    cursor:pointer;
-    float:left
-}
-.panelSidebar{
-    margin-left: 1%;
-    margin-right: 1%;
-}
-.navbar-brand{
-    padding: 8px 20px!important;
-}
-.mainVideoDiv{
-    text-align: center;
-}
-.active{
-    background-color: #dcdcdc;
-    color:black!important;
-}
-.paginationDiv{
-            padding: 15px 0px;
+        #video-list .card-body:hover{
+            opacity:0.5;
+            cursor: pointer;
         }
-        .spanText{
-            color: black;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        .starIconSpan{
-            color: #d3b512;
-            margin-left: 5px;
-            font-size: 20px;
-        }
-        .videoBtn{
-            background: #2a318b;
-            color: #fff;
-            padding: 2px 4px;
-            border-radius: 2px;
-            border: 1px solid #2a318b;
-        }
-   .events td{
-           padding: 4px;
-           text-align: left!important;
-       }
-   .events th{
-           padding: 4px;
-           text-align: left!important;
-   }
-</style>
 
-</head>
-<body>
-    <!-- <div style='text-align:right;'>
-      <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
-    </div> -->
-    <nav class="navbar navbar-light bg-light">
-        <span class="toggleBtn" onclick="openNav()">&#9776;</span>
-        <a class="navbar-brand" href="#">
-            <img src="./img/logoReviewVideo.png" width="30" height="25" alt="">
-        </a>
-        <span class="navbar-text txtRight">
-            <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
-        </span>
-    </nav>
-    <div id="mySidenav" class="sidenav">
-        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776;</a>
-        <img src="./img/logoReviewVideo.png" width="30" height="25" alt="" class="imgSideLogo">
-        <hr>
-        <a href="#" class="aLink active"><i class="fa fa-home iconSidebar" ></i>Home</a>
-        <a href="#" class="aLink"><i class="fa fa-info-circle iconSidebar"></i>Help</a>
-        <a href="#" class="aLink"><i class="fa fa-users iconSidebar"></i>Patients</a>
-        <hr>
-        <div class="panel panel-default panelSidebar">
-            <div class="panel-heading">
-                <div class="search-container">
-                      <!-- <input type="text" placeholder="Search.." name="search" class="form-control"> -->
-                      <span class="txtColor">Filter Patient :</sapn>
-                      <select class='select-patient form-control'><select>
-                  </div>
+        #video-list .card-body{
+            position: relative;
+        }
+
+        i.playBtn {
+            position: absolute;
+            color: white; 
+            font-size: 24px;
+            top:50%;
+            width: 100%;
+            left:50%;
+            display:none;
+        }
+        .video-body:hover i {
+            display: block;
+        }
+
+        .events .modal{
+            overflow-y: scroll;
+            margin-top: 30px;
+        }
+
+    </style>
+
+  </head>
+  <body>
+    
+    <div class="bmd-layout-container bmd-drawer-f-l">
+        <header id="custom-header" class="bmd-layout-header bg-primary">
+            <div class="navbar navbar-light bg-faded">
+            <button class="navbar-toggler text-light border-light" type="button" data-toggle="drawer" data-target="#dw-s1">
+                <span class="sr-only">Toggle drawer</span>
+                <i class="material-icons">menu</i>
+            </button>
+            <ul class="nav navbar-nav d-inline">
+                <li class="nav-item d-inline px-1"><a id="notification-btn" href="javascript: void(0)" class="text-white"><i class="material-icons">notifications</i></a></li>
+                <li class="nav-item d-inline px-1"><a id="logout-btn" href="javascript: void(0)" class="text-white"><i class="material-icons">logout</i></a></li>
+            </ul>
             </div>
-            <div class="panel-body">
-                <h4 class="txtColor">Events</h4>
-                <div class='events'></div>
-                <div class='results'></div>
-                <div class="paginationDiv">
-                    <span class="spanText">Number of results :</span>  <span class='count spanText'></span></span>
-                    <span class='prev'><a  class="spanText" href='#'><span><</span>Prev</a></span>
-                    <span class='next'><a class="spanText" href='#'>>Next</a></span>
-                </div>
+        </header>
+
+        <div id="dw-s1" class="bmd-layout-drawer bg-faded">
+            <header>
+            <div class="text-center">
+                <img src="./img/logoReviewVideo.png" width="50" height="50" alt="">
             </div>
+            </header>
+            <ul id="menu-ul" class="list-group">
+
+                    <a id="home-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center active" role="button" ><i class="material-icons align-middle mr-2">home</i> Home</a>
+                    <a id="client-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">people</i> Clients</a>
+                    <a id="activity-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">event</i> Activity Log</a>
+                    <a id="invite-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">share</i> Invite Client</a>
+                    <a id="manage-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">people</i> Manage Clients</a>
+
+                    <!-- <a href="#" class="btn btn-primary dropdown-toggle text-left" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons align-middle mr-2">filter_alt</i>    Filter Patient
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div> -->
+
+            </ul>
         </div>
-      </div>
-    <div class="container-fluid">
-        <!-- <div class="row">
-            <div class="col-md-6"><h5>Logo</h5></div>
-            <div class="col-md-6"><a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a></div>
-        </div> -->
-        <hr>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="mainVideoDiv" id='mainVideoDiv'>
-                    <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
-                </div>
-                <div class="videoDetailsDiv">
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-11">
-                            <div class="videoDetailsCreated">
-                                <b>Client Name : </b><span id='patient_name'></span><br>
-                                <b>Created at : </b><span id='created_at'></span>
+
+        <main class="bmd-layout-content">
+            <div class="container-fluid h-100">
+
+                <!-- Sign In Start -->
+
+                <div id="signin-div" class="row h-100 bg-primary">
+                    <div class="col-lg-4 col-md-2 col-sm-3">
+                    </div>
+        
+                    <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
+        
+                        <div class="card">
+                            <div class="card-header p-5">
+                                <div class="text-center p-2">
+                                    <img src="./img/logoReviewVideo.png" class="img-fluid w-25 " alt="...">
+                                </div>
+                                
+                                <form>
+                                    <div class="form-group">
+                                        <label for="signin_email" class="bmd-label-floating">Email address</label>
+                                        <input type="email" class="form-control" id="signin_email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signin_password" class="bmd-label-floating">Password</label>
+                                        <input type="password" class="form-control" id="signin_password">
+                                    </div>
+                                </form>
+                
+                                
+                                <div class="text-center">
+                                    <button id='login' class="btn btn-primary active" role="button" aria-pressed="true">Login</button>
+        
+                                    <a href="https://prod-api.useiam.net/password_reset/" class="d-block">Forgot Password?</a>
+        
+                                    <a id="create-account" href="javascript: void(0)" class="d-block">Create an Account</a>
+
+                                    <a id="user-interface" href="javascript: void(0)" class="d-block">User Interface</a>
+
+                                </div>
+                
                             </div>
+                            
                         </div>
+        
+        
                     </div>
                     
-                </div>
-                <hr>
-                <div class="form-group">
-                    <textarea class="form-control" rows="5" id="comment" placeholder="Add Monitor Comment"></textarea>
-                   
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button id='send_feedback' type="button" class="btn btn-success" style="float: right;">
-                          Post</button>
+                    <div class="col-lg-4 col-md-2 col-sm-3">
                     </div>
+        
                 </div>
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <b>Comments:</b>
+
+                <!-- Sign In End -->
+
+                <!-- Sign Up Start -->
+
+                <div id="signup-div" class="row h-100 bg-primary">
+                    <div class="col-lg-4 col-md-2 col-sm-3">
                     </div>
-                </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h6>Greate Job!</h6>
+        
+                    <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
+        
+                        <div class="card">
+                            <div class="card-header p-5">
+                                <div class="text-center p-2">
+                                    <img src="./img/logoReviewVideo.png" class="img-fluid w-25 " alt="...">
+                                </div>
+                                
+                                <form>
+                                    <div class="form-group">
+                                        <label for="signup_name" class="bmd-label-floating">Name</label>
+                                        <input type="text" class="form-control" id="signup_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup_email" class="bmd-label-floating">Email address</label>
+                                        <input type="email" class="form-control" id="signup_email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup_password" class="bmd-label-floating">Password</label>
+                                        <input type="password" class="form-control" id="signup_password">
+                                    </div>
+                                </form>
+                
+                                
+                                <div class="text-center">
+                                    <button id='signup' class="btn btn-primary active" role="button" aria-pressed="true">Sign Up</button>
+        
+                                    <a id="already-account" href="javascript: void(0)" class="d-block">Already have an accout?</a>
+        
+                                </div>
+                
+                            </div>
+                            
                         </div>
-                    </div> -->
-                    <div class="panel panel-default panelCls">
-                        <div class="panel-heading"><b>Comments</b></div>
-                        <div class="panel-body">
-                            <div class='feedback_received'></div>
-                        </div>
+        
+        
                     </div>
-                    <hr>
-            </div>
-            <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-12">
-                        <b>Last 30 days</b>
+                    
+                    <div class="col-lg-4 col-md-2 col-sm-3">
                     </div>
+        
                 </div>
-                <div class="col-md-12 colBorder">
-                    <div class="row">
+
+                <!-- Sign Up End -->
+
+                <!-- Review Video Start -->
+
+                <div id="video-div" class="row mt-2 review-video">
+                    <div class="col-12 col-md-8 col-sm-12">
+                        <div class="card mt-2">
+                            <div id="video-tag" class="card-header font-weight-bold">
+                                <video class="" controls="" autoplay="" name="media" id='video' width='100%' height='500'></video>
+                            </div>
+                            <div id="gps-tag" class="card-header font-weight-bold">
+                                
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><span class="font-weight-bold">Client Name :</span> <span id='patient_name'></span></p>
+                                <p class="card-text"><span class="font-weight-bold">Created at :</span> <span id='created_at'></span></p>
+                            </div>
+                        </div>
+
+                        <div class="card my-2">
+                            <div class="card-body">
+                                <h6 class="card-subtitle">Comments</h6>
+                                <div class="form-group">
+                                    <label for="message" class="bmd-label-floating px-2">Add Monitor Comment</label>
+                                    <textarea class="form-control border rounded px-2" id="message" rows="4"></textarea>
+                                </div>
+
+                                
+                                <div class="text-right">
+                                    <button id="send_feedback" class="btn btn-primary active" role="button" aria-pressed="true">Comment</button>
+                                </div>
+                                <div class='feedback_received'></div>
+                            </div>
+                            
+                        </div>
+
                     </div>
-                    <div class="row">
+                    <div class="col-12 col-md-4 col-sm-12">
                         <div class="col-md-12" id="video-list"> 
                         </div>
                     </div>
                 </div>
+
+                <!-- Review Video End -->
+
+                <!-- Clients Start -->
+
+                <div id="client-div" class="client-div my-2">
+                
+                    <div class="searchRow position-relative">
+                        <input id="myInput" class="w-100 py-1 px-4" type="text" placeholder="Search by name...">
+                        <i class="material-icons align-middle mr-2 searchIcon">search</i>
+                    </div>
+                    <div class="row mt-2 clientsList">
+                    </div>
+
+                </div>
+
+                <!-- Client End -->
+
+                <!-- Activity Log Start -->
+
+                <div id="activity-div" class="activity-log">
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Filter Patient</label>
+                        <select class="form-control select-patient" id="exampleFormControlSelect1">
+                        </select>
+                    </div>
+                
+                    <div class="row events">
+                    </div>
+                
+                    <div class='results'></div>
+                    <div class="paginationDiv py-3">
+                        <span class="text-primary">Number of results :</span>  <span class='count font-weight-bold'></span>
+                        
+                        <span class='next float-right'><a href='#'>Next<i class="material-icons align-middle">keyboard_arrow_right</i></a></span>
+                        <span class='prev float-right pr-2'><a href='#'> <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a></span>
+                    </div>
+
+                </div>
+
+                <!-- Activity Log End -->
+
             </div>
-        </div>
-        <!-- <div>
-        <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
-        </div> -->
-    
-        <!-- <div class="videoDetailsDiv">
-            <b>Client Name : </b><span id='patient_name'></span><br>
-            <b>Created at : </b><span id='created_at'></span>
-        </div> -->
-       
-        <!-- <div class="videoDetailsDiv">
-            <b>Feedback received :</b><br>
-            <div class='feedback_received'></div>
-           
-        </div> -->
-    
-      
+        </main>
 
-    <!-- <div>
-      <textarea id='message' placeholder='Great Job'></textarea>
-      <br>
-      <button id='send_feedback'>Send Feedback</button>
-    </div> -->
-    
-    <div class="feedbackDiv">
-        <!-- <div class="textareaClass">
-            <textarea id="message" class="feedbackTextarea" rows="5" placeholder="Select message or type your own"></textarea>
-        </div> -->
-    <!--
-    <div class="rowMsg"><div class="colMsg" id=msgId1>
-            <p class="messages">Is there deposite or other fees?<p>
-        </div>
-        <div class="colMsg" id=msgId2>
-            <p class="messages">Are utilities included?</p>
-        </div>
-        <div class="colMsg" id=msgId3>
-            <p class="messages">Is the the lease start date flexible?<p>
-        </div>
+        <!-- Invite Client Start -->
+
+
+            <div id="inviteModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invite</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="invite_email" class="bmd-label-floating">Email</label>
+                            <input type="email" class="form-control" id="invite_email">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="invite-btn" type="button" class="btn btn-primary active m-2">Invite</button>
+                        <button type="button" class="btn btn-secondary my-2" data-dismiss="modal">Cancel</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Invite Client End -->
+
+        <!-- Map Modal Start -->
+
+            <div id="mapModal" class="modal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div id="googleMap" style="width: 100%; height: 400px"></div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Map Modal End -->
+
     </div>
-    -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
     
-    <!-- <div class="feedbackBtnDiv">
-        <button id="send_feedback" class="feedbackBtn">Send Feedback</button>
-    </div> -->
-    </div>
-    </div>
-    
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/sweetalert.min.js"></script>
-<script src="js/view_video.js"></script>
-<script src="js/config.js"></script>
-
-<!-- <script src="js/gps.js?v=1.6"></script>
-<script src="js/video.js?v=1.7"></script>
-<script src="js/monitor.js?v=1.7"></script> -->
-<!-- <script src="js/logos.js?v=1.7"></script>
-<script src="js/config.js?v=1.7"></script> -->
-
-<script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "350px";
-    }
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-     // Add active class to the current button (highlight it)
-     var header = document.getElementById("mySidenav");
-        var btns = header.getElementsByClassName("aLink");
-        for (var i = 0; i < btns.length; i++) {
-          btns[i].addEventListener("click", function() {
-          var current = document.getElementsByClassName("active");
-          if (current.length > 0) { 
-            current[0].className = current[0].className.replace(" active", "");
-          }
-          this.className += " active";
-          });
-        }
-    $(document).ready(function(){
-    $("body").delegate(".panel-body", "click", function(){
-      return
-
-            var ele = $(this).find( "source" );
-            console.log(ele);
-            var video_url = $(ele).attr("src");
-            $(".mainVideoDiv").find("video").remove();
-            $(".mainVideoDiv").append(
-            "<video controls='controls' autoplay preload='metadata' width='320' height='240' class='custom_video'><source src=" +
-                getUrl(video_url)  +
-                ' type="video/mp4"></video>'    
-            );    
-            var vars = {};
-            var parts = video_url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-                vars[key] = value;
-            });
-            var id = vars["id"];
-            var user = getUrlVars()['user'];
-            $.get(SERVER + "/api/get-video-info/?token=" +
-            localStorage.getItem("session_id") + "&user=" + user +
-            "&id=" + id, function(res) {
-
-            console.log(res)
-
-            if('status' in res && res.status == 'error') {
-            swal({
-                'title': 'Access Denied',
-                'text': 'The video was not sent to the email address ' +
-                        'you are logged in with.',
-                'icon': 'error',
-            });
-            return
-        }
-        console.log('get video info : ',res);
-        $("#patient_name").text(res.owner_name)
-        $("#created_at").text(formatDate(new Date(res.created_at*1000)))
-        $(".feedback_received").empty();
-        console.log('length of feedback :', res.feedback.length);
-        if(res.feedback.length==0){
-            $(".feedback_received").append(
-                "<div>No comments found!</div>"
-            )
-        }
-        else{
-            for(var message of res.feedback) {
-
-            $(".feedback_received").append(
-            "<div><b>" + message.user + "</b> - " + message.message + "</div>"
-            )
-        }
-        }
-    })
-    //
-    });
-    });
-</script>
-</body>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWJ2UbLhFeu3jVgd4ZwWMMNyGl4Kqx7V4">
+    </script>
+    <script src="js/config.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <!-- <script src="js/view_video.js"></script>
+    <script src="js/new_admin.js"></script>
+    <script src="js/clients.js"></script> 
+    <script src="js/new_signin.js"></script> -->
+    <script src="js/new_index.js"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  </body>
 </html>

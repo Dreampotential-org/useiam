@@ -4,13 +4,23 @@ function init() {
 
 function isSignIn(){
 
+    // var id = throughUrl()['id'];
+    // var user = throughUrl()['user'];
+
     var isLoggedIn = localStorage.getItem("session_id");
 
     if(isLoggedIn != null && isLoggedIn != ""){
 
         videoPage();
+        //activityPage("");
         
-    }else{
+    }/*else if(id != undefined && user != undefined){
+
+        get_video_info(id, user, function(activity) {
+            load_video(id, user);
+        })
+
+    }*/else{
         loggedInPage();
     }
 
@@ -21,11 +31,29 @@ function isSignIn(){
     createAccount();
 }
 
-function getUrlVars() {
+// Get id and user through url
+function throughUrl() {
+    var vars = {};
+    var parts = window.location.href.replace(
+        /[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
-    var ele = $("#video").find( "source" );
-    console.log(ele);
-    var video_url = $(ele).attr("src");
+//Get id and user from storage
+function getUrlVars(url) {
+
+    var video_url = ""
+
+    if(url == undefined){
+        var ele = $("#video").find( "source" );
+        console.log(ele);
+        video_url = $(ele).attr("src");
+    }else{
+        video_url = url;
+    }
+    
 
     var vars = {};
     var parts = video_url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -219,7 +247,7 @@ function headerButtons(){
         $('.bmd-drawer-f-l').removeClass('bmd-drawer-in');
 
         videoPause();
-        activityPage();
+        activityPage("");
     });
 
     $("#logout-btn").on('click', function(e) {
@@ -280,6 +308,9 @@ function videoPage(){
 
     $("body").delegate(".video-body", "click", function(){
 
+        $("#gps-tag").hide();
+        $("#video-tag").show();
+
         var ele = $(this).find( "source" );
         console.log(ele);
         var video_url = $(ele).attr("src");
@@ -294,8 +325,8 @@ function videoPage(){
 
     });
 
-
     $("#send_feedback").on('click', function(e) {
+
         var id = getUrlVars()['id'];
         var user = getUrlVars()['user'];
 
@@ -377,6 +408,19 @@ function clientPage(){
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+
+        $(".clientsList").on("click", ".card" ,function(){
+            console.log("TEST");
+
+            console.log($( this ).find(".card-body").children( ".patient-email" ).text());
+
+            isActive("#activity-tab");
+            activityPage($( this ).find(".card-body").children( ".patient-email" ).text());
+
+            //$("#activity-tab").click();
+            // $(".select-patient").val($( this ).find(".card-body").children( ".patient-email" ).text());
+        });
+
     });
 
     
@@ -385,8 +429,8 @@ function clientPage(){
 var NEXT_PAGE_URL = null;
 var PREV_PAGE_URL = null;
 
-function activityPage(){
-    
+function activityPage(value){
+
     $("#custom-header").show();
     $("#signin-div").hide();
     $("#signup-div").hide();
@@ -396,11 +440,11 @@ function activityPage(){
 
 
     list_patients(function(response) {
-        display_activity_patients(response.patients);
+        display_activity_patients(response.patients, value);
     });
     
     list_patient_events(
-        getUrlVars()['email'], "", function(response) {
+        value, "", function(response) {
             display_events(response)
         }
     );
@@ -466,7 +510,7 @@ function tabChange(){
     $("#activity-tab").on('click', function(e) {
         isActive(this)
         videoPause()
-        activityPage()
+        activityPage("")
     });
 
     $("#invite-tab").on('click', function(e) {
@@ -508,9 +552,19 @@ function display_patients(patients) {
     //$(".clientsList").remove();
 
     var html = "";
+    var g_count = 0;
+    var v_count = 0;
 
     for(var patient of patients) {
         //$(".clientsList").append(
+
+        for(var event of patient.events){
+            if(event.type == "gps"){
+                g_count++;
+            }else{
+                v_count++;
+            }
+        }
 
         html +=    `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
 
@@ -520,6 +574,8 @@ function display_patients(patients) {
                     </div>
                     <div class="card-body">
                         <h6 class="card-subtitle">${patient.name}</h6>
+                        <p class="m-0 mt-1 text-primary"><span class="mr-2"><i class="material-icons align-middle mr-1">room</i>${g_count} </span> <span class="mr-2"><i class="material-icons align-middle mr-1">play_circle_filled</i>${v_count}</span></p>
+                        <p class="d-none patient-email">${patient.email}</p>
                     </div>
                 </div>
             </div>`
@@ -565,21 +621,41 @@ function display_events(response) {
         if (e.type == 'gps') {
             html += (
 
-                    `<a target="_blank" href="https://www.google.com/maps/place/${e.lat},${e.lng}"><i class="material-icons align-middle">room</i></a>`
+                    // `<a target="_blank" href="https://www.google.com/maps/place/${e.lat},${e.lng}"><i class="material-icons align-middle">room</i></a>`
+                    `<a href="javascript:void(0);" onclick="openMap(${e.lat},${e.lng})"><i class="material-icons align-middle">room</i></a>`
             )
             gps_views.push(e);
         }
 
         if (e.type == 'video') {
             html += (
-                '<a href="#" id="myBtn" type="button" aria-pressed="true" onclick="openModal('+i+')"><i class="material-icons align-middle">play_circle_filled</i></a>'+
-                '<div id="myModal'+i+'" class="modal">'+ 
-                '<div class="modal-dialog modal-dialog-centered">'+
-                '<div class="modal-content">'+'<div class="p-2"><p  onclick="closeModal('+i+')" class="close" id="closeModal">&times;</p></div><br/>'+
-                '<video controls="" name="media"  class="video">' +
-                    '<source src=' + SERVER + "" + e.url + "&token=" +
-                        localStorage.getItem("session_id") + ' type="video/mp4">' +
-                '</video></div></div></div>')
+                `<a href="#" id="myBtn" type="button" aria-pressed="true" onclick="openModal(${i},'${e.url}')"><i class="material-icons align-middle">play_circle_filled</i></a>
+                <div id="myModal${i}" class="modal">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content"><div class="p-2"><p  onclick="closeModal(${i})" class="close" id="closeModal">&times;</p></div><br/>
+                <video controls="" name="media"  class="video">
+                    <source src="${SERVER}${e.url}&token=${localStorage.getItem(
+                        "session_id"
+                      )}" type="video/mp4">
+                </video>
+                <div class="card m-2 rounded-0">
+                    <div class="card-body">
+                        <h6 class="card-subtitle">Comments</h6>
+                        <!--<div class="form-group">
+                            <label for="message" class="bmd-label-floating px-2">Add Monitor Comment</label>
+                            <textarea class="form-control border rounded px-2" id="message" rows="4"></textarea>
+                        </div>
+
+                        
+                        <div class="text-right">
+                            <button id="send_feedback" class="btn btn-primary active" role="button" aria-pressed="true">Comment</button>
+                        </div>-->
+                        <div class="feedback_received"></div></div></div>
+                    
+                    
+                
+                
+                </div></div></div>`)
 
         }
         
@@ -602,7 +678,7 @@ function display_events(response) {
     });
 }
 
-function openModal(ind){
+function openModal(ind, url){
     
     console.log("In  myFunction......",ind)
 
@@ -613,14 +689,62 @@ function openModal(ind){
     console.log(btn)
     
     modal.style.display = "block";
+    //$('#myModal'+ind).modal('show');
+
+    get_video_info(getUrlVars(url)["id"], getUrlVars(url)["user"], function(data){});
 
 }
 
 function closeModal(ind){
+
+    $("#myModal"+ind).find("video").trigger('pause');
     document.getElementById("myModal"+ind).style.display="none";
 }
 
-function display_activity_patients(patients) {
+function openMap(lat, lng) {
+
+    var geocoder= new google.maps.Geocoder();
+
+    var mapProp= {
+      center:new google.maps.LatLng(lat,lng),
+      zoom:10,
+    };
+
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+    geocoder.geocode({'location': { lat: parseFloat(lat), lng: parseFloat(lng) }}, function(results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                name=results[0].formatted_address;
+                //alert(name);
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, lng),
+                    map: map,
+                    icon: 'images/map_icon.png',
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: name
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
+
+    // mapModal.style.display = "block";
+    $('#mapModal').modal('show')
+
+}
+
+function display_activity_patients(patients, value) {
     // $(".select-patient").append(
     //     "<option text-primary' value=''>All Patients</option>"
     // )
@@ -643,7 +767,8 @@ function display_activity_patients(patients) {
     }
 
     $(".select-patient").html(html);
-
+    
+    $(".select-patient").val(value);
 }
 
 function list_patient_events(patient_email, filter_type, callback) {
@@ -771,7 +896,7 @@ function display_side_activity_log(resp) {
         }    
 
         //$("#video-list").append(
-        html +=    '<div class="card mt-2"id="' + activity.id + '"> '+
+            html +=    '<div class="card mt-2"id="' + activity.id + '"> '+
             '<div class="card-header font-weight-bold">Created at : '+formatDate(new Date(activity.created_at * 1000))+'</div>'+
             '<div class="card-body video-body">'+
             '<video class="custom_video" id="videoPanel'+(c++)+'" width="100%" height="200px" >'+
@@ -788,6 +913,13 @@ function display_side_activity_log(resp) {
             //         " GPS - Checkin<br>" + activity.msg +
             //     '</div>'+
             //     '</div>');
+
+            html +=     `<div class="card mt-2"id="${activity.id}">
+                <div class="card-header font-weight-bold">Created at : ${formatDate(new Date(activity.created_at * 1000))}</div>
+                <div class="card-body gps-body" onclick="load_gps(${activity.lat},${activity.lng})" >
+                    GPS - Checkin<br>${activity.msg}
+                </div>
+                </div>`;
         }
 
     }
@@ -797,7 +929,6 @@ function display_side_activity_log(resp) {
 }
 
 function getVideoInfo(url){
-
     var vars = {};
     var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
         vars[key] = value;
@@ -888,12 +1019,83 @@ function get_video_info(id, user, callback) {
 }
 
 function load_video(id, user) {
-    $("#video").html(
-        '<source src=' + SERVER + '/api/review-video/?id=' + id +
-            '&user=' + user + '&token=' +
-            localStorage.getItem("session_id") + ' type="video/mp4">'
-    );
 
+    var newsrc= SERVER + '/api/review-video/?id=' + id +
+            '&user=' + user + '&token=' +
+            localStorage.getItem("session_id");
+
+    var video = document.getElementById('video');
+    var source = document.createElement('source');
+
+    if(video.childNodes.length > 0) {
+        video.removeChild(video.childNodes[0])
+    }
+
+    video.appendChild(source);
+
+    source.setAttribute('src', newsrc);
+
+    video.load();
+
+}
+
+function load_gps(lat, lng) {
+
+    videoPause();
+    $("#video-tag").hide();
+    $("#gps-tag").show();
+    //console.log(gps_info)
+    $("#gps-tag").html(
+      "<div id='gps-view' style='width:100%;height:500px;'></div>"
+    );
+    var spot = {
+      lat: parseFloat(lat),
+      lng: parseFloat(lng),
+    };
+    var name= '';
+    var latlng = spot;
+    var geocoder= new google.maps.Geocoder();
+    /*var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("gps-view"),
+      {
+        position: spot,
+        pov: { heading: 165, pitch: 0 },
+        zoom: 1
+      }
+    );*/
+    var panorama = new google.maps.Map(
+        document.getElementById("gps-view"),
+        {
+          center: {lat: spot.lat, lng: spot.lng},
+          zoom: 18
+        }
+    );
+    geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            name=results[0].formatted_address;
+            //alert(name);
+            var marker = new google.maps.Marker({
+              position: spot, 
+              map: panorama,
+              icon: 'images/map_icon.png',
+            });
+            var infowindow = new google.maps.InfoWindow({
+              content: name
+            });
+            infowindow.setContent(results[0].formatted_address);
+            infowindow.open(panorama, marker);
+            marker.addListener('click', function() {
+              infowindow.open(panorama, marker);
+            });
+  
+          } else {
+            window.alert('No results found');
+          }
+        } else {
+          window.alert('Geocoder failed due to: ' + status);
+        }
+      });
 }
 
 
