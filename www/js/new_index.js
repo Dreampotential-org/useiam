@@ -3,21 +3,19 @@ function init() {
 }
 
 function isSignIn() {
-  // var id = throughUrl()['id'];
-  // var user = throughUrl()['user'];
+    var id = throughUrl()['id'];
+    var user = throughUrl()['user'];
+    var isLoggedIn = localStorage.getItem("session_id");
 
-  var isLoggedIn = localStorage.getItem("session_id");
+    console.log(id)
+    console.log(user)
 
-  if (isLoggedIn != null && isLoggedIn != "") {
+  if(id == undefined && user == undefined){
+    activityPage("");
+  } else if (isLoggedIn != null && isLoggedIn != "") {
     videoPage();
-    //activityPage("");
-  } /*else if(id != undefined && user != undefined){
-
-        get_video_info(id, user, function(activity) {
-            load_video(id, user);
-        })
-
-    }*/ else {
+  }
+  else {
     loggedInPage();
   }
 
@@ -298,11 +296,13 @@ function videoPage() {
   var id = throughUrl()["id"];
   var user = throughUrl()["user"];
 
+
   get_video_info(id, user, function (video_info) {
     if (video_info.type == "video") {
+      getVideoInfo(video_info.url);
       load_video();
     } else if (video_info.type == "gps") {
-      load_gps(video_info.lat, video_info.lng);
+      load_gps(video_info.lat, video_info.lng, video_info.msg);
     }
     get_activity(video_info, function (results) {
       console.log(results);
@@ -321,13 +321,6 @@ function videoPage() {
     var ele = $(this).find("source");
     console.log(ele);
     var video_url = $(ele).attr("src");
-    // $("#video-tag").find("video").remove();
-    // $("#video-tag").append(
-    // '<video class="" controls="" autoplay="" name="media" id="video" width="100%" height="500"><source src=' +
-    //     getUrl(video_url)  +
-    //     ' type="video/mp4"></video>'
-    // );
-
     getVideoInfo(video_url);
   });
 
@@ -857,69 +850,13 @@ function get_activity(video_info, callback) {
       alert("Got err");
       console.log(err);
     });
-
-  // var settings = {
-  //     async: true,
-  //     crossDomain: true,
-  //     headers: {
-  //     Authorization: "Token " + localStorage.getItem("session_id")
-  //     },
-  //     url: SERVER + "/api/get-activity/",
-  //     method: "GET",
-  //     processData: false,
-  //     contentType: false,
-  //     mimeType: "multipart/form-data"
-  // };
-
-  // $.ajax(settings)
-  // .done(function(response) {
-  //     var msg= JSON.parse(response);
-  //     videoData =JSON.parse(response);
-  //     var allData = JSON.parse(response);
-  //     // var events=[];
-  //     // for(var i=0;i<allData.events.length; i++)
-  //     // {
-  //     //     if(allData.events[i].type=='video')
-  //     //     {
-  //     //     events.push(allData.events[i]);
-  //     //     }
-  //     // }
-  //     // console.log('events===>'+events);
-  //     // videoData={'events' : events};
-  //     // console.log("videos uploaded",videoData)
-  //     // videourl = videoData.events[0].url
-  //     // console.log("videos urlllllllllllll",videourl)
-
-  //     // console.log("Activity List...",msg.events.length);
-
-  //     // if(msg.events.length==0){
-  //     //     document.getElementById("eventData").style.height = "auto";
-  //     //     document.getElementById("activity-log").style.padding = "0px";
-
-  //     //     $("#activity-log.chat").html(
-  //     //         '<div class="noActivityDiv"><h3>No Activities in List</h3> </div>'
-  //     //     );
-  //     // }
-  //     callback(msg);
-  // })
-  // .fail(function(err) {
-  //     alert("Got err");
-  //     console.log(err);
-  // });
 }
 
 function display_side_activity_log(resp) {
-  var c = 0;
   var html = "";
 
   for (var activity of resp.events) {
-    // XXX add gps event
     if (activity.type == "video") {
-      if (c == 0) {
-        getVideoInfo(activity.url);
-      }
-
-      //$("#video-list").append(
       html +=
         '<div class="card mt-2"id="' +
         activity.id +
@@ -936,23 +873,14 @@ function display_side_activity_log(resp) {
         ' type="video/mp4"></video>' +
         '<i class="material-icons playBtn">play_arrow</i></div>' +
         "</div>";
-      //        );
     } else {
-      // $("#video-list").append(
-      //     '<div class="card mt-2"id="' + activity.id + '"> '+
-      //     '<div class="card-header font-weight-bold">Created at : '+formatDate(new Date(activity.created_at * 1000))+'</div>'+
-      //     '<div class="card-body">'+
-      //         " GPS - Checkin<br>" + activity.msg +
-      //     '</div>'+
-      //     '</div>');
-
+      // GPS
       html += `<div class="card mt-2"id="${activity.id}">
                 <div class="card-header font-weight-bold">Created at : ${formatDate(
                   new Date(activity.created_at * 1000)
                 )}</div>
-                <div class="card-body gps-body" onclick="getGpsInfo(${
-                  activity.lat
-                },${activity.lng})" >
+                <div class="card-body gps-body"
+                    onclick="getGpsInfo(${activity.id},'${activity.email}')" >
                     GPS - Checkin<br>${activity.msg}
                 </div>
                 </div>`;
@@ -962,17 +890,16 @@ function display_side_activity_log(resp) {
   $("#video-list").html(html);
 }
 
-function getGpsInfo(lat, lan) {
-  var id = throughUrl()["id"];
-  var user = throughUrl()["user"];
+function getGpsInfo(id, user) {
   get_video_info(id, user, function (activity) {
-    load_gps(lat, lan);
+    load_gps(activity.lat, activity.lng, activity.msg);
   });
 }
 
 function getVideoInfo(url) {
   var vars = {};
-  var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+  var parts = url.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
     vars[key] = value;
   });
   var id = vars["id"];
@@ -1029,7 +956,6 @@ function get_video_info(id, user, callback) {
       id,
     function (res) {
       console.log(res);
-
       if ("status" in res && res.status == "error") {
         swal({
           title: "Access Denied",
@@ -1040,7 +966,6 @@ function get_video_info(id, user, callback) {
         });
         return;
       }
-
       $("#patient_name").text(res.owner_name);
       $("#created_at").text(formatDate(new Date(res.created_at * 1000)));
 
@@ -1083,6 +1008,8 @@ function get_video_info(id, user, callback) {
 }
 
 function load_video(id, user) {
+
+  $(".client_gps").hide()
   var newsrc =
     SERVER +
     "/api/review-video/?id=" +
@@ -1106,7 +1033,9 @@ function load_video(id, user) {
   video.load();
 }
 
-function load_gps(lat, lng) {
+function load_gps(lat, lng, msg) {
+  $(".client_gps").show()
+  $("#gps_msg").text(msg)
   videoPause();
   $("#video-tag").hide();
   $("#gps-tag").show();
@@ -1121,6 +1050,7 @@ function load_gps(lat, lng) {
   var name = "";
   var latlng = spot;
   var geocoder = new google.maps.Geocoder();
+
   /*var panorama = new google.maps.StreetViewPanorama(
       document.getElementById("gps-view"),
       {
