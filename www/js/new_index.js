@@ -854,6 +854,7 @@ function get_activity(video_info, callback) {
 
 function display_side_activity_log(resp) {
   var html = "";
+  var c=0;
 
   for (var activity of resp.events) {
     if (activity.type == "video") {
