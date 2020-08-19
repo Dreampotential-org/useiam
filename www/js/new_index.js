@@ -1,5 +1,71 @@
 function init() {
+  init_events();
   isSignIn();
+}
+
+function init_events() {
+  $("body").delegate(".video-body", "click", function () {
+    $("#gps-tag").hide();
+    $("#video-tag").show();
+
+    var ele = $(this).find("source");
+    console.log(ele);
+    var video_url = $(ele).attr("src");
+    getVideoInfo(video_url);
+  });
+
+  $("#send_feedback").on("click", function (e) {
+    var id = throughUrl()["id"];
+    var user = throughUrl()["user"];
+
+    if ($("#message").val().trim() != "") {
+      $.ajax({
+        type: "POST",
+        url:
+          SERVER +
+          "/api/send-feedback/?token=" +
+          localStorage.getItem("session_id") +
+          "&user=" +
+          user +
+          "&id=" +
+          id,
+        data: { message: $("#message").val() },
+      })
+        .done(function (resp) {
+          console.log(resp);
+
+          if (resp.status == "okay") {
+            get_video_info(id, user, function() {});
+
+            swal({
+              title: "Feedback Send",
+              text: "Your feedback send successfully",
+              icon: "success",
+            });
+          } else {
+            swal({
+              title: "Please try again later.",
+              icon: "error",
+            });
+          }
+
+          $("#message").val("");
+        })
+        .fail(function (err) {
+          console.log(err);
+          swal({
+            title: "Something wrong",
+            icon: "error",
+          });
+        });
+    } else {
+      swal({
+        text: "Comment field should not be empty.",
+        icon: "error",
+      });
+    }
+  });
+
 }
 
 function isSignIn() {
@@ -310,71 +376,6 @@ function videoPage() {
     });
   });
 
-  // get_activity(id, user,function(resp) {
-  //     display_side_activity_log(resp);
-  // });
-
-  $("body").delegate(".video-body", "click", function () {
-    $("#gps-tag").hide();
-    $("#video-tag").show();
-
-    var ele = $(this).find("source");
-    console.log(ele);
-    var video_url = $(ele).attr("src");
-    getVideoInfo(video_url);
-  });
-
-  $("#send_feedback").on("click", function (e) {
-    var id = getUrlVars()["id"];
-    var user = getUrlVars()["user"];
-
-    if ($("#message").val().trim() != "") {
-      $.ajax({
-        type: "POST",
-        url:
-          SERVER +
-          "/api/send-feedback/?token=" +
-          localStorage.getItem("session_id") +
-          "&user=" +
-          user +
-          "&id=" +
-          id,
-        data: { message: $("#message").val() },
-      })
-        .done(function (resp) {
-          console.log(resp);
-
-          if (resp.status == "okay") {
-            get_video_info(getUrlVars()["id"], getUrlVars()["user"]);
-
-            swal({
-              title: "Feedback Send",
-              text: "Your feedback send successfully",
-              icon: "success",
-            });
-          } else {
-            swal({
-              title: "Please try again later.",
-              icon: "error",
-            });
-          }
-
-          $("#message").val("");
-        })
-        .fail(function (err) {
-          console.log(err);
-          swal({
-            title: "Something wrong",
-            icon: "error",
-          });
-        });
-    } else {
-      swal({
-        text: "Comment field should not be empty.",
-        icon: "error",
-      });
-    }
-  });
 }
 
 function clientPage() {
@@ -408,9 +409,6 @@ function clientPage() {
       activityPage(
         $(this).find(".card-body").children(".patient-email").text()
       );
-
-      //$("#activity-tab").click();
-      // $(".select-patient").val($( this ).find(".card-body").children( ".patient-email" ).text());
     });
   });
 }
@@ -831,7 +829,8 @@ function get_activity(video_info, callback) {
       Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url:
-      SERVER + "/api/list-patient-events-v2/?email=" + video_info.owner_email,
+      SERVER + "/api/list-patient-events-v2/?email=" + encodeURIComponent(
+            video_info.owner_email),
     method: "GET",
     processData: false,
     contentType: false,
@@ -892,22 +891,32 @@ function display_side_activity_log(resp) {
 }
 
 function getGpsInfo(id, user) {
+    // set ID / user in url
+    window.history.pushState(
+        '', 'USEIAM',
+        '/review-video.html?id=' + id + '&user=' + user + '');
+
   get_video_info(id, user, function (activity) {
     load_gps(activity.lat, activity.lng, activity.msg);
   });
 }
 
 function getVideoInfo(url) {
-  var vars = {};
-  var parts = url.replace(
-    /[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-    vars[key] = value;
-  });
-  var id = vars["id"];
-  var user = vars["user"];
-  get_video_info(id, user, function (activity) {
-    load_video(id, user);
-  });
+    var vars = {};
+    var parts = url.replace(
+        /[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+    });
+
+    var id = vars["id"];
+    var user = vars["user"];
+    window.history.pushState(
+        '', 'USEIAM',
+        '/review-video.html?id=' + id + '&user=' + user + '');
+
+    get_video_info(id, user, function (activity) {
+        load_video(id, user);
+    });
 }
 
 function formatDate(date) {
@@ -973,8 +982,6 @@ function get_video_info(id, user, callback) {
       var html = "";
 
       if (res.feedback.length == 0) {
-        //$(".feedback_received").append(
-        /*"<div>No comments found!</div>"*/
         html +=
           '<div class="d-flex mt-3">' +
           '<div class="ml-3 border-bottom border-light">' +
@@ -983,9 +990,7 @@ function get_video_info(id, user, callback) {
           "</div>";
         //)
       } else {
-        for (var message of res.feedback) {
-          //$(".feedback_received").append(
-          /*"<div><b>" + message.user + "</b> - " + message.message + "</div>"*/
+        for (var message of res.feedback.reverse()) {
           html +=
             '<div class="d-flex mt-3">' +
             '<img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">' +
@@ -1052,14 +1057,6 @@ function load_gps(lat, lng, msg) {
   var latlng = spot;
   var geocoder = new google.maps.Geocoder();
 
-  /*var panorama = new google.maps.StreetViewPanorama(
-      document.getElementById("gps-view"),
-      {
-        position: spot,
-        pov: { heading: 165, pitch: 0 },
-        zoom: 1
-      }
-    );*/
   var panorama = new google.maps.Map(document.getElementById("gps-view"), {
     center: { lat: spot.lat, lng: spot.lng },
     zoom: 18,
