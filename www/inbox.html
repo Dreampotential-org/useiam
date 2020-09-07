@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,30 +10,33 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
     <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
     <title>USEIAM</title>
 
     <style>
-
-        body{
+        body {
             height: 100vh;
         }
 
-        .review-video .comment-img, .activity-log .comment-img{
+        .review-video .comment-img,
+        .activity-log .comment-img {
             height: 50px;
             width: 50px;
         }
 
-        .activity-log .custom-img, .clientsList .clinetProfileImage{
+        .activity-log .custom-img,
+        .clientsList .clinetProfileImage {
             height: 200px;
         }
 
-        .clientsList .card{
+        .clientsList .card {
             cursor: pointer;
         }
 
-        .activity-log .card, .clientsList .card{
+        .activity-log .card,
+        .clientsList .card {
             overflow: hidden;
             border-radius: 12px;
         }
@@ -43,12 +47,12 @@
             top: 7px;
         }
 
-        #video-list .card-body:hover{
-            opacity:0.5;
+        #video-list .card-body:hover {
+            opacity: 0.5;
             cursor: pointer;
         }
 
-        #video-list .card-body{
+        #video-list .card-body {
             position: relative;
         }
 
@@ -56,44 +60,46 @@
             position: absolute;
             color: white;
             font-size: 24px;
-            top:50%;
+            top: 50%;
             width: 100%;
-            left:50%;
-            display:none;
+            left: 50%;
+            display: none;
         }
+
         .video-body:hover i {
             display: block;
         }
 
-        .events .modal{
+        .events .modal {
             overflow-y: scroll;
             margin-top: 30px;
         }
 
-        #inbox-div .active-star-ic{
+        #inbox-div .active-star-ic {
             color: #f1f102;
         }
 
-        #inbox-div .star-ic{
+        #inbox-div .star-ic {
             color: lightgray;
         }
 
-        .inbox-list .fav-btn:hover{
+        .inbox-list .fav-btn:hover {
             background-color: transparent !important;
         }
-        .inbox-list {
-          font-family: 'PT Sans', arial, serif;
-          color:#ffffff;
-          text-align:left;
-          font-size:14px;
-          overflow: auto;
-          height: calc(100vh - 280px);
-        }
 
+        .inbox-list {
+            font-family: 'PT Sans', arial, serif;
+            color: #ffffff;
+            text-align: left;
+            font-size: 14px;
+            overflow: auto;
+            height: calc(100vh - 280px);
+        }
     </style>
 
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="bmd-layout-container bmd-drawer-f-l">
         <header id="custom-header" class="bmd-layout-header bg-primary">
@@ -108,7 +114,7 @@
                 <button id="logout-btn" class="btn btn-secondary text-white d-flex align-items-center m-0 px-1 float-right" type="button">
                     <i class="material-icons align-middle">logout</i>
                 </button>
-              <!--
+                <!--
                 <button id="notification-btn" class="btn btn-secondary text-white d-flex align-items-center m-0 px-1 float-right" type="button">
                     <i class="material-icons align-middle">notifications</i>
                 </button>
@@ -121,14 +127,26 @@
         </header>
         <div id="dw-s1" class="bmd-layout-drawer bg-faded">
             <header>
-            <div class="text-center">
-                <img src="./img/logoReviewVideo.png" width="50" height="50" alt="">
-            </div>
+                <div class="text-center">
+                    <img src="./img/logoReviewVideo.png" width="50" height="50" alt="">
+                </div>
             </header>
             <ul id="menu-ul" class="list-group">
-                    <a id="inbox-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">inbox</i> Inbox</a>
-                    <a id="client-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">people</i> Clients</a>
-                    <a id="invite-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">share</i> Invite Client</a>
+                <a id="inbox-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center"
+                    role="button" aria-pressed="true">
+                    <i class="material-icons align-middle mr-2">inbox</i> Inbox</a>
+                <a id="client-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center"
+                    role="button" aria-pressed="true">
+                    <i class="material-icons align-middle mr-2">people</i> Clients</a>
+                <a id="organization-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center"
+                    role="button" aria-pressed="true">
+                    <i class="material-icons align-middle mr-2">account_balance</i> Organization</a>
+                <a id="team-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center"
+                    role="button" aria-pressed="true">
+                    <i class="material-icons align-middle mr-2">people_alt</i> Team</a>
+                <a id="invite-tab" data-toggle="drawer" data-target="#dw-s1" href="javascript: void(0)" class="btn btn-primary text-left m-0 py-3 d-flex align-items-center"
+                    role="button" aria-pressed="true">
+                    <i class="material-icons align-middle mr-2">share</i> Invite Client</a>
             </ul>
         </div>
 
@@ -230,9 +248,18 @@
                             </div>
                             <div id="gps-tag" class="card-header font-weight-bold"></div>
                             <div class="card-body">
-                                <p class="card-text"><span class="font-weight-bold">Client Name :</span> <span id='patient_name'></span></p>
-                                <p class="card-text"><span class="font-weight-bold">Created at :</span> <span id='created_at'></span></p>
-                                <p class="card-text client_gps"><span class="font-weight-bold">Client Note: </span> <span id='gps_msg'></span></p>
+                                <p class="card-text">
+                                    <span class="font-weight-bold">Client Name :</span>
+                                    <span id='patient_name'></span>
+                                </p>
+                                <p class="card-text">
+                                    <span class="font-weight-bold">Created at :</span>
+                                    <span id='created_at'></span>
+                                </p>
+                                <p class="card-text client_gps">
+                                    <span class="font-weight-bold">Client Note: </span>
+                                    <span id='gps_msg'></span>
+                                </p>
                             </div>
                         </div>
 
@@ -244,7 +271,7 @@
                                     <textarea class="form-control border rounded px-2" id="message" rows="4"></textarea>
                                 </div>
 
-                                
+
                                 <div class="text-right">
                                     <button id="send_feedback" class="btn btn-primary active" role="button" aria-pressed="true">Comment</button>
                                 </div>
@@ -254,7 +281,7 @@
 
                     </div>
                     <div class="col-12 col-md-4 col-sm-12">
-                        <div class="col-md-12" id="video-list"> 
+                        <div class="col-md-12" id="video-list">
                         </div>
                     </div>
                 </div>
@@ -296,15 +323,24 @@
 
                     <div class="card my-2">
                         <div class="card-body">
-                              <div class="list-group inbox-list">
-                              </div>
+                            <div class="list-group inbox-list">
+                            </div>
                         </div>
                         <div class="paginationDiv py-3">
-                          <span class="text-primary" style='padding-left: 5px;'></span>
-                          <span class='pstart-count font-weight-bold'></span>-<span class='pend-count font-weight-bold'></span>
-                          of <span class='count font-weight-bold'></span>
-                          <span class='next float-right'><a href='#'>Next<i class="material-icons align-middle">keyboard_arrow_right</i></a></span>
-                          <span class='prev float-right pr-2'><a href='#'> <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a></span>
+                            <span class="text-primary" style='padding-left: 5px;'></span>
+                            <span class='pstart-count font-weight-bold'></span>-
+                            <span class='pend-count font-weight-bold'></span>
+                            of
+                            <span class='count font-weight-bold'></span>
+                            <span class='next float-right'>
+                                <a href='#'>Next
+                                    <i class="material-icons align-middle">keyboard_arrow_right</i>
+                                </a>
+                            </span>
+                            <span class='prev float-right pr-2'>
+                                <a href='#'>
+                                    <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a>
+                            </span>
                         </div>
                     </div>
 
@@ -333,14 +369,83 @@
                     <div class="row events"></div>
                     <div class='results'></div>
                     <div class="paginationDiv py-3">
-                        <span class="text-primary">Number of results :</span>  <span class='count font-weight-bold'></span>
-                        <span class='next float-right'><a href='#'>Next<i class="material-icons align-middle">keyboard_arrow_right</i></a></span>
-                        <span class='prev float-right pr-2'><a href='#'> <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a></span>
+                        <span class="text-primary">Number of results :</span>
+                        <span class='count font-weight-bold'></span>
+                        <span class='next float-right'>
+                            <a href='#'>Next
+                                <i class="material-icons align-middle">keyboard_arrow_right</i>
+                            </a>
+                        </span>
+                        <span class='prev float-right pr-2'>
+                            <a href='#'>
+                                <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a>
+                        </span>
                     </div>
 
                 </div>
 
                 <!-- Activity Log End -->
+
+
+                <!-- Organization Start -->
+                <div id="organization-div">
+                    <div class="card my-2">
+                        <form class="p-5">
+                            <div class="form-group">
+                                <label for="name" class="bmd-label-floating">Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="website" class="bmd-label-floating">Website</label>
+                                <input type="text" class="form-control" id="website">
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="bmd-label-floating">Description</label>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-raised">Save</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Organization End -->
+
+                <!-- Team Start -->
+                <div id="team-div">
+                    <div class="card my-2">
+                        <form class="p-5">
+                            <button type="button" class="btn btn-primary btn-raised" data-toggle="modal" data-target="#inviteTeamMembers">
+                                <i class="material-icons align-middle mr-2">person_add_alt_1</i>Invite Team Members</button>
+                            <table class="table mt-5">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Access</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Aaron Rosen</th>
+                                        <td>aaronorosen@gmail.com</td>
+                                        <td>Account Owner</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">arosen@taboom.io</th>
+                                        <td>arosen@taboom.io</td>
+                                        <td>Admin</td>
+                                        <td>
+                                            <i class="material-icons align-middle">close</i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <!-- Team End -->
+
 
             </div>
         </main>
@@ -348,9 +453,9 @@
         <!-- Invite Client Start -->
 
 
-            <div id="inviteModal" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+        <div id="inviteModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Invite</h5>
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -367,21 +472,71 @@
                         <button id="invite-btn" type="button" class="btn btn-primary active m-2">Invite</button>
                         <button type="button" class="btn btn-secondary my-2" data-dismiss="modal">Cancel</button>
                     </div>
-                    </div>
                 </div>
             </div>
+        </div>
 
         <!-- Invite Client End -->
 
-        <!-- Map Modal Start -->
 
-            <div id="mapModal" class="modal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div id="googleMap" style="width: 100%; height: 400px"></div>
+        <!-- Invite People Start -->
+
+
+        <div id="inviteTeamMembers" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invite People</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button> -->
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <b>All invited people will be granted access to all sites of useiam</b>
+                        </p>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="mb-0">TEAM MEMBER</p>
+                                <div class="form-group">
+                                    <label for="member_email" class="bmd-label-floating">Email Address</label>
+                                    <input type="email" class="form-control" id="member_email">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="mb-0">ACCESS</p>
+                                <div class="form-group">
+                                    <!-- <label for="exampleSelect1" class="bmd-label-floating">Example select</label> -->
+                                    <select class="form-control" id="exampleSelect1">
+                                        <option>Please Select</option>
+                                        <option>Admin</option>
+                                        <option>Read & Write</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="member-btn" type="button" class="btn btn-primary active m-2">Send Invites</button>
+                        <button type="button" class="btn btn-secondary my-2" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Invite People End -->
+
+
+        <!-- Map Modal Start -->
+
+        <div id="mapModal" class="modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div id="googleMap" style="width: 100%; height: 400px"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Map Modal End -->
 
@@ -412,11 +567,14 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWJ2UbLhFeu3jVgd4ZwWMMNyGl4Kqx7V4">
     </script>
     <script src="js/config.js"></script>
@@ -426,6 +584,7 @@
     <script src="js/clients.js"></script>
     <script src="js/new_signin.js"></script> -->
     <script src="js/inbox.js"></script>
-    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-  </body>
+    <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+</body>
+
 </html>
