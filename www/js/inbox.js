@@ -346,6 +346,8 @@ function loggedInPage(){
     $("#inbox-div").hide();
     $("#inbox-details-div").hide();
     $("#activity-div").hide();
+    $("#organization-div").hide();
+    $("#team-div").hide();
 
 }
 
@@ -359,6 +361,8 @@ function signUpPage(){
     $("#inbox-div").hide();
     $("#inbox-details-div").hide();
     $("#activity-div").hide();
+    $("#organization-div").hide();
+    $("#team-div").hide();
     $("#back-btn").hide();
 
 }
@@ -373,6 +377,8 @@ function videoPage() {
     $("#inbox-div").hide();
     $("#inbox-details-div").hide();
     $("#activity-div").hide();
+    $("#organization-div").hide();
+    $("#team-div").hide();
     $("#back-btn").show();
 
     var id = throughUrl()["id"];
@@ -404,7 +410,8 @@ function clientPage() {
     $("#inbox-div").hide();
     $("#inbox-details-div").hide();
     $("#activity-div").hide();
-
+    $("#organization-div").hide();
+    $("#team-div").hide();
     $("#back-btn").hide();
 
     list_patients(function(response) {
@@ -440,6 +447,8 @@ function inboxPage(back_arrow) {
     $("#inbox-div").show();
     $("#inbox-details-div").hide();
     $("#activity-div").hide();
+    $("#organization-div").hide();
+    $("#team-div").hide();
 
     $("#back-btn").hide();
     window.history.pushState(
@@ -475,7 +484,8 @@ function inboxDetailsPage(){
     $("#inbox-div").hide();
     $("#inbox-details-div").show();
     $("#activity-div").hide();
-
+    $("#organization-div").hide();
+    $("#team-div").hide();
     $("#back-btn").show();
 }
 
@@ -492,7 +502,8 @@ function activityPage(value){
     $("#inbox-div").hide();
     $("#inbox-details-div").hide();
     $("#activity-div").show();
-
+    $("#organization-div").hide();
+    $("#team-div").hide();
     $("#back-btn").hide();
 
     list_patients(function(response) {
@@ -511,6 +522,36 @@ function activityPage(value){
         })
     });
 
+}
+
+function organizationPage(){
+    
+        $("#custom-header").show();
+        $("#signin-div").hide();
+        $("#signup-div").hide();
+        $("#video-div").hide();
+        $("#client-div").hide();
+        $("#inbox-div").hide();
+        $("#inbox-details-div").hide();
+        $("#activity-div").hide();
+        $("#organization-div").show();
+        $("#team-div").hide();
+        $("#back-btn").hide();
+}
+
+function teamPage(){
+    
+    $("#custom-header").show();
+    $("#signin-div").hide();
+    $("#signup-div").hide();
+    $("#video-div").hide();
+    $("#client-div").hide();
+    $("#inbox-div").hide();
+    $("#inbox-details-div").hide();
+    $("#activity-div").hide();
+    $("#organization-div").hide();
+    $("#team-div").show();
+    $("#back-btn").hide();
 }
 
 function invitePage(){
@@ -561,6 +602,18 @@ function tabChange() {
     $("#manage-tab").on('click', function(e) {
         isActive(this)
         videoPause()
+    });
+    
+    $("#organization-tab").on('click', function(e) {
+        isActive(this)
+        videoPause()
+        organizationPage()
+    });
+
+    $("#team-tab").on('click', function(e) {
+        isActive(this)
+        videoPause()
+        teamPage()
     });
 }
 
@@ -1153,6 +1206,8 @@ function goTo(from, data1, data2){
     $("#inbox-div").hide();
     $("#inbox-details-div").hide();
     $("#activity-div").hide();
+    $("#organization-div").hide();
+    $("#team-div").hide();
     $("#back-btn").show();
 
 }
