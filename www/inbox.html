@@ -83,7 +83,14 @@
             color: lightgray;
         }
 
-        .inbox-list .fav-btn:hover {
+        #inbox-div .active-read-ic {
+            color: #000;
+        }
+
+        .inbox-list .fav-btn:hover,
+        .read-btn:hover,
+        .fav-btn:focus,
+        .read-btn:focus {
             background-color: transparent !important;
         }
 
@@ -93,7 +100,7 @@
             text-align: left;
             font-size: 14px;
             overflow: auto;
-            height: calc(100vh - 280px);
+            /*height: calc(100vh - 280px);*/
         }
     </style>
 

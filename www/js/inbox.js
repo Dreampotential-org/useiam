@@ -713,6 +713,10 @@ html += `
                 class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
             <i class="material-icons align-middle m-0 star-ic">star_rate</i>
         </button>
+        <button type="button"
+                class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
+            <i class="material-icons align-middle m-0 star-ic">mark_email_read</i>
+        </button>
     </div>
 </div> `
 
@@ -733,6 +737,10 @@ html += `
         <button type="button"
                 class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
             <i class="material-icons align-middle m-0 star-ic">star_rate</i>
+        </button>
+        <button type="button"
+                class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
+            <i class="material-icons align-middle m-0">mark_email_read</i>
         </button>
     </div>
 </div>`
@@ -895,6 +903,20 @@ function favorite(valt){
     }else{
         $(ele).addClass("star-ic")
         $(ele).removeClass("active-star-ic")
+    }
+}
+
+function readUnread(valt){
+    var ele = $(valt).find( "i" );
+
+    if($(ele).hasClass("star-ic")){
+
+        $(ele).removeClass("star-ic")
+        $(ele).addClass("active-read-ic")
+
+    }else{
+        $(ele).addClass("star-ic")
+        $(ele).removeClass("active-read-ic")
     }
 }
 
