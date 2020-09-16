@@ -11,7 +11,7 @@ function init_gps_event() {
         // dashboard will be shown when the back btn is clicked
         showBackButton('dashboard');
         showATab('addEvent');
-        //hide info button if visible
+        // hide info button if visible
         $("#LocationModal").addClass("is-visible");
         // clear text area content
         $("#addEvent textarea").val("")
