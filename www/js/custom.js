@@ -12,7 +12,6 @@ function init() {
         window.scrollTo(0,NaN)
     });
 
-
     block_desktop()
     init_reset_password()
     init_logo()
@@ -91,7 +90,14 @@ function log_error_to_slack(msg) {
 }
 
 $('.modal-overlay').on('click', function(e) {
-  $('.modal').removeClass('is-visible');
+
+    // if the user does not correctly tap allow we trigger
+    // dialog box here too
+    if ($(this).parent().attr("id") == 'LocationModal') {
+        start_gps()
+        found_gps_or_timeout();
+    }
+    $('.modal').removeClass('is-visible');
 });
 $('.toggleBar').on('click', function(e) {
   $('.slideMenu').toggle("slow");
