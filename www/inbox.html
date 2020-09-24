@@ -95,12 +95,26 @@
         }
 
         .inbox-list {
-            font-family: 'PT Sans', arial, serif;
-            color: #ffffff;
+            /* font-family: 'PT Sans', arial, serif; */
+            /* color: #ffffff; */
             text-align: left;
             font-size: 14px;
             overflow: auto;
             /*height: calc(100vh - 280px);*/
+        }
+
+        #inbox-div .img-div {
+            height: 200px;
+            width: 200px;
+            overflow: hidden;
+        }
+
+        #inbox-div img {
+            height: 100%;
+        }
+
+        .img-div i {
+            font-size: 100px;
         }
     </style>
 
@@ -320,6 +334,34 @@
                         </select>
                     </div>
 
+                    <div class="card my-2">
+                        <div class="card-body inbox-list">
+
+                            <!-- <div class="media">
+                                <div class="img-div">
+                                    <img class="align-self-start mr-3" src="./img/logoReviewVideo.png" alt="Generic placeholder image">
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mt-0">Name: John Doe</h6>
+                                    <h6 class="mt-0">Date: 13-08-1995</h6>
+
+                                    <h6 class="mt-0">Comments:</h6>
+                                    <div class="form-group pt-1">
+                                        <textarea placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
+                                    </div>
+
+
+                                    <div class="text-right">
+                                        <button class="btn btn-primary active" role="button" aria-pressed="true">Reply</button>
+                                    </div>
+
+                                </div>
+                            </div> -->
+
+
+                        </div>
+                    </div>
+
                     <!-- <div class="searchRow position-relative">
                         <input id="inboxInput" class="w-100 py-1 px-4" type="text" placeholder="Search by name...">
                         <i class="material-icons align-middle mr-2 searchIcon">search</i>
@@ -329,10 +371,10 @@
                     </div>
 
                     <div class="card my-2">
-                        <div class="card-body">
+                        <!-- <div class="card-body">
                             <div class="list-group inbox-list">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="paginationDiv py-3">
                             <span class="text-primary" style='padding-left: 5px;'></span>
                             <span class='pstart-count font-weight-bold'></span>-

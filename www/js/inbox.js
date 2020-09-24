@@ -686,6 +686,70 @@ function display_patients(patients) {
     });
 }
 
+// function display_events(response, from) {
+
+//     if(from == 'inbox'){
+//         var html = "";
+
+//         if(response.count == 0){
+//             html += `<div class="col-md-12 my-2 text-center">No records found.</div>`
+//         }
+//     for(var e of response.results) {
+// if(e.type == 'gps') {
+// html += `
+// <div class="border-bottom p-3">
+//     <a href="javascript: void(0)"
+//         onclick="goTo('map','${e.id}','${e.email}')"
+//         class="list-group-item list-group-item-action p-0 py-1 d-block">
+//         <i class="material-icons align-middle mr-2">room</i> ${e.name}
+//         <div class="float-right">
+//             <span class="m-0">
+//                 ${formatDate(new Date(e.created_at * 1000))}
+//             </span>
+//         </div>
+//     </a>
+//     <div class="text-right">
+//         <button type="button"
+//                 class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
+//             <i class="material-icons align-middle m-0 star-ic">star_rate</i>
+//         </button>
+//         <button type="button"
+//                 class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
+//             <i class="material-icons align-middle m-0 star-ic">mark_email_read</i>
+//         </button>
+//     </div>
+// </div> `
+
+// } else {
+// html += `
+// <div class="border-bottom p-3">
+//     <a href="javascript: void(0)"
+//        onclick="goTo('video','${e.url}')"
+//        class="list-group-item list-group-item-action p-0 py-1 d-block">
+//         <i class="material-icons align-middle mr-2">play_circle_filled</i> ${e.name}
+//         <div class="float-right">
+//             <span class="m-0">
+//                 ${formatDate(new Date(e.created_at * 1000))}
+//             </span>
+//         </div>
+//      </a>
+//      <div class="text-right">
+//         <button type="button"
+//                 class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
+//             <i class="material-icons align-middle m-0 star-ic">star_rate</i>
+//         </button>
+//         <button type="button"
+//                 class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
+//             <i class="material-icons align-middle m-0">mark_email_read</i>
+//         </button>
+//     </div>
+// </div>`
+//   }
+//  }
+//  $(".inbox-list").html(html)
+//  }
+// }
+
 function display_events(response, from) {
 
     if(from == 'inbox'){
@@ -694,61 +758,60 @@ function display_events(response, from) {
         if(response.count == 0){
             html += `<div class="col-md-12 my-2 text-center">No records found.</div>`
         }
-    for(var e of response.results) {
-if(e.type == 'gps') {
-html += `
-<div class="border-bottom p-3">
-    <a href="javascript: void(0)"
-        onclick="goTo('map','${e.id}','${e.email}')"
-        class="list-group-item list-group-item-action p-0 py-1 d-block">
-        <i class="material-icons align-middle mr-2">room</i> ${e.name}
-        <div class="float-right">
-            <span class="m-0">
-                ${formatDate(new Date(e.created_at * 1000))}
-            </span>
-        </div>
-    </a>
-    <div class="text-right">
-        <button type="button"
-                class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
-            <i class="material-icons align-middle m-0 star-ic">star_rate</i>
-        </button>
-        <button type="button"
-                class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
-            <i class="material-icons align-middle m-0 star-ic">mark_email_read</i>
-        </button>
-    </div>
-</div> `
+        for(var e of response.results) {
 
-} else {
-html += `
-<div class="border-bottom p-3">
-    <a href="javascript: void(0)"
-       onclick="goTo('video','${e.url}')"
-       class="list-group-item list-group-item-action p-0 py-1 d-block">
-        <i class="material-icons align-middle mr-2">play_circle_filled</i> ${e.name}
-        <div class="float-right">
-            <span class="m-0">
-                ${formatDate(new Date(e.created_at * 1000))}
-            </span>
-        </div>
-     </a>
-     <div class="text-right">
-        <button type="button"
-                class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
-            <i class="material-icons align-middle m-0 star-ic">star_rate</i>
-        </button>
-        <button type="button"
-                class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
-            <i class="material-icons align-middle m-0">mark_email_read</i>
-        </button>
-    </div>
-</div>`
-  }
- }
- $(".inbox-list").html(html)
- }
+            if(e.type == 'gps') {
+
+                html += `<div class="media">
+                    <div class="img-div d-flex align-items-center justify-content-center">
+                    <i class="material-icons align-middle mr-2">room</i>
+                    </div>
+                    <div class="media-body">
+                        <h6 class="mt-0">Name: ${e.name}</h6>
+                        <h6 class="mt-0">Date: ${formatDate(new Date(e.created_at * 1000))}</h6>
+
+                        <h6 class="mt-0">Comments:</h6>
+                        <div class="form-group pt-1">
+                            <textarea placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
+                        </div>
+
+
+                        <div class="text-right">
+                            <button class="btn btn-primary active" role="button" aria-pressed="true">Reply</button>
+                        </div>
+
+                    </div>
+                </div>`
+            }else{
+
+                html += `<div class="media">
+                    <div class="img-div d-flex align-items-center justify-content-center">
+                    <i class="material-icons align-middle mr-2">play_circle_filled</i>
+                    </div>
+                    <div class="media-body">
+                        <h6 class="mt-0">Name: ${e.name}</h6>
+                        <h6 class="mt-0">Date: ${formatDate(new Date(e.created_at * 1000))}</h6>
+
+                        <h6 class="mt-0">Comments:</h6>
+                        <div class="form-group pt-1">
+                            <textarea placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
+                        </div>
+
+
+                        <div class="text-right">
+                            <button class="btn btn-primary active" role="button" aria-pressed="true">Reply</button>
+                        </div>
+
+                    </div>
+                </div>`
+
+            }    
+        }
+        $(".inbox-list").html(html)
+    }
 }
+
+
 
 function openModal(ind, url){
     console.log("In  myFunction......",ind)
