@@ -48,46 +48,18 @@ function init_events() {
         var user = throughUrl()["user"];
 
         if ($("#message").val().trim() != "") {
-            $.ajax({
-                type: "POST",
-                url: SERVER + "/api/send-feedback/?token=" +
-                    localStorage.getItem("session_id") +
-                "&user=" +
-                user +
-                "&id=" +
-                id,
-                data: { message: $("#message").val() },
-           }).done(function (resp) {
-              if (resp.status == "okay") {
-                    get_video_info(id, user, function() {});
-            swal({
-              title: "Feedback Send",
-              text: "Your feedback send successfully",
-              icon: "success",
-            });
-          } else {
-            swal({
-              title: "Please try again later.",
-              icon: "error",
-            });
-          }
 
-          $("#message").val("");
-        })
-        .fail(function (err) {
-          console.log(err);
-          swal({
-            title: "Something wrong",
-            icon: "error",
-          });
-        });
-    } else {
-      swal({
-        text: "Comment field should not be empty.",
-        icon: "error",
-      });
-    }
-  });
+            sendFeedback(id, user, $("#message").val().trim());
+
+            $("#message").val("");
+            
+        } else {
+            swal({
+                text: "Comment field should not be empty.",
+                icon: "error",
+            });
+        }
+   });
 
 }
 
@@ -455,7 +427,7 @@ function inboxPage(back_arrow) {
         '', 'USEIAM',
         window.location.pathname);
 
-
+        // tempGPS();
     // if the back arrow is pressed return
     if (back_arrow == true && NEXT_PAGE_URL != null) return
 
@@ -686,75 +658,12 @@ function display_patients(patients) {
     });
 }
 
-// function display_events(response, from) {
-
-//     if(from == 'inbox'){
-//         var html = "";
-
-//         if(response.count == 0){
-//             html += `<div class="col-md-12 my-2 text-center">No records found.</div>`
-//         }
-//     for(var e of response.results) {
-// if(e.type == 'gps') {
-// html += `
-// <div class="border-bottom p-3">
-//     <a href="javascript: void(0)"
-//         onclick="goTo('map','${e.id}','${e.email}')"
-//         class="list-group-item list-group-item-action p-0 py-1 d-block">
-//         <i class="material-icons align-middle mr-2">room</i> ${e.name}
-//         <div class="float-right">
-//             <span class="m-0">
-//                 ${formatDate(new Date(e.created_at * 1000))}
-//             </span>
-//         </div>
-//     </a>
-//     <div class="text-right">
-//         <button type="button"
-//                 class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
-//             <i class="material-icons align-middle m-0 star-ic">star_rate</i>
-//         </button>
-//         <button type="button"
-//                 class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
-//             <i class="material-icons align-middle m-0 star-ic">mark_email_read</i>
-//         </button>
-//     </div>
-// </div> `
-
-// } else {
-// html += `
-// <div class="border-bottom p-3">
-//     <a href="javascript: void(0)"
-//        onclick="goTo('video','${e.url}')"
-//        class="list-group-item list-group-item-action p-0 py-1 d-block">
-//         <i class="material-icons align-middle mr-2">play_circle_filled</i> ${e.name}
-//         <div class="float-right">
-//             <span class="m-0">
-//                 ${formatDate(new Date(e.created_at * 1000))}
-//             </span>
-//         </div>
-//      </a>
-//      <div class="text-right">
-//         <button type="button"
-//                 class="btn bmd-btn-icon fav-btn" onclick="favorite(this)">
-//             <i class="material-icons align-middle m-0 star-ic">star_rate</i>
-//         </button>
-//         <button type="button"
-//                 class="btn bmd-btn-icon read-btn" onclick="readUnread(this)">
-//             <i class="material-icons align-middle m-0">mark_email_read</i>
-//         </button>
-//     </div>
-// </div>`
-//   }
-//  }
-//  $(".inbox-list").html(html)
-//  }
-// }
-
 function display_events(response, from) {
 
     if(from == 'inbox'){
         var html = "";
-
+        var ind = 0;
+        var mapData = [];
         if(response.count == 0){
             html += `<div class="col-md-12 my-2 text-center">No records found.</div>`
         }
@@ -762,9 +671,11 @@ function display_events(response, from) {
 
             if(e.type == 'gps') {
 
-                html += `<div class="media">
-                    <div class="img-div d-flex align-items-center justify-content-center">
-                    <i class="material-icons align-middle mr-2">room</i>
+                mapData.push({"lat":e.lat, "lng":e.lng, "htmlId":'inbox-gps-'+ind});
+
+                html += `<div class="media border-bottom border-light mt-4">
+                    <div class="img-div d-flex align-items-center justify-content-center mr-3">
+                        <div id='inbox-gps-${ind}' class="w-100 h-100"></div>
                     </div>
                     <div class="media-body">
                         <h6 class="mt-0">Name: ${e.name}</h6>
@@ -772,21 +683,24 @@ function display_events(response, from) {
 
                         <h6 class="mt-0">Comments:</h6>
                         <div class="form-group pt-1">
-                            <textarea placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
+                            <textarea id="comment-box-${ind}" placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
                         </div>
 
 
                         <div class="text-right">
-                            <button class="btn btn-primary active" role="button" aria-pressed="true">Reply</button>
+                            <button class="btn btn-primary active" role="button" aria-pressed="true" onclick="inboxComment('','${e.id}', '${e.email}', ${ind})">Reply</button>
                         </div>
 
                     </div>
                 </div>`
             }else{
 
-                html += `<div class="media">
-                    <div class="img-div d-flex align-items-center justify-content-center">
-                    <i class="material-icons align-middle mr-2">play_circle_filled</i>
+                html += `<div class="media border-bottom border-light mt-4">
+                    <div class="img-div d-flex align-items-center justify-content-center mr-3">
+                        <video class="w-100 h-100" controls="">
+                            <source src="${getUrl(e.url)}"
+                                type="video/mp4">
+                        </video>
                     </div>
                     <div class="media-body">
                         <h6 class="mt-0">Name: ${e.name}</h6>
@@ -794,20 +708,28 @@ function display_events(response, from) {
 
                         <h6 class="mt-0">Comments:</h6>
                         <div class="form-group pt-1">
-                            <textarea placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
+                            <textarea id="comment-box-${ind}" placeholder="Add Comment" class="form-control border rounded px-2" rows="4"></textarea>
                         </div>
 
 
                         <div class="text-right">
-                            <button class="btn btn-primary active" role="button" aria-pressed="true">Reply</button>
+                            <button class="btn btn-primary active" role="button" aria-pressed="true" onclick="inboxComment('${e.url}', '', '', ${ind})">Reply</button>
                         </div>
 
                     </div>
                 </div>`
 
-            }    
+            }
+            ind++;
         }
-        $(".inbox-list").html(html)
+        $(".inbox-list").html(html);
+        console.log(mapData);
+        setTimeout(()=>{
+            mapData.forEach((ele)=>{
+                inboxGPS(ele.lat, ele.lng, ele.htmlId);
+            })
+        }, 1000);
+        
     }
 }
 
@@ -1303,5 +1225,114 @@ function goBack(){
     $("#back-btn").hide();
 }
 
+function inboxGPS(lat, lng, htmlId){
+    //if(htmlId == 'inbox-gps-0'){
+///26.63231325803942 ///-80.03804412677887
+    var spot = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+    };
+
+    var name = "";
+    var latlng = spot;
+    var geocoder = new google.maps.Geocoder();
+
+    var panorama = new google.maps.Map(document.getElementById(htmlId), {
+        center: { lat: spot.lat, lng: spot.lng },
+        zoom: 18,
+        zoomControl: false,
+        mapTypeControl: false,
+    });
+    geocoder.geocode({ location: latlng }, function (results, status) {
+        
+        if (status === "OK") {
+            if (results[0]) {
+                name = results[0].formatted_address;
+                //alert(name);
+                var marker = new google.maps.Marker({
+                  position: spot,
+                  map: panorama,
+                  icon: "images/map_icon.png",
+                });
+                var infowindow = new google.maps.InfoWindow({
+                  content: name,
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(panorama, marker);
+                marker.addListener("click", function () {
+                  infowindow.open(panorama, marker);
+                });
+        } else {
+            window.alert("No results found");
+        }
+    } else {
+      window.alert("Geocoder failed due to: " + status);
+    }
+  });
+//}
+}
+
+function inboxComment(url, u_id, u_user ,i){
+
+    var id , user;
+
+    if(url != ''){
+
+        id = getUrlVars(url)['id'];
+        user = getUrlVars(url)['user'];
+    }else{
+
+        id = u_id;
+        user = u_user;
+    }
+    
+
+    if ($("#comment-box-"+i).val().trim() != "") {
+        sendFeedback(id, user, $("#comment-box-"+i).val().trim());
+        $("#comment-box-"+i).val("");
+    } else {
+        swal({
+        text: "Comment field should not be empty.",
+        icon: "error",
+        });
+    }
+
+
+
+}
+
+function sendFeedback(id, user, msg){
+    $.ajax({
+        type: "POST",
+        url: SERVER + "/api/send-feedback/?token=" +
+            localStorage.getItem("session_id") +
+        "&user=" +
+        user +
+        "&id=" +
+        id,
+        data: { message: msg },
+    }).done(function (resp) {
+            if (resp.status == "okay") {
+                get_video_info(id, user, function() {});
+        swal({
+            title: "Feedback Send",
+            text: "Your feedback send successfully",
+            icon: "success",
+        });
+        } else {
+        swal({
+            title: "Please try again later.",
+            icon: "error",
+        });
+        }
+    })
+    .fail(function (err) {
+        console.log(err);
+        swal({
+        title: "Something wrong",
+        icon: "error",
+        });
+    });
+}
 
 window.addEventListener("DOMContentLoaded", init, false);
