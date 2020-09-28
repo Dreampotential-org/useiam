@@ -95,12 +95,19 @@
         }
 
         .inbox-list {
-            font-family: 'PT Sans', arial, serif;
-            color: #ffffff;
+            /* font-family: 'PT Sans', arial, serif; */
+            /* color: #ffffff; */
             text-align: left;
             font-size: 14px;
             overflow: auto;
             /*height: calc(100vh - 280px);*/
+        }
+
+        #inbox-div .img-div {
+            height: 200px;
+            width: 200px;
+            overflow: hidden;
+            position: relative;
         }
     </style>
 
@@ -320,6 +327,11 @@
                         </select>
                     </div>
 
+                    <div class="card my-2">
+                        <div class="card-body inbox-list">
+                        </div>
+                    </div>
+
                     <!-- <div class="searchRow position-relative">
                         <input id="inboxInput" class="w-100 py-1 px-4" type="text" placeholder="Search by name...">
                         <i class="material-icons align-middle mr-2 searchIcon">search</i>
@@ -329,10 +341,10 @@
                     </div>
 
                     <div class="card my-2">
-                        <div class="card-body">
+                        <!-- <div class="card-body">
                             <div class="list-group inbox-list">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="paginationDiv py-3">
                             <span class="text-primary" style='padding-left: 5px;'></span>
                             <span class='pstart-count font-weight-bold'></span>-
@@ -340,12 +352,12 @@
                             of
                             <span class='count font-weight-bold'></span>
                             <span class='next float-right'>
-                                <a href='#'>Next
+                                <a href='javascript: void(0)'>Next
                                     <i class="material-icons align-middle">keyboard_arrow_right</i>
                                 </a>
                             </span>
                             <span class='prev float-right pr-2'>
-                                <a href='#'>
+                                <a href='javascript: void(0)'>
                                     <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a>
                             </span>
                         </div>
@@ -379,12 +391,12 @@
                         <span class="text-primary">Number of results :</span>
                         <span class='count font-weight-bold'></span>
                         <span class='next float-right'>
-                            <a href='#'>Next
+                            <a href='javascript: void(0)'>Next
                                 <i class="material-icons align-middle">keyboard_arrow_right</i>
                             </a>
                         </span>
                         <span class='prev float-right pr-2'>
-                            <a href='#'>
+                            <a href='javascript: void(0)'>
                                 <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a>
                         </span>
                     </div>
