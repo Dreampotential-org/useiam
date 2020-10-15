@@ -26,6 +26,10 @@
                 text-align: center;
                 padding: 10px;
             }
+            ul li:hover{
+                background: #aaafc3;
+                margin-top: 35px;
+            }
             ul li img {
                 max-width: 100%;
                 max-height: 120px;
@@ -33,7 +37,91 @@
             .organization-list{
                 background: rgb(255 255 255);
             }
-        </style>s
+
+            .ribbon {
+                max-width: 92%;
+                position: relative;
+                text-align: center;
+                font-size: 20px !important;
+                background: rgb(170 175 195);
+                -webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+                -moz-box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+                box-shadow: rgba(0,0,0,0.3) 0 1px 1px;
+                font-family: 'Helvetica Neue',Helvetica, sans-serif;
+                margin-left: 15px;
+            }
+
+            .ribbon h1 {
+                font-size: 25px !important;
+                color: black;
+                margin:0px;
+                padding: 15px 10px;
+            }
+
+            .ribbon:before, .ribbon:after {
+                content: '';
+                position: absolute;
+                display: block;
+                bottom: -1em;
+                border: 1.5em solid rgb(170 175 195);
+                z-index: -1;
+            }
+
+            .ribbon:before {
+                left: -2em;
+                border-right-width: 1.5em;
+                border-left-color: transparent;
+                /*                -webkit-box-shadow: rgba(0,0,0,0.4) 1px 1px 1px;
+                                -moz-box-shadow: rgba(0,0,0,0.4) 1px 1px 1px;*/
+                /*box-shadow: rgba(0,0,0,0.4) 1px 1px 1px;*/
+                z-index: 1;
+            }
+
+            .ribbon:after {
+                right: -2em;
+                border-left-width: 1.5em;
+                border-right-color: transparent;
+                /*                -moz-box-shadow: rgba(0,0,0,0.4) -1px 1px 1px;*/
+                /*box-shadow: rgba(0,0,0,0.4) -1px 1px 1px;*/
+                z-index: 1;
+            }
+
+            .ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+                border-color: #7a8096 transparent transparent transparent;
+                position: absolute;
+                display: block;
+                border-style: solid;
+                bottom: -1em;
+                content: '';
+                z-index: 2;
+            }
+
+            .ribbon .ribbon-content:before {
+                left: 0;
+                border-width: 1em 0 0 1em;
+            }
+
+            .ribbon .ribbon-content:after {
+                right: 0;
+                border-width: 1em 1em 0 0;
+            }
+
+            .ribbon-stitches-top {
+                margin-top:2px;
+                border-top: 1px dashed rgba(0, 0, 0, 0.2);
+                -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+                -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+                box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.5);
+            }
+
+            .ribbon-stitches-bottom {
+                margin-bottom:2px;
+                border-top: 1px dashed rgba(0, 0, 0, 0.2);
+                -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+                box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
+            }
+        </style>
     </head>
 
     <body>
@@ -69,133 +157,144 @@
                 </div>
             </div>
         </header> -->
-
-        <div class="logoDiv" id="logoDivId">
-            <div class="logo"></div>
-            <div class="logo2"></div>
-            <div class='moto'>
-                <h1>AVAILABLE</h1>
-            </div>
-        </div>
         <div id="organize-list" class="mainContainer" style="text-align: -webkit-center;">
             <div class="card-body customCard organization-list">
+                <div class="ribbon">
+                    <div class="ribbon-stitches-top"></div>
+                    <div class="ribbon-content">
+                        <h1><b>Select an Organization</b></h1>
+                    </div>
+                    <div class="ribbon-stitches-bottom"></div>
+                </div>
+                <br>
                 <ul id="action-list"  class="list-group" style="list-style: none;padding-inline-start: 0px;">
-                    <li class="list-group-item disabled"><a href="#" onclick="showDiv()"><img src="img/elevaterehab.png"></a></li>
-                    <li class="list-group-item"><a href="#" onclick="showDiv()"><img src="img/discoveryhb.jpg"></a></li>
-                    <li class="list-group-item"><a href="#" onclick="showDiv()"><img src="img/lapazpalmbeach.png"></a></li>
-                    <li class="list-group-item"><a href="#" onclick="showDiv()"><img src="img/gateway.png"></a></li>
-                    <li class="list-group-item"><a href="#" onclick="showDiv()"><img src="img/pbbhw.png"></a></li>
-                    <li class="list-group-item"><a href="#" onclick="showDiv()"><img src="img/pbdwi.jpg"></a></li>
+                    <li class="list-group-item disabled"><a href="#" onclick="showDiv(this)" id="elevaterehab"><img src="img/elevaterehab.png"></a></li>
+                    <li class="list-group-item"><a href="#" onclick="showDiv(this)" id="discoveryhb"><img src="img/discoveryhb.jpg"></a></li>
+                    <li class="list-group-item"><a href="#" onclick="showDiv(this)" id="lapazpalmbeach"><img src="img/lapazpalmbeach.png"></a></li>
+                    <li class="list-group-item"><a href="#" onclick="showDiv(this)" id="gateway"><img src="img/gateway.png"></a></li>
+                    <li class="list-group-item"><a href="#" onclick="showDiv(this)" id="pbbhw"><img src="img/pbbhw.png"></a></li>
+                    <li class="list-group-item"><a href="#" onclick="showDiv(this)" id="pbdwi"><img src="img/pbdwi.jpg"></a></li>
                 </ul>
             </div>
         </div>
-        <div id="page-contents" style="display: none;">
-            <div id="login">
-                <div class="mainContainer" style="text-align: -webkit-center;">
-                    <div class="card-body customCard">
-                        <h4 class="card-title">Hello, Meet useIAM,</h4>
-                        <p class="card-text">Your Interactive Accountability Manager</p>
-                    </div>
-                </div>
-                <div class="action-btns">
-                    <div class="row">
-                        <div class="column btn1">
-                            <button class=" dark" id="signup">I AM NEW</button>
-                        </div>
-                        <div class="column btn2">
-                            <button class=" dark" id="signin">SIGN IN</button>
-                        </div>
-
-                    </div>
-                </div>
+        <div id="after-select-organization" style="display: none;">
+            <div class="logoDiv" id="logoDivId">
+                <div id="elevaterehabd" style="text-align: center; display: none"><img src="img/elevaterehab.png" style="width: 300px;background: white;padding: 14px;border: 1px solid white;border-radius: 3%;"></div>
+                <div id="discoveryhbd" style="text-align: center;display: none"><img src="img/discoveryhb.jpg" style="width: 300px;background: white;padding: 14px;border: 1px solid white;border-radius: 3%;"></div>
+                <div id="lapazpalmbeachd" style="text-align: center;display: none"><img src="img/lapazpalmbeach.png" style="width: 250px;background: white;padding: 14px;border: 1px solid white;border-radius: 3%;"></div>
+                <div id="gatewayd" style="text-align: center;display: none"><img src="img/gateway.png" style="width: 300px;background: white;padding: 14px;border: 1px solid white;border-radius: 3%;"></div>
+                <div id="pbbhwd" style="text-align: center;display: none"><img src="img/pbbhw.png" style="width: 300px;background: white;padding: 14px;border: 1px solid white;border-radius: 3%;"></div>
+                <div id="pbdwid" style="text-align: center;display: none"><img src="img/pbdwi.jpg" style="width: 300px;background: white;padding: 14px;border: 1px solid white;border-radius: 3%;"></div>
+                <br>
             </div>
-
-            <div id="dashboard">
-                <div class="secAction"></div>
-                <div class="action-btns">
-                    <div class="row1">
-                        <div class="column1 btn1 subVideoBtn ">
-                            <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+            <div id="page-contents">
+                <div id="login">
+                    <div class="mainContainer" style="text-align: -webkit-center;">
+                        <div class="card-body customCard">
+                            <h4 class="card-title">Hello, Meet useIAM,</h4>
+                            <p class="card-text">Your Interactive Accountability Manager</p>
                         </div>
                     </div>
-                    <div class="row1">
-
-                        <div class="column1 btn2">
-                            <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div id="takeVideo">
-                <div class="mainContainer">
-                    <video width="100%" height="auto" autoplay="true" id="videoElement">
-                    </video>
-                </div>
-                <div class="secAction recording" id="recordingAction">
-                    <button class="actionBtn btnRecord">&nbsp;</button>
-                    <button class="actionBtn btnSwitchCamera"><img width="20px" src="images/ico-refresh.png"
-                                                                   alt="" /></button>
-                </div>
-            </div>
-
-            <div id="submitVideo">
-                <div class="mainContainer">
-                    <video width="100%" height="auto">
-
-                    </video>
-                </div>
-                <div class="secAction recorded">
-                    <button class="actionBtn submitRecordingBtn">Submit Recording</button>
-                </div>
-            </div>
-
-            <div id="activity">
-                <div class="mainContainer">
-                    <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
-                    <div class='activity-log' id="eventData">
-                        <ol class="chat" id="activity-log"></ol>
-                    </div>
-                </div>
-            </div>
-
-            <div id="addEvent" class="noteDiv">
-                <div class="mainContainer">
-                    <h3 class="locAuthTitle textCenter">ENTER NOTE</h3>
-                    <div class="eventBox">
-                        <textarea class="note" rows="5" placeholder="Add Description"></textarea>
-                    </div>
-                </div>
-                <div class="secAction">
-                    <div class="mainContainer">
-                        <button class="actionBtn dark" id="locationAuth">OK</button>
-                    </div>
-                </div>
-            </div>
-
-
-            <div id="success">
-                <div class="mainContainer">
-                    <ol class="chat">
-                        <li class="other">
-                            <div class="avatar"><img src="images/iam.png" draggable="false" /></div>
-                            <div class="msg">
-                                <p>What would you like to do?</p>
+                    <div class="action-btns">
+                        <div class="row">
+                            <div class="column btn1">
+                                <button class=" dark" id="signup">I AM NEW</button>
                             </div>
-                        </li>
-                    </ol>
-                </div>
-                <div class="secAction">
-                    <button class="actionBtn btnVideo">Take a Video</button>
-                    <button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>
-                </div>
-            </div>
+                            <div class="column btn2">
+                                <button class=" dark" id="signin">SIGN IN</button>
+                            </div>
 
-            <div id="eventView">
-                <div class='content'></div>
-            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div id="dashboard">
+                    <div class="secAction"></div>
+                    <div class="action-btns">
+                        <div class="row1">
+                            <div class="column1 btn1 subVideoBtn ">
+                                <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+                            </div>
+                        </div>
+                        <div class="row1">
+
+                            <div class="column1 btn2">
+                                <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="takeVideo">
+                    <div class="mainContainer">
+                        <video width="100%" height="auto" autoplay="true" id="videoElement">
+                        </video>
+                    </div>
+                    <div class="secAction recording" id="recordingAction">
+                        <button class="actionBtn btnRecord">&nbsp;</button>
+                        <button class="actionBtn btnSwitchCamera"><img width="20px" src="images/ico-refresh.png"
+                                                                       alt="" /></button>
+                    </div>
+                </div>
+
+                <div id="submitVideo">
+                    <div class="mainContainer">
+                        <video width="100%" height="auto">
+
+                        </video>
+                    </div>
+                    <div class="secAction recorded">
+                        <button class="actionBtn submitRecordingBtn">Submit Recording</button>
+                    </div>
+                </div>
+
+                <div id="activity">
+                    <div class="mainContainer">
+                        <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
+                        <div class='activity-log' id="eventData">
+                            <ol class="chat" id="activity-log"></ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addEvent" class="noteDiv">
+                    <div class="mainContainer">
+                        <h3 class="locAuthTitle textCenter">ENTER NOTE</h3>
+                        <div class="eventBox">
+                            <textarea class="note" rows="5" placeholder="Add Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="secAction">
+                        <div class="mainContainer">
+                            <button class="actionBtn dark" id="locationAuth">OK</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="success">
+                    <div class="mainContainer">
+                        <ol class="chat">
+                            <li class="other">
+                                <div class="avatar"><img src="images/iam.png" draggable="false" /></div>
+                                <div class="msg">
+                                    <p>What would you like to do?</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="secAction">
+                        <button class="actionBtn btnVideo">Take a Video</button>
+                        <button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>
+                    </div>
+                </div>
+
+                <div id="eventView">
+                    <div class='content'></div>
+                </div>
+
+            </div>
         </div>
 
 
@@ -690,9 +789,11 @@
                         $('#addEvent').hide();
                                                     </script>
                                                     <script type="text/javascript">
-                                                        function showDiv() {
-                                                            document.getElementById('page-contents').style.display = "block";
+                                                        function showDiv(obj) {
+                                                            var selctID = obj.id;
+                                                            document.getElementById('after-select-organization').style.display = "block";
                                                             document.getElementById('organize-list').style.display = "none";
+                                                            document.getElementById(selctID+'d').style.display = "block";
                                                         }
                                                     </script>
                                                     </body>
