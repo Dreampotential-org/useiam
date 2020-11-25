@@ -1596,7 +1596,9 @@ span.alignTag{
   cursor: pointer;
 }
 
-
+.swal-button--cancel {
+  background-color: lightgray !important;
+}
 
 
 .loginform input{

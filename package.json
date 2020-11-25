@@ -33,6 +33,7 @@
     "cordova-plugin-wkwebview-engine": "^1.2.1"
   },
   "devDependencies": {
+    "cordova-plugin-keep-awake": "git+https://github.com/snuffy/cordova-plugin-keep-awake.git",
     "cordova-plugin-whitelist": "1"
   },
   "cordova": {
@@ -57,7 +58,8 @@
       "cordova-plugin-customurlscheme": {
         "URL_SCHEME": "useiam"
       },
-      "cordova-plugin-purchase": {}
+      "cordova-plugin-purchase": {},
+      "cordova-plugin-keep-awake": {}
     },
     "platforms": [
       "browser",
