@@ -12,6 +12,7 @@ var app = {
   onDeviceReady: function () {
     // this.receivedEvent('deviceready');
     console.log("deviceready in index.js");
+    KeepAwake.start();
     console.log(cordova.plugins);
     cordova.plugins.notification.local.hasPermission(function (granted) {
       if (granted == false) {
