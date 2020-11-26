@@ -78,12 +78,13 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 
 function log_error_to_slack(msg) {
     $.ajax({
-        url: '/log-errors/',
+        url: 'https://hooks.slack.com/services/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',
         data: JSON.stringify({
-          'error': msg,
+          'text': msg,
         }),
         type: 'post',
         success: function(results) {
+
             //callback(JSON.parse(results))
         }
     })
