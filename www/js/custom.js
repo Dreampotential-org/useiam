@@ -281,6 +281,14 @@ function showATab(tabID){
     parentDiv.children().hide();
     parentDiv.find('#' + tabID).show("fast");
 
+    if(localStorage.getItem("isSubscribed") == "true"){
+        $("#subscribed-user").show();
+        $("#not-subscribed-user").hide();
+    }else{
+        $("#subscribed-user").hide();
+        $("#not-subscribed-user").show();
+    }
+
     if (tabID == 'activity') {
         showBackButton('dashboard');
     }

@@ -23,20 +23,23 @@
 </head>
 
 <body>
-<header>
-    <div class="mainContainer" style="position: relative">
-        <button class="btnBack"><img  src="images/left-arrow.png" alt=""/>
-            <input type="hidden" id="backTabID"/></button>
-            <button class="btnInfo"><img src="images/nfo.png" alt=""/>
-        </button>
-        <nav class="toggleBar">
-            <span class="bar bar1"></span>
-            <span class="bar bar2"></span>
-            <span class="bar bar3"></span>
-        </nav>
-    </div>
-</header>
-<!-- <header>
+    <header>
+        <div class="mainContainer" style="position: relative">
+            <button class="btnBack">
+                <img src="images/left-arrow.png" alt="" />
+                <input type="hidden" id="backTabID" />
+            </button>
+            <button class="btnInfo">
+                <img src="images/nfo.png" alt="" />
+            </button>
+            <nav class="toggleBar">
+                <span class="bar bar1"></span>
+                <span class="bar bar2"></span>
+                <span class="bar bar3"></span>
+            </nav>
+        </div>
+    </header>
+    <!-- <header>
     <div class="mainContainer" style="position: relative">
         <button class="btnBack"><img src="images/arrow-left-black-32.png" alt=""/>
             <input type="hidden" id="backTabID"/></button>
@@ -72,35 +75,37 @@
                     <p class="card-text">Your Interactive Accountability Manager</p>
                 </div>
             </div>
-        <div class="action-btns">
-            <div class="row">
-                <div class="column btn1">
-                    <button class=" dark" id="signup">I AM NEW</button>
-                </div>
-                <div class="column btn2">
-                    <button class=" dark" id="signin">SIGN IN</button>
-                </div>
+            <div class="action-btns">
+                <div class="row">
+                    <div class="column btn1">
+                        <button class=" dark" id="signup">I AM NEW</button>
+                    </div>
+                    <div class="column btn2">
+                        <button class=" dark" id="signin">SIGN IN</button>
+                    </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
         <div id="dashboard">
             <div class="secAction"></div>
             <div class="action-btns">
-                <div class="row1">
-                    <div class="column1 btn1 subVideoBtn ">
-                        <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+                <div id="subscribed-user">
+                    <div class="row1">
+                        <div class="column1 btn1 subVideoBtn ">
+                            <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+                        </div>
+                    </div>
+                    <div class="row1">
+
+                        <div class="column1 btn2">
+                            <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
+                        </div>
                     </div>
                 </div>
-                <div class="row1">
-
-                    <div class="column1 btn2">
-                        <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
-                    </div>
-                </div>
-                <div class="row1">
-
+                <div id="not-subscribed-user" class="row1">
+                    <h3 class="textCenter subscribeText column1" style="color:white">Use IAM is a paid monthly subscription service </h3>
                     <div class="column1 btn2">
                         <button class="actionBtn subscribe">SUBSCRIBE</button>
                     </div>
@@ -116,8 +121,9 @@
             </div>
             <div class="secAction recording" id="recordingAction">
                 <button class="actionBtn btnRecord">&nbsp;</button>
-                <button class="actionBtn btnSwitchCamera"><img width="20px" src="images/ico-refresh.png"
-                        alt="" /></button>
+                <button class="actionBtn btnSwitchCamera">
+                    <img width="20px" src="images/ico-refresh.png" alt="" />
+                </button>
             </div>
         </div>
 
@@ -160,7 +166,9 @@
             <div class="mainContainer">
                 <ol class="chat">
                     <li class="other">
-                        <div class="avatar"><img src="images/iam.png" draggable="false" /></div>
+                        <div class="avatar">
+                            <img src="images/iam.png" draggable="false" />
+                        </div>
                         <div class="msg">
                             <p>What would you like to do?</p>
                         </div>
@@ -169,7 +177,9 @@
             </div>
             <div class="secAction">
                 <button class="actionBtn btnVideo">Take a Video</button>
-                <button class="actionBtn btnEvent">Attend Event<span>(Check-In/Check-Out)</span></button>
+                <button class="actionBtn btnEvent">Attend Event
+                    <span>(Check-In/Check-Out)</span>
+                </button>
             </div>
         </div>
 
@@ -182,10 +192,11 @@
 
     <div class="modal" id="signinModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition "  style="background: url(img/popup_login.jpg)">
+        <div class="modal-wrapper modal-transition " style="background: url(img/popup_login.jpg)">
             <div class="modal-body modal_background">
                 <div class="modal-content">
-                    <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
                     <h3 class="locAuthTitle textCenter" style="color:white">LOGIN</h3>
                     <form class="popupForm loginform" action='#'>
@@ -195,22 +206,22 @@
                         <div>
                             <input type="password" placeholder="Password" id='signin_password'>
                         </div>
-                            <button id="loginBtn" class=" loginToDashboard iconDiv">
-                            <div class= "avatar" >
-                                <i class="fa fa-arrow-right"  aria-hidden="true"></i>
+                        <button id="loginBtn" class=" loginToDashboard iconDiv">
+                            <div class="avatar">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         </button>
-                        </div>
-                        <div class="column btn1 accountbtn">
-                            <button class=" dark btnP accountP signupNeed" > New Account</button>
-                        </div>
-                        <p class="textCenter" style="padding-bottom:10px;">
-                            <a class="passwordA" id='forgot_password' href="">Forgot password?</a>
-                        </p>
-                    </form>
                 </div>
+                <div class="column btn1 accountbtn">
+                    <button class=" dark btnP accountP signupNeed"> New Account</button>
+                </div>
+                <p class="textCenter" style="padding-bottom:10px;">
+                    <a class="passwordA" id='forgot_password' href="">Forgot password?</a>
+                </p>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="modal" id="setmonitorModal">
@@ -219,7 +230,8 @@
 
             <div class="modal-body">
                 <div class="modal-content">
-                    <div class='close' style="text-align: end;"><i  style="background: #34e6b7 !important;" class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    <div class='close' style="text-align: end;">
+                        <i style="background: #34e6b7 !important;" class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
 
                     <h3 class="locAuthTitle textCenter emailTitle">SET MONITOR</h3>
@@ -229,8 +241,7 @@
                         <div class="tab get-monitor" style="padding: 10px;">
                             <p class="instruct_Data">Email address of person monitoring you who will receive your video and gps submissions
                             </p>
-                            <input  placeholder="Add Monitor" id='monitor_email' oninput="this.className = ''"
-                                type="email">
+                            <input placeholder="Add Monitor" id='monitor_email' oninput="this.className = ''" type="email">
                         </div>
                         <div>
                             <div style="text-align: center;">
@@ -238,7 +249,9 @@
                             </div>
                         </div>
                         <div style="margin-top: 20px;padding: 10px;" class="instruct_Data">
-                            <div><b>Active Monitors:</b></div>
+                            <div>
+                                <b>Active Monitors:</b>
+                            </div>
                             <div class='current-monitors'></div>
                         </div>
                     </form>
@@ -249,23 +262,23 @@
 
     <div class="modal" id="setSoberDate">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition sub-modal"style="background: url(img/popup_login.jpg);height: 55vh;">
+        <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg);height: 55vh;">
 
             <div class="modal-body">
                 <div class="modal-content">
-                    <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
                     <h3 class="locAuthTitle textCenter">SET SOBER DATE</h3>
 
                     <form id="regForm" action="#">
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor">
-                            <input READONLY=READONLY placeholder="Sober Since" id='sober_date_update'
-                                oninput="this.className = ''" type="email">
+                            <input READONLY=READONLY placeholder="Sober Since" id='sober_date_update' oninput="this.className = ''" type="email">
                         </div>
-                            <div style="text-align: center;position: relative;top: 50px;">
-                                <button class="actionBtn dark close" id="nextBtn">Update</button>
-                            </div>
+                        <div style="text-align: center;position: relative;top: 50px;">
+                            <button class="actionBtn dark close" id="nextBtn">Update</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -280,19 +293,20 @@
 
             <div class="modal-body">
                 <div class="modal-content">
-                    <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
                     <h3 class="locAuthTitle textCenter">SET REMINDER TIME</h3>
 
                     <!-- <form id="regForm" action="#"> -->
-                        <div class="tab get-monitor">
-                            <input type="text" placeholder="Select Time" class="timepicker" id="remainderTime" />
+                    <div class="tab get-monitor">
+                        <input type="text" placeholder="Select Time" class="timepicker" id="remainderTime" />
+                    </div>
+                    <div>
+                        <div style="text-align: center;">
+                            <button class="actionBtn  dark close" id="setRemainder">SET</button>
                         </div>
-                        <div>
-                            <div style="text-align: center;">
-                                <button class="actionBtn  dark close" id="setRemainder">SET</button>
-                            </div>
-                        </div>
+                    </div>
                     <!-- </form> -->
                 </div>
             </div>
@@ -305,7 +319,8 @@
 
             <div class="modal-body">
                 <div class="modal-content">
-                    <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
                     <h3 class="locAuthTitle textCenter">Invite</h3>
 
@@ -330,38 +345,45 @@
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg);    margin-bottom: 15px;">
             <div class="">
-            <div class="modal-body">
-                <div class="modal-content">
-                 
+                <div class="modal-body">
+                    <div class="modal-content">
+
                         <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
-                        <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"
-                                aria-hidden="true"></i></div>
+                        <div class='close' style="text-align: end;">
+                            <i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                        </div>
                         <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
-                        <p class="locAuthDesc">Step One<br />
+                        <p class="locAuthDesc">Step One
+                            <br />
 
                             <ul class="instruct_Data">
                                 <ol style='padding-inline-start: 0px;'>
-Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes, fears, thoughts, etc. Then, submit video, which will be sent to your secure email address.
+                                    Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes,
+                                    fears, thoughts, etc. Then, submit video, which will be sent to your secure email address.
                                 </ol>
                             </ul>
                         </p>
-                        <p class="locAuthDesc">Step Two<br />
+                        <p class="locAuthDesc">Step Two
+                            <br />
                             <ul class="instruct_Data">
                                 <ol style='padding-inline-start: 0px;'>
-If you choose to have an accountability buddy, share your journal entry with an observer, who can give you feedback, go to the menu bar (SET MONITOR)  and add the observer's secure email address.
+                                    If you choose to have an accountability buddy, share your journal entry with an observer, who can give you feedback, go to
+                                    the menu bar (SET MONITOR) and add the observer's secure email address.
                                 </ol>
                             </ul>
                         </p>
-                            <p class="locAuthDesc">Medication Monitoring<br />
-                                <ul class="instruct_Data">
-                                    <ol style='padding-inline-start: 0px;'>
-In the menu bar add the set monitor bar to your monitor's secure email address. When recording the video, show your pill bottle, then take your medication, showing the medication being taken. Then submit video.
-                                    </ol>
-                                </ul>
-                            </p>
-                                <div class="textCenter">
-                                    <button class="actionBtn dark close">OK</button>
-                                </div>
+                        <p class="locAuthDesc">Medication Monitoring
+                            <br />
+                            <ul class="instruct_Data">
+                                <ol style='padding-inline-start: 0px;'>
+                                    In the menu bar add the set monitor bar to your monitor's secure email address. When recording the video, show your pill
+                                    bottle, then take your medication, showing the medication being taken. Then submit video.
+                                </ol>
+                            </ul>
+                        </p>
+                        <div class="textCenter">
+                            <button class="actionBtn dark close">OK</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -377,14 +399,15 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
                 <div class="modal-content">
                     <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
 
-                    <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
 
                     <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
                             draggable="false" /></div> -->
 
                     <h3 class="locAuthTitle textCenter" style="color:white">SIGN UP</h3>
-                    <form id="regForm"  class="signupform" action="#">
+                    <form id="regForm" class="signupform" action="#">
                         <div class="tab user-info">
                             <div class="signupEmail">
                                 <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text">
@@ -393,10 +416,9 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
                                 <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
                             </div>
                             <div>
-                                <input type="password" id='signup_password' placeholder="Password"
-                                oninput="this.className=''" />
+                                <input type="password" id='signup_password' placeholder="Password" oninput="this.className=''" />
                             </div>
-                          <!--
+                            <!--
                             <div>
                                 <input READONLY=READONLY type="text" id='sober_date' placeholder="Sober Since (Optional)"
                                 oninput="this.className=''" />
@@ -409,7 +431,9 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
                             </div>
                         </div>
                     </form>
-                    <p class="textCenter loginNeed" style="color: white;">Have an account? <a href="#" style="color: #b9befd">Log In</a></p>
+                    <p class="textCenter loginNeed" style="color: white;">Have an account?
+                        <a href="#" style="color: #b9befd">Log In</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -420,13 +444,14 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
 
     <div class="modal" id="LocationModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition"  style="background: url(img/popup_login.jpg);margin-top: 13px;height:55vh;">
+        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg);margin-top: 13px;height:55vh;">
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="textCenter">
                         <!-- <img src="images/location.png" style="width: 100px"> -->
-                        <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"
-                                aria-hidden="true"></i></div>
+                        <div class='close' style="text-align: end;">
+                            <i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                        </div>
                         <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
                                 draggable="false" /></div> -->
                         <h3 class="locAuthTitle textCenter">MY LOCATION</h3>
@@ -455,44 +480,51 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
                 <div class="modal-content">
                     <div class="">
                         <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
-                        <div class='close' style="text-align: end;"><i class="fa fa-times closeIcon"
-                                aria-hidden="true"></i></div>
+                        <div class='close' style="text-align: end;">
+                            <i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                        </div>
 
                         <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div> -->
                         <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
-                        <p class="locAuthDesc">Step One<br />
+                        <p class="locAuthDesc">Step One
+                            <br />
                             <ul class="instruct_Data">
                                 <ol style='padding-inline-start: 0px;'>
-Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes, fears, thoughts, etc. Then, submit video, which will be sent to your secure email address.
+                                    Record video journal entry saying anything you like, plans for the day, yesterday's memories, how you feel, dreams, hopes,
+                                    fears, thoughts, etc. Then, submit video, which will be sent to your secure email address.
                                 </ol>
                             </ul>
-                        <p class="locAuthDesc">Step Two<br />
-                            <ul class="instruct_Data">
-                                <ol style='padding-inline-start: 0px;'>
-If you choose to have an accountability buddy, share your journal entry with an observer, who can give you feedback, go to the menu bar (SET MONITOR)  and add the observer's secure email address.
-                                </ol>
-                            </ul>
-
-                            <p class="locAuthDesc">Medication Monitoring<br />
+                            <p class="locAuthDesc">Step Two
+                                <br />
                                 <ul class="instruct_Data">
                                     <ol style='padding-inline-start: 0px;'>
-In the menu bar add the set monitor bar to your monitor's secure email address. When recording the video, show your pill bottle, then take your medication, showing the medication being taken. Then submit video.
-
+                                        If you choose to have an accountability buddy, share your journal entry with an observer, who can give you feedback, go to
+                                        the menu bar (SET MONITOR) and add the observer's secure email address.
                                     </ol>
                                 </ul>
-                        </div>
-                        <div class="textCenter">
-                            <form id='upload_vid_form' method='post' enctype="multipart/form-data">
-                                <input type="file" accept="video/*" id='upload-vid' capture="environment"
-                                    style='display:none;'>
-                                <button class="actionBtn dark btnOk">OK</button>
-                                <!-- <input type="button" value="OK"   class="actionBtn dark btnOk"> -->
-                            </form>
-                        </div>
+
+                                <p class="locAuthDesc">Medication Monitoring
+                                    <br />
+                                    <ul class="instruct_Data">
+                                        <ol style='padding-inline-start: 0px;'>
+                                            In the menu bar add the set monitor bar to your monitor's secure email address. When recording the video, show your pill
+                                            bottle, then take your medication, showing the medication being taken. Then submit
+                                            video.
+
+                                        </ol>
+                                    </ul>
+                    </div>
+                    <div class="textCenter">
+                        <form id='upload_vid_form' method='post' enctype="multipart/form-data">
+                            <input type="file" accept="video/*" id='upload-vid' capture="environment" style='display:none;'>
+                            <button class="actionBtn dark btnOk">OK</button>
+                            <!-- <input type="button" value="OK"   class="actionBtn dark btnOk"> -->
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="modal" id="proTip">
@@ -501,16 +533,16 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="">
-                        <img src='images/x-mark-black-32.png' class='close'
-                            style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                        <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
                         <h3 class="locAuthTitle textCenter">PRO TIP</h3>
                         <p class="locAuthDesc">Make finding this webapp easy by installing it your phones home screen.
                         </p>
-                        <p class="locAuthDesc">Tap <img src="images/upload_icon.png" width="24" alt="" /> below and
-                            select add to home screen.</p>
+                        <p class="locAuthDesc">Tap
+                            <img src="images/upload_icon.png" width="24" alt="" /> below and select add to home screen.</p>
                         <div class="textCenter">
-                            <button class="actionBtn btnClose"><img src="images/upload-16.png" height="100%"
-                                    alt="" /></button>
+                            <button class="actionBtn btnClose">
+                                <img src="images/upload-16.png" height="100%" alt="" />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -523,8 +555,7 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
             <div class="modal-body">
                 <div class="modal-content">
                     <div class="">
-                        <img src='images/x-mark-black-32.png' class='close'
-                            style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                        <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
                         <h3 class="locAuthTitle textCenter">Payment</h3>
                         <p class="">You are agreeing to be charged $9.99 per month cancel anytime.</p>
                         <form action="/charge" method="post" id="payment-form">
@@ -560,20 +591,22 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
 
     <div class="slideMenu" style="display:none;right:0;">
         <!-- <a class="img_a"> -->
-            <div class="img_a">
-                <div class="image_div">
+        <div class="img_a">
+            <div class="image_div">
                 <img style="width:100%" src="img/logo_iamold.png">
-                </div>
             </div>
+        </div>
         <!-- </a>  -->
         <h5 class="textMenu">
-          <a href="#" id='showInstructions'>INSTRUCTIONS<a>
+            <a href="#" id='showInstructions'>INSTRUCTIONS
+                <a>
         </h5>
         <h5 class="textMenu">
-          <a href="#" id='setMonitor'>SET MONITOR</a>
+            <a href="#" id='setMonitor'>SET MONITOR</a>
         </h5>
         <h5 class="textMenu">
-          <a href="#" id='viewActivity'>VIEW ACTIVITY<a>
+            <a href="#" id='viewActivity'>VIEW ACTIVITY
+                <a>
         </h5>
 
         <!-- <h5 class="textMenu">
@@ -591,7 +624,7 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
             <a href="#" id='viewActivity'>WHAT WE DO<a>
           </h5> -->
         <h5 class="textMenu">
-          <a href="#" id='logout'>LOGOUT</a>
+            <a href="#" id='logout'>LOGOUT</a>
         </h5>
         <!--
         <h5 class="textMenu">
@@ -600,13 +633,15 @@ In the menu bar add the set monitor bar to your monitor's secure email address. 
         </h5>
         -->
         <h5 class="textMenu">
-          <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE<a>
+            <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE
+                <a>
         </h5>
         <h5 class="textMenu">
-          <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT<a>
+            <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
+                <a>
         </h5>
         <h5 class="textMenu" style='display: none;' id='cancel_plan'>
-          <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+            <a href="#" id='cancel_subscription'>Cancel Subscription</a>
         </h5>
     </div>
 

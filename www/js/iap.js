@@ -1,14 +1,16 @@
-$(".subscribe").on("click", function (e) {
-  console.log("subscribe clicked");
-  store.when("base_subscription_7").approved(finishPurchase);
-  store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
-  store.refresh();
-  store.order("base_subscription_7");
-});
+$('.subscribe').on('click', function (e) {
+  console.log('subscribe clicked')
+  localStorage.setItem('isSubscribed', 'true')
+  showATab('dashboard')
+  store.when('base_subscription_7').approved(finishPurchase)
+  store.register({ type: store.CONSUMABLE, id: 'base_subscription_7' })
+  store.refresh()
+  store.order('base_subscription_7')
+})
 
-function finishPurchase(p) {
-  localStorage.goldCoins = (localStorage.goldCoins | 0) + 10;
-  p.finish();
+function finishPurchase (p) {
+  localStorage.goldCoins = (localStorage.goldCoins | 0) + 10
+  p.finish()
 }
 
 // function refreshUI() {
