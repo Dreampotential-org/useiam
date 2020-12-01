@@ -71,7 +71,7 @@ function init_video_event () {
   })
   $('#videoInfo .btnOk').on('click', function (e) {
     e.preventDefault()
-    $('#upload-vid').click()
+    if (window.cordova.platformId != 'android') $('#upload-vid').click()
 
     var captureSuccess = function (mediaFiles) {
       var i, path, len
@@ -151,6 +151,9 @@ function api_video_checkin_android (mediaFile) {
   }
 
   options.headers = headers
+  var params = {}
+  params.source = ''
+  options.params = params
   var type = window.PERSISTENT
   var size = 500 * 1024 * 1024 // 500 MB
   var ft = new FileTransfer()
