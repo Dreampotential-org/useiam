@@ -71,30 +71,35 @@ function init_video_event () {
   })
   $('#videoInfo .btnOk').on('click', function (e) {
     e.preventDefault()
-    if (window.cordova.platformId != 'android') $('#upload-vid').click()
+    if (isApp()) {
+        if (window.cordova.platformId != 'android') $('#upload-vid').click()
 
-    var captureSuccess = function (mediaFiles) {
-      var i, path, len
-      for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-        path = mediaFiles[i].fullPath
-        // do something interesting with the file
-        if (window.cordova.platformId == 'android') {
-          api_video_checkin_android(mediaFiles[i])
-        } else {
-          api_video_checkin(mediaFiles[i])
+        var captureSuccess = function (mediaFiles) {
+          var i, path, len
+          for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+            path = mediaFiles[i].fullPath
+            // do something interesting with the file
+            if (window.cordova.platformId == 'android') {
+              api_video_checkin_android(mediaFiles[i])
+            } else {
+              api_video_checkin(mediaFiles[i])
+            }
+          }
         }
-      }
+
+        // capture error callback
+        var captureError = function (error) {
+          alert('Error code: ' + error.code, null, 'Capture Error')
+        }
+
+        // start video capture
+        navigator.device.capture.captureVideo(captureSuccess, captureError, {
+          limit: 1
+        })
+    } else {
+        $('#upload-vid').click()
     }
 
-    // capture error callback
-    var captureError = function (error) {
-      alert('Error code: ' + error.code, null, 'Capture Error')
-    }
-
-    // start video capture
-    navigator.device.capture.captureVideo(captureSuccess, captureError, {
-      limit: 1
-    })
   })
 }
 
