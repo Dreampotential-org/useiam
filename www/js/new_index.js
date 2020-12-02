@@ -868,9 +868,10 @@ function display_side_activity_log(resp) {
         '<video class="custom_video" id="videoPanel' +
         c++ +
         '" width="100%" height="200px" >' +
-        '<source class="list-video" src=' +
-        getUrl(activity.url) +
-        ' type="video/mp4"></video>' +
+        '<div>Play Video</div>' +
+        //'<source class="list-video" src=' +
+        //getUrl(activity.url) +
+        //' type="video/mp4"></video>' +
         '<i class="material-icons playBtn">play_arrow</i></div>' +
         "</div>";
     } else {
