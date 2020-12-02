@@ -285,7 +285,7 @@ function showATab(tabID){
         $("#subscribed-user").show();
         $("#not-subscribed-user").hide();
     }else{
-        $("#subscribed-user").hide();
+        //$("#subscribed-user").hide();
         $("#not-subscribed-user").show();
     }
 
