@@ -45,7 +45,7 @@ function init_video_event () {
               buttons: [true, 'Retry']
             }).then(retry => {
               if (retry) {
-                $('#upload_vid_form').click()
+                $('#upload_vid_form').change()
               }
             })
         }
