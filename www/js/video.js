@@ -38,11 +38,16 @@ function init_video_event () {
           $('#overlay_loading').hide()
           $('#takeavideoModal').removeClass('is-visible')
         } else {
-          swal({
-            title: 'Error Try Again',
-            text: 'Sorry, there is an error please try again later.',
-            icon: 'error'
-          })
+            swal({
+              title: 'Error Try Again',
+              text: 'Sorry, there is an error please try again later.',
+              icon: 'error',
+              buttons: [true, 'Retry']
+            }).then(retry => {
+              if (retry) {
+                $('#upload_vid_form').click()
+              }
+            })
         }
       }
     })
