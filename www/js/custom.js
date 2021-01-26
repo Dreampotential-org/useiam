@@ -1,116 +1,112 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function init() {
+  //  https://github.com/apache/cordova-ios/issues/417
+  $(document).on("blur", "input", function () {
+    window.scrollTo(0, NaN);
+  });
 
-    //  https://github.com/apache/cordova-ios/issues/417
-    $(document).on('blur', 'input', function() {
-        window.scrollTo(0,NaN)
-    });
+  // fixes same issue though on textareas
+  $(document).on("blur", "textarea", function () {
+    window.scrollTo(0, NaN);
+  });
 
-    // fixes same issue though on textareas
-    $(document).on('blur', 'textarea', function() {
-        window.scrollTo(0,NaN)
-    });
+  block_desktop();
+  init_reset_password();
+  init_logo();
+  init_login_stuff();
+  init_gps_stuff();
+  init_video_event();
+  init_monitor();
+  init_time();
+  init_invite();
+  init_activity();
+  init_display();
+  init_stripe();
 
-    block_desktop()
-    init_reset_password()
-    init_logo()
-    init_login_stuff();
-    init_gps_stuff()
-    init_video_event();
-    init_monitor();
-    init_time();
-    init_invite()
-    init_activity();
-    init_display();
-    init_stripe();
+  //  init_doctor_login_stuff();
 
-    //  init_doctor_login_stuff();
-
-    // populates days sober in left side pannel
-    get_profile_info();
-    $("body").show()
+  // populates days sober in left side pannel
+  get_profile_info();
+  $("body").show();
 }
 
 function block_desktop() {
-    if (!(isMobile)) {
+  if (!isMobile) {
     swal({
-        title: "Computer not supported",
-        text: "Use IAM with your smartphone or tablet.",
-        icon: "info",
-        closeOnEsc: false,
-        closeOnClickOutside: false,
+      title: "Computer not supported",
+      text: "Use IAM with your smartphone or tablet.",
+      icon: "info",
+      closeOnEsc: false,
+      closeOnClickOutside: false,
     });
-    }
+  }
 }
 
 function init_display() {
-    if (localStorage.getItem("session_id")) {
-        $(".toggleBar").show()
-        $(".moto").show()
-    }
+  if (localStorage.getItem("session_id")) {
+    $(".toggleBar").show();
+    $(".moto").show();
+  }
 }
 
 function init_reset_password() {
-    $("#forgot_password").attr("href", SERVER + "/password_reset");
+  $("#forgot_password").attr("href", SERVER + "/password_reset");
 }
-
 
 // capture all errors and send to slack
 window.onerror = function (msg, url, lineNo, columnNo, error) {
-    var string = msg.toLowerCase();
-    var substring = "script error";
-    if (string.indexOf(substring) > -1){
-        alert('Script Error: See Browser Console for Detail');
-    } else {
-        var message = [
-            'Message: ' + msg,
-            'URL: ' + url,
-            'Line: ' + lineNo,
-            'Column: ' + columnNo,
-            'Error object: ' + JSON.stringify(error)
-        ].join(' - ');
+  var string = msg.toLowerCase();
+  var substring = "script error";
+  if (string.indexOf(substring) > -1) {
+    alert("Script Error: See Browser Console for Detail");
+  } else {
+    var message = [
+      "Message: " + msg,
+      "URL: " + url,
+      "Line: " + lineNo,
+      "Column: " + columnNo,
+      "Error object: " + JSON.stringify(error),
+    ].join(" - ");
 
-        log_error_to_slack(message);
-    }
-    return false;
+    log_error_to_slack(message);
+  }
+  return false;
 };
 
 function log_error_to_slack(msg) {
-    $.ajax({
-        url: 'https://hooks.slack.com/services/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',
-        data: JSON.stringify({
-          'text': msg,
-        }),
-        type: 'post',
-        success: function(results) {
-
-            //callback(JSON.parse(results))
-        }
-    })
+  $.ajax({
+    url:
+      "https://hooks.slack.com/services/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",
+    data: JSON.stringify({
+      text: msg,
+    }),
+    type: "post",
+    success: function (results) {
+      //callback(JSON.parse(results))
+    },
+  });
 }
 
-$('.modal-overlay').on('click', function(e) {
-
-    // if the user does not correctly tap allow we trigger
-    // dialog box here too
-    if ($(this).parent().attr("id") == 'LocationModal') {
-        start_gps()
-        found_gps_or_timeout();
-    }
-    $('.modal').removeClass('is-visible');
+$(".modal-overlay").on("click", function (e) {
+  // if the user does not correctly tap allow we trigger
+  // dialog box here too
+  if ($(this).parent().attr("id") == "LocationModal") {
+    start_gps();
+    found_gps_or_timeout();
+  }
+  $(".modal").removeClass("is-visible");
 });
-$('.toggleBar').on('click', function(e) {
-  $('.slideMenu').toggle("slow");
-    $(this).toggleClass('toggleClose');
-    if($(this).hasClass('toggleClose')){
-        // $('header').css('margin-left','400px');
-        $('#page-contents').css('margin-left','400px');
-    }
-    else{
-        $('header').css('margin-left','0');
-        $('#page-contents').css('margin-left','0');
-    }
+$(".toggleBar").on("click", function (e) {
+  $(".slideMenu").toggle("slow");
+  $(this).toggleClass("toggleClose");
+  if ($(this).hasClass("toggleClose")) {
+    // $('header').css('margin-left','400px');
+    $("#page-contents").css("margin-left", "400px");
+  } else {
+    $("header").css("margin-left", "0");
+    $("#page-contents").css("margin-left", "0");
+  }
 });
 
 //for singup form tabs
@@ -136,209 +132,211 @@ function showTab(n) {
 */
 
 function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (currentTab < (x.length-1)) {
-        if (n == 1 && !validateForm()) return false;
-        // Hide the current tab:
-        x[currentTab].style.display = "none";
-    }
-    // Increase or decrease the current tab by 1:
-    currentTab = currentTab + n;
-    // if you have reached the end of the form... :
-    if (currentTab >= x.length) {
-        //...the form gets submitted:
-        document.getElementById("regForm").submit();
-        //hiding popup and showing dashboard
-        $('#signupModal').toggle("fast");
-        parentDiv.children().hide();
-        parentDiv.find('#dashboard').show("slow");
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (currentTab < x.length - 1) {
+    if (n == 1 && !validateForm()) return false;
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+  }
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form... :
+  if (currentTab >= x.length) {
+    //...the form gets submitted:
+    document.getElementById("regForm").submit();
+    //hiding popup and showing dashboard
+    $("#signupModal").toggle("fast");
+    parentDiv.children().hide();
+    parentDiv.find("#dashboard").show("slow");
 
-        return false;
-    }
-    else{
-        x[currentTab].style.display = "none";
-    }
-    // Otherwise, display the correct tab:
-    //showTab(currentTab);
+    return false;
+  } else {
+    x[currentTab].style.display = "none";
+  }
+  // Otherwise, display the correct tab:
+  //showTab(currentTab);
 }
 
-
 function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false:
-            valid = false;
-        }
+  // This function deals with validation of the form fields
+  var x,
+    y,
+    i,
+    valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false:
+      valid = false;
     }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
-    }
-    return valid; // return the valid status
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
 }
 
 function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-    }
-    //... and adds the "active" class to the current step:
-    x[n].className += " active";
+  // This function removes the "active" class of all steps...
+  var i,
+    x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class to the current step:
+  x[n].className += " active";
 }
-
 
 /*****************SWAPPING PAGE CONTENTS HERE******************/
-var parentDiv = $('#page-contents');
+var parentDiv = $("#page-contents");
 
-$('.btnRecord').on('click',function(e){
-    showATab('submitVideo');
-    //hide info button if visible
-
+$(".btnRecord").on("click", function (e) {
+  showATab("submitVideo");
+  //hide info button if visible
 });
 
-$('.submitRecordingBtn').on('click',function(e){
-    //hide info button if visible
-    showATab('success');
+$(".submitRecordingBtn").on("click", function (e) {
+  //hide info button if visible
+  showATab("success");
 
-    //removing old notifications
-    $('ol.chat li:not(:first-child)').remove();
-    //showing notifications
-    $('<li class="notification" style="display: none"> <div class="msg"> <p>Video Added!</p> </div> </li>').
-        appendTo(parentDiv.find('#success .chat')).show("slow");
-    setTimeout(
-        function()
-        {
-            $('<li class="other" style="display: none"><div class="avatar"><img src="images/avater.png" draggable="false"/></div><div class="msg">' +
-            '<p>Your video was submitted successfully!</p> </div> </li>').
-                appendTo(parentDiv.find('#success .chat')).show("slow");
-        }, 1000);
+  //removing old notifications
+  $("ol.chat li:not(:first-child)").remove();
+  //showing notifications
+  $(
+    '<li class="notification" style="display: none"> <div class="msg"> <p>Video Added!</p> </div> </li>'
+  )
+    .appendTo(parentDiv.find("#success .chat"))
+    .show("slow");
+  setTimeout(function () {
+    $(
+      '<li class="other" style="display: none"><div class="avatar"><img src="images/avater.png" draggable="false"/></div><div class="msg">' +
+        "<p>Your video was submitted successfully!</p> </div> </li>"
+    )
+      .appendTo(parentDiv.find("#success .chat"))
+      .show("slow");
+  }, 1000);
 });
 
-var backBtn = $('.btnBack');
-var toggleBar = $('.toggleBar');
-var infoBtn = $('.btnInfo');
+var backBtn = $(".btnBack");
+var toggleBar = $(".toggleBar");
+var infoBtn = $(".btnInfo");
 //showing back button instead of the side menu bars
-function showBackButton(backTabID){
-   
-    toggleBar.hide();
-    backBtn.show();
-    $('input[id=backTabID]').val(backTabID);
-    backBtn.id = backTabID;
-    //alert("showbackbutton: "+backTabID);
+function showBackButton(backTabID) {
+  toggleBar.hide();
+  backBtn.show();
+  $("input[id=backTabID]").val(backTabID);
+  backBtn.id = backTabID;
+  //alert("showbackbutton: "+backTabID);
 }
 
-backBtn.on('click',function(e){
-    console.log("On Back Button Click()___&&&&&&&");
+backBtn.on("click", function (e) {
+  console.log("On Back Button Click()___&&&&&&&");
 
-    //hide info button if visible
+  //hide info button if visible
 
-    //alert("onclickbackbutton: "+$('input[id=backTabID]').val());
+  //alert("onclickbackbutton: "+$('input[id=backTabID]').val());
 
-    //var tabToShow  = backBtn.id;
-    var tabToShow = $('input[id=backTabID]').val();
-    if (tabToShow=="activity") {
-        document.getElementById("logoDivId").style.display = "none";
-      } else {
-        document.getElementById("logoDivId").style.display = "block";
-      }
-    showATab(tabToShow);
+  //var tabToShow  = backBtn.id;
+  var tabToShow = $("input[id=backTabID]").val();
+  if (tabToShow == "activity") {
+    document.getElementById("logoDivId").style.display = "none";
+  } else {
+    document.getElementById("logoDivId").style.display = "block";
+  }
+  showATab(tabToShow);
 
-    if(tabToShow == 'dashboard')
-        showMenuBar();
+  if (tabToShow == "dashboard") showMenuBar();
 });
 
-function showInfoBtn(modalID){
-    infoBtn.show();
-    infoBtn.id = modalID;
+function showInfoBtn(modalID) {
+  infoBtn.show();
+  infoBtn.id = modalID;
 }
 
-infoBtn.on('click',function(e){
-    var modalToShow = infoBtn.id;
-    $('#'+modalToShow).addClass("is-visible");
+infoBtn.on("click", function (e) {
+  var modalToShow = infoBtn.id;
+  $("#" + modalToShow).addClass("is-visible");
 });
 
-function hideInfoBtn(){
-    infoBtn.hide();
+function hideInfoBtn() {
+  infoBtn.hide();
 }
 
-function showMenuBar(){
-    backBtn.hide();
-    toggleBar.show();
+function showMenuBar() {
+  backBtn.hide();
+  toggleBar.show();
 }
 
-function showATab(tabID){
-    parentDiv.children().hide();
-    parentDiv.find('#' + tabID).show("fast");
+function showATab(tabID) {
+  parentDiv.children().hide();
+  parentDiv.find("#" + tabID).show("fast");
 
-    if(localStorage.getItem("isSubscribed") == "true"){
-        $("#subscribed-user").show();
-        $("#not-subscribed-user").hide();
-    }else{
-        //$("#subscribed-user").hide();
-        $("#not-subscribed-user").show();
-    }
+  if (localStorage.getItem("isSubscribed") == "true") {
+    $("#subscribed-user").show();
+    $("#not-subscribed-user").hide();
 
-    if (tabID == 'activity') {
-        showBackButton('dashboard');
-    }
+    // $("#subscribed-user").hide();
+    // $("#not-subscribed-user").show();
+  } else {
+    $("#subscribed-user").hide();
+    $("#not-subscribed-user").show();
+  }
 
-    if (tabID == 'eventView') {
-        showBackButton('activity');
-    }
+  if (tabID == "activity") {
+    showBackButton("dashboard");
+  }
 
-    // show info button for specific tabs else hide it
-    if(tabID == 'takeVideo'){
-        showInfoBtn('videoInfo');
-    }
-    else{
-        hideInfoBtn();
-    }
+  if (tabID == "eventView") {
+    showBackButton("activity");
+  }
+
+  // show info button for specific tabs else hide it
+  if (tabID == "takeVideo") {
+    showInfoBtn("videoInfo");
+  } else {
+    hideInfoBtn();
+  }
 }
 
-$('.btnOk').on('click',function(e){
-    closeAllModals();
+$(".btnOk").on("click", function (e) {
+  closeAllModals();
 });
 
-function closeAllModals(){
-    $('#signinModal').removeClass("is-visible");
-    $('#signupModal').removeClass("is-visible");
-    $('#LocationModal').removeClass("is-visible");
-    $('#videoInfo').removeClass('is-visible');
-    $('#setmonitorModal').removeClass('is-visible');
-    $('#setTimeModal').removeClass('is-visible');
-    $('#inviteModal').removeClass('is-visible');
-    $('#setSoberDate').removeClass('is-visible');
-    $("#proTip").removeClass("is-visible");
-    $("#instructionsModal").removeClass("is-visible");
-    $("#paymentForm").removeClass("is-visible");
+function closeAllModals() {
+  $("#signinModal").removeClass("is-visible");
+  $("#signupModal").removeClass("is-visible");
+  $("#LocationModal").removeClass("is-visible");
+  $("#videoInfo").removeClass("is-visible");
+  $("#setmonitorModal").removeClass("is-visible");
+  $("#setTimeModal").removeClass("is-visible");
+  $("#inviteModal").removeClass("is-visible");
+  $("#setSoberDate").removeClass("is-visible");
+  $("#proTip").removeClass("is-visible");
+  $("#instructionsModal").removeClass("is-visible");
+  $("#paymentForm").removeClass("is-visible");
 }
-
 
 //setting height of video recorder
-var totalHeight = $('body').outerHeight();
-var headerHeight = $('header').outerHeight();
-var secActionHeight = $('div.secAction.recording').outerHeight();
+var totalHeight = $("body").outerHeight();
+var headerHeight = $("header").outerHeight();
+var secActionHeight = $("div.secAction.recording").outerHeight();
 console.log(totalHeight);
 console.log(headerHeight);
 console.log(secActionHeight);
 
-$('#takeVideo').css({
-    height: totalHeight - headerHeight - secActionHeight
+$("#takeVideo").css({
+  height: totalHeight - headerHeight - secActionHeight,
 });
-$('#submitVideo').css({
-    height: totalHeight - headerHeight - secActionHeight
+$("#submitVideo").css({
+  height: totalHeight - headerHeight - secActionHeight,
 });
-
 
 window.addEventListener("DOMContentLoaded", init, false);

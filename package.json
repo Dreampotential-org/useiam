@@ -17,6 +17,7 @@
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^5.1.1",
     "cordova-ios-plugin-no-export-compliance": "0.0.5",
+    "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-customurlscheme": "^5.0.2",
     "cordova-plugin-device": "^2.0.3",
@@ -59,7 +60,9 @@
         "URL_SCHEME": "useiam"
       },
       "cordova-plugin-purchase": {},
-      "cordova-plugin-keep-awake": {}
+      "cordova-plugin-keep-awake": {
+        "USESWIFTLANGUAGEVERSION": "4"
+      }
     },
     "platforms": [
       "browser",
