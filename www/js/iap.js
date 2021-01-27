@@ -18,10 +18,14 @@ function finishPurchase(p) {
   console.log("finishPurchase status");
   console.log(p.state);
   localStorage.goldCoins = (localStorage.goldCoins | 0) + 10;
-  p.finish();
 
   //if "state":"approved" the call server api to save purchase details
   //if p.state()==approved
+  if (p.state == "approved") {
+    inAppPurchaseDone();
+  }
+
+  p.finish();
 }
 
 function inAppPurchaseDone() {
