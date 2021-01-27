@@ -24,6 +24,12 @@ function init() {
   init_display();
   init_stripe();
 
+  if (isApp()) {
+    // avoid IAP for now
+    // ADD OUR OWN Outside IAP PAYment :) XXX
+    showATab('dashboard')
+  }
+
   //  init_doctor_login_stuff();
 
   // populates days sober in left side pannel
