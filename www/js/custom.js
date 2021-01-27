@@ -24,7 +24,7 @@ function init() {
   init_display();
   init_stripe();
 
-  if (isApp()) {
+  if (!(isApp())) {
     // avoid IAP for now
     // ADD OUR OWN Outside IAP PAYment :) XXX
     showATab('dashboard')
