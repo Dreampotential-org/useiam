@@ -24,10 +24,12 @@ function init() {
   init_display();
   init_stripe();
 
+
   if (!(isApp())) {
-    // avoid IAP for now
-    // ADD OUR OWN Outside IAP PAYment :) XXX
-    showATab('dashboard')
+    // Farrukh add subscription integration
+    // make free for webclient until we implement
+    $("#not-subscribed-user").hide()
+    $("#subscribed-user").show()
   }
 
   //  init_doctor_login_stuff();
