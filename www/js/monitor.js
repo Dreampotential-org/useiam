@@ -6,6 +6,7 @@ function init_monitor() {
     console.log("SRVER", SERVER);
 
     get_profile_info(function (msg) {
+
       if (msg.sober_date) {
         $("#sober_date_update").val(msg.sober_date);
       }
@@ -124,6 +125,52 @@ function show_invite() {
   closeAllModals();
   $("#inviteModal").addClass("is-visible");
 }
+
+function do_set_paying(iap_blurb) {
+  var form = new FormData();
+  form.append("paying", true);
+  form.append("iap_blurb", iap_blurb);
+
+  var settings = {
+    async: true,
+    crossDomain: true,
+    headers: {
+      Authorization: "Token " + localStorage.getItem("session_id")
+    },
+    url: SERVER + "/api/profile/",
+    method: "PUT",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    data: form
+  };
+
+  $.ajax(settings)
+    .done(function (response) {
+      var msg = JSON.parse(response).message;
+      // update sober date text on page
+      get_profile_info();
+      swal("Thank you Ready Go useIAM", {
+        icon: "success"
+      });
+
+      //after successful login or signup show dashboard contents
+      showATab("dashboard");
+      //close modals
+      closeAllModals();
+
+      $(".toggleBar").click();
+    })
+    .fail(function (err) {
+      console.log(err);
+      swal({
+        title: "Error",
+        text: "",
+        icon: "error"
+      });
+    });
+}
+
 
 function do_set_sober_date() {
   var form = new FormData();
@@ -324,10 +371,12 @@ function get_profile_info(callback) {
     .done(function (response) {
       var msg = JSON.parse(response);
       console.log(response);
-      localStorage.setItem(
-        "stribe_subscription_id",
-        msg.stripe_subscription_id
-      );
+
+      if (msg.paying) {
+        $("#not-subscribed-user").hide()
+        $("#subscribed-user").show()
+      }
+
       if (msg.stripe_subscription_id) {
         $("#cancel_plan").show();
       }

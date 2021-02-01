@@ -22,15 +22,26 @@ function finishPurchase(p) {
   //if "state":"approved" the call server api to save purchase details
   //if p.state()==approved
   if (p.state == "approved") {
-    inAppPurchaseDone();
+    inAppPurchaseDone(p);
   }
 
   p.finish();
 }
 
-function inAppPurchaseDone() {
+function inAppPurchaseDone(p) {
   localStorage.setItem("isSubscribed", "true");
   showATab("dashboard");
+
+  // NEED Figure out blurb to send from p to set as iap_burb which
+  // we need to coordinate unsubscribe interface.
+
+  // sets inform API user is now subscribe success :)
+  // XXX fix IAP blurb info
+  do_set_paying("P_IAP Info Blurb")
+
+  $("#not-subscribed-user").hide()
+  $("#subscribed-user").show()
+
 }
 
 // function refreshUI() {

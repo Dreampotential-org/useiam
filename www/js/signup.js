@@ -166,13 +166,6 @@ function signup_api (params) {
       closeAllModals()
       $('.moto').show()
 
-      if (!(isApp())) {
-        // Farrukh add subscription integration
-        // make free for webclient until we implement
-        $("#not-subscribed-user").hide()
-        $("#subscribed-user").show()
-      }
-
       swal({
         title: 'Good job!',
         text: "You're logged in",
@@ -183,7 +176,17 @@ function signup_api (params) {
         // XXX Check payment status
 
         // show_set_monitor();
+          if (!(isApp())) {
+            // Farrukh add subscription integration
+            // make free for webclient until we implement
+            $("#not-subscribed-user").hide()
+            $("#subscribed-user").show()
+          }
+
       })
+
+
+
 
       // $("#proTip").addClass("is-visible");
     })
@@ -221,6 +224,13 @@ function handle_signin () {
           text: "You're logged in",
           icon: 'success'
         })
+
+      if (!(isApp())) {
+        // Farrukh add subscription integration
+        // make free for webclient until we implement
+        $("#not-subscribed-user").hide()
+        $("#subscribed-user").show()
+      }
         get_profile_info(function (msg) {
           // show_set_monitor();
         })
