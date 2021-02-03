@@ -24,12 +24,11 @@ function init() {
   init_display();
   init_stripe();
 
-
-  if (!(isApp())) {
+  if (!isApp()) {
     // Farrukh add subscription integration
     // make free for webclient until we implement
-    $("#not-subscribed-user").hide()
-    $("#subscribed-user").show()
+    $("#not-subscribed-user").hide();
+    $("#subscribed-user").show();
   }
 
   //  init_doctor_login_stuff();
@@ -287,16 +286,16 @@ function showATab(tabID) {
   parentDiv.children().hide();
   parentDiv.find("#" + tabID).show("fast");
 
-  if (localStorage.getItem("isSubscribed") == "true") {
-    $("#subscribed-user").show();
-    $("#not-subscribed-user").hide();
+  // if (localStorage.getItem("isSubscribed") == "true") {
+  //   $("#subscribed-user").show();
+  //   $("#not-subscribed-user").hide();
 
-    // $("#subscribed-user").hide();
-    // $("#not-subscribed-user").show();
-  } else {
-    $("#subscribed-user").hide();
-    $("#not-subscribed-user").show();
-  }
+  //   // $("#subscribed-user").hide();
+  //   // $("#not-subscribed-user").show();
+  // } else {
+  //   $("#subscribed-user").hide();
+  //   $("#not-subscribed-user").show();
+  // }
 
   if (tabID == "activity") {
     showBackButton("dashboard");

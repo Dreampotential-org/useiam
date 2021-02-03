@@ -29,7 +29,7 @@ function finishPurchase(p) {
 }
 
 function inAppPurchaseDone(p) {
-  localStorage.setItem("isSubscribed", "true");
+  // localStorage.setItem("isSubscribed", "true");
   showATab("dashboard");
 
   // NEED Figure out blurb to send from p to set as iap_burb which
@@ -37,11 +37,10 @@ function inAppPurchaseDone(p) {
 
   // sets inform API user is now subscribe success :)
   // XXX fix IAP blurb info
-  do_set_paying("P_IAP Info Blurb")
+  do_set_paying("P_IAP Info Blurb");
 
-  $("#not-subscribed-user").hide()
-  $("#subscribed-user").show()
-
+  // $("#not-subscribed-user").hide();
+  // $("#subscribed-user").show();
 }
 
 // function refreshUI() {
