@@ -1,12 +1,9 @@
 function init_monitor() {
-
   $("#sober_count").on("click", function (e) {
-
-    console.log("In updtate date function....")
+    console.log("In updtate date function....");
     console.log("SRVER", SERVER);
 
     get_profile_info(function (msg) {
-
       if (msg.sober_date) {
         $("#sober_date_update").val(msg.sober_date);
       }
@@ -44,41 +41,36 @@ function init_monitor() {
 }
 
 function init_time() {
-  console.log("In Init Time fun()......................")
+  console.log("In Init Time fun()......................");
   $("#setTime").on("click", function (e) {
     get_profile_info(function (msg) {
       show_set_time();
 
       // closes side menu
       $(".toggleBar").click();
-
     });
   });
-
 }
 
 function init_invite() {
-  console.log("In Invite fun()......................")
+  console.log("In Invite fun()......................");
   $("#invite").on("click", function (e) {
     get_profile_info(function (msg) {
       show_invite();
 
       // closes side menu
       $(".toggleBar").click();
-
     });
   });
-
 }
-
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
     "<div>" +
-    monitor +
-    " - <a val='" +
-    monitor +
-    "' class='remove-monitor buttonColor' href='#'>remove</a></div>"
+      monitor +
+      " - <a val='" +
+      monitor +
+      "' class='remove-monitor buttonColor' href='#'>remove</a></div>"
   );
 
   $(".remove-monitor").on("click", function (e) {
@@ -91,12 +83,12 @@ function display_monitor(monitor) {
         " will no longer get updates from you.",
       icon: "warning",
       buttons: true,
-      dangerMode: true
-    }).then(willDelete => {
+      dangerMode: true,
+    }).then((willDelete) => {
       if (willDelete) {
         api_remove_monitor(remove_monitor);
         swal("Monitor has been removed", {
-          icon: "success"
+          icon: "success",
         });
       }
     });
@@ -116,7 +108,7 @@ function show_set_monitor() {
 function show_set_time() {
   closeAllModals();
   $("#setTimeModal").addClass("is-visible");
-  $('.timepicker').timepicker({
+  $(".timepicker").timepicker({
     interval: 10,
   });
 }
@@ -135,14 +127,14 @@ function do_set_paying(iap_blurb) {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id")
+      Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/profile/",
     method: "PUT",
     processData: false,
     contentType: false,
     mimeType: "multipart/form-data",
-    data: form
+    data: form,
   };
 
   $.ajax(settings)
@@ -151,8 +143,11 @@ function do_set_paying(iap_blurb) {
       // update sober date text on page
       get_profile_info();
       swal("Thank you Ready Go useIAM", {
-        icon: "success"
+        icon: "success",
       });
+
+      $("#not-subscribed-user").hide();
+      $("#subscribed-user").show();
 
       //after successful login or signup show dashboard contents
       showATab("dashboard");
@@ -166,34 +161,28 @@ function do_set_paying(iap_blurb) {
       swal({
         title: "Error",
         text: "",
-        icon: "error"
+        icon: "error",
       });
     });
 }
 
-
 function do_set_sober_date() {
   var form = new FormData();
 
-  form.append(
-    "sober_date",
-    $("#sober_date_update")
-      .val()
-      .trim()
-  );
+  form.append("sober_date", $("#sober_date_update").val().trim());
   form.append("source", window.location.host);
   var settings = {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id")
+      Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/profile/",
     method: "PUT",
     processData: false,
     contentType: false,
     mimeType: "multipart/form-data",
-    data: form
+    data: form,
   };
 
   $.ajax(settings)
@@ -202,7 +191,7 @@ function do_set_sober_date() {
       // update sober date text on page
       get_profile_info();
       swal("Sober Date has been updated", {
-        icon: "success"
+        icon: "success",
       });
 
       //after successful login or signup show dashboard contents
@@ -218,7 +207,7 @@ function do_set_sober_date() {
       swal({
         title: "Error",
         text: "",
-        icon: "error"
+        icon: "error",
       });
     });
 }
@@ -239,63 +228,47 @@ function do_set_sober_date() {
 // }
 
 function do_set_monitor() {
+  if (!validateEmail($("#monitor_email").val().trim())) {
+    swal({
+      title: "Error Invalid email address",
+      text: "",
+      icon: "error",
+    });
+    return;
+  }
 
-    if (!(validateEmail($("#monitor_email").val().trim()))) {
-      swal({
-        title: "Error Invalid email address",
-        text: "",
-        icon: "error"
-      });
-      return
-    }
-
-  if (
-    $("#monitor_email")
-      .val()
-      .trim().length != 0
-  ) {
-    if (
-      !validateEmail(
-        $("#monitor_email")
-          .val()
-          .trim()
-      )
-    ) {
+  if ($("#monitor_email").val().trim().length != 0) {
+    if (!validateEmail($("#monitor_email").val().trim())) {
       $("#monitor_email").addClass("invalid");
       return;
     }
   }
 
   var form = new FormData();
-  form.append(
-    "notify_email",
-    $("#monitor_email")
-      .val()
-      .trim()
-  );
+  form.append("notify_email", $("#monitor_email").val().trim());
   form.append("source", window.location.host);
   var settings = {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id")
+      Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/add-monitor/",
     method: "PUT",
     processData: false,
     contentType: false,
     mimeType: "multipart/form-data",
-    data: form
+    data: form,
   };
 
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response).message;
       swal("Monitor has been added", {
-        icon: "success"
+        icon: "success",
       });
 
-      $("#monitor_email").val('')
+      $("#monitor_email").val("");
       //after successful login or signup show dashboard contents
       showATab("dashboard");
       //close modals
@@ -303,7 +276,7 @@ function do_set_monitor() {
 
       $(".toggleBar").click();
       $("#showInstructions").click();
-      console.log("Show instructions")
+      console.log("Show instructions");
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
@@ -311,7 +284,7 @@ function do_set_monitor() {
       swal({
         title: "Error",
         text: "",
-        icon: "error"
+        icon: "error",
       });
     });
 }
@@ -323,14 +296,14 @@ function api_remove_monitor(notify_email) {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id")
+      Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/remove-monitor/",
     method: "PUT",
     processData: false,
     contentType: false,
     mimeType: "multipart/form-data",
-    data: form
+    data: form,
   };
 
   $.ajax(settings)
@@ -345,7 +318,7 @@ function api_remove_monitor(notify_email) {
       swal({
         title: "Error",
         text: "",
-        icon: "error"
+        icon: "error",
       });
     });
 }
@@ -358,13 +331,13 @@ function get_profile_info(callback) {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id")
+      Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/profile/",
     method: "GET",
     processData: false,
     contentType: false,
-    mimeType: "multipart/form-data"
+    mimeType: "multipart/form-data",
   };
 
   $.ajax(settings)
@@ -373,8 +346,8 @@ function get_profile_info(callback) {
       console.log(response);
 
       if (msg.paying) {
-        $("#not-subscribed-user").hide()
-        $("#subscribed-user").show()
+        $("#not-subscribed-user").hide();
+        $("#subscribed-user").show();
       }
 
       if (msg.stripe_subscription_id) {
@@ -396,13 +369,13 @@ function list_monitors(callback) {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id")
+      Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/list-monitors/",
     method: "GET",
     processData: false,
     contentType: false,
-    mimeType: "multipart/form-data"
+    mimeType: "multipart/form-data",
   };
 
   $.ajax(settings)
