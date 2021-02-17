@@ -124,3 +124,79 @@ var app = {
 };
 
 app.initialize();
+
+
+$(document).ready(function(){
+    $('#forgot_password').on('click', function(){
+        $('.login-form-div').hide();
+        $('.forgot-form-div').show();
+    });
+
+    $('#login_form_btn').on('click', function(){
+        $('.login-form-div').show();
+        $('.forgot-form-div').hide();
+    });
+
+    $('#forgotBtn').on('click', function(){
+
+        $('#forgot-icon').hide();
+        $('#forgot-spinner-icon').show();
+
+        email = $('#forgot_email').val();
+    
+        if (email === '' || email === null) {
+            swal({
+                title: "Email is required.",
+                icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+            });
+
+            $('#forgot-icon').show();
+            $('#forgot-spinner-icon').hide();
+            return false;
+        } 
+
+        var form = new FormData();
+        form.append("email", email);
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": SERVER + "/api/forgot-password/",
+            "method": "POST",
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        }
+
+        $.ajax(settings).done(function (response) {
+            swal({
+                title: "Email Sent",
+                text: "Email has been sent",
+                icon: "success",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+            });
+
+            $('#forgot-icon').show();
+            $('#forgot-spinner-icon').hide();
+        }).fail(function(err) {
+            swal({
+                title: "Something Wrong.",
+                text: err['responseText'],
+                icon: "error",
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+            });
+
+            $('#forgot-icon').show();
+            $('#forgot-spinner-icon').hide();
+        });
+
+        return false;
+        
+    });
+});
+
