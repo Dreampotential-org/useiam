@@ -17,6 +17,7 @@ function init() {
   init_login_stuff();
   init_gps_stuff();
   init_video_event();
+  // init_subscribe_event();
   init_monitor();
   init_time();
   init_invite();
@@ -30,7 +31,7 @@ function init() {
     $("#not-subscribed-user").hide();
     $("#subscribed-user").show();
   }
-
+  // $("#not-subscribed-user").show();
   //  init_doctor_login_stuff();
 
   // populates days sober in left side pannel
