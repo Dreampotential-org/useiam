@@ -12,7 +12,7 @@ function init() {
   });
 
   block_desktop();
-  init_reset_password();
+//   init_reset_password();
   init_logo();
   init_login_stuff();
   init_gps_stuff();
@@ -40,15 +40,17 @@ function init() {
 }
 
 function block_desktop() {
-  if (!isMobile) {
-    swal({
-      title: "Computer not supported",
-      text: "Use IAM with your smartphone or tablet.",
-      icon: "info",
-      closeOnEsc: false,
-      closeOnClickOutside: false,
-    });
-  }
+    if (!window.location.pathname.includes('reset-password')) {
+        if (!isMobile) {
+            swal({
+            title: "Computer not supported",
+            text: "Use IAM with your smartphone or tablet.",
+            icon: "info",
+            closeOnEsc: false,
+            closeOnClickOutside: false,
+            });
+        }
+    }
 }
 
 function init_display() {
@@ -58,9 +60,9 @@ function init_display() {
   }
 }
 
-function init_reset_password() {
-  $("#forgot_password").attr("href", SERVER + "/password_reset");
-}
+// function init_reset_password() {
+//   $("#forgot_password").attr("href", SERVER + "/password_reset");
+// }
 
 // capture all errors and send to slack
 window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -346,5 +348,23 @@ $("#takeVideo").css({
 $("#submitVideo").css({
   height: totalHeight - headerHeight - secActionHeight,
 });
+
+function objToStr(obj) {
+    var text = '';
+    $.each(obj, function(k, v) {
+        text += v;
+    }); 
+    return text;
+}
+
+function objArrToStr(obj) {
+    var text = '';
+    $.each(obj, function() {
+        var key = Object.keys(this)[0];
+        var value = this[key];
+        text += value+' ';
+    }); 
+    return text;
+}
 
 window.addEventListener("DOMContentLoaded", init, false);
