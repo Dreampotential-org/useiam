@@ -12,14 +12,14 @@ $(document).on('click', '#password-btn', function () {
 
     var data = {};
     data['new_password1'] = $('#new-password').val();
-    data['new_password2'] = $('#new-password-confirm').val();
+    data['new_password2'] = $('#new-password').val();
     data['uid'] = uid;
     data['token'] = token;
 
-    if (data['new_password1'] == '' || data['new_password1'] != data['new_password2']) {
+    if (data['new_password1'] == '') {
         swal({
             title: "Error",
-            text: "Passwords don\'t match",
+            text: "Must enter password",
             icon: "error",
             closeOnEsc: false,
             closeOnClickOutside: false,
@@ -43,7 +43,6 @@ $(document).on('click', '#password-btn', function () {
 
     $.ajax(settings).done(function (response) {
         $('#new-password').val('');
-        $('#new-password-confirm').val('');
 
         var msg = objToStr(JSON.parse(response));
 
@@ -75,6 +74,6 @@ $(document).on('click', '#password-btn', function () {
     return false;
 });
 
-$(document).on('click', function(){
+$(document).on('click', '#signin_btn',function(){
     window.location = '/';
 });
