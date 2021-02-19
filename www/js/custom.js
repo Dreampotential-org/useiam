@@ -39,7 +39,8 @@ function init() {
 }
 
 function block_desktop() {
-    if (!window.location.pathname.includes('reset-password')) {
+    if (!(window.location.pathname.includes('reset-password') ||  
+    window.location.pathname.includes('verify-email'))) {
         if (!isMobile) {
             swal({
             title: "Computer not supported",
