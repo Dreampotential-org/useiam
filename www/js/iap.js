@@ -1,6 +1,7 @@
 $(".subscribe").on("click", function (e) {
   console.log("subscribe clicked");
-  if (isAPP()){ 
+  if (isApp())
+  { 
     $("#subscriptionModule").addClass("is-visible");  
   }
   else if (
@@ -14,8 +15,7 @@ $(".subscribe").on("click", function (e) {
     store.refresh();
     store.order("base_subscription_7");
   }
-  // SERVER_subscription = 'http://127.0.0.1:8000'
-  // console.log(SERVER_subscription + "/store/userSubscribe");
+  // var SERVER_subscription = 'http://127.0.0.1:8000'
   var settings_client_token = {
     async: true,
     crossDomain: true,
@@ -81,6 +81,7 @@ $(".subscribe").on("click", function (e) {
               $.ajax(settings_add_item_update).done(function (response) {
                 // response = JSON.parse(response);
                 console.log(response);
+                do_set_paying("P_IAP Info Blurb");
                 swal({
                   title: "Subscription",
                   text: "Subscrition Successful",
