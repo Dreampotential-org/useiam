@@ -236,6 +236,14 @@ function signup_api(params) {
             });
             return
         }
+
+        swal({
+            'title': 'Verification Email Required',
+            'text': 'Check your account to activate your account',
+            'icon': 'warning',
+        });
+        return false;
+
         localStorage.setItem("session_id", JSON.parse(response).token)
         console.log("user logged in");
 
