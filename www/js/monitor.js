@@ -348,9 +348,11 @@ function get_profile_info(callback) {
       if (msg.paying) {
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
+        $("#Unsubscribe_div").show();
       }else{
         $("#not-subscribed-user").show();
         $("#subscribed-user").hide();
+        $("#Unsubscribe_div").hide();
       }
 
       if (msg.stripe_subscription_id) {
