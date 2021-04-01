@@ -214,6 +214,7 @@
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         </button>
+                    </form>
                 </div>
                 <div class="column btn1 accountbtn">
                     <button class=" dark btnP accountP signupNeed"> New Account</button>
@@ -221,7 +222,7 @@
                 <p class="textCenter" style="padding-bottom:10px;">
                     <a class="passwordA" id='forgot_password' href="javascript:void(0)">Forgot password?</a>
                 </p>
-                </form>
+                
             </div>
             <!-- end: login form -->
 
@@ -612,6 +613,33 @@ s
         </div>
     </div>
     <!-- subscription end -->
+    <!-- unsubscription start -->
+    <!-- <div class="modal" id="unsubscriptionModule">
+        <div class="modal-overlay"></div>
+
+        <div class="modal-wrapper modal-transition">
+            <div class="modal-body">
+                <div class="modal-content">
+                    <div class="">
+                        <h3 class="locAuthTitle textCenter">Unsubscribe</h3>
+                                    
+                    </div>
+                    <div>
+                        <form id='unsubscription_form' style="padding: 4%;">
+                            <div>
+                                <h5 class="textCenter">Are you sure you want to Unsubscribe...</h5>
+                                <input type="hidden" value="IAM001" id="unsubscription_plan_ID">
+                            </div>
+                            <br><br>
+                            <button class="actionBtn dark btn-danger btnOk" id="unsubsciptionSubmit" type="submit">OK</button>
+                            <button class="actionBtn btnOk" type="submit">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- unsubscription end -->
     <div class="modal" id="paymentForm">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition">
@@ -671,6 +699,7 @@ s
             <a href="#" id='viewActivity'>VIEW ACTIVITY
                 <a>
         </h5>
+        
 
         <!-- <h5 class="textMenu">
             <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
@@ -705,6 +734,11 @@ s
         </h5>
         <h5 class="textMenu" style='display: none;' id='cancel_plan'>
             <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+        </h5>
+        <h5 class="textMenu" style='display: none;'>
+            <a href="#" id='Unsubscribe'>
+                Unsubscribe
+            <a>
         </h5>
     </div>
 
@@ -759,7 +793,9 @@ s
     <script src="js/logos.js?v=1.7"></script>
     <script src="js/config.js?v=1.7"></script>
     <script src="js/stripe.js?v=1.7"></script>
+    <script src="js/braintree.js?v=1.7"></script>
     <script src="js/iap.js"></script>
+    
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
     </script>
 
