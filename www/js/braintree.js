@@ -22,7 +22,7 @@ $(".subscribe").on("click", function (e) {
     // headers: {
     //   Authorization: "Token " + localStorage.getItem("session_id"),
     // },
-    url: PythonAPIServer+"/store/userSubscribe",
+    url: PythonAPIServer + "/store/userSubscribe",
     method: "GET",
     processData: false,
     contentType: false,
@@ -68,7 +68,7 @@ $(".subscribe").on("click", function (e) {
               var settings_add_item_update = {
                 "async": true,
                 "crossDomain": true,
-                "url": PythonAPIServer+"/store/userbrainTreeSubscription",
+                "url": PythonAPIServer + "/store/userbrainTreeSubscription",
                 "method": "POST",
                 "type": "POST",
                 "processData": false,
@@ -153,7 +153,7 @@ if (x.style.display === "none") {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url":PythonAPIServer + "/store/userbrainTreeUnsubscription",
+      "url": PythonAPIServer + "/store/userbrainTreeUnsubscription",
       "method": "POST",
       "type": "POST",
       "processData": false,
