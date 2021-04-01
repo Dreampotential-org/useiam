@@ -1,14 +1,14 @@
 $(".subscribe").on("click", function (e) {
   console.log("subscribe clicked");
   if (isApp())
-  { 
+  {
     $("#subscriptionModule").addClass("is-visible");  
   }
-  else if (
+  else if (window.cordova && (
     window.cordova.platformId == "ios" ||
-    window.cordova.platformId == "android"
-  ) 
-  {  
+    window.cordova.platformId == "android")
+  )
+  {
     console.log("showtab else");
     store.when("base_subscription_7").approved(finishPurchase);
     store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
