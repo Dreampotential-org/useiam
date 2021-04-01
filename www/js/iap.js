@@ -22,7 +22,7 @@ $(".subscribe").on("click", function (e) {
     // headers: {
     //   Authorization: "Token " + localStorage.getItem("session_id"),
     // },
-    url: SERVER + "/store/userSubscribe",
+    url: "https://api.dreampotential.org/store/userSubscribe",
     method: "GET",
     processData: false,
     contentType: false,
