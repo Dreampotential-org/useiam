@@ -2,7 +2,7 @@ $(".subscribe").on("click", function (e) {
   console.log("subscribe clicked");
   if (isApp())
   {
-    $("#subscriptionModule").addClass("is-visible");  
+    $("#subscriptionModule").addClass("is-visible");
   }
   else if (window.cordova && (
     window.cordova.platformId == "ios" ||
@@ -19,9 +19,6 @@ $(".subscribe").on("click", function (e) {
   var settings_client_token = {
     async: true,
     crossDomain: true,
-    // headers: {
-    //   Authorization: "Token " + localStorage.getItem("session_id"),
-    // },
     url: "https://api.dreampotential.org/store/userSubscribe",
     method: "GET",
     processData: false,
@@ -58,8 +55,6 @@ $(".subscribe").on("click", function (e) {
 
               // Add the nonce to the form and submit
               document.querySelector("#nonce").value = payload.nonce;
-              // form.submit();
-              ///////
               var subscription_form = new FormData();
               subscription_form.append("payment_method_nonce", $("#nonce").val())
               // subscription_form.append("client_token", $("#client_token").val())
@@ -67,16 +62,13 @@ $(".subscribe").on("click", function (e) {
               var settings_add_item_update = {
                 "async": true,
                 "crossDomain": true,
-                "url":SERVER + "/store/userbrainTreeSubscription",
+                "url": "https://api.dreampotential.org/store/userbrainTreeSubscription",
                 "method": "POST",
                 "type": "POST",
                 "processData": false,
                 "contentType": false,
                 "mimeType": "multipart/form-data",
                 "data": subscription_form,
-                // "headers": {
-                //     "Authorization": localStorage.getItem("user-token")
-                // }
               };
               $.ajax(settings_add_item_update).done(function (response) {
                 // response = JSON.parse(response);
@@ -100,14 +92,12 @@ $(".subscribe").on("click", function (e) {
           });
           });
       }
-      );  
-      
-      $("#subscriptionModule").addClass("is-visible");  
+      );
+      $("#subscriptionModule").addClass("is-visible");
     })
     .fail(function (err) {
       console.log(err);
     });
-  
 });
 
 
