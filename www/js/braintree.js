@@ -2,7 +2,7 @@ $(".subscribe").on("click", function (e) {
   console.log("subscribe clicked");
   if (isApp())
   {
-    $("#subscriptionModule").addClass("is-visible");  
+    $("#subscriptionModule").addClass("is-visible");
   }
   else if (window.cordova && (
     window.cordova.platformId == "ios" ||
@@ -15,6 +15,10 @@ $(".subscribe").on("click", function (e) {
     store.refresh();
     store.order("base_subscription_7");
   }
+
+
+
+
   // var SERVER_subscription = 'http://127.0.0.1:8000'
   var settings_client_token = {
     async: true,
@@ -36,7 +40,7 @@ $(".subscribe").on("click", function (e) {
       $("#client_token").val(resp.client_token);
       // subscription start
       var form = document.querySelector("#subscription_form");
-      var client_token = $("#client_token").val(); 
+      var client_token = $("#client_token").val();
 
       braintree.dropin.create(
       {
