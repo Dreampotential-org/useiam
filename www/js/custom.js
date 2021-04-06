@@ -1,6 +1,9 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function init() {
+
+   onDeviceReady()
+
   //  https://github.com/apache/cordova-ios/issues/417
   $(document).on("blur", "input", function () {
     window.scrollTo(0, NaN);
@@ -363,8 +366,32 @@ function objArrToStr(obj) {
         var key = Object.keys(this)[0];
         var value = this[key];
         text += value+' ';
-    }); 
+    });
     return text;
 }
+
+
+// device APIs are available
+//
+function onDeviceReady() {
+    document.addEventListener("pause", onPause, false);
+    document.addEventListener("resume", onResume, false);
+}
+
+function onPause() {
+    // Handle the pause event
+    setTimeout(function() {
+            // TODO report to server user activity
+        }, 0);
+}
+
+function onResume() {
+    // Handle the resume event
+    setTimeout(function() {
+            // TODO report to server user activity
+        }, 0);
+
+}
+
 
 window.addEventListener("DOMContentLoaded", init, false);
