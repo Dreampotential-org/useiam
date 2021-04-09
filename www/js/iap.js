@@ -1,10 +1,10 @@
 $(".subscribe").on("click", function (e) {
   console.log("subscribe clicked");
-  if (isApp())
+  if (false isApp())
   {
     $("#subscriptionModule").addClass("is-visible");  
   }
-  else if (window.cordova && (
+  else if (false && window.cordova && (
     window.cordova.platformId == "ios" ||
     window.cordova.platformId == "android")
   )
@@ -36,7 +36,7 @@ $(".subscribe").on("click", function (e) {
       $("#client_token").val(resp.client_token);
       // subscription start
       var form = document.querySelector("#subscription_form");
-      var client_token = $("#client_token").val(); 
+      var client_token = $("#client_token").val() 
 
       braintree.dropin.create(
       {
