@@ -148,12 +148,13 @@ function signup_api(params) {
         // XXX Check payment status
 
         // show_set_monitor();
-        if (!isApp()) {
+        // if (!isApp()) {
           // Farrukh add subscription integration
           // make free for webclient until we implement
-          $("#not-subscribed-user").hide();
-          $("#subscribed-user").show();
-        }
+        console.log(msg)
+        $("#not-subscribed-user").show();
+        $("#subscribed-user").hide();
+        //}
       });
 
       // $("#proTip").addClass("is-visible");
@@ -189,13 +190,14 @@ function handle_signin() {
           icon: "success",
         });
 
-        if (!isApp()) {
+        //if (!isApp()) {
           // Farrukh add subscription integration
           // make free for webclient until we implement
-          $("#not-subscribed-user").hide();
-          $("#subscribed-user").show();
-        }
+        $("#not-subscribed-user").show();
+        $("#subscribed-user").hide();
+
         get_profile_info(function (msg) {
+            console.log(msg)
           // show_set_monitor();
         });
       }
