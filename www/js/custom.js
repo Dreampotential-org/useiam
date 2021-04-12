@@ -14,7 +14,7 @@ function init() {
     window.scrollTo(0, NaN);
   });
 
-  block_desktop();
+//  block_desktop();
 //   init_reset_password();
   init_logo();
   init_login_stuff();
