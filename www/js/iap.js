@@ -91,8 +91,8 @@ $(".subscribe").on("click", function (e) {
                   text: "Subscrition Successful",
                   icon: "success",
               });
-                return
-              // location.reload();
+              //  return
+              location.reload();
               }).fail(function (response) {
                       console.log("Edit item Failed!");
                 swal({
