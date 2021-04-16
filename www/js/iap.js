@@ -84,8 +84,7 @@ $(".subscribe").on("click", function (e) {
                 // response = JSON.parse(response);
                 console.log("Success")
                 console.log(response);
-                alert("HERE")
-                return
+                //alert("HERE")
                 // XXX Need to save plan subscription id from payment payload?
                 do_set_paying(response.ID);
                 swal({
