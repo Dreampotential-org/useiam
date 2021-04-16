@@ -37,7 +37,7 @@ $(".subscribe").on("click", function (e) {
       $("#client_token").val(resp.client_token);
       // subscription start
       var form = document.querySelector("#subscription_form");
-      var client_token = $("#client_token").val() 
+      var client_token = $("#client_token").val()
 
       braintree.dropin.create(
       {
@@ -53,6 +53,7 @@ $(".subscribe").on("click", function (e) {
           $('#subsciptionSubmit').hide();
           instance.requestPaymentMethod(function (err, payload) {
               if (err) {
+                alert(err)
               console.log("Error", err);
               return;
               }
@@ -83,6 +84,7 @@ $(".subscribe").on("click", function (e) {
                 // response = JSON.parse(response);
                 console.log("Success")
                 console.log(response);
+                alert("HERE")
                 do_set_paying("P_IAP Info Blurb");
                 swal({
                   title: "Subscription",
