@@ -2,13 +2,14 @@ $(".subscribe").on("click", function (e) {
   console.log("subscribe clicked");
   if (false isApp())
   {
-    $("#subscriptionModule").addClass("is-visible");  
+    $("#subscriptionModule").addClass("is-visible");
   }
   else if (false && window.cordova && (
     window.cordova.platformId == "ios" ||
     window.cordova.platformId == "android")
   )
   {
+    // APPLE PAY
     console.log("showtab else");
     store.when("base_subscription_7").approved(finishPurchase);
     store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
@@ -80,6 +81,7 @@ $(".subscribe").on("click", function (e) {
               };
               $.ajax(settings_add_item_update).done(function (response) {
                 // response = JSON.parse(response);
+                console.log("Success")
                 console.log(response);
                 do_set_paying("P_IAP Info Blurb");
                 swal({
@@ -87,7 +89,8 @@ $(".subscribe").on("click", function (e) {
                   text: "Subscrition Successful",
                   icon: "success",
               });
-              location.reload();
+                return
+              // location.reload();
               }).fail(function (response) {
                       console.log("Edit item Failed!");
                 swal({
