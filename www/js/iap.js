@@ -69,7 +69,7 @@ $(".subscribe").on("click", function (e) {
               var settings_add_item_update = {
                 "async": true,
                 "crossDomain": true,
-                "url":SERVER + "/store/userbrainTreeSubscription",
+                "url": "https://api.dreampotential.org/store/userbrainTreeSubscription",
                 "method": "POST",
                 "type": "POST",
                 "processData": false,
