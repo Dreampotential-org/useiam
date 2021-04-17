@@ -1,5 +1,5 @@
 $(".subscribe").on("click", function (e) {
-  console.log("subscribe clicked");
+  console.log("subscribe clicked ######");
   if (false isApp())
   {
     $("#subscriptionModule").addClass("is-visible");
@@ -81,11 +81,7 @@ $(".subscribe").on("click", function (e) {
                 // }
               };
               $.ajax(settings_add_item_update).done(function (response) {
-                // response = JSON.parse(response);
-                console.log("Success")
-                console.log(response);
-                //alert("HERE")
-                // XXX Need to save plan subscription id from payment payload?
+                response = JSON.parse(response);
                 do_set_paying(response.ID);
                 swal({
                   title: "Subscription",
