@@ -1,6 +1,5 @@
-  
+function init_unsubscribe_events() {
   // unsubscribe
-  // $('body').delegate('#Unsubscribe', 'click', function(e) {
   $("#Unsubscribe").on("click", function (e) {
     console.log("unsubscript");
     $(".toggleBar").click();
@@ -114,3 +113,5 @@
         console.log(err)
     });
 }
+}
+
