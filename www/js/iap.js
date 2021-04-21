@@ -1,62 +1,65 @@
-$(".subscribe").on("click", function (e) {
-  console.log("subscribe clicked ######");
-  if (false isApp())
-  {
-    $("#subscriptionModule").addClass("is-visible");
-  }
-  else if (false && window.cordova && (
-    window.cordova.platformId == "ios" ||
-    window.cordova.platformId == "android")
-  )
-  {
-    // APPLE PAY
-    console.log("showtab else");
-    store.when("base_subscription_7").approved(finishPurchase);
-    store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
-    store.refresh();
-    store.order("base_subscription_7");
-  }
-  // var SERVER_subscription = 'http://127.0.0.1:8000'
-  var settings_client_token = {
-    async: true,
-    crossDomain: true,
-    // headers: {
-    //   Authorization: "Token " + localStorage.getItem("session_id"),
-    // },
-    url: "https://api.dreampotential.org/store/userSubscribe",
-    method: "GET",
-    processData: false,
-    contentType: false,
-    mimeType: "multipart/form-data",
-  };
+function init_iap_events() {
+    init_unsubscribe_events();
 
-  $.ajax(settings_client_token)
-    .done(function (response) {
-      var resp = JSON.parse(response);
-      console.log(resp);
-      $("#client_token").val(resp.client_token);
-      // subscription start
-      var form = document.querySelector("#subscription_form");
-      var client_token = $("#client_token").val()
-
-      braintree.dropin.create(
+    $(".subscribe").on("click", function (e) {
+      console.log("subscribe clicked ######");
+      if (false && isApp())
       {
-          authorization: client_token,
-          container: "#bt-dropin",
-          paypal: {
-          flow: "vault",
+        $("#subscriptionModule").addClass("is-visible");
+      }
+      else if (false && window.cordova && (
+        window.cordova.platformId == "ios" ||
+        window.cordova.platformId == "android")
+      )
+      {
+        // APPLE PAY
+        console.log("showtab else");
+        store.when("base_subscription_7").approved(finishPurchase);
+        store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
+        store.refresh();
+        store.order("base_subscription_7");
+      }
+      // var SERVER_subscription = 'http://127.0.0.1:8000'
+      var settings_client_token = {
+        async: true,
+        crossDomain: true,
+        // headers: {
+        //   Authorization: "Token " + localStorage.getItem("session_id"),
+        // },
+        url: "https://api.dreampotential.org/store/userSubscribe",
+        method: "GET",
+        processData: false,
+        contentType: false,
+        mimeType: "multipart/form-data",
+      };
+
+      $.ajax(settings_client_token)
+        .done(function (response) {
+          var resp = JSON.parse(response);
+          console.log(resp);
+          $("#client_token").val(resp.client_token);
+          // subscription start
+          var form = document.querySelector("#subscription_form");
+          var client_token = $("#client_token").val()
+
+          braintree.dropin.create(
+          {
+              authorization: client_token,
+              container: "#bt-dropin",
+              paypal: {
+              flow: "vault",
+              },
           },
-      },
-      function (createErr, instance) {
-          form.addEventListener("submit", function (event) {
-          event.preventDefault();
-          $('#subsciptionSubmit').hide();
-          instance.requestPaymentMethod(function (err, payload) {
-              if (err) {
-                alert(err)
-              console.log("Error", err);
-              return;
-              }
+          function (createErr, instance) {
+              form.addEventListener("submit", function (event) {
+              event.preventDefault();
+              $('#subsciptionSubmit').hide();
+              instance.requestPaymentMethod(function (err, payload) {
+                  if (err) {
+                    alert(err)
+                  console.log("Error", err);
+                  return;
+                  }
 
               // Add the nonce to the form and submit
               document.querySelector("#nonce").value = payload.nonce;
@@ -89,29 +92,18 @@ $(".subscribe").on("click", function (e) {
                   text: "Subscrition Successful",
                   icon: "success",
               });
-              //  return
-              location.reload();
-              }).fail(function (response) {
-                      console.log("Edit item Failed!");
-                swal({
-                    title: "Error!",
-                    text: "Subscription is failed!",
-                    icon: "warning",
-                });
               });
-              //////
-          });
-          });
-      }
-      );  
-      
-      $("#subscriptionModule").addClass("is-visible");  
-    })
-    .fail(function (err) {
-      console.log(err);
+          }
+          );
+
+          $("#subscriptionModule").addClass("is-visible");  
+        })
+        .fail(function (err) {
+          console.log(err);
+        });
+
     });
-  
-});
+}
 
 
 
