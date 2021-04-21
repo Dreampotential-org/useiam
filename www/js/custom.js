@@ -27,7 +27,7 @@ function init() {
   init_activity();
   init_display();
   init_stripe();
-  init_iap_events()
+//  init_iap_events()
 
   if (!isApp()) {
     // Farrukh add subscription integration
