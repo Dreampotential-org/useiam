@@ -125,58 +125,48 @@ var app = {
     },
   };
 
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  let token = urlParams.get('token')
-  if (token){
-  var formToken = new FormData();
-  formToken.append("token", token);
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+let token = urlParams.get('token');
+if (token){
+    var formToken = new FormData();
+    formToken.append("token", token);
 
-  var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://192.168.100.141:8080/api/auth-magic-link/",
-      "method": "POST",
-      "processData": false,
-      "contentType": false,
-      "mimeType": "multipart/form-data",
-      "data": formToken
-  }
-
-  $.ajax(settings).done(function (response) {
-
-    window.history.pushState({}, document.title, "/");
-
-    localStorage.setItem("session_id", JSON.parse(response).auth_token)
-      showATab("dashboard");
-          // close modals
-          closeAllModals();
-          swal({
-            title: "Good job!",
-            text: "You're logged in",
-            icon: "success",
-          });
-          $("#not-subscribed-user").show();
-          $("#subscribed-user").hide();
-
-          $(".toggleBar").show();
-          $(".moto").show();
-
-          get_profile_info();
-
-
-  // }).fail(function(err) {
-  //     swal({
-  //         title: "Something Wrong.",
-  //         text: err['responseText'],
-  //         icon: "error",
-  //         closeOnEsc: false,
-  //         closeOnClickOutside: false,
-  //     });
-
-  });
-
-  }
+    setTimeout(function(){
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": SERVER+"/api/auth-magic-link/",
+            "method": "POST",
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": formToken
+        }
+    
+        $.ajax(settings).done(function (response) {
+    
+            window.history.pushState({}, document.title, "/");
+    
+            localStorage.setItem("session_id", JSON.parse(response).auth_token)
+            showATab("dashboard");
+            // close modals
+            closeAllModals();
+            swal({
+                title: "Good job!",
+                text: "You're logged in",
+                icon: "success",
+            });
+            $("#not-subscribed-user").show();
+            $("#subscribed-user").hide();
+    
+            $(".toggleBar").show();
+            $(".moto").show();
+    
+            get_profile_info();
+        });
+    }, 100);
+}
 
   // function removeParam(parameter)
   // {
@@ -241,7 +231,7 @@ var app = {
       var settings = {
           "async": true,
           "crossDomain": true,
-          "url": SERVER_API + "/api/send-magic-link/",
+          "url": SERVER + "/api/send-magic-link/",
           "method": "POST",
           "processData": false,
           "contentType": false,
