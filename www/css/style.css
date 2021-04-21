@@ -1685,7 +1685,17 @@ border: none;
   /* color: #8a98d3; */
   color: #afb8e2;;
   font-family:'Poppins', sans-serif!important;
-
+}
+.magicLink{
+  font-size: 17px;
+  /* color: #8a98d3; */
+  color: #afb8e2;;
+  font-family:'Poppins', sans-serif!important;
+  margin-left: 20px;
+}
+@media only screen and (min-width: 1000px) {
+  /* For large screens: */
+  .magicLink {margin-left: 32px;}
 }
 .btnP{
   background: none;
