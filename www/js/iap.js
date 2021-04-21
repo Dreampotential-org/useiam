@@ -65,6 +65,7 @@ $(".subscribe").on("click", function (e) {
               var subscription_form = new FormData();
               subscription_form.append("payment_method_nonce", $("#nonce").val())
               // subscription_form.append("client_token", $("#client_token").val())
+              subscription_form.append("session_id", localStorage.getItem("session_id"))
               subscription_form.append("subscription_plan_ID", $("#subscription_plan_ID").val())
               var settings_add_item_update = {
                 "async": true,
