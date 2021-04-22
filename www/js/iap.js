@@ -53,13 +53,16 @@ function init_iap_events() {
           function (createErr, instance) {
               form.addEventListener("submit", function (event) {
               event.preventDefault();
-              $('#subsciptionSubmit').hide();
               instance.requestPaymentMethod(function (err, payload) {
+                    console.log(err)
                   if (err) {
-                    alert(err)
-                  console.log("Error", err);
-                  return;
+                        swal({title: "Error!",
+                              text: err.message,
+                              icon: 'error'})
+                        console.log("Error", err);
+                        return;
                   }
+                  $('#subsciptionSubmit').hide();
 
                   // Add the nonce to the form and submit
                   document.querySelector("#nonce").value = payload.nonce;
