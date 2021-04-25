@@ -239,6 +239,7 @@ function get_activity(callback) {
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response);
+        console.log(response)
       videoData = JSON.parse(response);
       var allData = JSON.parse(response);
       var events = [];
@@ -247,10 +248,9 @@ function get_activity(callback) {
           events.push(allData.events[i]);
         }
       }
-
       videoData = { events: events };
 
-      videourl = videoData.events[0].url;
+      // videourl = videoData.events[0].url;
 
       if (msg.events.length == 0) {
         document.getElementById("eventData").style.height = "auto";
