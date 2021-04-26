@@ -62,6 +62,17 @@ function init_iap_events() {
                   console.log("Error", err);
                   return;
                 }
+
+                swal({
+                  title: "Get Ready!",
+                  text: "Activating your Account",
+                  icon: "info",
+                  buttons: false,
+                  closeOnEsc: false,
+                  closeOnClickOutside: false,
+                });
+
+
                 $('#subsciptionSubmit').hide();
 
                 // Add the nonce to the form and submit
@@ -86,13 +97,16 @@ function init_iap_events() {
                 };
                 $.ajax(settings_add_item_update).done(function (response) {
                   response = JSON.parse(response);
-                    console.log(response)
+                  console.log(response)
                   do_set_paying(response.ID);
-                  swal({
-                    title: "Subscription",
-                    text: "Subscrition Successful",
+                  // XXX currently doing reload as there are some elements from
+                  // iap braintree seems to explore clean up issue.
+
+                  swal("Thank you Ready Go useIAM", {
                     icon: "success",
-                  });
+                  }).then(function() {
+                    window.location.reload()
+                  })
                 });
               })
             })

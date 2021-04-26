@@ -22,8 +22,12 @@ function init_unsubscribe_events() {
 
   function cancel_BrainTree_subscription() {
     var unsubscription_form = new FormData();
-    unsubscription_form.append("the_subscription_id", "IAM001")
-    unsubscription_form.append("session_id", localStorage.getItem("session_id"))
+    // XXX later update "the_subscrition_id pass from user_profile_api request
+    // from subscription_id stored in prod-api.useiam.net api
+    unsubscription_form.append(
+        "the_subscription_id", "IAM001")
+    unsubscription_form.append(
+        "session_id", localStorage.getItem("session_id"))
 
     var settings = {
       "async": true,
@@ -56,7 +60,7 @@ function init_unsubscribe_events() {
               "contentType": false,
               "mimeType": "multipart/form-data",
             }
-        
+
             $.ajax(settings).done(function (response) {
                 var msg = JSON.parse(response)
                 if (msg.status == 'OKAY')
@@ -65,8 +69,8 @@ function init_unsubscribe_events() {
                         text: "You're subscription has been successfully deleted.",
                         confirmButtonColor: '#01aaff',
                         icon: "success"}).then(function() {
+                            do_set_not_paying("")
                             // TODO redirect to show instructions the first time.
-                            window.location = '/'
                         })
                 else {
                     swal({
@@ -86,7 +90,6 @@ function init_unsubscribe_events() {
                     icon: "error"}).then(function() {
                         window.location = '/'
                 })
-        
                 console.log(err)
             });
             //unsubscribe

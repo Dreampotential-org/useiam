@@ -118,6 +118,61 @@ function show_invite() {
   $("#inviteModal").addClass("is-visible");
 }
 
+function do_set_not_paying(iap_blurb) {
+  var form = new FormData();
+  form.append("paying", "false");
+  form.append("iap_blurb", iap_blurb);
+
+  var settings = {
+    async: true,
+    crossDomain: true,
+    headers: {
+      Authorization: "Token " + localStorage.getItem("session_id"),
+    },
+    url: SERVER + "/api/profile/",
+    method: "PUT",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    data: form,
+  };
+
+  $.ajax(settings)
+    .done(function (response) {
+      var msg = JSON.parse(response).message;
+      // update sober date text on page
+      get_profile_info();
+      swal("Thanks for using useIAM", {
+        icon: "success",
+      }).then(function() {
+          // XXX currently doing reload as there are some elements from
+          // iap braintree seems to explore clean up issue.
+          window.location.reload()
+      })
+
+      $("#not-subscribed-user").hide();
+      $("#subscribed-user").show();
+
+      //after successful login or signup show dashboard contents
+      showATab("dashboard");
+      //close modals
+      closeAllModals();
+
+      $(".toggleBar").click();
+    })
+    .fail(function (err) {
+      // XXX loggg to slack
+      console.log(err);
+      swal({
+        title: "Error",
+        text: "",
+        icon: "error",
+      });
+    });
+}
+
+
+
 function do_set_paying(iap_blurb) {
   var form = new FormData();
   form.append("paying", true);
@@ -142,21 +197,9 @@ function do_set_paying(iap_blurb) {
       var msg = JSON.parse(response).message;
       // update sober date text on page
       get_profile_info();
-      swal("Thank you Ready Go useIAM", {
-        icon: "success",
-      });
-
-      $("#not-subscribed-user").hide();
-      $("#subscribed-user").show();
-
-      //after successful login or signup show dashboard contents
-      showATab("dashboard");
-      //close modals
-      closeAllModals();
-
-      $(".toggleBar").click();
     })
     .fail(function (err) {
+      // XXX loggg to slack
       console.log(err);
       swal({
         title: "Error",
@@ -165,6 +208,9 @@ function do_set_paying(iap_blurb) {
       });
     });
 }
+
+
+
 
 function do_set_sober_date() {
   var form = new FormData();
