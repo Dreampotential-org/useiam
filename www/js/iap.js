@@ -3,6 +3,7 @@ function init_iap_events() {
 
   $(".subscribe").on("click", function (e) {
     console.log("subscribe clicked ######");
+    $("#subscriptionModule").addClass("is-visible");
     if (false && isApp()) {
       $("#subscriptionModule").addClass("is-visible");
     }
@@ -17,13 +18,11 @@ function init_iap_events() {
       store.refresh();
       store.order("base_subscription_7");
     }
+
     // var SERVER_subscription = 'http://127.0.0.1:8000'
     var settings_client_token = {
       async: true,
       crossDomain: true,
-      // headers: {
-      //   Authorization: "Token " + localStorage.getItem("session_id"),
-      // },
       url: "https://api.dreampotential.org/store/userSubscribe",
       method: "GET",
       processData: false,
@@ -36,6 +35,7 @@ function init_iap_events() {
         var resp = JSON.parse(response);
         console.log(resp);
         $("#client_token").val(resp.client_token);
+
         // subscription start
         var form = document.querySelector("#subscription_form");
         var client_token = $("#client_token").val()
@@ -68,9 +68,9 @@ function init_iap_events() {
                 document.querySelector("#nonce").value = payload.nonce;
                 // form.submit();
                 ///////
+
                 var subscription_form = new FormData();
                 subscription_form.append("payment_method_nonce", $("#nonce").val())
-                // subscription_form.append("client_token", $("#client_token").val())
                 subscription_form.append("session_id", localStorage.getItem("session_id"))
                 subscription_form.append("subscription_plan_ID", $("#subscription_plan_ID").val())
                 var settings_add_item_update = {
@@ -83,12 +83,10 @@ function init_iap_events() {
                   "contentType": false,
                   "mimeType": "multipart/form-data",
                   "data": subscription_form,
-                  // "headers": {
-                  //     "Authorization": localStorage.getItem("user-token")
-                  // }
                 };
                 $.ajax(settings_add_item_update).done(function (response) {
                   response = JSON.parse(response);
+                    console.log(response)
                   do_set_paying(response.ID);
                   swal({
                     title: "Subscription",
@@ -96,13 +94,8 @@ function init_iap_events() {
                     icon: "success",
                   });
                 });
-              }
-              );
-              $("#subscriptionModule").addClass("is-visible");
+              })
             })
-              .fail(function (err) {
-                console.log(err);
-              });
           });
       });
     });
