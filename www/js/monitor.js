@@ -390,16 +390,21 @@ function get_profile_info(callback) {
     .done(function (response) {
       var msg = JSON.parse(response);
       console.log(response);
+        $("#not-subscribed-user").hide();
+        $("#subscribed-user").show();
+        $("#Unsubscribe_div").show();
 
+        /*
       if (msg.paying) {
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
-      }else{
+      } else{
         $("#not-subscribed-user").show();
         $("#subscribed-user").hide();
         $("#Unsubscribe_div").hide();
       }
+        */
 
       if (msg.stripe_subscription_id) {
         $("#cancel_plan").show();
