@@ -152,12 +152,11 @@ function signup_api(params) {
           // Farrukh add subscription integration
           // make free for webclient until we implement
         console.log(msg)
-        //$("#not-subscribed-user").show();
-        //$("#subscribed-user").hide();
-        $("#not-subscribed-user").hide();
-        $("#subscribed-user").show();
-        $("#Unsubscribe_div").show();
-
+        $("#not-subscribed-user").show();
+        $("#subscribed-user").hide();
+        //$("#not-subscribed-user").hide();
+        //$("#subscribed-user").show();
+        //$("#Unsubscribe_div").show();
 
         //}
       });

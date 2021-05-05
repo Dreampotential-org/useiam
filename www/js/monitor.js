@@ -394,8 +394,7 @@ function get_profile_info(callback) {
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
 
-        /*
-      if (msg.paying) {
+      if (isApp() == false && msg.paying) {
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
@@ -404,7 +403,6 @@ function get_profile_info(callback) {
         $("#subscribed-user").hide();
         $("#Unsubscribe_div").hide();
       }
-        */
 
       if (msg.stripe_subscription_id) {
         $("#cancel_plan").show();
