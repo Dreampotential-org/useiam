@@ -7,9 +7,8 @@ function init_iap_events() {
     if (false && isApp()) {
       $("#subscriptionModule").addClass("is-visible");
     }
-    else if (false && window.cordova && (
-      window.cordova.platformId == "ios" ||
-      window.cordova.platformId == "android")
+    else if (window.cordova && (window.cordova.platformId == "ios")
+      //window.cordova.platformId == "android")
     ) {
       // APPLE PAY
       console.log("showtab else");
@@ -17,6 +16,7 @@ function init_iap_events() {
       store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
       store.refresh();
       store.order("base_subscription_7");
+      return
     }
 
     // var SERVER_subscription = 'http://127.0.0.1:8000'
@@ -153,6 +153,14 @@ function init_iap_events() {
       // sets inform API user is now subscribe success :)
       // XXX fix IAP blurb info
       do_set_paying("P_IAP Info Blurb");
+      // XXX currently doing reload as there are some elements from
+      // iap braintree seems to explore clean up issue.
+
+      swal("Thank you Ready Go useIAM", {
+        icon: "success",
+      }).then(function() {
+        window.location.reload()
+      })
 
       // $("#not-subscribed-user").hide();
       // $("#subscribed-user").show();
