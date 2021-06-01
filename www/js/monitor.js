@@ -394,18 +394,22 @@ function get_profile_info(callback) {
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
 
+      // if is not app and is paying
       if (isApp() == false && msg.paying) {
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
-      } else{
+      }
+      // if is app is free
+      else if (isApp() == true) {
+        $("#not-subscribed-user").hide();
+        $("#subscribed-user").show();
+        $("#Unsubscribe_div").hide();
+      // if not paying browser make pay
+      } else {
         $("#not-subscribed-user").show();
         $("#subscribed-user").hide();
         $("#Unsubscribe_div").hide();
-      }
-
-      if (msg.stripe_subscription_id) {
-        $("#cancel_plan").show();
       }
 
       if (callback) callback(msg);
