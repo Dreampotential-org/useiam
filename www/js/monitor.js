@@ -400,9 +400,9 @@ function get_profile_info(callback) {
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
       }
-      // if is app is free
-      else if (isApp() == true) {
-        $("#not-subscribed-user").hide();
+      // app paying free
+      else if (isApp() == true && msg.paying == false ) {
+        $("#not-subscribed-user").show();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").hide();
       // if not paying browser make pay

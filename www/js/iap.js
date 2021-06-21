@@ -3,21 +3,26 @@ function init_iap_events() {
 
   $(".subscribe").on("click", function (e) {
     console.log("subscribe clicked ######");
-    $("#subscriptionModule").addClass("is-visible");
     if (false && isApp()) {
       $("#subscriptionModule").addClass("is-visible");
     }
     else if (window.cordova && (window.cordova.platformId == "ios")
       //window.cordova.platformId == "android")
     ) {
+	alert("Apple")
       // APPLE PAY
       console.log("showtab else");
       store.when("base_subscription_7").approved(finishPurchase);
       store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
+      store.error(function(e){
+        alert("ERROR " + e.code + ": " + e.message);
+      });
+
       store.refresh();
       store.order("base_subscription_7");
       return
     }
+    $("#subscriptionModule").addClass("is-visible");
 
     // var SERVER_subscription = 'http://127.0.0.1:8000'
     var settings_client_token = {
@@ -128,12 +133,14 @@ function init_iap_events() {
 
 
     function finishPurchase(p) {
+      alert("HERE")
       console.log("finishPurchase");
       console.log(p);
       console.log("finishPurchase status");
       console.log(p.state);
       localStorage.goldCoins = (localStorage.goldCoins | 0) + 10;
 
+      alert(p.state)
       //if "state":"approved" the call server api to save purchase details
       //if p.state()==approved
       if (p.state == "approved") {
