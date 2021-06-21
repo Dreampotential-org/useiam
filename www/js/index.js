@@ -14,6 +14,7 @@ var app = {
     console.log("deviceready in index.js");
     KeepAwake.start();
     console.log(cordova.plugins);
+    /*
     cordova.plugins.notification.local.hasPermission(function (granted) {
       if (granted == false) {
         cordova.plugins.notification.local.requestPermission(function (
@@ -23,6 +24,7 @@ var app = {
         });
       }
     });
+    */
     app.pluginInitialize();
   },
 

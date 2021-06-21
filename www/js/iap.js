@@ -13,7 +13,9 @@ function init_iap_events() {
       // APPLE PAY
       console.log("showtab else");
       store.when("base_subscription_7").approved(finishPurchase);
-      store.register({ type: store.CONSUMABLE, id: "base_subscription_7" });
+      store.register({ type: store.PAID_SUBSCRIPTION, id: "base_subscription_7" });
+      var product = store.get("base_subscription_7")
+      alert(product.owned)
       store.error(function(e){
         alert("ERROR " + e.code + ": " + e.message);
       });
@@ -133,7 +135,7 @@ function init_iap_events() {
 
 
     function finishPurchase(p) {
-      alert("HERE")
+      alert("HERE2")
       console.log("finishPurchase");
       console.log(p);
       console.log("finishPurchase status");

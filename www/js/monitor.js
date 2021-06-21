@@ -401,16 +401,17 @@ function get_profile_info(callback) {
         $("#Unsubscribe_div").show();
       }
       // app paying free
-      else if (isApp() == true && msg.paying == false ) {
-        $("#not-subscribed-user").show();
-        $("#subscribed-user").show();
-        $("#Unsubscribe_div").hide();
+      // else if (isApp() == true && msg.paying == false ) {
+      //   $("#not-subscribed-user").show();
+      //   $("#subscribed-user").show();
+      //   $("#Unsubscribe_div").hide();
       // if not paying browser make pay
-      } else {
-        $("#not-subscribed-user").show();
-        $("#subscribed-user").hide();
-        $("#Unsubscribe_div").hide();
-      }
+      // }
+      // else {
+      //   $("#not-subscribed-user").show();
+      //   $("#subscribed-user").hide();
+      //   $("#Unsubscribe_div").hide();
+      // }
 
       if (callback) callback(msg);
     })

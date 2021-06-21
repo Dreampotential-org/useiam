@@ -106,6 +106,14 @@
     </platform>
 
 	<preference name="DisallowOverscroll" value="true" />
+        <!--
+	<edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+	    <string>Need location to perform gps checkin</string>
+	</edit-config>
+	<edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+	    <string>Need location to perform gps checkin</string>
+	</edit-config>-->
+
 	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
 	    <string>Need location to perform gps checkin</string>
 	</edit-config>
