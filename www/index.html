@@ -41,25 +41,6 @@
             </nav>
         </div>
     </header>
-    <!-- <header>
-    <div class="mainContainer" style="position: relative">
-        <button class="btnBack"><img src="images/arrow-left-black-32.png" alt=""/>
-            <input type="hidden" id="backTabID"/></button>
-        <button class="btnInfo"><img src="images/nfo.png" alt=""/></button>
-        <nav class="toggleBar">
-            <span class="bar bar1"></span>
-            <span class="bar bar2"></span>
-            <span class="bar bar3"></span>
-        </nav>
-        <div class="logo"></div>
-        <div class="logo2"></div>
-        <div class='moto'>
-          <b>CREDIBILITY</b> <br>
-          <b>THROUGH</b><br>
-          <b>ACCOUNTABILITY</b>
-        </div>
-    </div>
-</header> -->
 
     <div class="logoDiv" id="logoDivId">
         <div class="logo"></div>
@@ -254,13 +235,44 @@
                 <p class="textCenter" style="padding-bottom:10px;">
                     <a class="passwordA" id='login_form_btn' href="javascript:void(0)">Login</a>
                 </p>
-                
             </div>
             <!-- end: forgot password -->
 
         </div>
     </div>
     </div>
+
+
+    <div class="modal" id="setOrgModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-wrapper modal-transition sub-modal" style="background: url(img/popup_login.jpg)">
+
+            <div class="modal-body">
+                <div class="modal-content">
+                    <div class='close' style="text-align: end;">
+                        <i style="background: #34e6b7 !important;" class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    </div>
+
+                    <h3 class="locAuthTitle textCenter emailTitle">SET ORGANIZATION</h3>
+
+                    <form id="regForm " class="setForm" action="#">
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab get-monitor" style="padding: 10px;">
+                            <select placeholder="Select Organization" id='org_ids'>
+                            </select>
+                        </div>
+                        <div>
+                            <div style="text-align: center;">
+                                <button class="actionBtn  dark" type="button" id="nextBtn">SET</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="modal" id="setmonitorModal">
         <div class="modal-overlay"></div>
@@ -695,13 +707,16 @@
                 <a>
         </h5>
         <h5 class="textMenu">
+            <a href="#" id='setOrg'>SET ORGANIZATION</a>
+        </h5>
+
+        <h5 class="textMenu">
             <a href="#" id='setMonitor'>SET MONITOR</a>
         </h5>
         <h5 class="textMenu">
             <a href="#" id='viewActivity'>VIEW ACTIVITY
                 <a>
         </h5>
-        
 
         <!-- <h5 class="textMenu">
             <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
@@ -737,11 +752,13 @@
         <h5 class="textMenu" style='display: none;' id='cancel_plan'>
             <a href="#" id='cancel_subscription'>Cancel Subscription</a>
         </h5>
+        <!--
         <h5 class="textMenu" id="Unsubscribe_div" style='display: none;'>
             <a href="#" id='Unsubscribe'>
                 Unsubscribe
             <a>
         </h5>
+        -->
     </div>
 
     <!-- <div class="slideMenu">

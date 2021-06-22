@@ -331,6 +331,7 @@ $(".btnOk").on("click", function (e) {
 });
 
 function closeAllModals() {
+  $("#setOrgModal").removeClass("is-visible");
   $("#signinModal").removeClass("is-visible");
   $("#signupModal").removeClass("is-visible");
   $("#LocationModal").removeClass("is-visible");
