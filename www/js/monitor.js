@@ -392,21 +392,21 @@ function get_profile_info(callback) {
       console.log(response);
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
-        $("#Unsubscribe_div").show();
+        $("#Unsubscribe_div").hide();
 
       // if is not app and is paying
-      if (isApp() == false && msg.paying) {
+      if (isApp() == false) {
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
       }
       // app paying free
-      // else if (isApp() == true && msg.paying == false ) {
-      //   $("#not-subscribed-user").show();
-      //   $("#subscribed-user").show();
-      //   $("#Unsubscribe_div").hide();
+      else if (isApp() == true) {
+         $("#not-subscribed-user").show();
+         $("#subscribed-user").show();
+         $("#Unsubscribe_div").hide();
       // if not paying browser make pay
-      // }
+      }
       // else {
       //   $("#not-subscribed-user").show();
       //   $("#subscribed-user").hide();
