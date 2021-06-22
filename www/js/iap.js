@@ -9,7 +9,6 @@ function init_iap_events() {
     else if (window.cordova && (window.cordova.platformId == "ios")
       //window.cordova.platformId == "android")
     ) {
-	alert("Apple")
       // APPLE PAY
       console.log("showtab else");
       store.when("base_subscription_7").approved(finishPurchase);

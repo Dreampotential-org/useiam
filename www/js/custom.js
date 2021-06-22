@@ -1,5 +1,11 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+function handleOpenURL(url) {
+  setTimeout(function() {
+    alert("received url: " + url);
+  }, 0);
+}
+
 function init() {
 
    onDeviceReady()
