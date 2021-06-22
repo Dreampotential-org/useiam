@@ -466,7 +466,7 @@ function get_profile_info(callback) {
         $("#Unsubscribe_div").hide();
 
       // if is not app and is paying
-      if (isApp() == false) {
+      if (true) {
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").show();
