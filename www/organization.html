@@ -44,9 +44,6 @@
         <span class="sr-only">Toggle drawer</span>
         <i class="material-icons">menu</i>
       </button>
-     
-        
-   
       <ul class="nav navbar-nav d-inline">
             <li class="nav-item d-inline px-1"><a href="./activity_feed.html" class="text-white"><i class="material-icons">notifications</i></a></li>
             <li class="nav-item d-inline px-1"><a href="./new_login.html" class="text-white"><i class="material-icons">logout</i></a></li>
@@ -61,6 +58,9 @@
     </header>
     <ul class="list-group">
             <a href="#" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">home</i> Home</a>
+            <a href="./organization.html" class="btn btn-primary text-left" role="button" aria-pressed="true">
+              <i class="material-icons align-middle mr-2">O</i>Organization</a>
+
             <a href="#" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">info</i> Help</a>
             <a href="./clients.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">people</i> Clients</a>
             <a href="./activity_feed.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">event</i> Activity Log</a>
@@ -77,11 +77,19 @@
   </div>
   <main class="bmd-layout-content">
     <div class="container-fluid">
+        <b>Add Member:</b><br>
+        <input type='text' placeholder='member name' id='member_name' />
+        <input type='text' placeholder='member email' id='member_email' />
+        <input type='text' placeholder='member password' id="member_password"/><br>
+        <span>Admin: </span><input type='checkbox' id="is_admin_member"/><br>
+        <button id='add_member'>Add</button>
 
+        <hr>
+        <b>Members List:</b>
+        <div id='list_of_members'></div>
+
+        </div>
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Filter Patient</label>
-            <select class="form-control select-patient" id="exampleFormControlSelect1">
-            </select>
         </div>
 
         <div class="row events">
@@ -90,16 +98,12 @@
         <div class='results'></div>
         <div class="paginationDiv py-3">
             <span class="text-primary">Number of results :</span>  <span class='count font-weight-bold'></span>
-            
             <span class='next float-right'><a href='#'>Next<i class="material-icons align-middle">keyboard_arrow_right</i></a></span>
             <span class='prev float-right pr-2'><a href='#'> <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a></span>
         </div>
-        
-
     </div>
   </main>
 </div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

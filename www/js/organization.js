@@ -1,8 +1,17 @@
+function init_organization_events() {
+    $("#add_member").on("click", function (e) {
+        signup_api()
+
+    })
+}
+
+
 function signup_api(params) {
   var form = new FormData();
-  form.append("name", params.name);
-  form.append("email", params.email);
-  form.append("password", params.password);
+  form.append("name", $('#member_name'));
+  form.append("email", $('#member_email'));
+  form.append("password", $('#member_password'));
+  form.append("is_admin_member", $('#is_admin_member'));
   form.append("source", window.location.host);
 
   var settings = {
@@ -27,3 +36,6 @@ function signup_api(params) {
       });
     });
 }
+
+
+window.addEventListener("DOMContentLoaded", init_organization_events, false);
