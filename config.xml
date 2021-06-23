@@ -115,10 +115,10 @@
 	</edit-config>-->
 
 	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>Allow location to perform gps checkin to add to useIAM for you and your selected monitors.</string>
+	    <string>Allow location access to perform gps checkin entry for you and your selected monitors.</string>
 	</edit-config>
 	<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>Allow camera access to useIAM to be able to add videos to useIAM for you and your selected monitors.</string>
+	    <string>Allow camera access to be able to add videos to useIAM for you and your selected monitors.</string>
 	</edit-config>
 	<edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
 	    <string>Allow microphone access to add sound to your videos stored in useIAM for you and your selected monitors.</string>
