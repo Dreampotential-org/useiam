@@ -33,7 +33,7 @@ function init_page_events() {
         }
         api_list_patient_events(NEXT_PAGE_URL, function(response) {
             console.log("ERE")
-            console.log(response)
+            // console.log(response)
             display_events(response);
         });
     })
@@ -179,7 +179,7 @@ function list_patients(callback) {
       "mimeType": "multipart/form-data",
     }
     $.ajax(settings).done(function (response) {
-        console.log(response)
+        // console.log(response)
         callback(JSON.parse(response))
     }).fail(function(err) {
         console.log(err)

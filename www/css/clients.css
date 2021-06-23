@@ -1,0 +1,40 @@
+button#add_client {
+    background: #009688;
+    color: white;
+    margin: 15px;
+    width: 20%;
+    cursor: pointer;
+}
+
+.top-div {
+    display: flex;
+}
+
+.searchRow {
+    position: relative;
+    margin: 15px;
+    width: 80%;
+}
+
+.card-body.name-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button#cancel-btn {
+    border: 2px solid #006F65;
+}
+
+button#save-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+button.edit-btn {
+    padding: 0px 5px;
+}
+
+i.edit-icon {
+    font-size: 14px;
+}
