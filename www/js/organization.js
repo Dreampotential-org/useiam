@@ -22,6 +22,9 @@ function signup_api(params) {
     processData: false,
     contentType: false,
     mimeType: "multipart/form-data",
+    "headers": {
+        "Authorization": "Token " + localStorage.getItem("session_id"),
+    },
     data: form,
   };
 
