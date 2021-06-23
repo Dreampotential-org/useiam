@@ -10,6 +10,11 @@ function init() {
         });
     });
     });
+
+    $("#add_client").on('click', function(e) {
+        $(".modal-title").text("Add Client");
+        $('#addClientModal').modal('show');
+    });
 }
 
 function list_patients(callback) {
@@ -31,6 +36,12 @@ function list_patients(callback) {
     }).fail(function(err) {
         console.log(err)
     });
+}
+
+function openEditDialog(){
+    console.log('hello ...')
+    $(".modal-title").text("Edit Client");
+    $('#addClientModal').modal('show');
 }
 
 function display_patients(patients) {
@@ -63,21 +74,23 @@ function display_patients(patients) {
 
     for(var patient of patients) {
         $(".clientsList").append(
-
             `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
 
                 <div class="card">
                     <div class="text-center bg-secondary d-flex justify-content-center align-items-center clinetProfileImage">
                         <i style="font-size: 100px;" class="material-icons">person</i>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body name-div">
                         <h6 class="card-subtitle">${patient.name}</h6>
+                        <button class="btn btn-primary active edit-btn" onclick="openEditDialog()">
+                            <i class="material-icons edit-icon">edit</i></a>
+                         </button>
+                        </div>
                     </div>
                 </div>
             </div>`
         )
     }
-
 
     //var classes = ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'bg-5', 'bg-6'];
     var classes = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'];
