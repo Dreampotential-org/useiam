@@ -4,12 +4,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="css/clients.css">
     <!-- Material Design for Bootstrap fonts and icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
     <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" 
+    integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
     <title>Clients</title>
 
@@ -158,17 +159,57 @@
   </div>
   <main class="bmd-layout-content">
     <div class="container-fluid">
-        <div class="searchRow">
-            <input id="myInput" type="text" placeholder="Search by name...">
-            <i class="material-icons align-middle mr-2 searchIcon">search</i>
+        <div class="top-div">
+            <div class="searchRow">
+                <input id="myInput" type="text" placeholder="Search by name...">
+                <i class="material-icons align-middle mr-2 searchIcon">search</i>
+            </div>
+    
+            <button id="add_client">Add Client</button>
         </div>
+
         <div class="row mt-2 clientsList">
         </div>
 
     </div>
-  </main>
-</div>
 
+  </main>
+
+  <div id="addClientModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Client</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button> -->
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="bmd-label-floating">Name</label>
+                <input type="name" class="form-control" id="client_name">
+            </div>
+            <div class="form-group">
+                <label class="bmd-label-floating">Email</label>
+                <input type="email" class="form-control" id="client_email">
+            </div>
+            <div class="form-group">
+                <label class="bmd-label-floating">Phone Number</label>
+                <input type="phone" class="form-control" id="client_phone">
+            </div>
+            <div class="form-group">
+                <label class="bmd-label-floating">Password</label>
+                <input type="password" class="form-control" id="client_password">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="save-btn" type="button" class="btn btn-primary active m-2">Save</button>
+            <button id="cancel-btn" type="button" class="btn btn-secondary my-2" data-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
