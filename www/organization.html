@@ -14,111 +14,29 @@
     <title>Clients</title>
 
     <style>
+
         body{
             height: 100vh;
         }
-        .comment-img{
-            height: 50px;
-            width: 50px;
-        }
-        .clinetProfileImage {
-            position: relative;
-            text-align: center;
-            height: 160px;
-            display: table;
-            width: 100%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background: #eee;
-        }
-        .clinetProfileImage i.material-icons.align-middle.mr-2 {
-            display: table-cell;
-            margin: 0 auto;
-            font-size: 160px;
-            color: #f72c6d;
-        }
-        .clientInfo {
-            background-color: #fff;
-            border-radius: 10px;
-            border: 1px solid rgba(0,0,0,.12);
-        }
-        .clientInfo-cardHeader{
-            background: transparent;
-            border: none;
-        }
-        .clientName {
-            padding: 15px;
-            text-align: center;
-            height: 85px;
-        }
-        .clientName span {
-            font-size: 18px;
-            line-height: 32px;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-        .clinetProfileImage img {
-            display: table-cell;
-            margin: 0 auto;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-        .bg-1{
-            background: #eee !important;
-        }
-        .bg-1 i.material-icons.align-middle.mr-2 {
-            color: grey !important;
-        }
-        .bg-2{
-            background: #f72c6d !important;
-        }
-        .bg-2 i.material-icons.align-middle.mr-2 {
-            color: #f9f9f9ee !important;
-        }
-        .bg-3{
-            background: #0f9ed8 !important; 
-        }
-        .bg-3 i.material-icons.align-middle.mr-2 {
-            color: #f9f9f9ee !important;
-        }
-        .bg-4{
-            background: rgb(187, 17, 187) !important;
-        }
-        .bg-4 i.material-icons.align-middle.mr-2 {
-            color: #f9f9f9ee !important;
-        }
-        .bg-5{
-            background: rgb(6, 180, 6) !important;
-        }
-        .bg-5 i.material-icons.align-middle.mr-2 {
-            color: #f9f9f9ee !important;
-        }
-        .bg-6{
-            background: #eee !important;   
-        }
-        .bg-6 i.material-icons.align-middle.mr-2 {
-            color: #000 !important;
+
+        .custom-search-ic{
+            top:33px;
+            left: 10px;
         }
 
-        .searchRow {
-            position: relative;
-            margin: 15px;
+        .custom-img{
+            height: 200px;
         }
-        .searchIcon {
-            position: absolute;
-            left: 5px;
-            top: 7px;
+
+        .card{
+            overflow: hidden;
+            border-radius: 12px;
         }
-        #myInput {
-            width: 100%;
-            padding: 5px 30px;
-        }
+
     </style>
 
   </head>
   <body>
-    
     <div class="bmd-layout-container bmd-drawer-f-l">
   <header class="bmd-layout-header bg-primary">
     <div class="navbar navbar-light bg-faded">
@@ -126,6 +44,9 @@
         <span class="sr-only">Toggle drawer</span>
         <i class="material-icons">menu</i>
       </button>
+     
+        
+   
       <ul class="nav navbar-nav d-inline">
             <li class="nav-item d-inline px-1"><a href="./activity_feed.html" class="text-white"><i class="material-icons">notifications</i></a></li>
             <li class="nav-item d-inline px-1"><a href="./new_login.html" class="text-white"><i class="material-icons">logout</i></a></li>
@@ -140,7 +61,6 @@
     </header>
     <ul class="list-group">
             <a href="#" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">home</i> Home</a>
-            <a href="./organization.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">Organization</i> Home</a>
             <a href="#" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">info</i> Help</a>
             <a href="./clients.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">people</i> Clients</a>
             <a href="./activity_feed.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i class="material-icons align-middle mr-2">event</i> Activity Log</a>
@@ -157,12 +77,24 @@
   </div>
   <main class="bmd-layout-content">
     <div class="container-fluid">
-        <div class="searchRow">
-            <input id="myInput" type="text" placeholder="Search by name...">
-            <i class="material-icons align-middle mr-2 searchIcon">search</i>
+
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Filter Patient</label>
+            <select class="form-control select-patient" id="exampleFormControlSelect1">
+            </select>
         </div>
-        <div class="row mt-2 clientsList">
+
+        <div class="row events">
         </div>
+
+        <div class='results'></div>
+        <div class="paginationDiv py-3">
+            <span class="text-primary">Number of results :</span>  <span class='count font-weight-bold'></span>
+            
+            <span class='next float-right'><a href='#'>Next<i class="material-icons align-middle">keyboard_arrow_right</i></a></span>
+            <span class='prev float-right pr-2'><a href='#'> <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a></span>
+        </div>
+        
 
     </div>
   </main>
@@ -175,10 +107,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    
-    <script src="js/view_video.js"></script>
+    <script src="js/new_admin.js"></script>
     <script src="js/config.js"></script>
-    <script src="js/clients.js"></script>
+    <script src="js/organization.js"></script>
     <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
   </body>
 </html>
