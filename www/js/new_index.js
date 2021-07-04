@@ -39,7 +39,7 @@ function init_events() {
 
             swal({
               title: "Feedback Send",
-              text: "Your feedback send successfully",
+              text: "Your feedback sent successfully",
               icon: "success",
             });
           } else {

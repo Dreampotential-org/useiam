@@ -1316,7 +1316,7 @@ function sendFeedback(id, user, msg){
                 get_video_info(id, user, function() {});
         swal({
             title: "Feedback Send",
-            text: "Your feedback send successfully",
+            text: "Your feedback sent successfully",
             icon: "success",
         });
         } else {
