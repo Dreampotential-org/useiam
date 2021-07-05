@@ -141,7 +141,7 @@ function get_video_info(id, user, callback) {
         "&id=" + id, function(res) {
 
         console.log(res)
-
+            return
         if('status' in res && res.status == 'error') {
             swal({
                 'title': 'Access Denied',
