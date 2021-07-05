@@ -1,153 +1,149 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--CSS -->
-    <title>IAM</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
-     <!-- <link rel="stylesheet" href="css/style.css?v=1.4">
-     <link rel="stylesheet" href="css/responsive.css?v=1.3"/> -->
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--CSS -->
+        <title>IAM</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="css/style.css?v=1.4">
+        <link rel="stylesheet" href="css/responsive.css?v=1.3"/> -->
 
-<style>
-     body{
-        font-family: "Poppins", sans-serif;
-        font-size: 14px;
-     }
-    .custom_video{
-        /* width: 100%; */
-        box-sizing: border-box;
-        border-radius: 5px;
-        margin: 12px 0px;
-    }
-    .videoDetailsDiv {
-        padding: 8px;
-        color: #000;
-        letter-spacing: 0.8px;
-    }
-    .textareaClass {
-        border-bottom: 0.55px solid lightgray;
-    }
-    textarea#message:focus {
-        outline: none;
-    }
-    .feedbackTextarea {
-        width: 100%;
-        border: none;
-    }
-    .rowMsg {
-        display: flex;
-        flex-wrap: wrap;
+        <style>
+            body{
+                font-family: "Poppins", sans-serif;
+                font-size: 14px;
+            }
+            .custom_video{
+                /* width: 100%; */
+                box-sizing: border-box;
+                border-radius: 5px;
+                margin: 12px 0px;
+            }
+            .videoDetailsDiv {
+                padding: 8px;
+                color: #000;
+                letter-spacing: 0.8px;
+            }
+            .textareaClass {
+                border-bottom: 0.55px solid lightgray;
+            }
+            textarea#message:focus {
+                outline: none;
+            }
+            .feedbackTextarea {
+                width: 100%;
+                border: none;
+            }
+            .rowMsg {
+                display: flex;
+                flex-wrap: wrap;
 
-    }
-    .colMsg {
-        -ms-flex: 25%; /* IE10 */
-        flex: 25%;
-        max-width: 30%;
-        padding: 0 4px;
-    }
-    .messages {
-        background: #d3d3d354;
-        border-radius: 20px;
-        padding: 7px 15px;
-    }
-    .feedbackBtnDiv {
-        border-top: 0.55px solid lightgray;
-        text-align: end;
-    }
-    .feedbackBtn {
-        background: #2a318b;
-        color: #ffff;
-        border: 1px solid #2a318b;
-        border-radius: 3px;
-        padding: 8px;
-        margin: 10px 0px 0px;
-    }
-    .logout{
-        text-decoration: none;
-        font-size: 15px;
-        letter-spacing: 0.5px;
-        color: #2a318b;
-    }
-    .logoutIcon{
-        margin-left: 4px;
-        font-size: 17px;
-    }
+            }
+            .colMsg {
+                -ms-flex: 25%; /* IE10 */
+                flex: 25%;
+                max-width: 30%;
+                padding: 0 4px;
+            }
+            .messages {
+                background: #d3d3d354;
+                border-radius: 20px;
+                padding: 7px 15px;
+            }
+            .feedbackBtnDiv {
+                border-top: 0.55px solid lightgray;
+                text-align: end;
+            }
+            .feedbackBtn {
+                background: #2a318b;
+                color: #ffff;
+                border: 1px solid #2a318b;
+                border-radius: 3px;
+                padding: 8px;
+                margin: 10px 0px 0px;
+            }
+            .logout{
+                text-decoration: none;
+                font-size: 15px;
+                letter-spacing: 0.5px;
+                color: #2a318b;
+            }
+            .logoutIcon{
+                margin-left: 4px;
+                font-size: 17px;
+            }
 
-    /* Responsive layout - makes a two column-layout instead of four columns */
-    @media screen and (max-width: 812px) and (min-width: 320px) {
-        .colMsg {
-            -ms-flex: 50%;
-            flex: 50%;
-             max-width: 47%; 
-        }
-    }
+            /* Responsive layout - makes a two column-layout instead of four columns */
+            @media screen and (max-width: 812px) and (min-width: 320px) {
+                .colMsg {
+                    -ms-flex: 50%;
+                    flex: 50%;
+                    max-width: 47%; 
+                }
+            }
 
-    @media screen and (max-width: 812px) and (min-width: 320px)  {
-        .custom_video{
-            width: 100%;
-            box-sizing: border-box;
-            border-radius: 5px;
-            margin: 12px 0px;
-        }
-    }
-</style>
+            @media screen and (max-width: 812px) and (min-width: 320px)  {
+                .custom_video{
+                    width: 100%;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    margin: 12px 0px;
+                }
+            }
+        </style>
 
-</head>
-<body>
-    <div style='text-align:right;'>
-      <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
-    </div>
+    </head>
+    <body>
+        <div style='text-align:right;'>
+            <a class='logout' href='#'>Logout<i class="fa fa-sign-out logoutIcon"></i></a>
+        </div>
+        <div>
+            <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
+        </div>
+        <div class="videoDetailsDiv">
+            <b>Client Name : </b><span id='patient_name'></span><br>
+            <b>Created at : </b><span id='created_at'></span>
+        </div>
+        <hr>
+        <div class="videoDetailsDiv">
+            <b>Feedback received :</b><br>
+            <div class='feedback_received'></div>
+        </div>
+        <hr>
+        <!-- <div>
+          <textarea id='message' placeholder='Great Job'></textarea>
+          <br>
+          <button id='send_feedback'>Send Feedback</button>
+        </div> -->
 
-    <div>
-    <video class="custom_video" controls="" autoplay="" name="media" id='video' width='320' height='240'></video>
-    </div>
+        <div class="feedbackDiv">
+            <div class="textareaClass">
+                <textarea id="message" class="feedbackTextarea" rows="5" placeholder="Select message or type your own"></textarea>
+            </div>
+            <!--
+            <div class="rowMsg"><div class="colMsg" id=msgId1>
+                    <p class="messages">Is there deposite or other fees?<p>
+                </div>
+                <div class="colMsg" id=msgId2>
+                    <p class="messages">Are utilities included?</p>
+                </div>
+                <div class="colMsg" id=msgId3>
+                    <p class="messages">Is the the lease start date flexible?<p>
+                </div>
+            </div>
+            -->
+            <div class="feedbackBtnDiv">
+                <button id="send_feedback" class="feedbackBtn">Send Feedback</button>
+            </div>
+        </div>
 
-    <div class="videoDetailsDiv">
-        <b>Client Name : </b><span id='patient_name'></span><br>
-        <b>Created at : </b><span id='created_at'></span>
-    </div>
-    <hr>
-    <div class="videoDetailsDiv">
-        <b>Feedback received :</b><br>
-        <div class='feedback_received'></div>
-    </div>
-    <hr>
-
-<!-- <div>
-  <textarea id='message' placeholder='Great Job'></textarea>
-  <br>
-  <button id='send_feedback'>Send Feedback</button>
-</div> -->
-
-<div class="feedbackDiv">
-    <div class="textareaClass">
-        <textarea id="message" class="feedbackTextarea" rows="5" placeholder="Select message or type your own"></textarea>
-    </div>
-<!--
-<div class="rowMsg"><div class="colMsg" id=msgId1>
-        <p class="messages">Is there deposite or other fees?<p>
-    </div>
-    <div class="colMsg" id=msgId2>
-        <p class="messages">Are utilities included?</p>
-    </div>
-    <div class="colMsg" id=msgId3>
-        <p class="messages">Is the the lease start date flexible?<p>
-    </div>
-</div>
--->
-
-<div class="feedbackBtnDiv">
-    <button id="send_feedback" class="feedbackBtn">Send Feedback</button>
-</div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/sweetalert.min.js"></script>
-<script src="js/view_video.js"></script>
-<script src="js/config.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/view_video.js"></script>
+        <script src="js/config.js"></script>
+    </body>
 </html>

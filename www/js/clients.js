@@ -95,6 +95,12 @@ function list_patients(callback = '') {
     });
 }
 
+function openEditDialog(){
+    console.log('hello ...')
+    $(".modal-title").text("Edit Client");
+    $('#addClientModal').modal('show');
+}
+
 function display_patients(patients) {
     $(".clientsList").empty();
     object = patients.results;
@@ -123,7 +129,6 @@ function display_patients(patients) {
         }
 
         $(".clientsList").append(
-
             `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
 
                 <div class="card">
