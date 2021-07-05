@@ -1,18 +1,21 @@
-function init_organization_events() {
-    $("#add_member").on("click", function (e) {
-        signup_api()
 
-    })
+document.getElementById("adminCheck").checked = false;
+
+function init_organization_events() {
+  $("#add_member").on("click", function (e) {
+    signup_api();
+  })
 }
 
+function signup_api(params = '') {
 
-function signup_api(params) {
+  var isAdmin = document.querySelector('#adminCheck').checked;
   var form = new FormData();
-  form.append("name", $('#member_name'));
-  form.append("email", $('#member_email'));
-  form.append("password", $('#member_password'));
-  form.append("is_admin_member", $('#is_admin_member'));
-  form.append("source", window.location.host);
+  form.append("first_name", document.getElementById("name").value);
+  form.append("email", document.getElementById("email").value);
+  form.append("password", document.getElementById("password").value);
+  form.append("is_superuser", isAdmin);
+  //form.append("source", window.location.host);
 
   var settings = {
     async: true,
@@ -23,14 +26,19 @@ function signup_api(params) {
     contentType: false,
     mimeType: "multipart/form-data",
     "headers": {
-        "Authorization": "Token " + localStorage.getItem("session_id"),
+      "Authorization": "Token " + localStorage.getItem("session_id"),
     },
     data: form,
   };
 
   $.ajax(settings).done(
-        function (response) {
-  }).fail(function (err) {
+    function (response) {
+      //     console.log(response)
+      getUpdatedData();
+      // location.reload();
+      // windows.location.reload();
+
+    }).fail(function (err) {
       console.log(err);
       swal({
         title: "Error",
@@ -40,5 +48,10 @@ function signup_api(params) {
     });
 }
 
+// $("#edit").on("click", function (e) {
+//   console.log('i am in edit')
+
+
+// })
 
 window.addEventListener("DOMContentLoaded", init_organization_events, false);
