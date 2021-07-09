@@ -17,11 +17,6 @@ function init_monitor() {
     do_set_sober_date();
   });
 
-  // $('#setTimeModal #nextBtn').on("click", function (e) {
-  //   console.log('#setTimeModal #nextBtn click');
-  //   do_set_remainder_time();
-  // });
-
 
   $("#setOrg").on("click", function (e) {
     list_orgs(function (msg) {
@@ -30,14 +25,13 @@ function init_monitor() {
       // closes side menu
       $(".toggleBar").click();
       $(".current-monitors").empty();
+        $("#org_ids").empty()
       for (var org of msg) {
         $("#org_ids").append(
             "<option id='" + org.id + "'>" + org.name + "</option>")
       }
     });
   });
-
-
 
   $("#setMonitor").on("click", function (e) {
     get_profile_info(function (msg) {
@@ -460,7 +454,9 @@ function get_profile_info(callback) {
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response);
-      console.log(response);
+      if (msg.user_org) {
+        $(".logo img").attr('src', msg.user_org.logo);
+      }
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").hide();
