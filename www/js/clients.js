@@ -12,13 +12,13 @@ function init() {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             var Url;
-            if (value == '') Url = SERVER + "/api/list-patients/";
-            else Url = SERVER + "/api/list-patients/?name=" + value;
+            if (value == '') Url = SERVER + "/api/list-patients-v3/";
+            else Url = SERVER + "/api/list-patients-v3/?name=" + value;
 
             var request = $.ajax({
                 url: Url,
                 type: 'GET',
-                // headers: {	"Authorization": "Token " + sessionStorage.getItem("session_id")	},
+                headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
                 contentType: 'application/json',
             });
             request.done(function (response) {
@@ -63,7 +63,7 @@ function list_patients(callback = '') {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/list-patients/",
+        "url": SERVER + "/api/list-patients-v3/",
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -201,7 +201,6 @@ function editing(id) {
         }
     });
     current_id = current_data.user;
-    console.log(current_data.User.first_name)
     document.getElementById("edit_name").value = current_data.User ? current_data.User.first_name ? current_data.User.first_name : ' ' : '';
     document.getElementById("edit_email").value = current_data.notify_email;
 
@@ -218,7 +217,7 @@ function deleting(id) {
         .then((willDelete) => {
             if (willDelete) {
                 $.ajax({
-                    url: SERVER + "/api/list-patients/" + id,
+                    url: SERVER + "/api/list-patients-v3/" + id,
                     type: 'DELETE',
                     headers: {
                         "Authorization": "Token " + localStorage.getItem("session_id"),
@@ -242,7 +241,7 @@ function getUpdatedData() {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/list-patients/",
+        "url": SERVER + "/api/list-patients-v3/",
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -282,16 +281,16 @@ $('#add_member').click(function (e) {
 
     var myJson = JSON.stringify(obj);
     var request = $.ajax({
-        url: SERVER + "/api/add_monitor/",
+        url: SERVER + "/api/add-monitor/",
         type: 'POST',
         data: myJson,
-        // headers: {	"Authorization": "Token " + sessionStorage.getItem("session_id")	},
+        headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
         contentType: 'application/json',
     });
     request.done(function (response) {
         console.log(response)
         $.ajax({
-            url: SERVER + "/api/list-patients/",
+            url: SERVER + "/api/list-patients-v3/",
             type: 'GET',
             headers: {
                 "Authorization": "Token " + localStorage.getItem("session_id"),
@@ -347,12 +346,10 @@ function closeModal(ind) {
 }
 
 function editing_client() {
-    console.log('this is edditing client')
     var obj = {};
     obj['first_name'] = document.getElementById("edit_name").value;
     obj['email'] = document.getElementById("edit_email").value;
     obj['id'] = current_id;
-    console.log(obj)
     var myJson = JSON.stringify(obj);
     var settings = {
         "async": true,
@@ -369,10 +366,10 @@ function editing_client() {
     $.ajax(settings).done((response) => {
 
         var request = $.ajax({
-            url: SERVER + "/api/list-patients/",
+            url: SERVER + "/api/list-patients-v3/",
             type: 'GET',
             // data: value ,
-            // headers: {	"Authorization": "Token " + sessionStorage.getItem("session_id")	},
+             headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
             contentType: 'application/json',
         });
         request.done(function (resp) {
