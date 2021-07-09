@@ -23,6 +23,7 @@ function init() {
         })
 }
 $(document).ready(function () {
+    console.log(sessionStorage.getItem("session_id"))
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         // console.log(value)
@@ -32,12 +33,13 @@ $(document).ready(function () {
             url: SERVER + "/api/search_organization_member/" + value,
             type: 'GET',
             // data: value ,
-            // headers: {	"Authorization": "Token " + sessionStorage.getItem("session_id")	},
+            headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
             contentType: 'application/json',
         });
         request.done(function (response) {
             display_events(response);
-            var r = JSON.parse(response)
+            //var r = JSON.parse(response)
+            var r = response;
             $(".count").text(r.count)
             if (r.next) {
                 NEXT_PAGE_URL = SERVER + "/api" + r.next.split("/api")[1]
@@ -320,7 +322,7 @@ function editing_member() {
             url: SERVER + "/api/search_organization_member/" + value,
             type: 'GET',
             // data: value ,
-            // headers: {	"Authorization": "Token " + sessionStorage.getItem("session_id")	},
+            headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
             contentType: 'application/json',
         });
         request.done(function (response) {
