@@ -23,8 +23,10 @@ function init() {
         })
 }
 $(document).ready(function () {
+    console.log(sessionStorage.getItem("session_id"))
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
+        // console.log(value)
         if (value == '') { value = 'all' }
 
         var request = $.ajax({
@@ -116,6 +118,7 @@ function init_street_view(e) {
 
 function display_events(response) {
     total_count = response.count;
+    console.log(total_count)
     var html = "";
 
     if (response.count == 0) {
@@ -239,6 +242,7 @@ function editing(idd) {
             return false;
         }
     });
+    console.log(id)
     document.getElementById("edit_name").value = current_data.Name;
     document.getElementById("edit_email").value = current_data.Email;
     document.getElementById("edit_password").value = "";
@@ -288,6 +292,7 @@ function editing_member() {
     var temp = $('#adminCheck:checked').val();
     if(temp=='on')isAdmin=true;
     else isAdmin=false;
+    console.log(isAdmin)
     var obj = {};
     obj['first_name'] = document.getElementById("edit_name").value;
     obj['email'] = document.getElementById("edit_email").value;
@@ -516,19 +521,23 @@ function next_page() {
         let search_params = url.searchParams;
         offset = Number(search_params.get('page'))
         offset = ((offset - 1) * limit);
+        console.log('next => ' + offset)
         hittingRecordApi(NEXT_PAGE_URL);
     }
     else console.log('next is null')
 
 }
 function previous_page() {
+    console.log(PREV_PAGE_URL)
     if (PREV_PAGE_URL !== null) {
         let url = new URL(PREV_PAGE_URL);
         let search_params = url.searchParams;
         if (search_params.get('page')) {
             offset = Number(search_params.get('page'))
             offset = (offset - 1) * limit;
+            console.log('previous => ' + offset)
             if (offset > -1 && offset !== null) {
+                console.log('if condition')
                 hittingRecordApi(PREV_PAGE_URL);
             }
         }
@@ -601,6 +610,7 @@ function hittingRecordApi(url) {
         display_events(JSON.parse(response));
 
         var r = JSON.parse(response)
+        console.log(r)
         $(".count").text(r.count)
         total_count = r.count;
         if (r.next) {
