@@ -2,7 +2,10 @@
 var SERVER = 'https://prod-api.useiam.net'
 //var SERVER = 'http://192.168.100.166:8081'
  //var PythonAPIServer = 'http://127.0.0.1:8000'
-var PythonAPIServer = 'https://api.dreampotential.org'
+ var PythonAPIServer = 'https://api.dreampotential.org'
 
-// plan id = IAM001
-// test plan id = 007
+ // plan id = IAM001
+ // test plan id = 007
+ 
+ //var SERVER = 'http://192.168.100.166:8081'
+ 

@@ -128,77 +128,120 @@ var app = {
 app.initialize();
 
 
-$(document).ready(function(){
-    $('#forgot_password').on('click', function(){
-        $('.login-form-div').hide();
-        $('.forgot-form-div').show();
+$(document).ready(function () {
+
+  loadOrganization();
+
+  $('#forgot_password').on('click', function () {
+    $('.login-form-div').hide();
+    $('.forgot-form-div').show();
+  });
+
+  $('#login_form_btn').on('click', function () {
+    $('.login-form-div').show();
+    $('.forgot-form-div').hide();
+  });
+
+  $('#forgotBtn').on('click', function () {
+
+    $('#forgot-icon').hide();
+    $('#forgot-spinner-icon').show();
+
+    email = $('#forgot_email').val();
+
+    if (email === '' || email === null) {
+      swal({
+        title: "Email is required.",
+        icon: "error",
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+      });
+
+      $('#forgot-icon').show();
+      $('#forgot-spinner-icon').hide();
+      return false;
+    }
+
+    var form = new FormData();
+    form.append("email", email);
+
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": SERVER + "/api/forgot-password/",
+      "method": "POST",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+      "data": form
+    }
+
+    $.ajax(settings).done(function (response) {
+      swal({
+        title: "Email Sent",
+        text: "Email has been sent",
+        icon: "success",
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+      });
+
+      $('#forgot-icon').show();
+      $('#forgot-spinner-icon').hide();
+    }).fail(function (err) {
+      swal({
+        title: "Something Wrong.",
+        text: err['responseText'],
+        icon: "error",
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+      });
+
+      $('#forgot-icon').show();
+      $('#forgot-spinner-icon').hide();
     });
 
-    $('#login_form_btn').on('click', function(){
-        $('.login-form-div').show();
-        $('.forgot-form-div').hide();
-    });
+    return false;
 
-    $('#forgotBtn').on('click', function(){
-
-        $('#forgot-icon').hide();
-        $('#forgot-spinner-icon').show();
-
-        email = $('#forgot_email').val();
-    
-        if (email === '' || email === null) {
-            swal({
-                title: "Email is required.",
-                icon: "error",
-                closeOnEsc: false,
-                closeOnClickOutside: false,
-            });
-
-            $('#forgot-icon').show();
-            $('#forgot-spinner-icon').hide();
-            return false;
-        } 
-
-        var form = new FormData();
-        form.append("email", email);
-
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": SERVER + "/api/forgot-password/",
-            "method": "POST",
-            "processData": false,
-            "contentType": false,
-            "mimeType": "multipart/form-data",
-            "data": form
-        }
-
-        $.ajax(settings).done(function (response) {
-            swal({
-                title: "Email Sent",
-                text: "Email has been sent",
-                icon: "success",
-                closeOnEsc: false,
-                closeOnClickOutside: false,
-            });
-
-            $('#forgot-icon').show();
-            $('#forgot-spinner-icon').hide();
-        }).fail(function(err) {
-            swal({
-                title: "Something Wrong.",
-                text: err['responseText'],
-                icon: "error",
-                closeOnEsc: false,
-                closeOnClickOutside: false,
-            });
-
-            $('#forgot-icon').show();
-            $('#forgot-spinner-icon').hide();
-        });
-
-        return false;
-        
-    });
+  });
 });
 
+function loadOrganization() {
+  let loading = '<option>Select Organization</option>';
+  let loadData = '';
+  var request = $.ajax({
+    "async": true,
+    "crossDomain": true,
+    // "headers": {
+    //   "Authorization": "Token " + localStorage.getItem("session_id"),
+    // },
+    "url": SERVER + '/api/list_organizations/',
+    "method": "GET",
+    "processData": false,
+    "contentType": false,
+    "mimeType": "multipart/form-data",
+  });
+  request.done(function (res) {
+    loadData = JSON.parse(res);
+    res = loadData;
+    var listLength = loadData.length;
+    for (let i = 0; i < listLength; i++) {
+       loading+=`<option value='${i+1}'>${loadData[i].name}</option>`;    
+   }
+   $('#organization').append(loading);
+    $("#organization").change(function (r) {
+      let val = $('#organization').val()
+      if(val!='Select Organization'){
+        $('.logo').empty();
+        let img = "<img src='" + loadData[val-1].logo + "'width='200'height='200'/>";
+        $(".logo").append(img);
+      }
+      else{
+        $('.logo').empty();
+        $(".logo").append("<img src='img/useiam_logo.png' width='200'height='200'/>");
+      }
+    });
+  });
+  request.fail(function (err) {
+    alert(err)
+  });
+}
