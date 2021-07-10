@@ -26,6 +26,8 @@ function init_monitor() {
       $(".toggleBar").click();
       $(".current-monitors").empty();
         $("#org_ids").empty()
+
+      $("#org_ids").append("<option>No Organization</option>")
       for (var org of msg) {
         $("#org_ids").append(
             "<option id='" + org.id + "'>" + org.name + "</option>")
@@ -454,9 +456,10 @@ function get_profile_info(callback) {
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response);
-      if (msg.user_org) {
+      if (msg.user_org && msg.user_org.logo) {
         $(".logo img").attr('src', msg.user_org.logo);
       }
+
         $("#not-subscribed-user").hide();
         $("#subscribed-user").show();
         $("#Unsubscribe_div").hide();
