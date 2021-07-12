@@ -30,7 +30,7 @@ function init_monitor() {
       $("#org_ids").append("<option>No Organization</option>")
       for (var org of msg) {
         $("#org_ids").append(
-            "<option id='" + org.id + "'>" + org.name + "</option>")
+            "<option logo='" + org.logo + "' id='" + org.id + "'>" + org.name + "</option>")
       }
     });
   });
@@ -300,7 +300,8 @@ function do_set_sober_date() {
 
 function do_set_org() {
   var form = new FormData();
-  form.append("org_id", parseInt($("#org_ids").find('option:selected').attr('id')))
+  form.append("org_id",
+              parseInt($("#org_ids").find('option:selected').attr('id')))
   var settings = {
     async: true,
     crossDomain: true,
@@ -322,10 +323,14 @@ function do_set_org() {
         icon: "success",
       });
 
+      $(".logo img").attr('src',
+                          $("#org_ids").find('option:selected').attr('logo'))
+
       //after successful login or signup show dashboard contents
       showATab("dashboard");
-      $(".toggleBar").click();
-      $("#showInstructions").click();
+      $("#setOrgModal .close").click();
+      //$(".toggleBar").click();
+      //$("#showInstructions").click();
       console.log("Show instructions");
     })
     .fail(function (err) {
@@ -535,6 +540,7 @@ function list_orgs(callback) {
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response)
+      console.log(msg)
       callback(msg);
     })
     .fail(function (err) {
