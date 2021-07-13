@@ -28,7 +28,7 @@ $(document).ready(function () {
         if (value == '') { value = 'all' }
 
         var request = $.ajax({
-            url: SERVER + "/api/search_organization_member/" + value,
+            url: SERVER + "/api/search_member/" + value,
             type: 'GET',
             // data: value ,
             headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
@@ -254,7 +254,7 @@ function deleting(id) {
         .then((willDelete) => {
             if (willDelete) {
                 $.ajax({
-                    url: SERVER + "/api/remove_organization_member/" + id,
+                    url: SERVER + "/api/remove_member/" + id,
                     type: 'DELETE',
                     headers: {
                         "Authorization": "Token " + localStorage.getItem("session_id"),
@@ -298,7 +298,7 @@ function editing_member() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": SERVER + "/api/edit_organization_member/",
+        "url": SERVER + "/api/edit_member/",
         "type": "PUT",
         processData: false,
         "headers": {
@@ -314,7 +314,7 @@ function editing_member() {
         //  console.log("info updated success");
         var value = 'all';
         var request = $.ajax({
-            url: SERVER + "/api/search_organization_member/" + value,
+            url: SERVER + "/api/search_member/" + value,
             type: 'GET',
             // data: value ,
             headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
@@ -381,7 +381,7 @@ function list_patients(callback) {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/get_organization_member/",
+        "url": SERVER + "/api/get_member/",
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -420,7 +420,7 @@ function api_list_patient_events(url, callback) {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/get_organization_member/",
+        "url": SERVER + "/api/get_member/",
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -457,7 +457,7 @@ function getUpdatedData() {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/get_organization_member/",
+        "url": SERVER + "/api/get_member/"+'?limit='+limit+'&offset='+offset,
         "method": "GET",
         "processData": false,
         "contentType": false,

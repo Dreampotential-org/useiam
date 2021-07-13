@@ -40,8 +40,6 @@ function init() {
                     PREV_PAGE_URL = null;
                     $(".prev").hide()
                 }
-                console.log(NEXT_PAGE_URL)
-                console.log(PREV_PAGE_URL)
             });
             request.fail(function (err) {
                 console.log(err)
@@ -96,7 +94,6 @@ function list_patients(callback = '') {
 }
 
 function openEditDialog(){
-    console.log('hello ...')
     $(".modal-title").text("Edit Client");
     $('#addClientModal').modal('show');
 }
@@ -241,7 +238,7 @@ function getUpdatedData() {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/list-patients-v3/",
+        "url": SERVER + "/api/list-patients-v3/"+'?limit='+limit+'&offset='+offset,
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -275,13 +272,13 @@ function getUpdatedData() {
 $('#add_member').click(function (e) {
     console.log('ma ajaaava')
     var obj = {};
-    obj['first_name'] = document.getElementById('name').value;
+    obj['name'] = document.getElementById('name').value;
     obj['email'] = document.getElementById('email').value;
     obj['password'] = document.getElementById('password').value;
 
     var myJson = JSON.stringify(obj);
     var request = $.ajax({
-        url: SERVER + "/api/add-monitor/",
+        url: SERVER + "/api/add_patient/",
         type: 'POST',
         data: myJson,
         headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
@@ -354,7 +351,7 @@ function editing_client() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": SERVER + "/api/edit_monitor_member/",
+        "url": SERVER + "/api/edit_patient/",
         "type": "PUT",
         processData: false,
         "headers": {
