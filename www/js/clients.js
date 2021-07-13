@@ -23,8 +23,7 @@ function init() {
             });
             request.done(function (response) {
                 display_patients(response);
-                var r = JSON.parse(response)
-                console.log(r)
+                var r = response
                 $(".count").text(r.count)
                 if (r.next) {
                     NEXT_PAGE_URL = SERVER + "/api" + r.next.split("/api")[1]
@@ -270,7 +269,6 @@ function getUpdatedData() {
     });
 }
 $('#add_member').click(function (e) {
-    console.log('ma ajaaava')
     var obj = {};
     obj['name'] = document.getElementById('name').value;
     obj['email'] = document.getElementById('email').value;
@@ -285,7 +283,6 @@ $('#add_member').click(function (e) {
         contentType: 'application/json',
     });
     request.done(function (response) {
-        console.log(response)
         $.ajax({
             url: SERVER + "/api/list-patients-v3/",
             type: 'GET',
@@ -363,7 +360,7 @@ function editing_client() {
     $.ajax(settings).done((response) => {
 
         var request = $.ajax({
-            url: SERVER + "/api/list-patients-v3/",
+            url: SERVER + "/api/list-patients-v3/"+'?limit='+limit+'&offset='+offset,
             type: 'GET',
             // data: value ,
              headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
@@ -408,7 +405,6 @@ function next_page() {
     if (NEXT_PAGE_URL !== null) {
         const urlParams = new URLSearchParams(NEXT_PAGE_URL);
         offset = Number(urlParams.get('offset'))
-        console.log(offset)
         hittingRecordApi(NEXT_PAGE_URL);
     }
     else console.log('next is null')
@@ -418,13 +414,10 @@ function previous_page() {
     if (PREV_PAGE_URL !== null) {
         const urlParams = new URLSearchParams(PREV_PAGE_URL);
         offset = Number(urlParams.get('offset'))
-        console.log(offset)
         if (offset > -1 && offset !== null) {
-            console.log('if condition')
             hittingRecordApi(PREV_PAGE_URL);
         }
         else {
-            console.log('else condition')
             var url = new URL(PREV_PAGE_URL);
             var search_params = url.searchParams;
             let k = 0;
