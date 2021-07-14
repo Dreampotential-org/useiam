@@ -10,25 +10,27 @@ function init_organization_events() {
 function signup_api(params = '') {
 
   var isAdmin = document.querySelector('#adminCheck').checked;
-  var form = new FormData();
-  form.append("first_name", document.getElementById("name").value);
-  form.append("email", document.getElementById("email").value);
-  form.append("password", document.getElementById("password").value);
-  form.append("is_superuser", isAdmin);
-  //form.append("source", window.location.host);
 
+  var obj = {};
+  obj['name'] = document.getElementById("name").value;
+  obj["email"] = document.getElementById("email").value;
+  obj["password"] = document.getElementById("password").value;
+  obj["admin"] = isAdmin;
+  if(organization_id!==null)obj['organization'] = organization_id;
+  var myJson = JSON.stringify(obj);
   var settings = {
     async: true,
     crossDomain: true,
-    url: SERVER + "/api/add_organization_member/",
+    url: SERVER + "/api/add_member/",
     method: "POST",
     processData: false,
     contentType: false,
-    mimeType: "multipart/form-data",
+    contentType: 'application/json',
+    //mimeType: "multipart/form-data",
     "headers": {
       "Authorization": "Token " + localStorage.getItem("session_id"),
     },
-    data: form,
+    data: myJson,
   };
 
   $.ajax(settings).done(

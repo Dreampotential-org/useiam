@@ -23,8 +23,7 @@ function init() {
             });
             request.done(function (response) {
                 display_patients(response);
-                var r = JSON.parse(response)
-                console.log(r)
+                var r = response
                 $(".count").text(r.count)
                 if (r.next) {
                     NEXT_PAGE_URL = SERVER + "/api" + r.next.split("/api")[1]
@@ -40,8 +39,6 @@ function init() {
                     PREV_PAGE_URL = null;
                     $(".prev").hide()
                 }
-                console.log(NEXT_PAGE_URL)
-                console.log(PREV_PAGE_URL)
             });
             request.fail(function (err) {
                 console.log(err)
@@ -96,7 +93,6 @@ function list_patients(callback = '') {
 }
 
 function openEditDialog(){
-    console.log('hello ...')
     $(".modal-title").text("Edit Client");
     $('#addClientModal').modal('show');
 }
@@ -241,7 +237,7 @@ function getUpdatedData() {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/list-patients-v3/",
+        "url": SERVER + "/api/list-patients-v3/"+'?limit='+limit+'&offset='+offset,
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -273,22 +269,20 @@ function getUpdatedData() {
     });
 }
 $('#add_member').click(function (e) {
-    console.log('ma ajaaava')
     var obj = {};
-    obj['first_name'] = document.getElementById('name').value;
+    obj['name'] = document.getElementById('name').value;
     obj['email'] = document.getElementById('email').value;
     obj['password'] = document.getElementById('password').value;
 
     var myJson = JSON.stringify(obj);
     var request = $.ajax({
-        url: SERVER + "/api/add-monitor/",
+        url: SERVER + "/api/add_patient/",
         type: 'POST',
         data: myJson,
         headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
         contentType: 'application/json',
     });
     request.done(function (response) {
-        console.log(response)
         $.ajax({
             url: SERVER + "/api/list-patients-v3/",
             type: 'GET',
@@ -354,7 +348,7 @@ function editing_client() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": SERVER + "/api/edit_monitor_member/",
+        "url": SERVER + "/api/edit_patient/",
         "type": "PUT",
         processData: false,
         "headers": {
@@ -366,7 +360,7 @@ function editing_client() {
     $.ajax(settings).done((response) => {
 
         var request = $.ajax({
-            url: SERVER + "/api/list-patients-v3/",
+            url: SERVER + "/api/list-patients-v3/"+'?limit='+limit+'&offset='+offset,
             type: 'GET',
             // data: value ,
              headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
@@ -411,7 +405,6 @@ function next_page() {
     if (NEXT_PAGE_URL !== null) {
         const urlParams = new URLSearchParams(NEXT_PAGE_URL);
         offset = Number(urlParams.get('offset'))
-        console.log(offset)
         hittingRecordApi(NEXT_PAGE_URL);
     }
     else console.log('next is null')
@@ -421,13 +414,10 @@ function previous_page() {
     if (PREV_PAGE_URL !== null) {
         const urlParams = new URLSearchParams(PREV_PAGE_URL);
         offset = Number(urlParams.get('offset'))
-        console.log(offset)
         if (offset > -1 && offset !== null) {
-            console.log('if condition')
             hittingRecordApi(PREV_PAGE_URL);
         }
         else {
-            console.log('else condition')
             var url = new URL(PREV_PAGE_URL);
             var search_params = url.searchParams;
             let k = 0;

@@ -28,7 +28,7 @@ $(document).ready(function () {
         if (value == '') { value = 'all' }
 
         var request = $.ajax({
-            url: SERVER + "/api/search_organization_member/" + value,
+            url: SERVER + "/api/search_member/" + value,
             type: 'GET',
             // data: value ,
             headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
@@ -254,7 +254,7 @@ function deleting(id) {
         .then((willDelete) => {
             if (willDelete) {
                 $.ajax({
-                    url: SERVER + "/api/remove_organization_member/" + id,
+                    url: SERVER + "/api/remove_member/" + id,
                     type: 'DELETE',
                     headers: {
                         "Authorization": "Token " + localStorage.getItem("session_id"),
@@ -298,7 +298,7 @@ function editing_member() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": SERVER + "/api/edit_organization_member/",
+        "url": SERVER + "/api/edit_member/",
         "type": "PUT",
         processData: false,
         "headers": {
@@ -311,16 +311,17 @@ function editing_member() {
         // }
     }
     $.ajax(settings).done((response) => {
-        //  console.log("info updated success");
-        var value = 'all';
+
+      var Url = '/api/get_member/';
+      if(offset!=0) Url +='?page='+((offset/limit)+1).toString();
         var request = $.ajax({
-            url: SERVER + "/api/search_organization_member/" + value,
+            url: SERVER + Url,
             type: 'GET',
-            // data: value ,
             headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
             contentType: 'application/json',
         });
         request.done(function (response) {
+ 
             display_events(response);
             var r = response;
             $(".count").text(r.count)
@@ -381,7 +382,7 @@ function list_patients(callback) {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/get_organization_member/",
+        "url": SERVER + "/api/get_member/",
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -420,7 +421,7 @@ function api_list_patient_events(url, callback) {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/get_organization_member/",
+        "url": SERVER + "/api/get_member/",
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -451,13 +452,15 @@ function api_list_patient_events(url, callback) {
 }
 
 function getUpdatedData() {
+    var Url = '/api/get_member/';
+    if(offset!=0) Url +='?page='+((offset/limit)+1).toString();
     var settings = {
         "async": true,
         "crossDomain": true,
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/get_organization_member/",
+        "url": SERVER + Url,
         "method": "GET",
         "processData": false,
         "contentType": false,
