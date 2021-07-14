@@ -35,7 +35,7 @@ function login_monitor() {
           window.location = redirect;
         } else {
           //window.location = './admin.html';
-          window.location = "./review.html";
+          window.location = "./clients.html";
         }
       }
     );
