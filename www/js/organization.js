@@ -1,4 +1,4 @@
-
+var organ_id = localStorage.getItem('organizationId');
 document.getElementById("adminCheck").checked = false;
 
 function init_organization_events() {
@@ -16,7 +16,9 @@ function signup_api(params = '') {
   obj["email"] = document.getElementById("email").value;
   obj["password"] = document.getElementById("password").value;
   obj["admin"] = isAdmin;
-  if(organization_id!==null)obj['organization'] = organization_id;
+  if(organ_id!=undefined && organ_id!=null && organ_id!='null') obj['organization_id'] = organ_id;
+  else obj['organization_id'] = selected_organization_id;
+
   var myJson = JSON.stringify(obj);
   var settings = {
     async: true,

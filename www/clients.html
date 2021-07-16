@@ -136,8 +136,11 @@
     }
 
     #myInput {
-      width: 92%;
+      width: 98%;
       padding: 5px 30px;
+    }
+    .leftSpace {
+      margin-left: -10px;
     }
   </style>
 
@@ -190,18 +193,48 @@
       </ul>
     </div>
     <main class="bmd-layout-content">
-      <div class="container-fluid">
-        <div class="searchRow">
+      <div class="container-fluid searchRow">
+        <div class="row mt-2">
+          <div class="col-lg-11 col-md-10 col-sm-12">
+            <input id="myInput" type="text" placeholder="Search by name...">
+            <i class="material-icons align-middle ml-3  searchIcon">search</i>
+          </div>
+          <div class="col-lg-1 col-md-2 col-sm-12">
+            <span class="float-right">
+              <section>
+                <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
+                  data-target="#modalLoginForm">Add Client</button>
+              </section>
+            </span>
+          </div>
+        </div>
+        <!-- <div class="searchRow">
           <input id="myInput" type="text" placeholder="Search by name...">
           <i class="material-icons align-middle mr-2 searchIcon">search</i>
           <span class="float-right">
             <section>
-              <button type="button" id="xx" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
+              <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
                 data-target="#modalLoginForm">Add Client</button>
             </section>
           </span>
+        </div> -->
+        <div class="row mt-2 mr-2 clientsList">
         </div>
-        <div class="row mt-2 clientsList">
+        <div class="row">
+          <div class="col">
+            <div class="paginationDiv  py-3 leftSpace">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-6 col-lg-5 col-md-4 col-xl-5">
+                    <span class="text-primary">Total Number of results :</span> <span class='count font-weight-bold'></span>
+                  </div>
+                  <div class="col-sm-6 col-lg-7 col-md-8 col-xl-7">
+                    <span id="paginate"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -232,9 +265,17 @@
               <label style="color:rgb(133, 133, 133);" data-error="wrong" data-success="right"
                 for="password">Password</label>
             </div>
+            <div class="md-form mb-4" id="organization_selection">
+              <div class="form-group">
+                <label class="control-label" for="company">Select Organization</label>
+                <div class="col-sm-12">
+                    <select id="organization" class="form-control"></select>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button id='add_member' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
+            <button id='add_patient' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
               class="btn btn-primary waves-effect waves-light font-weight-bold">Submit</button>
           </div>
         </div>
@@ -244,10 +285,18 @@
 
   <div id="edit"></div>
 
-  <div class="paginationDiv  py-3 bm">
-    <span class="text-primary">Total Number of results :</span> <span class='count font-weight-bold'></span>
-    <span id="paginate"></span>
-  </div>
+  <!-- <div class="paginationDiv  py-3 leftSpace">
+    <div class="container-fluid">
+      <div class="row ml-2">
+        <div class="col-sm-6 col-lg-5 col-md-4 col-xl-5">
+          <span class="text-primary">Total Number of results :</span> <span class='count font-weight-bold'></span>
+        </div>
+        <div class="col-sm-6 col-lg-7 col-md-8 col-xl-7">
+          <span id="paginate"></span>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
