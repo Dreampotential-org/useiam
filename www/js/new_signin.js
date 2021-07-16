@@ -47,7 +47,7 @@ function login_api(email, password, callback) {
   form.append("username", email);
   form.append("password", password);
   var settings = {
-    async: true,
+    async: false,
     crossDomain: true,
     url: SERVER + "/api/api-token-auth/",
     method: "POST",
@@ -61,7 +61,9 @@ function login_api(email, password, callback) {
     .done(function (response) {
       localStorage.setItem("session_id", JSON.parse(response).token);
       console.log("user logged in");
+      getOrganizationId();
       callback();
+
     })
     .fail(function (err) {
       swal({
@@ -175,6 +177,31 @@ function signup_api(params) {
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
+}
+
+function getOrganizationId(){
+  var request = $.ajax({
+    "async": false,
+    "crossDomain": true,
+    "headers": {
+      "Authorization": "Token " + localStorage.getItem("session_id"),
+    },
+    "url": SERVER + '/api/get_organization_id/',
+    "method": "GET",
+    "processData": false,
+    "contentType": false,
+  //  "mimeType": "multipart/form-data",
+  });
+  request.done(function(res){
+    console.log(res)
+    localStorage.setItem('organizationId',res.organization_id);
+    localStorage.setItem('patient_org_id',res.Patient_org_id)
+  });
+  request.fail(function(err){
+    console.log('error')
+  });
+
+  
 }
 
 window.addEventListener("DOMContentLoaded", init, false);

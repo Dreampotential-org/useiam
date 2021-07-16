@@ -6,6 +6,9 @@ var total_count = 0;
 var limit = 10;
 var NEXT_PAGE_URL = null;
 var PREV_PAGE_URL = null;
+var selected_organization_id = null;
+var selected_organization_data = null;
+var organ_id = localStorage.getItem('organizationId');
 
 function init() {
     if (!(localStorage.getItem("session_id"))) {
@@ -23,20 +26,23 @@ function init() {
         })
 }
 $(document).ready(function () {
+
+   if(organ_id == null || organ_id == undefined || organ_id=='null')  loadOrganization();
+   else $("#organization_selection").hide();
+
     $("#myInput").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        if (value == '') { value = 'all' }
+        var url = '/api/get_member/';
+        if (value !== '') url = url + '?search=' + value;
 
         var request = $.ajax({
-            url: SERVER + "/api/search_member/" + value,
+            url: SERVER + url,
             type: 'GET',
-            // data: value ,
-            headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
+            headers: { "Authorization": "Token " + localStorage.getItem("session_id") },
             contentType: 'application/json',
         });
         request.done(function (response) {
             display_events(response);
-            //var r = JSON.parse(response)
             var r = response;
             $(".count").text(r.count)
             if (r.next) {
@@ -64,7 +70,51 @@ $(document).ready(function () {
         });
     });
 });
+function loadOrganization() {
+    let loading = '<option value="0">Select Organization</option>';
+    let loadData = '';
+    var request = $.ajax({
+      "async": true,
+      "crossDomain": true,
+      "headers": {
+        "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + '/api/list_organizations/',
+      "method": "GET",
+      "processData": false,
+      "contentType": false,
+      "mimeType": "multipart/form-data",
+    });
+    request.done(function (res) {
+      loadData = JSON.parse(res);
+      res = loadData;
+      var listLength = loadData.length;
+      for (let i = 0; i < listLength; i++) {
+         loading+=`<option value='${loadData[i].id}'>${loadData[i].name}</option>`;    
+     }
 
+     $('#organization').append(loading);
+  
+      $("#organization").change(function (r) {
+        let val = $('#organization').val();
+        if(val !=0){
+            selected_organization_id = val;
+            for (let index = 0; index < listLength; index++) {
+                if(val == loadData[index].id){
+                    console.log(loadData[index].id)
+                    selected_organization_data = loadData[index];
+                    break;
+                }
+            }
+        }
+        else console.log('no organization select')
+        
+      });
+    });
+    request.fail(function (err) {
+      alert(err)
+    });
+  }
 function init_page_events() {
 
     $("body").delegate(".logout", "click", function (e) {
@@ -133,11 +183,11 @@ function display_events(response) {
                             <i style="font-size: 100px;" class="material-icons">person</i>
                         </div>
                         <div class="card-body">
-                            <h6 class="card-subtitle">${e.Name} `
+                            <h6 class="card-subtitle">${e.User ? e.User.first_name ? e.User.first_name : '--' : '--'} `
 
-        html += `<i style="color: #009688;cursor:pointer"onClick="deleting(` + e.user_id + `)" class="material-icons align-middle float-right">delete</i><span style="padding-right:8px;color: #009688;cursor:pointer"onClick="editing(` + e.user_id + `)"data-toggle="modal"
+        html += `<i style="color: #009688;cursor:pointer"onClick="deleting(` + e.user + `)" class="material-icons align-middle float-right">delete</i><span style="padding-right:8px;color: #009688;cursor:pointer"onClick="editing(` + e.user + `)"data-toggle="modal"
        data-target="#modaleditForm" class="material-icons float-right">create<span/></h6></div></div></div>`
-        user_id = e.user_id;
+        user_id = e.user;
     }
     var r = response
     $(".count").text(r.count)
@@ -233,14 +283,13 @@ function editing(idd) {
     var current_data;
     $("#edit").html(html);
     data.forEach(element => {
-
-        if (id == element.user_id) {
+        if (id == element.user) {
             current_data = element;
             return false;
         }
     });
-    document.getElementById("edit_name").value = current_data.Name;
-    document.getElementById("edit_email").value = current_data.Email;
+    document.getElementById("edit_name").value = current_data.User.first_name;
+    document.getElementById("edit_email").value = current_data.User.email;
     document.getElementById("edit_password").value = "";
 }
 function deleting(id) {
@@ -286,14 +335,15 @@ function editing_member() {
     // console.log(document.getElementById('adminCheck').checked);
     // console.log($('#adminCheck:checked').val());
     var temp = $('#adminCheck:checked').val();
-    if(temp=='on')isAdmin=true;
-    else isAdmin=false;
+    if (temp == 'on') isAdmin = true;
+    else isAdmin = false;
     var obj = {};
     obj['first_name'] = document.getElementById("edit_name").value;
     obj['email'] = document.getElementById("edit_email").value;
     obj['password'] = document.getElementById("edit_password").value;
     obj['is_superuser'] = isAdmin;
     obj['id'] = id;
+   // obj['organization_id'] = organ_id;
     var myJson = JSON.stringify(obj);
     var settings = {
         "async": true,
@@ -312,16 +362,16 @@ function editing_member() {
     }
     $.ajax(settings).done((response) => {
 
-      var Url = '/api/get_member/';
-      if(offset!=0) Url +='?page='+((offset/limit)+1).toString();
+        var Url = '/api/get_member/';
+        if (offset != 0) Url += '?page=' + ((offset / limit) + 1).toString();
         var request = $.ajax({
             url: SERVER + Url,
             type: 'GET',
-            headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
+            headers: { "Authorization": "Token " + localStorage.getItem("session_id") },
             contentType: 'application/json',
         });
         request.done(function (response) {
- 
+
             display_events(response);
             var r = response;
             $(".count").text(r.count)
@@ -453,7 +503,7 @@ function api_list_patient_events(url, callback) {
 
 function getUpdatedData() {
     var Url = '/api/get_member/';
-    if(offset!=0) Url +='?page='+((offset/limit)+1).toString();
+    if (offset != 0) Url += '?page=' + ((offset / limit) + 1).toString();
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -512,32 +562,33 @@ function formatDate(date) {
     return date.toLocaleDateString("en-US") + " " + strTime;
 }
 
-function next_page() {
+///////////////////////////////////////////////////
 
-    if (NEXT_PAGE_URL !== null) {
-        let url = new URL(NEXT_PAGE_URL);
-        let search_params = url.searchParams;
-        offset = Number(search_params.get('page'))
-        offset = ((offset - 1) * limit);
-        hittingRecordApi(NEXT_PAGE_URL);
-    }
-    else console.log('next is null')
+// function next_page() {
+//     if (NEXT_PAGE_URL !== null) {
+//         const urlParams = new URLSearchParams(NEXT_PAGE_URL);
+//         offset = Number(urlParams.get('offset'))
+//         hittingRecordApi(NEXT_PAGE_URL);
+//     }
+//     else console.log('next is null')
 
-}
+// }
 function previous_page() {
     if (PREV_PAGE_URL !== null) {
-        let url = new URL(PREV_PAGE_URL);
-        let search_params = url.searchParams;
-        if (search_params.get('page')) {
-            offset = Number(search_params.get('page'))
-            offset = (offset - 1) * limit;
-            if (offset > -1 && offset !== null) {
-                hittingRecordApi(PREV_PAGE_URL);
-            }
+        const urlParams = new URLSearchParams(PREV_PAGE_URL);
+        offset = Number(urlParams.get('offset'))
+        if (offset > -1 && offset !== null) {
+            hittingRecordApi(PREV_PAGE_URL);
         }
         else {
+            var url = new URL(PREV_PAGE_URL);
+            var search_params = url.searchParams;
+            let k = 0;
             offset = 0;
-            hittingRecordApi(PREV_PAGE_URL);
+            search_params.set('offset', k.toString());
+            url.search = search_params.toString();
+            var new_url = url.toString();
+            hittingRecordApi(new_url);
         }
 
     }
@@ -547,18 +598,34 @@ function goto_page(offset_no) {
     offset = offset_no;
     var url = new URL(NEXT_PAGE_URL ? NEXT_PAGE_URL : PREV_PAGE_URL);
     var search_params = url.searchParams;
-    var off = (offset_no / limit) + 1;
-    search_params.set('page', off.toString());
+    search_params.set('offset', offset.toString());
     url.search = search_params.toString();
     var new_url = url.toString();
     hittingRecordApi(new_url)
+
 }
+
+
+///////////////////////////////////////////////////
+function next_page() {
+
+    if (NEXT_PAGE_URL !== null) {
+        let url = new URL(NEXT_PAGE_URL);
+        let search_params = url.searchParams;
+        offset = Number(search_params.get('offset'))
+        //  offset = ((offset - 1) * limit);
+        hittingRecordApi(NEXT_PAGE_URL);
+    }
+    else console.log('next is null')
+
+}
+
 function paginate() {
 
 
     var page = '';
-
-    page += `  <ul  style="display:inline-flex;padding-left: 500px;font-size: 18px;" class="pagination">`;
+    // padding-left: 500px;
+    page += `  <ul  style="display:inline-flex;font-size: 18px;" class="pagination">`;
     if (PREV_PAGE_URL !== null) {
         page += `<li class="text-primary page-item"><a class="page-link"  onclick="previous_page()">Previous</a></li>`;
     }
@@ -627,4 +694,27 @@ function hittingRecordApi(url) {
     });
 
 }
+
+function getOrganizationId(){
+    var request = $.ajax({
+      "async": false,
+      "crossDomain": true,
+      "headers": {
+        "Authorization": "Token " + localStorage.getItem("session_id"),
+      },
+      "url": SERVER + '/api/get_organization_id/',
+      "method": "GET",
+      "processData": false,
+      "contentType": false,
+    //  "mimeType": "multipart/form-data",
+    });
+    request.done(function(res){
+      console.log(res)
+    });
+    request.fail(function(err){
+      console.log('error')
+    });
+  
+    
+  }
 window.addEventListener("DOMContentLoaded", init, false);

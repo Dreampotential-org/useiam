@@ -53,7 +53,7 @@
     }
 
     #myInput {
-      width: 92%;
+      width: 98%;
       padding: 5px 30px;
     }
 
@@ -118,7 +118,7 @@
       color: #000 !important;
     }
 
-    .bm {
+    .leftSpace {
       margin-left: 15px;
     }
   </style>
@@ -214,6 +214,15 @@
                   <i class="fas fa-lock prefix grey-text"></i>
                   <span style="color:rgb(133, 133, 133);">Admin: </span><input type='checkbox' id="adminCheck" /><br>
                 </div>
+                <div class="md-form mb-4" id="organization_selection">
+                  <div class="form-group">
+                    <label class="control-label" for="company">Select Organization</label>
+                    <div class="col-sm-12">
+                        <select id="organization" class="form-control">
+                        </select>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="modal-footer d-flex justify-content-center">
                 <button id='add_member' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
@@ -222,8 +231,25 @@
             </div>
           </div>
         </div>
-        <hr>
-        <div class="searchRow">
+        <!-- <hr> -->
+          <div class="searchRow">
+            <div class="row mt-3">
+              <div class="col-lg-11 col-md-10 col-sm-8">
+                <input id="myInput" type="text" placeholder="Search by name...">
+                <i class="material-icons align-middle ml-3  searchIcon">search</i>
+              </div>
+              <div class="col-lg-1 col-md-2 col-sm-4">
+                <span class="float-right">
+                  <section>
+                    <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal"
+                      data-target="#modalLoginForm">Add Member</button>
+                  </section>
+                </span>
+              </div>
+            </div>
+              <div id='list_of_members'></div>
+          </div>
+        <!-- <div class="searchRow">
           <input id="myInput" type="text" placeholder="Search by name...">
           <i class="material-icons align-middle mr-2 searchIcon">search</i>
           <span class="float-right">
@@ -232,8 +258,8 @@
                 data-target="#modalLoginForm">Add Member</button>
             </section>
           </span>
-        </div>
-        <div style="margin-left:10px;" id='list_of_members'></div>
+        </div> -->
+        <!-- <div style="margin-left:10px;" id='list_of_members'></div> -->
 
         <div id="edit"></div>
 
@@ -241,13 +267,23 @@
       <div class="form-group">
       </div>
 
-      <div class="row events">
+      <div class="row ml-3 mr-2 events">
       </div>
 
       <div class='results'></div>
-      <div class="paginationDiv py-3 bm">
-        <span class="text-primary">Total Number of results :</span> <span class='count font-weight-bold'></span>
-        <span id="paginate"></span>
+      <div class="paginationDiv py-3 leftSpace">
+        <!-- <div class="container-fluid"> -->
+          <div class=row>
+            <div class="col-sm-6 col-lg-5 col-md-4 col-xl-5">
+              <span class="text-primary">Total Number of results :</span> <span class='count font-weight-bold'></span>
+            </div>
+            <div class="col-sm-6 col-lg-7 col-md-8 col-xl-7">
+              <span id="paginate"></span>
+            </div>
+          </div>
+        <!-- </div> -->
+        <!-- <span class="text-primary">Total Number of results :</span> <span class='count font-weight-bold'></span>
+        <span id="paginate"></span> -->
       </div>
   </div>
   </main>

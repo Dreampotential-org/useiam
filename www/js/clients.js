@@ -3,22 +3,51 @@ var current_id;
 var offset = 0;
 var total_count = 0;
 var limit = 10;
+var organ_id = localStorage.getItem('organizationId');
+var selected_organization_data = null;
+var selected_organization_id = null;
+
 function init() {
     list_patients(function (response) {
         display_patients(response);
         // paginate();
     })
     $(document).ready(function () {
+        // var request = $.ajax({
+        //     "async": false,
+        //     "crossDomain": true,
+        //     "headers": {
+        //       "Authorization": "Token " + localStorage.getItem("session_id"),
+        //     },
+        //     "url": SERVER + '/api/get_organization_id/',
+        //     "method": "GET",
+        //     "processData": false,
+        //     "contentType": false,
+        //   //  "mimeType": "multipart/form-data",
+        //   });
+        //   request.done(function(res){
+        //     console.log(res)
+        //     localStorage.setItem('organizationId',res.organization_id);
+        //     localStorage.setItem('patient_org_id',res.Patient_org_id)
+        //   });
+        //   request.fail(function(err){
+        //     console.log('error')
+        //   });
+        console.log(organ_id)
+        var pat_id = localStorage.getItem('patient_org_id');
+        if (pat_id == null || pat_id == undefined || pat_id == 'null') loadOrganization();
+        else $("#organization_selection").hide();
+
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             var Url;
             if (value == '') Url = SERVER + "/api/list-patients-v3/";
-            else Url = SERVER + "/api/list-patients-v3/?name=" + value;
+            else Url = SERVER + "/api/list-patients-v3/?search=" + value;
 
             var request = $.ajax({
                 url: Url,
                 type: 'GET',
-                headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
+                headers: { "Authorization": "Token " + localStorage.getItem("session_id") },
                 contentType: 'application/json',
             });
             request.done(function (response) {
@@ -52,8 +81,53 @@ function init() {
     });
 }
 
+function loadOrganization() {
+    let loading = '<option value="0">Select Organization</option>';
+    let loadData = '';
+    var request = $.ajax({
+        "async": true,
+        "crossDomain": true,
+        "headers": {
+            "Authorization": "Token " + localStorage.getItem("session_id"),
+        },
+        "url": SERVER + '/api/list_organizations/',
+        "method": "GET",
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+    });
+    request.done(function (res) {
+        loadData = JSON.parse(res);
+        res = loadData;
+        var listLength = loadData.length;
+        for (let i = 0; i < listLength; i++) {
+            loading += `<option value='${loadData[i].id}'>${loadData[i].name}</option>`;
+        }
+
+        $('#organization').append(loading);
+
+        $("#organization").change(function (r) {
+            let val = $('#organization').val();
+            if (val != 0) {
+                selected_organization_id = val;
+                for (let index = 0; index < listLength; index++) {
+                    if (val == loadData[index].id) {
+                        selected_organization_data = loadData[index];
+                        break;
+                    }
+                }
+            }
+            else console.log('no organization select')
+
+        });
+    });
+    request.fail(function (err) {
+        alert(err)
+    });
+}
 
 function list_patients(callback = '') {
+
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -92,7 +166,7 @@ function list_patients(callback = '') {
     });
 }
 
-function openEditDialog(){
+function openEditDialog() {
     $(".modal-title").text("Edit Client");
     $('#addClientModal').modal('show');
 }
@@ -105,24 +179,24 @@ function display_patients(patients) {
         id = patient.id
         var html = '';
         var i = patients.results.indexOf(patient);
-        if (patient.gps && patient.gps.type == 'gps') {
-            html += (
-                `<a target="_blank" href="https://www.google.com/maps/place/${patient.gps.latitude},${patient.gps.long}">
-                 <i class="material-icons align-middle">room</i></a>`  )
-        }
+        // if (patient.gps && patient.gps.type == 'gps') {
+        //     html += (
+        //         `<a target="_blank" href="https://www.google.com/maps/place/${patient.gps.latitude},${patient.gps.long}">
+        //          <i class="material-icons align-middle">room</i></a>`  )
+        // }
 
-        if (patient.video && patient.video.type == 'video') {
-            html += (
-                '<a href="#" id="myBtn" type="button" aria-pressed="true" onclick="openModal(' + i + ')"><i class="material-icons align-middle">play_circle_filled</i></a>' +
-                '<div id="myModal' + i + '" class="modal">' +
-                '<div class="modal-dialog modal-dialog-centered">' +
-                '<div class="modal-content">' + '<div class="p-2"><p  onclick="closeModal(' + i + ')" class="close" id="closeModal">&times;</p></div><br/>' +
-                '<video controls="" name="media"  class="video">' +
-                '<source src=' + SERVER + "" + patient.video.video_url + "&token=" +
-                localStorage.getItem("session_id") + ' type="video/mp4">' +
-                '</video></div></div></div>')
+        // if (patient.video && patient.video.type == 'video') {
+        //     html += (
+        //         '<a href="#" id="myBtn" type="button" aria-pressed="true" onclick="openModal(' + i + ')"><i class="material-icons align-middle">play_circle_filled</i></a>' +
+        //         '<div id="myModal' + i + '" class="modal">' +
+        //         '<div class="modal-dialog modal-dialog-centered">' +
+        //         '<div class="modal-content">' + '<div class="p-2"><p  onclick="closeModal(' + i + ')" class="close" id="closeModal">&times;</p></div><br/>' +
+        //         '<video controls="" name="media"  class="video">' +
+        //         '<source src=' + SERVER + "" + patient.video.video_url + "&token=" +
+        //         localStorage.getItem("session_id") + ' type="video/mp4">' +
+        //         '</video></div></div></div>')
 
-        }
+        // }
 
         $(".clientsList").append(
             `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
@@ -198,7 +272,7 @@ function editing(id) {
     });
     current_id = current_data.user;
     document.getElementById("edit_name").value = current_data.User ? current_data.User.first_name ? current_data.User.first_name : ' ' : '';
-    document.getElementById("edit_email").value = current_data.notify_email;
+    document.getElementById("edit_email").value = current_data.User.email;
 
 
 }
@@ -213,6 +287,7 @@ function deleting(id) {
         .then((willDelete) => {
             if (willDelete) {
                 $.ajax({
+                    async:false,
                     url: SERVER + "/api/list-patients-v3/" + id,
                     type: 'DELETE',
                     headers: {
@@ -237,7 +312,7 @@ function getUpdatedData() {
         "headers": {
             "Authorization": "Token " + localStorage.getItem("session_id"),
         },
-        "url": SERVER + "/api/list-patients-v3/"+'?limit='+limit+'&offset='+offset,
+        "url": SERVER + "/api/list-patients-v3/" + '?limit=' + limit + '&offset=' + offset,
         "method": "GET",
         "processData": false,
         "contentType": false,
@@ -268,18 +343,23 @@ function getUpdatedData() {
         console.log(err)
     });
 }
-$('#add_member').click(function (e) {
+$('#add_patient').click(function (e) {
     var obj = {};
     obj['name'] = document.getElementById('name').value;
     obj['email'] = document.getElementById('email').value;
     obj['password'] = document.getElementById('password').value;
+    
+    var pat_id = localStorage.getItem('patient_org_id');
+    console.log(pat_id)
+    if(pat_id!=undefined && pat_id!=null && pat_id!='null') obj['organization_id'] = pat_id;
+    else obj['organization_id'] = selected_organization_id;
 
     var myJson = JSON.stringify(obj);
     var request = $.ajax({
         url: SERVER + "/api/add_patient/",
         type: 'POST',
         data: myJson,
-        headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
+        headers: { "Authorization": "Token " + localStorage.getItem("session_id") },
         contentType: 'application/json',
     });
     request.done(function (response) {
@@ -291,8 +371,9 @@ $('#add_member').click(function (e) {
             },
             contentType: 'application/json',  // <---add this
             success: function (res) {
+                console.log(res)
                 display_patients(res);
-                var r = JSON.parse(response)
+                var r = res;
                 total_count = r.count;
                 $(".count").text(r.count)
                 if (r.next) {
@@ -360,10 +441,10 @@ function editing_client() {
     $.ajax(settings).done((response) => {
 
         var request = $.ajax({
-            url: SERVER + "/api/list-patients-v3/"+'?limit='+limit+'&offset='+offset,
+            url: SERVER + "/api/list-patients-v3/" + '?limit=' + limit + '&offset=' + offset,
             type: 'GET',
             // data: value ,
-             headers: {	"Authorization": "Token " + localStorage.getItem("session_id")	},
+            headers: { "Authorization": "Token " + localStorage.getItem("session_id") },
             contentType: 'application/json',
         });
         request.done(function (resp) {
@@ -445,7 +526,7 @@ function paginate() {
 
     var page = '';
 
-    page += `  <ul  style="display:inline-flex;padding-left: 500px;font-size: 18px;" class="pagination">`;
+    page += `  <ul  style="display:inline-flex;font-size: 18px;" class="pagination">`;
     if (PREV_PAGE_URL !== null) {
         page += `<li class="text-primary page-item"><a class="page-link"  onclick="previous_page()">Previous</a></li>`;
     }
