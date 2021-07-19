@@ -13,27 +13,7 @@ function init() {
         // paginate();
     })
     $(document).ready(function () {
-        // var request = $.ajax({
-        //     "async": false,
-        //     "crossDomain": true,
-        //     "headers": {
-        //       "Authorization": "Token " + localStorage.getItem("session_id"),
-        //     },
-        //     "url": SERVER + '/api/get_organization_id/',
-        //     "method": "GET",
-        //     "processData": false,
-        //     "contentType": false,
-        //   //  "mimeType": "multipart/form-data",
-        //   });
-        //   request.done(function(res){
-        //     console.log(res)
-        //     localStorage.setItem('organizationId',res.organization_id);
-        //     localStorage.setItem('patient_org_id',res.Patient_org_id)
-        //   });
-        //   request.fail(function(err){
-        //     console.log('error')
-        //   });
-        console.log(organ_id)
+      
         var pat_id = localStorage.getItem('patient_org_id');
         if (pat_id == null || pat_id == undefined || pat_id == 'null') loadOrganization();
         else $("#organization_selection").hide();
@@ -175,7 +155,6 @@ function display_patients(patients) {
     $(".clientsList").empty();
     object = patients.results;
     for (var patient of patients.results) {
-
         id = patient.id
         var html = '';
         var i = patients.results.indexOf(patient);
@@ -207,7 +186,7 @@ function display_patients(patients) {
                     </div>
                     <div class="card-body">
                         <h6 class="card-subtitle">${patient.User ? patient.User.first_name ? patient.User.first_name : '--' : ''}`
-            + html +
+            + '<h6>'+patient.User.username +'</h6>'+ html +
             `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (patient.id) + `)"
                          class="material-icons align-middle float-right">delete</i>
                          <span style="padding-right:8px;color: #009688;cursor:pointer"

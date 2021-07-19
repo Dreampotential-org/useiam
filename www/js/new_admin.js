@@ -183,7 +183,8 @@ function display_events(response) {
                             <i style="font-size: 100px;" class="material-icons">person</i>
                         </div>
                         <div class="card-body">
-                            <h6 class="card-subtitle">${e.User ? e.User.first_name ? e.User.first_name : '--' : '--'} `
+                            <h6 class="card-subtitle">${e.User ? e.User.first_name ? e.User.first_name : '--' : '--'} 
+                            `+'<h6>'+ e.User.email+'</h6>'
 
         html += `<i style="color: #009688;cursor:pointer"onClick="deleting(` + e.user + `)" class="material-icons align-middle float-right">delete</i><span style="padding-right:8px;color: #009688;cursor:pointer"onClick="editing(` + e.user + `)"data-toggle="modal"
        data-target="#modaleditForm" class="material-icons float-right">create<span/></h6></div></div></div>`
