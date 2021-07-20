@@ -37,13 +37,19 @@ function list_org_clients() {
     });
 }
 
-function display_members(patients) {
+function display_members(clients) {
 
     $(".clientsList").empty();
-    for (var patient of patients) {
-        console.log(patient)
+    for (var client of clients) {
+        console.log(client)
 
-        id = patient.user_id
+        id = client.user_id
+
+        // Here is MemberMontiors for patient
+        for(var client of clients) {
+            console.log(client.org_monitors)
+        }
+
         var html = '';
 
         $(".clientsList").append(`
@@ -54,12 +60,12 @@ function display_members(patients) {
                         <i style="font-size: 100px;" class="material-icons">person</i>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-subtitle">${patient.name}`
+                        <h6 class="card-subtitle">${client.name}`
             + html +
-            `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (patient.id) + `)"
+            `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (client.user_id) + `)"
                          class="material-icons align-middle float-right">delete</i>
                          <span style="padding-right:8px;color: #009688;cursor:pointer"
-                         onClick="editing(`+ patient.id + `)"data-toggle="modal"
+                         onClick="editing(`+ client.user_id + `)"data-toggle="modal"
                         data-target="#modaleditForm" class="material-icons float-right">create<span/>
                         </h6>
                     </div>
