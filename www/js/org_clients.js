@@ -38,23 +38,23 @@ function list_org_clients() {
 }
 
 function display_members(patients) {
+
     $(".clientsList").empty();
-    object = patients.results;
-    for (var patient of patients.results) {
+    for (var patient of patients) {
+        console.log(patient)
 
-        id = patient.id
+        id = patient.user_id
         var html = '';
-        var i = patients.results.indexOf(patient);
 
-        $(".clientsList").append(
-            `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
+        $(".clientsList").append(`
+            <div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
 
                 <div class="card">
                     <div class="text-center bg-secondary d-flex justify-content-center align-items-center clinetProfileImage">
                         <i style="font-size: 100px;" class="material-icons">person</i>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-subtitle">${patient.User ? patient.User.first_name ? patient.User.first_name : '--' : ''}`
+                        <h6 class="card-subtitle">${patient.name}`
             + html +
             `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (patient.id) + `)"
                          class="material-icons align-middle float-right">delete</i>
@@ -80,7 +80,7 @@ function display_members(patients) {
 
 
 
-function add_member_client() {
+function add_member_client(user_id, member_id) {
 
   var form = new FormData();
   form.append("member_id", '2');
@@ -112,8 +112,6 @@ function add_member_client() {
       });
     });
 }
-
-
 
 
 window.addEventListener("DOMContentLoaded", init_organization_events, false);
