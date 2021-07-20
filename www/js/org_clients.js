@@ -2,8 +2,8 @@ var organ_id = localStorage.getItem('organizationId');
 //document.getElementById("adminCheck").checked = false;
 
 function init_organization_events() {
-    console.log('here')
- // list_org_clients()
+  console.log('here')
+  list_org_clients()
   $("#add_member").on("click", function (e) {});
 }
 
@@ -77,4 +77,44 @@ function display_members(patients) {
     });
 }
 
+
+
+
+function add_member_client() {
+
+  var form = new FormData();
+  form.append("member_id", '2');
+  form.append("client_id", '464');
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: SERVER + "/api/add-member-client/",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    "headers": {
+      "Authorization": "Token " + localStorage.getItem("session_id"),
+    },
+    data: form,
+  };
+
+  $.ajax(settings).done(
+    function (response) {
+        // XXX continue ..
+        console.log(response)
+    }).fail(function (err) {
+      console.log(err);
+      swal({
+        title: "Error",
+        text: "Error in api response",
+        icon: "error",
+      });
+    });
+}
+
+
+
+
 window.addEventListener("DOMContentLoaded", init_organization_events, false);
+
