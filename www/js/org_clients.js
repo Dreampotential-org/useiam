@@ -88,11 +88,8 @@ function display_clients(clients, members) {
         id = client.user_id
 
         // Here is MemberMontiors for patient
-        for(var client of clients) {
-            console.log(client.org_monitors)
-        }
-
         var html = '';
+        console.log(client.org_monitors)
 
         $(".clientsList").append(`
             <div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
@@ -182,7 +179,6 @@ function delete_member_client(id) {
         // XXX continue ..
         console.log(response)
         // alert success
-
         // reload page...
 
 
