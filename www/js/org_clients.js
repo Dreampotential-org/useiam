@@ -2,12 +2,48 @@ var organ_id = localStorage.getItem('organizationId');
 //document.getElementById("adminCheck").checked = false;
 
 function init_organization_events() {
-  console.log('here')
-  list_org_clients()
+
+  // First we get list of org_members
+  list_org_members(function(members) {
+    // then we get list of org clients
+    list_org_clients(members);
+
+  })
   $("#add_member").on("click", function (e) {});
 }
 
-function list_org_clients() {
+
+function list_org_members(callback) {
+
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: SERVER + "/api/get_member/",
+    method: "GET",
+    processData: false,
+    contentType: false,
+    contentType: 'application/json',
+    "headers": {
+      "Authorization": "Token " + localStorage.getItem("session_id"),
+    },
+  };
+
+  $.ajax(settings).done(
+    function (response) {
+        // XXX continue ..
+        console.log(response)
+        callback(response.results)
+    }).fail(function (err) {
+      console.log(err);
+      swal({
+        title: "Error",
+        text: "Error in api response",
+        icon: "error",
+      });
+    });
+}
+
+function list_org_clients(members) {
 
   var settings = {
     async: true,
@@ -24,9 +60,9 @@ function list_org_clients() {
 
   $.ajax(settings).done(
     function (response) {
-        // XXX continue ..
         console.log(response)
-        display_members(response)
+        display_clients(response, members)
+
     }).fail(function (err) {
       console.log(err);
       swal({
@@ -37,7 +73,13 @@ function list_org_clients() {
     });
 }
 
-function display_members(clients) {
+function display_clients(clients, members) {
+    console.log(members)
+
+    for(var member of members) {
+        console.log(member)
+    }
+
 
     $(".clientsList").empty();
     for (var client of clients) {
@@ -87,7 +129,6 @@ function display_members(clients) {
 
 
 function add_member_client(user_id, member_id) {
-
   var form = new FormData();
   form.append("member_id", '2');
   form.append("client_id", '464');
@@ -118,6 +159,44 @@ function add_member_client(user_id, member_id) {
       });
     });
 }
+
+function delete_member_client(id) {
+  var form = new FormData();
+  form.append("org_member_monitor", id);
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: SERVER + "/api/delete-member-client/",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    "headers": {
+      "Authorization": "Token " + localStorage.getItem("session_id"),
+    },
+    data: form,
+  };
+
+  $.ajax(settings).done(
+    function (response) {
+        // XXX continue ..
+        console.log(response)
+        // alert success
+
+        // reload page...
+
+
+    }).fail(function (err) {
+      console.log(err);
+      swal({
+        title: "Error",
+        text: "Error in api response",
+        icon: "error",
+      });
+    });
+}
+
+
 
 
 window.addEventListener("DOMContentLoaded", init_organization_events, false);
