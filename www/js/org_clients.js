@@ -158,12 +158,13 @@ function client_mapping(id) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 style="color: #009688;" class="modal-title w-100 font-weight-bold">Edit Client</h4>
+        <h4 style="color: #009688;" class="modal-title w-100 font-weight-bold">Select Client Member Monitors</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body mx-10">
+        <!--
         <div class="md-form mb-4">
           <i class="fas fa-envelope prefix grey-text"></i>
           <input type="name" id='edit_name' class="form-control validate">
@@ -175,13 +176,13 @@ function client_mapping(id) {
           <input type="email" id='edit_email' class="form-control validate">
           <label style="color:rgb(133, 133, 133);" data-error="wrong" data-success="right"
             for="email">Email</label>
-        </div>
+        </div> -->
         <div class="md-form mb-4" id='monitors'>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button id='edit_member' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
-          class="btn btn-primary waves-effect waves-light font-weight-bold"onclick="editing_client()">Submit</button>
+        <!--<button id='edit_member' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
+          class="btn btn-primary waves-effect waves-light font-weight-bold"onclick="editing_client()">Submit</button>-->
       </div>
     </div>
   </div>

@@ -237,8 +237,6 @@ function openModal(ind) {
 }
 
 function editing(idd) {
-    alert("new_admin");
-
     id = idd;
     var html = '';
     html = `<div style="padding-top: 70px;" class="modal fade" id="modaleditForm" tabindex="-1" role="dialog"
