@@ -82,6 +82,8 @@ function display_clients(clients, members) {
 
 
     $(".clientsList").empty();
+    // console.log("clients data",clients);
+    object= clients;
     for (var client of clients) {
         console.log(client)
 
@@ -89,7 +91,7 @@ function display_clients(clients, members) {
 
         // Here is MemberMontiors for patient
         var html = '';
-        console.log(client.org_monitors)
+        console.log("client",clients)
 
         $(".clientsList").append(`
             <div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
@@ -121,9 +123,84 @@ function display_clients(clients, members) {
         $(this).addClass(classes[random]);
     });
 }
+function deleting(id) {
+  swal({
+      title: "Warning",
+      text: "Are you sure you want to delete organization",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+  })
+      .then((willDelete) => {
+          if (willDelete) {
+              $.ajax({
+                  async:false,
+                  url: SERVER + "/api/list-patients-v3/" + id,
+                  type: 'DELETE',
+                  headers: {
+                      "Authorization": "Token " + localStorage.getItem("session_id"),
+                  },
+                  contentType: 'application/json',  // <---add this
+                  success: function (result) {
+                      getUpdatedData();
+                  },
+                  error: function (result) {
+
+                  }
+              });
+
+          }
+      });
+}
+
+function client_mapping(id) {
+  var html = '';
+  html = `<div style="padding-top: 70px;" class="modal fade" id="modaleditForm" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 style="color: #009688;" class="modal-title w-100 font-weight-bold">Edit Client</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-10">
+        <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="name" id='edit_name' class="form-control validate">
+          <label style="color:rgb(133, 133, 133);" data-error="wrong" data-success="right"
+            for="name">Name</label>
+        </div>
+        <div class="md-form mb-4">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id='edit_email' class="form-control validate">
+          <label style="color:rgb(133, 133, 133);" data-error="wrong" data-success="right"
+            for="email">Email</label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button id='edit_member' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
+          class="btn btn-primary waves-effect waves-light font-weight-bold"onclick="editing_client()">Submit</button>
+      </div>
+    </div>
+  </div>
+  </div>`
+  var current_data;
+  $("#edit").html(html);
+  object.forEach(element => {
+      if (id == element.user_id) {
+          current_data = element;
+          return false;
+      }
+  });
+  // current_id = current_data.user;
+  console.log("current_data",current_data)
+document.getElementById("edit_name").value = current_data.name;
+  document.getElementById("edit_email").value = current_data.org_monitors[0].email;
 
 
-
+}
 
 function add_member_client(user_id, member_id) {
   var form = new FormData();
