@@ -127,8 +127,8 @@ function display_clients(clients, members) {
 
 function add_member_client(user_id, member_id) {
   var form = new FormData();
-  form.append("member_id", '2');
-  form.append("client_id", '464');
+  form.append("member_id", member_id);
+  form.append("client_id", user_id);
   var settings = {
     async: true,
     crossDomain: true,
