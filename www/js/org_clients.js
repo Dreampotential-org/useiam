@@ -1,10 +1,12 @@
 var organ_id = localStorage.getItem('organizationId');
 //document.getElementById("adminCheck").checked = false;
+var MEMBERS = null;
 
 function init_organization_events() {
 
   // First we get list of org_members
   list_org_members(function(members) {
+    MEMBERS = members;
     // then we get list of org clients
     list_org_clients(members);
 
@@ -80,14 +82,10 @@ function display_clients(clients, members) {
         console.log(member)
     }
 
-
+    object = clients
     $(".clientsList").empty();
-    // console.log("clients data",clients);
-    object= clients;
     for (var client of clients) {
         console.log(client)
-
-        id = client.user_id
 
         // Here is MemberMontiors for patient
         var html = '';
@@ -101,7 +99,7 @@ function display_clients(clients, members) {
                         <i style="font-size: 100px;" class="material-icons">person</i>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-subtitle">${client.name}`
+                        <h6 class="card-subtitle">${client.name}<br>${client.email}`
             + html +
             `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (client.user_id) + `)"
                          class="material-icons align-middle float-right">delete</i>
@@ -178,6 +176,8 @@ function client_mapping(id) {
           <label style="color:rgb(133, 133, 133);" data-error="wrong" data-success="right"
             for="email">Email</label>
         </div>
+        <div class="md-form mb-4" id='monitors'>
+        </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button id='edit_member' style="font-size: 20px;" aria-label="Close" data-dismiss="modal"
@@ -186,21 +186,55 @@ function client_mapping(id) {
     </div>
   </div>
   </div>`
-  var current_data;
-  $("#edit").html(html);
-  object.forEach(element => {
-      if (id == element.user_id) {
-          current_data = element;
-          return false;
-      }
-  });
-  // current_id = current_data.user;
-  console.log("current_data",current_data)
-document.getElementById("edit_name").value = current_data.name;
-  document.getElementById("edit_email").value = current_data.org_monitors[0].email;
+    var current_data;
+    $("#edit").html(html);
+    object.forEach(element => {
+        if (id == element.user_id) {
+            current_data = element;
+            console.log("HERE")
+            console.log(current_data)
+            $("#monitors").html(generate_members_checkboxes(
+                current_data.org_monitors, id))
+            $("#monitors input").on('click', function() {
+                if ($(this).is(":checked")) {
+                    add_member_client($(this).attr("user_id"),
+                                      $(this).attr("member_user_id"))
+                } else {
+                    delete_member_client($(this).attr("org_monitor_id"))
 
-
+                }
+                console.log($(this).attr("user_id"))
+                console.log($(this).attr("member_user_id"))
+            })
+        }
+      })
 }
+
+
+function generate_members_checkboxes(org_monitors, user_id) {
+    var html = ''
+    for(var member of MEMBERS) {
+        var checked = ''
+        for(var org_monitor of org_monitors) {
+            console.log(member.User.email + " " + org_monitor.email)
+            if (member.User.email == org_monitor.email) {
+                checked = 'checked org_monitor_id=' + org_monitor.id
+                break
+            }
+        }
+
+        html = (
+            "<input user_id=" + user_id + " member_user_id=" + member.User.id +
+            " type='checkbox' " +  checked + "><label>" +
+            member.User.first_name + " - " + member.User.email +
+            "</label><br>" + html
+        )
+    }
+
+    console.log(html)
+    return html
+}
+
 
 function add_member_client(user_id, member_id) {
   var form = new FormData();
@@ -222,6 +256,14 @@ function add_member_client(user_id, member_id) {
 
   $.ajax(settings).done(
     function (response) {
+
+      swal({
+        title: "Success",
+        text: "success in api response",
+        icon: "success",
+      }).then(function() {window.location.reload()});
+
+
         // XXX continue ..
         console.log(response)
     }).fail(function (err) {
@@ -257,6 +299,13 @@ function delete_member_client(id) {
         console.log(response)
         // alert success
         // reload page...
+      swal({
+        title: "Success",
+        text: "success in api response",
+        icon: "success",
+      }).then(function() {window.location.reload()});
+
+
 
 
     }).fail(function (err) {
@@ -268,8 +317,6 @@ function delete_member_client(id) {
       });
     });
 }
-
-
 
 
 window.addEventListener("DOMContentLoaded", init_organization_events, false);
