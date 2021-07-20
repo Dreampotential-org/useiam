@@ -249,6 +249,7 @@ function editing(id) {
             return false;
         }
     });
+    console.log("current_data",current_data)
     current_id = current_data.user;
     document.getElementById("edit_name").value = current_data.User ? current_data.User.first_name ? current_data.User.first_name : ' ' : '';
     document.getElementById("edit_email").value = current_data.User.email;
