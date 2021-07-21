@@ -173,7 +173,7 @@ function display_patients(patients) {
                          class="material-icons align-middle float-right">delete</i>
 
                          <span style="padding-right:8px;color: #009688;cursor:pointer " 
-                         onClick="view_activity(`+ patient.User.id + `) "data-toggle="modal"
+                         onClick="get_last_event(`+ patient.User.id + `) "data-toggle="modal"
                         data-target="" class="material-icons float-right">visibility<span/>
 
                         <span style="padding-right:8px;color: #009688;cursor:pointer"
@@ -196,9 +196,6 @@ function display_patients(patients) {
     });
 }
 
-function view_activity(email) {
-    get_last_event(email)
-}
 
 function editing(id) {
     var html = '';
