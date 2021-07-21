@@ -625,15 +625,10 @@ function display_events(response) {
                             <textarea class="form-control border rounded px-2" id="message" rows="4"></textarea>
                         </div>
 
-                        
                         <div class="text-right">
                             <button id="send_feedback" class="btn btn-primary active" role="button" aria-pressed="true">Comment</button>
                         </div>-->
                         <div class="feedback_received"></div></div></div>
-                    
-                    
-                
-                
                 </div></div></div>`;
     }
 
@@ -855,6 +850,7 @@ function display_side_activity_log(resp) {
   var html = "";
   var c=0;
 
+    console.log(resp)
   for (var activity of resp.events) {
     if (activity.type == "video") {
       html +=

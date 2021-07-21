@@ -4,6 +4,12 @@ var MEMBERS = null;
 
 function init_organization_events() {
 
+    if (!(localStorage.getItem("session_id"))) {
+        localStorage.setItem("redirect_url", window.location.href)
+        window.location = 'login.html'
+    }
+
+  get_profile_info();
   // First we get list of org_members
   list_org_members(function(members) {
     MEMBERS = members;

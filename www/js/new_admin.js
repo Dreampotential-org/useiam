@@ -715,7 +715,5 @@ function getOrganizationId(){
     request.fail(function(err){
       console.log('error')
     });
-  
-    
   }
 window.addEventListener("DOMContentLoaded", init, false);

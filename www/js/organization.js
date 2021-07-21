@@ -2,6 +2,8 @@ var organ_id = localStorage.getItem('organizationId');
 document.getElementById("adminCheck").checked = false;
 
 function init_organization_events() {
+    get_profile_info();
+
   $("#add_member").on("click", function (e) {
     signup_api();
   })
@@ -45,5 +47,7 @@ function signup_api(params = '') {
       });
     });
 }
+
+
 
 window.addEventListener("DOMContentLoaded", init_organization_events, false);

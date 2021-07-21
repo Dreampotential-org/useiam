@@ -133,6 +133,7 @@
           <span class="sr-only">Toggle drawer</span>
           <i class="material-icons">menu</i>
         </button>
+        <div id='org_name'></div>
         <ul class="nav navbar-nav d-inline">
           <li class="nav-item d-inline px-1"><a href="./activity_feed.html" class="text-white"><i
                 class="material-icons">notifications</i></a></li>
@@ -144,12 +145,10 @@
     <div id="dw-s1" class="bmd-layout-drawer bg-faded">
       <header>
         <div class="text-center">
-          <img src="./img/logoReviewVideo.png" width="50" height="50" alt="">
+          <img src="./img/logoReviewVideo.png" height="50" alt="">
         </div>
       </header>
       <ul class="list-group">
-        <a href="#" class="btn btn-primary text-left" role="button" aria-pressed="true"><i
-            class="material-icons align-middle mr-2">home</i> Home</a>
         <a href="./organization.html" class="btn btn-primary text-left" role="button" aria-pressed="true">
           <i class="material-icons align-middle mr-2">O</i>Organization</a>
 
@@ -163,16 +162,6 @@
         <a href="./activity_feed.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i
             class="material-icons align-middle mr-2">event</i> Activity Log</a>
 
-
-        <a href="#" class="btn btn-primary dropdown-toggle text-left" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="material-icons align-middle mr-2">filter</i> Filter Patient
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
       </ul>
     </div>
 
@@ -305,6 +294,7 @@
   <script src="js/sweetalert.min.js"></script>
   <script src="js/config.js"></script>
   <script src="js/organization.js"></script>
+  <script src="js/profile.js"></script>
   <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
 </body>
 
