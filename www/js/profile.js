@@ -26,7 +26,7 @@ function get_profile_info() {
     })
 }
 
-function get_last_event(email) {
+function get_last_event(user_id) {
   if (!localStorage.getItem("session_id")) {
     return;
   }
@@ -36,8 +36,7 @@ function get_last_event(email) {
     headers: {
       Authorization: "Token " + localStorage.getItem("session_id"),
     },
-    url: SERVER + "/api/get-last-patient-event/?email=" +
-        encodeURIComponent(email),
+    url: SERVER + "/api/get-last-patient-event/?user_id=" + user_id,
     method: "GET",
     processData: false,
     contentType: false,
@@ -48,9 +47,10 @@ function get_last_event(email) {
     .done(function (response) {
       var msg = JSON.parse(response);
         console.log(msg)
-      if (msg.org_member && msg.org_member.logo) {
-        $(".text-center img").attr('src', msg.org_member.logo);
-        $("#org_name").text(msg.org_member.name);
+      if (msg.id && msg.user) {
+        window.location.href = '/review-video.html?id=' + msg.id + '&user=' + msg.user;
+      } else {
+        alert("no events for user yet")
       }
     })
 }

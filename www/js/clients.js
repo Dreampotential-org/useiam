@@ -158,24 +158,6 @@ function display_patients(patients) {
         id = patient.id
         var html = '';
         var i = patients.results.indexOf(patient);
-        // if (patient.gps && patient.gps.type == 'gps') {
-        //     html += (
-        //         `<a target="_blank" href="https://www.google.com/maps/place/${patient.gps.latitude},${patient.gps.long}">
-        //          <i class="material-icons align-middle">room</i></a>`  )
-        // }
-
-        // if (patient.video && patient.video.type == 'video') {
-        //     html += (
-        //         '<a href="#" id="myBtn" type="button" aria-pressed="true" onclick="openModal(' + i + ')"><i class="material-icons align-middle">play_circle_filled</i></a>' +
-        //         '<div id="myModal' + i + '" class="modal">' +
-        //         '<div class="modal-dialog modal-dialog-centered">' +
-        //         '<div class="modal-content">' + '<div class="p-2"><p  onclick="closeModal(' + i + ')" class="close" id="closeModal">&times;</p></div><br/>' +
-        //         '<video controls="" name="media"  class="video">' +
-        //         '<source src=' + SERVER + "" + patient.video.video_url + "&token=" +
-        //         localStorage.getItem("session_id") + ' type="video/mp4">' +
-        //         '</video></div></div></div>')
-
-        // }
 
         $(".clientsList").append(
             `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
@@ -189,7 +171,12 @@ function display_patients(patients) {
             + '<h6>'+patient.User.username +'</h6>'+ html +
             `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (patient.id) + `)"
                          class="material-icons align-middle float-right">delete</i>
-                         <span style="padding-right:8px;color: #009688;cursor:pointer"
+
+                         <span style="padding-right:8px;color: #009688;cursor:pointer " 
+                         onClick="view_activity(`+ patient.User.id + `) "data-toggle="modal"
+                        data-target="" class="material-icons float-right">visibility<span/>
+
+                        <span style="padding-right:8px;color: #009688;cursor:pointer"
                          onClick="editing(`+ patient.id + `)"data-toggle="modal"
                         data-target="#modaleditForm" class="material-icons float-right">create<span/>
                         </h6>
@@ -199,13 +186,18 @@ function display_patients(patients) {
         )
     }
 
-    var classes = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'];
+    var classes = ['bg-primary', 'bg-secondary', 'bg-success',
+                   'bg-danger', 'bg-warning', 'bg-info'];
     var len = $(".clinetProfileImage").length;
     $(".clinetProfileImage").each(function (index) {
         var random = Math.floor(Math.random() * len) + 1;
         random = (Math.random() * len--) > 6 ? random + 1 : random;
         $(this).addClass(classes[random]);
     });
+}
+
+function view_activity(email) {
+    get_last_event(email)
 }
 
 function editing(id) {
@@ -328,7 +320,7 @@ $('#add_patient').click(function (e) {
     obj['name'] = document.getElementById('name').value;
     obj['email'] = document.getElementById('email').value;
     obj['password'] = document.getElementById('password').value;
-    
+
     var pat_id = localStorage.getItem('patient_org_id');
     console.log(pat_id)
     if(pat_id!=undefined && pat_id!=null && pat_id!='null') obj['organization_id'] = pat_id;
