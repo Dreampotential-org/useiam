@@ -70,7 +70,6 @@ function list_org_clients(members) {
     function (response) {
         console.log(response)
         display_clients(response, members)
-
     }).fail(function (err) {
       console.log(err);
       swal({
@@ -98,26 +97,28 @@ function display_clients(clients, members) {
         console.log("client",clients)
 
         $(".clientsList").append(`
-            <div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
+            <div class="col-md-6 col-lg-4 col-sm-3 my-2">
 
                 <div class="card">
                     <div class="text-center bg-secondary d-flex justify-content-center align-items-center clinetProfileImage">
                         <i style="font-size: 100px;" class="material-icons">person</i>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-subtitle">${client.name}<br>${client.email}`
+                        <div class="card-subtitle">
+                        <div class="client_name">${client.name}</div>
+                        <div class="client_email">${client.email}</div></div>`
             + html +
-            `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (client.user_id) + `)"
-                         class="material-icons align-middle float-right">delete</i>
+            `<span style="color: #009688;cursor:pointer"onClick="deleting(` + (client.user_id) + `)"
+                         class="material-icons align-middle float-right">delete</span>
 
                          <span style="padding-right:8px;color: #009688;cursor:pointer"
                          onClick="get_last_event(`+ client.user_id + `)"data-toggle="modal"
                         data-target="#modaleditForm" class="material-icons float-right">visibility<span/>
 
-                         <span style="padding-right:8px;color: #009688;cursor:pointer"
+                         <span style="padding-left:8px;color: #009688;cursor:pointer"
                          onClick="client_mapping(`+ client.user_id + `)"data-toggle="modal"
                         data-target="#modaleditForm" class="material-icons float-right">create<span/>
-                        </h6>
+                        
                     </div>
                 </div>
             </div>`
