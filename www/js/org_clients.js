@@ -110,9 +110,9 @@ function display_clients(clients, members) {
             `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (client.user_id) + `)"
                          class="material-icons align-middle float-right">delete</i>
 
-                         <span style="padding-right:8px;color: #009688;cursor:pointer"
+                         <!--<span style="padding-right:8px;color: #009688;cursor:pointer"
                          onClick="get_last_event(`+ client.user_id + `)"data-toggle="modal"
-                        data-target="#modaleditForm" class="material-icons float-right">visibility<span/>
+                        data-target="#modaleditForm" class="material-icons float-right">visibility<span/>-->
 
                          <span style="padding-right:8px;color: #009688;cursor:pointer"
                          onClick="client_mapping(`+ client.user_id + `)"data-toggle="modal"
