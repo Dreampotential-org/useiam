@@ -139,6 +139,46 @@
       width: 92%;
       padding: 5px 30px;
     }
+
+    
+    .loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #009688; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      position: fixed;
+      top: 50%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hide-loader{
+      display:none;
+    }
+
+    div#org_name {
+    color: white;
+    font-size: 16px;
+    }
+
+    .client_name {
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    }
+  
+    .client_email {
+    font-size: 14px;
+    padding-bottom: 10px;
+    }
+
   </style>
 
 </head>
@@ -195,7 +235,10 @@
           </span>
         </div>
         <div class="row mt-2 clientsList">
+          <div class="loader" id="loader">
+          </div>
         </div>
+
       </div>
     </main>
     <div style="padding-top: 70px;" class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"

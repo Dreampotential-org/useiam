@@ -176,7 +176,7 @@ function display_events(response) {
     data = response.results;
     for (var e of response.results) {
         var i = response.results.indexOf(e);
-        html += `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
+        html += `<div class="col-md-4 col-lg-3 col-sm-3 my-2">
 
                     <div class="card">
                         <div class="text-center bg-secondary d-flex justify-content-center align-items-center custom-img">

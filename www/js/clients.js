@@ -160,26 +160,27 @@ function display_patients(patients) {
         var i = patients.results.indexOf(patient);
 
         $(".clientsList").append(
-            `<div class="col-md-3 col-lg-2 col-sm-3 col-6 my-2">
+            `<div class="col-md-4 col-lg-3 col-sm-3 my-2">
 
                 <div class="card">
                     <div class="text-center bg-secondary d-flex justify-content-center align-items-center clinetProfileImage">
                         <i style="font-size: 100px;" class="material-icons">person</i>
                     </div>
                     <div class="card-body">
-                        <h6 class="card-subtitle">${patient.User ? patient.User.first_name ? patient.User.first_name : '--' : ''}`
-            + '<h6>'+patient.User.username +'</h6>'+ html +
-            `<i style="color: #009688;cursor:pointer"onClick="deleting(` + (patient.id) + `)"
-                         class="material-icons align-middle float-right">delete</i>
+                        <div class="card-subtitle">
+                        <div class="client_name">${patient.User ? patient.User.first_name ? patient.User.first_name : '--' : ''}</div>`
+            + '<div class="client_email">'+patient.User.username +'</div></div>'+ html +
+            `<span style="color: #009688;cursor:pointer"onClick="deleting(` + (patient.id) + `)"
+                         class="material-icons align-middle float-right">delete</span>
 
                          <span style="padding-right:8px;color: #009688;cursor:pointer " 
                          onClick="get_last_event(`+ patient.User.id + `) "data-toggle="modal"
                         data-target="" class="material-icons float-right">visibility<span/>
 
-                        <span style="padding-right:8px;color: #009688;cursor:pointer"
+                        <span style="padding-left:8px;color: #009688;cursor:pointer"
                          onClick="editing(`+ patient.id + `)"data-toggle="modal"
                         data-target="#modaleditForm" class="material-icons float-right">create<span/>
-                        </h6>
+                        
                     </div>
                 </div>
             </div>`
