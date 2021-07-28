@@ -1,0 +1,107 @@
+body {
+    height: 100vh;
+  }
+
+  .custom-search-ic {
+    top: 33px;
+    left: 10px;
+  }
+
+  .custom-img {
+    height: 200px;
+  }
+
+  .card {
+    overflow: hidden;
+    border-radius: 12px !important;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #000;
+  }
+ 
+  .searchRow {
+    position: relative;
+    margin: 10px;
+  }
+
+  #myInput {
+    width: 80%;
+    padding: 5px 30px;
+  }
+
+  .searchIcon {
+    position: absolute;
+    left: 5px;
+    top: 7px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0px;
+    margin-left: -0px;
+  }
+
+  div#org_name {
+  font-size: 16px;
+  color: white;
+  }
+ 
+  .bg-1 {
+    background: #eee !important;
+  }
+
+  .bg-1 i.material-icons.align-middle.mr-2 {
+    color: grey !important;
+  }
+
+  .bg-2 {
+    background: #f72c6d !important;
+  }
+
+  .bg-2 i.material-icons.align-middle.mr-2 {
+    color: #f9f9f9ee !important;
+  }
+
+  .bg-3 {
+    background: #0f9ed8 !important;
+  }
+
+  .bg-3 i.material-icons.align-middle.mr-2 {
+    color: #f9f9f9ee !important;
+  }
+
+  .bg-4 {
+    background: rgb(187, 17, 187) !important;
+  }
+
+  .bg-4 i.material-icons.align-middle.mr-2 {
+    color: #f9f9f9ee !important;
+  }
+
+  .bg-5 {
+    background: rgb(6, 180, 6) !important;
+  }
+
+  .bg-5 i.material-icons.align-middle.mr-2 {
+    color: #f9f9f9ee !important;
+  }
+
+  .bg-6 {
+    background: #eee !important;
+  }
+
+  .bg-6 i.material-icons.align-middle.mr-2 {
+    color: #000 !important;
+  }
+
+  .leftSpace {
+    margin-left: 15px;
+  }

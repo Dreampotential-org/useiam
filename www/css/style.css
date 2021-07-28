@@ -1554,6 +1554,10 @@ span.alignTag{
   padding: 0 4px;
 }
 
+.column.btn1 {
+  margin-left: 10px;
+}
+
 /* Create four equal columns that sits next to each other */
 .colMsg {
   -ms-flex: 25%; /* IE10 */

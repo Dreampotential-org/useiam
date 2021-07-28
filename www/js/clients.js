@@ -58,6 +58,16 @@ function init() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+
+        
+        $("#includedSideMenu").load("side_menu.html"); 
+
+        $("#includedSideMenu").hide();
+
+        $(".navbar-toggler").on("click", function (e) {
+            $("#includedSideMenu").toggle();
+          });
+    
     });
 }
 
