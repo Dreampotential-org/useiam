@@ -9,6 +9,14 @@ function init_organization_events() {
         window.location = 'login.html'
     }
 
+    $("#includedSideMenu").load("side_menu.html"); 
+
+    $("#includedSideMenu").hide();
+
+    $(".navbar-toggler").on("click", function (e) {
+      $("#includedSideMenu").toggle();
+    });
+
   get_profile_info();
   // First we get list of org_members
   list_org_members(function(members) {

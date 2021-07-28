@@ -7,6 +7,15 @@ function init_organization_events() {
   $("#add_member").on("click", function (e) {
     signup_api();
   })
+
+  $("#includedSideMenu").load("side_menu.html"); 
+
+        $("#includedSideMenu").hide();
+
+        $(".navbar-toggler").on("click", function (e) {
+            $("#includedSideMenu").toggle();
+          });
+          
 }
 
 function signup_api(params = '') {

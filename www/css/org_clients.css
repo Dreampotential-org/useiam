@@ -107,7 +107,7 @@ body {
 
   .searchRow {
     position: relative;
-    margin: 15px;
+    margin: 10px;
   }
 
   .searchIcon {
@@ -121,6 +121,13 @@ body {
     padding: 5px 30px;
   }
 
+  .paginationDiv.py-3.bm {
+    padding: 0 10px;
+}
+
+ul.nav.navbar-nav.d-inline {
+  padding-top: 10px;
+}
   
   .loader {
     border: 16px solid #f3f3f3; /* Light grey */
