@@ -1754,3 +1754,10 @@ table.ui-datepicker-calendar{
 .admin-row{
   margin-top: 15px;
 }
+
+/*set organization css*/
+
+#org_ids{
+  padding: 10px;
+  width: 100%;
+}
