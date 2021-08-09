@@ -1,5 +1,5 @@
 //var SERVER = 'http://127.0.0.1:8000'
-var SERVER = 'https://prod-api.useiam.net'
+var SERVER = 'https://prod-api.useiam.com'
 //var SERVER = 'http://192.168.100.166:8081'
  //var PythonAPIServer = 'http://127.0.0.1:8000'
  var PythonAPIServer = 'https://api.dreampotential.org'
