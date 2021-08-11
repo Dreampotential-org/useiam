@@ -9,7 +9,7 @@ function init_organization_events() {
         window.location = 'login.html'
     }
 
-    $("#includedSideMenu").load("side_menu.html"); 
+    $("#includedSideMenu").load("side_menu.html");
 
     $("#includedSideMenu").hide();
 

@@ -50,7 +50,7 @@ function init_monitor() {
 
 
   $("#setOrgModal #nextBtn").on("click", function (e) {
-    do_set_org();
+    do_set_org($("#org_ids").find('option:selected').attr('id'))
   });
 
   $("#setmonitorModal #nextBtn").on("click", function (e) {
@@ -298,7 +298,7 @@ function do_set_sober_date() {
 
 
 
-function do_set_org() {
+function do_set_org(org_id) {
   var form = new FormData();
   form.append("org_id",
               parseInt($("#org_ids").find('option:selected').attr('id')))

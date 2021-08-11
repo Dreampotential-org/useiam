@@ -63,7 +63,6 @@ function init_logo() {
     _append_logo_and_icon("img/useiam_logo.png");
     $(".logo img").css("width", "200px");
   }
-
   $(".logo img").show();
 }
 
@@ -73,6 +72,38 @@ function _append_logo_and_icon(icon_path) {
   if (icon_path == "img/.png") {
     return;
   }
-  // $(".logo2").append("<img src='img/logo_iam.png'/>")
-  // $(".logo2 img").css("width", '70px')
+}
+
+function load_logo_from_url() {
+    var url = new URL(window.location.href);
+    var org_id = url.searchParams.get("org");
+
+    if (org_id) {
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: SERVER + "/api/get_org/?id=" + org_id,
+        method: "GET",
+        processData: false,
+        contentType: false,
+        mimeType: "multipart/form-data",
+      };
+
+      $.ajax(settings)
+        .done(function (response) {
+          var org = JSON.parse(response)
+          if (org.length) {
+            _append_logo_and_icon(org[0].logo);
+            localStorage.setItem("org_id", org[0].id)
+            localStorage.setItem("org_logo", org[0].logo)
+          }
+          $(".logo").show()
+          $(".logo img").show();
+        }).fail(function (err) {
+          console.log(err);
+        });
+    } else {
+        init_logo()
+        $(".logo").show()
+    }
 }

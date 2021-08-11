@@ -237,7 +237,7 @@ function loadOrganization() {
       }
       else{
         $('.logo').empty();
-        $(".logo").append("<img src='img/useiam_logo.png' width='200'height='200'/>");
+        //$(".logo").append("<img src='img/useiam_logo.png' width='200'height='200'/>");
       }
     });
   });

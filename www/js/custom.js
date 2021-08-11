@@ -7,7 +7,6 @@ function handleOpenURL(url) {
 }
 
 function init() {
-
    onDeviceReady()
 
   //  https://github.com/apache/cordova-ios/issues/417
@@ -20,13 +19,9 @@ function init() {
     window.scrollTo(0, NaN);
   });
 
-//  block_desktop();
-//   init_reset_password();
-  init_logo();
   init_login_stuff();
   init_gps_stuff();
   init_video_event();
-  // init_subscribe_event();
   init_monitor();
   init_time();
   init_invite();
@@ -34,6 +29,8 @@ function init() {
   init_display();
   init_stripe();
   init_iap_events()
+  load_logo_from_url()
+
 
   if (!isApp()) {
     // Farrukh add subscription integration
