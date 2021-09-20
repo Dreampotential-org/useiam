@@ -12,6 +12,10 @@
     .modal-heading{
         font-size: 28px;
     }
+    #logincodeModal .modal-heading{
+        padding: 15px 0;
+    }
+
     #signupModal .modal-heading{
         padding: 15px 0;
     }

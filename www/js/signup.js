@@ -1,3 +1,4 @@
+var LAST_EMAIL = null
 function init_login_stuff() {
   // setup calender
   // $("#sober_date").datepicker()
@@ -8,6 +9,7 @@ function init_login_stuff() {
   handle_signup();
   handle_signin();
   handle_logout();
+  handle_login_code()
 
   handle_show_instructions();
 }
@@ -19,6 +21,16 @@ function user_logged_in() {
     closeAllModals();
   }
 }
+
+
+function handle_login_code() {
+  $("body").delegate("#login_code_button", "click", function (e) {
+    handle_login_code_api(LAST_EMAIL, $("#login_code").val().trim())
+
+  })
+
+}
+
 
 function handle_logout() {
   $("#logout").on("click", function (e) {
@@ -42,6 +54,7 @@ function handle_show_instructions() {
 }
 
 function handle_signup() {
+
   $("#signupModal #nextBtn").on("click", function (e) {
     e.preventDefault();
     // validate inputs
@@ -66,10 +79,10 @@ function handle_signup() {
       invalid = true;
     }
 
-    if ($("#signup_password").val().trim().length == 0) {
-      $("#signup_password").addClass("invalid");
-      invalid = true;
-    }
+    //if ($("#signup_password").val().trim().length == 0) {
+    //  $("#signup_password").addClass("invalid");
+    //  invalid = true;
+    //}
 
     if (invalid == true) {
       setTimeout(function () {
@@ -83,10 +96,12 @@ function handle_signup() {
 
     // create their account
     $("#signupModal #nextBtn").addClass("running");
+    LAST_EMAIL = $("#signup_email").val().trim()
+
     signup_api({
       name: $("#signup_name").val().trim(),
       email: $("#signup_email").val().trim(),
-      password: $("#signup_password").val().trim(),
+      password: null,
       days_sober: null,
     });
   });
@@ -116,33 +131,42 @@ function signup_api(params) {
     data: form,
   };
 
+  swal({
+      title: "Check your email",
+      text: "A one time login code has been set to your email.",
+      icon: "success",
+  });
+
+
   $.ajax(settings)
     .done(function (response) {
       $("#signupModal #nextBtn").removeClass("running");
       var msg = JSON.parse(response).message;
-      if (msg && msg == "User already exists") {
-        swal({
-          title: "Email already exists",
-          text: "",
-          icon: "error",
-        });
-        return;
-      }
-      localStorage.setItem("session_id", JSON.parse(response).token);
+      //if (msg && msg == "User already exists") {
+      //  swal({
+      //    title: "Email already exists",
+      //    text: "",
+      //    icon: "error",
+      //  });
+      //  return;
+      //}
+
+      //localStorage.setItem("session_id", JSON.parse(response).token);
       // show toggle bar
-      $(".toggleBar").show();
-      console.log("user logged in");
-      // after successful login or signup show dashboard contents
-      showATab("dashboard");
+      //$(".toggleBar").show();
+      //console.log("user logged in");
       // close modals
       closeAllModals();
-      $(".moto").show();
+       $("#logincodeModal").addClass("is-visible");
 
-      swal({
-        title: "Good job!",
-        text: "You're logged in",
-        icon: "success",
-      });
+      //$("#loginCode").show()
+      //$(".moto").show();
+
+      //swal({
+      //  title: "Good job!",
+      //  text: "You're logged in",
+      //  icon: "success",
+      //});
 
       get_profile_info(function (msg) {
         // XXX Check payment status
@@ -178,11 +202,18 @@ function signup_api(params) {
 function handle_signin() {
   // create their account
   $("#signinModal .loginToDashboard").on("click", function (e) {
+    LAST_EMAIL = $("#signin_email").val().trim()
     e.preventDefault();
+    signup_api({
+      email: LAST_EMAIL,
+      password: null,
+    });
 
-    login_api(
+    return
+
+    login_api_code(
       $("#signin_email").val().trim(),
-      $("#signin_password").val().trim(),
+      $("#login_code").val().trim(),
       function () {
         // after successful login or signup show dashboard contents
         showATab("dashboard");
@@ -208,6 +239,99 @@ function handle_signin() {
     );
   });
 }
+
+
+function login_api_code(email, code, callback) {
+  var form = new FormData();
+  form.append("username", email);
+  form.append("code", code);
+  form.append("source", window.location.host);
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: SERVER + "/api/api-email-code/",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    data: form,
+  };
+  $.ajax(settings)
+    .done(function (response) {
+      localStorage.setItem("session_id", JSON.parse(response).token);
+      console.log("user logged in");
+
+      $(".toggleBar").show();
+      $(".moto").show();
+      callback();
+    })
+    .fail(function (err) {
+      swal({
+        title: "Error",
+        text: "Invalid email or password",
+        icon: "error",
+      });
+    });
+}
+
+function handle_login_code_api(email, code, callback) {
+  var form = new FormData();
+  form.append("email", email);
+  form.append("code", code);
+  form.append("source", window.location.host);
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: SERVER + "/api/login-user-code/",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    data: form,
+  };
+  $.ajax(settings)
+    .done(function (response) {
+      localStorage.setItem("session_id", JSON.parse(response).token);
+      console.log("user logged in");
+
+      $(".toggleBar").show();
+      $(".moto").show();
+      showATab("dashboard");
+      closeAllModals();
+      swal({
+        title: "Good job!",
+        text: "You're logged in",
+        icon: "success",
+      });
+
+      get_profile_info(function (msg) {
+        // XXX Check payment status
+
+        // show_set_monitor();
+        // if (!isApp()) {
+          // Farrukh add subscription integration
+          // make free for webclient until we implement
+        console.log(msg)
+        //$("#not-subscribed-user").show();
+        ////$("#subscribed-user").hide();
+        $("#not-subscribed-user").hide();
+        $("#subscribed-user").show();
+        $("#Unsubscribe_div").show();
+
+        //}
+      });
+
+    })
+    .fail(function (err) {
+      $("#logincodeModal").addClass("is-visible");
+      swal({
+        title: "Error",
+        text: "Invalid code",
+        icon: "error",
+      });
+    });
+}
+
 
 function login_api(email, password, callback) {
   var form = new FormData();

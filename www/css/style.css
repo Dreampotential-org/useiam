@@ -1100,6 +1100,12 @@ li.notification .msg {
   font-family: "Poppins", sans-serif;
 }
 
+#logincodeModal .modal-header {
+  padding: 0 !important;
+}
+
+
+
 #signupModal .modal-header {
   padding: 0 !important;
 }

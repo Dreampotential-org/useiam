@@ -210,9 +210,6 @@
                         <div class="emailDiv">
                             <input type="Email" placeholder="Email" id='signin_email'>
                         </div>
-                        <div>
-                            <input type="password" placeholder="Password" id='signin_password'>
-                        </div>
                         <button id="loginBtn" class=" loginToDashboard iconDiv">
                             <div class="avatar">
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
@@ -478,6 +475,35 @@
         });
 
     </script>
+
+    <div class="modal" id="logincodeModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg)">
+
+            <div class="modal-body">
+                <div class="modal-content">
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="locAuthTitle textCenter" style="color:white">Login Code</h3>
+                    <form id="regForm" class="signupform" action="#">
+                        <div class="tab user-info">
+                            <div>
+                                <input placeholder="One Time Login Code" id='login_code' oninput="this.className = ''" type="tel">
+                            </div>
+                        </div>
+                        <div>
+                            <div style="text-align: center;">
+                                <button class="actionBtn dark close" id="login_code_button">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="modal" id="signupModal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg)">
@@ -502,16 +528,6 @@
                             <div>
                                 <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
                             </div>
-                            <div>
-                                <input type="password" id='signup_password' placeholder="Password"
-                                    oninput="this.className=''" />
-                            </div>
-                            <!--
-                            <div>
-                                <input READONLY=READONLY type="text" id='sober_date' placeholder="Sober Since (Optional)"
-                                oninput="this.className=''" />
-                            </div>
-                            -->
                         </div>
                         <div>
                             <div style="text-align: center;">
