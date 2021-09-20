@@ -206,7 +206,7 @@
                         <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
                     <h3 class="locAuthTitle textCenter" style="color:white">LOGIN</h3>
-                    <form class="popupForm loginform" action='#'>
+                    <form class="popupForm loginform" action='#' style='height:60vh'>
                         <div class="emailDiv">
                             <input type="Email" placeholder="Email" id='signin_email'>
                         </div>
@@ -215,10 +215,13 @@
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         </button>
+
+                        <div class="column btn1 accountbtn">
+                            <button class=" dark btnP accountP signupNeed"> New Account</button>
+                        </div>
+
+
                     </form>
-                </div>
-                <div class="column btn1 accountbtn">
-                    <button class=" dark btnP accountP signupNeed"> New Account</button>
                 </div>
                 <!--
                 <p class="textCenter" style="padding-bottom:10px;">
@@ -395,7 +398,7 @@
                     </div>
                     <h3 class="locAuthTitle textCenter">Invite</h3>
 
-                    <form id="regForm" action="#">
+                    <form id="regForm" action="#" style='height:60vh'>
                         <div class="tab get-monitor">
                             <input type="text" placeholder="Enter Email" />
                         </div>
@@ -520,7 +523,7 @@
                             draggable="false" /></div> -->
 
                     <h3 class="locAuthTitle textCenter" style="color:white">SIGN UP</h3>
-                    <form id="regForm" class="signupform" action="#">
+                    <form id="regForm" class="signupform" action="#" style='height:60vh'>
                         <div class="tab user-info">
                             <div class="signupEmail">
                                 <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text">
@@ -534,10 +537,10 @@
                                 <button class="actionBtn dark close" id="nextBtn">Sign Up</button>
                             </div>
                         </div>
+                        <p class="textCenter loginNeed" style="color: white;">Have an account?
+                            <a href="#" style="color: #b9befd">Log In</a>
+                        </p>
                     </form>
-                    <p class="textCenter loginNeed" style="color: white;">Have an account?
-                        <a href="#" style="color: #b9befd">Log In</a>
-                    </p>
                 </div>
             </div>
         </div>
