@@ -202,8 +202,13 @@ function signup_api(params) {
 function handle_signin() {
   // create their account
   $("#signinModal .loginToDashboard").on("click", function (e) {
-    LAST_EMAIL = $("#signin_email").val().trim()
     e.preventDefault();
+    LAST_EMAIL = $("#signin_email").val().trim()
+
+    if (!(validateEmail(LAST_EMAIL))) {
+        return
+    }
+
     signup_api({
       email: LAST_EMAIL,
       password: null,
@@ -291,6 +296,7 @@ function handle_login_code_api(email, code, callback) {
   };
   $.ajax(settings)
     .done(function (response) {
+     console.log(response)
       localStorage.setItem("session_id", JSON.parse(response).token);
       console.log("user logged in");
 

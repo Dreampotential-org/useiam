@@ -494,7 +494,7 @@ function get_profile_info(callback) {
       console.log("ERR");
       console.log(err);
       localStorage.clear();
-      location.reload();
+      //location.reload();
     });
 }
 
