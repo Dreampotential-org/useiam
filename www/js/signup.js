@@ -25,6 +25,9 @@ function user_logged_in() {
 
 function handle_login_code() {
   $("body").delegate("#login_code_button", "click", function (e) {
+
+
+
     handle_login_code_api(LAST_EMAIL, $("#login_code").val().trim())
 
   })
@@ -280,6 +283,17 @@ function login_api_code(email, code, callback) {
 }
 
 function handle_login_code_api(email, code, callback) {
+
+    swal({
+        title: "Checking Code",
+        text: "Please wait.",
+        icon: "info",
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+    });
+
+
   var form = new FormData();
   form.append("email", email);
   form.append("code", code);
