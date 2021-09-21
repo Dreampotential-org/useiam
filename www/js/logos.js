@@ -59,6 +59,9 @@ function init_logo() {
     _append_logo_and_icon("img/urbanRecover.png");
     $(".logo img").css("width", "200px");
     $(".logo img").css("padding-top", "10px");
+  } else if (full == "cardoneaccountability.com") {
+    _append_logo_and_icon("img/gc.jpg");
+    $(".logo img").css("width", "200px");
   } else {
     _append_logo_and_icon("img/useiam_logo.png");
     $(".logo img").css("width", "200px");
