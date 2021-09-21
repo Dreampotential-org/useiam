@@ -112,8 +112,9 @@ $(".modal-overlay").on("click", function (e) {
     start_gps();
     found_gps_or_timeout();
   }
-  $(".modal").removeClass("is-visible");
+  //$(".modal").removeClass("is-visible");
 });
+
 $(".toggleBar").on("click", function (e) {
   $(".slideMenu").toggle("slow");
   $(this).toggleClass("toggleClose");

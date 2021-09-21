@@ -1,6 +1,6 @@
 function init() {
     if (!(localStorage.getItem("session_id"))) {
-        window.location = 'login.html'
+        window.location = 'review-video.html'
     }
     init_page_events();
     list_patients(function(response) {
@@ -17,7 +17,7 @@ function init_page_events() {
     $("body").delegate(".logout", "click", function(e) {
         localStorage.clear()
       //  window.location = 'login.html'
-        window.location = 'login2.html'
+        window.location = 'review-video.html'
     });
 
     $("body").delegate(".select-patient", "change", function(e) {

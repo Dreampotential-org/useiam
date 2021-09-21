@@ -69,6 +69,8 @@ function init_events() {
 }
 
 function isSignIn() {
+
+
     var id = throughUrl()['id'];
     var user = throughUrl()['user'];
     var isLoggedIn = localStorage.getItem("session_id");
@@ -90,6 +92,13 @@ function isSignIn() {
   signup_monitor();
   login_monitor();
   createAccount();
+
+  if (!(localStorage.getItem("session_id"))) {
+    loggedInPage();
+  }
+
+
+
 }
 
 // Get id and user through url
@@ -130,39 +139,48 @@ function getUrlVars(url) {
 
 function login_monitor() {
   // create their account
-  $("#login").on("click", function (e) {
-    login_api(
-      $("#signin_email").val().trim(),
-      $("#signin_password").val().trim(),
-      function () {
-        // // swal({
-        // //     'title': 'Login Success!',
-        // //     'text': 'You will now be able to view video links from email',
-        // //     'icon': 'success',
-        // // });
+  $("#login_code").on("click", function (e) {
 
-        // if (localStorage.getItem("redirect_url")) {
-        //     var redirect = localStorage.getItem("redirect_url")
-        //     localStorage.removeItem("redirect_url")
-        //     window.location = redirect
-        // } else {
-        //     window.location = './review.html'
-        // }
-
-        isSignIn();
-      }
-    );
-  });
+    if ($(".passcode").is(":visible")) {
+        handle_login_code_api(
+            $("#signin_email").val().trim(),
+            $("#signin_passcode").val().trim())
+    } else {
+        signup_api({
+          email: $("#signin_email").val().trim(),
+          password: null,
+        });
+    }
+  })
 }
 
-function login_api(email, password, callback) {
+
+function signup_api(params) {
+  $(".passcode").show()
+  $(".emaillogin").hide()
+  if (params.days_sober == null) {
+    params.days_sober = "0";
+  }
   var form = new FormData();
-  form.append("username", email);
-  form.append("password", password);
+  form.append("name", params.name);
+  form.append("email", params.email);
+  form.append("days_sober", params.days_sober);
+  form.append("sober_date", null);
+  form.append("password", params.password);
+  // form.append("notify_email", 'aaronorosen@gmail.com');
+  form.append("source", window.location.host);
+
+   swal({
+      title: "Good job!",
+      text: "Now enter the passcode from email address",
+      icon: "success",
+   });
+
+
   var settings = {
     async: true,
     crossDomain: true,
-    url: SERVER + "/api/api-token-auth/",
+    url: SERVER + "/api/create-user/",
     method: "POST",
     processData: false,
     contentType: false,
@@ -170,13 +188,26 @@ function login_api(email, password, callback) {
     data: form,
   };
 
+  swal({
+      title: "Check your email",
+      text: "A one time login code has been set to your email.",
+      icon: "success",
+  });
+
+
   $.ajax(settings)
     .done(function (response) {
-      localStorage.setItem("session_id", JSON.parse(response).token);
-      console.log("user logged in");
-      callback();
+      console.log(response)
+      $("#emaillogin").hide()
+      $("#passcode").show()
+
+     //isSignIn();
+      // $("#proTip").addClass("is-visible");
     })
     .fail(function (err) {
+      console.log(err);
+      $("#signupModal #nextBtn").removeClass("running");
+      console.log(err);
       swal({
         title: "Error",
         text: "Invalid email or password",
@@ -184,6 +215,57 @@ function login_api(email, password, callback) {
       });
     });
 }
+
+function handle_login_code_api(email, code, callback) {
+
+    swal({
+        title: "Checking Code",
+        text: "Please wait.",
+        icon: "info",
+        buttons: false,
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+    });
+
+  var form = new FormData();
+  form.append("email", email);
+  form.append("code", code);
+  form.append("source", window.location.host);
+  var settings = {
+    async: true,
+    crossDomain: true,
+    url: SERVER + "/api/login-user-code/",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    data: form,
+  };
+  $.ajax(settings)
+    .done(function (response) {
+     console.log(response)
+      localStorage.setItem("session_id", JSON.parse(response).token);
+      console.log("user logged in");
+
+            swal({
+              title: "Welcome",
+              text: "Login Success",
+              icon: "success",
+            });
+
+
+      isSignIn();
+    })
+    .fail(function (err) {
+      $("#logincodeModal").addClass("is-visible");
+      swal({
+        title: "Error",
+        text: "Invalid code",
+        icon: "error",
+      });
+    });
+}
+
 
 function signup_monitor() {
   $("#signup").on("click", function (e) {
@@ -227,64 +309,6 @@ function signup_monitor() {
       password: $("#signup_password").val().trim(),
     });
   });
-}
-
-function signup_api(params) {
-  if (params.days_sober == null) {
-    params.days_sober = "0";
-  }
-  var form = new FormData();
-  form.append("name", params.name);
-  form.append("email", params.email);
-  form.append("days_sober", params.days_sober);
-  form.append("password", params.password);
-  //form.append("notify_email", 'aaronorosen@gmail.com');
-
-  var settings = {
-    async: true,
-    crossDomain: true,
-    url: SERVER + "/api/create-user/",
-    method: "POST",
-    processData: false,
-    contentType: false,
-    mimeType: "multipart/form-data",
-    data: form,
-  };
-
-  $.ajax(settings)
-    .done(function (response) {
-      $("#signup").removeClass("running");
-      var msg = JSON.parse(response).message;
-      if (msg && "User already exists" == msg) {
-        swal({
-          title: "Email already exists",
-          text: "",
-          icon: "error",
-        });
-        return;
-      }
-      localStorage.setItem("session_id", JSON.parse(response).token);
-      console.log("user logged in");
-      //after successful login or signup show dashboard contents
-
-      isSignIn();
-
-      swal({
-        title: "Account Created",
-        text: "You will now be able to view monitor events via email",
-        icon: "success",
-      });
-    })
-    .fail(function (err) {
-      $("#signup").removeClass("running");
-      console.log(err);
-      alert(err);
-      swal({
-        title: "Error",
-        text: "Invalid email or password",
-        icon: "error",
-      });
-    });
 }
 
 function validateEmail(email) {
@@ -861,7 +885,7 @@ function display_side_activity_log(resp) {
         formatDate(new Date(activity.created_at * 1000)) +
         "</div>" +
         '<div class="card-body video-body">' +
-        '<video preload="none" class="custom_video" id="videoPanel' +
+        '<video preload="" class="custom_video" id="videoPanel' +
         c++ +
         '" width="100%" height="200px" >' +
         '<source class="list-video" src=' +

@@ -121,66 +121,28 @@
                                         <img src="./img/logoReviewVideo.png" class="img-fluid w-25 " alt="...">
                                     </div>
                                     <form>
-                                        <div class="form-group">
+                                        <div class="form-group emaillogin">
                                             <label for="signin_email" class="bmd-label-floating">Email address</label>
                                             <input type="email" class="form-control" id="signin_email">
                                         </div>
-                                        <div class="form-group">
-                                            <label for="signin_password" class="bmd-label-floating">Password</label>
-                                            <input type="password" class="form-control" id="signin_password">
+
+                                        <div class="form-group passcode" style='display:none'>
+                                            <label for="signin_passcode" class="bmd-label-floating">Passcode</label>
+                                            <input type="email" class="form-control" id="signin_passcode">
                                         </div>
+
                                     </form>
                                     <div class="text-center">
-                                        <button id='login' class="btn btn-primary active" role="button" aria-pressed="true">Login</button>
-
-                                        <a href="https://prod-api.useiam.net/password_reset/" class="d-block">Forgot Password?</a>
-
-                                        <a id="create-account" href="javascript: void(0)" class="d-block">Create an Account</a>
-
+                                        <button id='login_code'
+                                          class="btn btn-primary active" role="button" aria-pressed="true">Next</button>
                                         <a id="user-interface" href="javascript: void(0)" class="d-block">User Interface</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-2 col-sm-3"> </div>     
+                        <div class="col-lg-4 col-md-2 col-sm-3"> </div>
                     </div>
                     <!-- Sign In End -->
-
-                    <!-- Sign Up Start -->
-                    <div id="signup-div" class="row h-100 bg-primary">
-                        <div class="col-lg-4 col-md-2 col-sm-3"> </div>
-                        <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
-                            <div class="card">
-                                <div class="card-header p-5">
-                                    <div class="text-center p-2">
-                                        <img src="./img/logoReviewVideo.png" class="img-fluid w-25 " alt="...">
-                                    </div>
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="signup_name" class="bmd-label-floating">Name</label>
-                                            <input type="text" class="form-control" id="signup_name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="signup_email" class="bmd-label-floating">Email address</label>
-                                            <input type="email" class="form-control" id="signup_email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="signup_password" class="bmd-label-floating">Password</label>
-                                            <input type="password" class="form-control" id="signup_password">
-                                        </div>
-                                    </form>
-                                    <div class="text-center">
-                                        <button id='signup' class="btn btn-primary active" role="button" aria-pressed="true">Sign Up</button>
-
-                                        <a id="already-account" href="javascript: void(0)" class="d-block">Already have an accout?</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-2 col-sm-3">  </div>
-                    </div>
-                    <!-- Sign Up End -->
-
                     <!-- Review Video Start -->
                     <div id="video-div" class="row mt-2 review-video">
                         <div class="col-12 col-md-8 col-sm-12">

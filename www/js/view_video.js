@@ -1,7 +1,7 @@
 function init() {
     if (!(localStorage.getItem("session_id"))) {
         localStorage.setItem("redirect_url", window.location.href)
-        window.location = 'login.html'
+        window.location = 'review-video.html'
     }
     $("#signup_email").val(getUrlVars()['email'])
 
@@ -92,7 +92,7 @@ function init_feedback() {
     })
     $("body").delegate(".logout", "click", function(e) {
         localStorage.clear()
-        window.location = 'login.html'
+        window.location = 'review-video.html'
     });
 
     $("body").delegate(".panelCls", "click", function(e) {
