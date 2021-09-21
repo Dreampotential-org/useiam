@@ -31,6 +31,8 @@ function init() {
   init_iap_events()
   load_logo_from_url()
 
+  init_not_med()
+
 
   if (!isApp()) {
     // Farrukh add subscription integration
@@ -58,6 +60,14 @@ function block_desktop() {
             });
         }
     }
+}
+
+
+function init_not_med() {
+  if (window.location.hostname == 'cardoneaccountability.com') {
+        $(".meds").remove()
+  }
+
 }
 
 function init_display() {
