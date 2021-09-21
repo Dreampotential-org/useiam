@@ -10,8 +10,9 @@ function init_login_stuff() {
   handle_signin();
   handle_logout();
   handle_login_code()
-
   handle_show_instructions();
+
+
 }
 
 function user_logged_in() {
@@ -19,14 +20,28 @@ function user_logged_in() {
     showATab("dashboard");
     // close modals
     closeAllModals();
+    return
+  }
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const email = urlParams.get('email')
+  const name = urlParams.get('name', "")
+  const phone = urlParams.get('phone', "")
+
+  if (email) {
+    signup_api({
+      name: name,
+      email: email,
+      password: null,
+      days_sober: null,
+    });
   }
 }
 
 
 function handle_login_code() {
   $("body").delegate("#login_code_button", "click", function (e) {
-
-
 
     handle_login_code_api(LAST_EMAIL, $("#login_code").val().trim())
 
@@ -143,33 +158,22 @@ function signup_api(params) {
 
   $.ajax(settings)
     .done(function (response) {
+      console.log(response)
       $("#signupModal #nextBtn").removeClass("running");
-      var msg = JSON.parse(response).message;
-      //if (msg && msg == "User already exists") {
-      //  swal({
-      //    title: "Email already exists",
-      //    text: "",
-      //    icon: "error",
-      //  });
-      //  return;
-      //}
-
-      //localStorage.setItem("session_id", JSON.parse(response).token);
-      // show toggle bar
-      //$(".toggleBar").show();
-      //console.log("user logged in");
-      // close modals
       closeAllModals();
-       $("#logincodeModal").addClass("is-visible");
-
-      //$("#loginCode").show()
-      //$(".moto").show();
-
-      //swal({
-      //  title: "Good job!",
-      //  text: "You're logged in",
-      //  icon: "success",
-      //});
+      if (Object.keys(JSON.parse(response)).includes('token')) {
+        localStorage.setItem("session_id", JSON.parse(response).token);
+        swal({
+            title: "Good job!",
+            text: "You're logged in",
+            icon: "success",
+        });
+        $(".toggleBar").show();
+        $(".moto").show();
+        showATab("dashboard");
+      } else {
+        $("#logincodeModal").addClass("is-visible");
+      }
 
       get_profile_info(function (msg) {
         // XXX Check payment status
@@ -292,7 +296,6 @@ function handle_login_code_api(email, code, callback) {
         closeOnEsc: false,
         closeOnClickOutside: false,
     });
-
 
   var form = new FormData();
   form.append("email", email);
