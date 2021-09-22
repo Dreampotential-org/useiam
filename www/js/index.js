@@ -242,6 +242,6 @@ function loadOrganization() {
     });
   });
   request.fail(function (err) {
-    alert(err)
+    //alert(err)
   });
 }

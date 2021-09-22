@@ -14,7 +14,7 @@ function init_iap_events() {
       store.when("base_subscription_7").approved(finishPurchase);
       store.register({ type: store.PAID_SUBSCRIPTION, id: "base_subscription_7" });
       var product = store.get("base_subscription_7")
-      alert(product.owned)
+      //alert(product.owned)
       store.error(function(e){
         alert("ERROR " + e.code + ": " + e.message);
       });
@@ -141,7 +141,7 @@ function init_iap_events() {
       console.log(p.state);
       localStorage.goldCoins = (localStorage.goldCoins | 0) + 10;
 
-      alert(p.state)
+      //alert(p.state)
       //if "state":"approved" the call server api to save purchase details
       //if p.state()==approved
       if (p.state == "approved") {
