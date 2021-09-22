@@ -32,6 +32,7 @@ function init() {
   load_logo_from_url()
 
   init_not_med()
+  login_via_code_url()
 
 
   if (!isApp()) {
@@ -43,7 +44,7 @@ function init() {
   // $("#not-subscribed-user").show();
   //  init_doctor_login_stuff();
 
-  // populates days sober in left side pannel
+  // populates user profile image
   get_profile_info();
   $("body").show();
 }
@@ -59,6 +60,17 @@ function block_desktop() {
             closeOnClickOutside: false,
             });
         }
+    }
+}
+function login_via_code_url() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const code = urlParams.get('code')
+    const email = urlParams.get('email')
+    if(code && email) {
+        handle_login_code_api(email, code);
+        closeAllModals()
+        window.history.pushState("", "", "/")
     }
 }
 
