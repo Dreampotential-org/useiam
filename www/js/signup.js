@@ -171,6 +171,7 @@ function signup_api(params) {
         $(".toggleBar").show();
         $(".moto").show();
         showATab("dashboard");
+        closeAllModals();
       } else {
         $("#logincodeModal").addClass("is-visible");
       }
@@ -325,6 +326,8 @@ function handle_login_code_api(email, code, callback) {
         title: "Good job!",
         text: "You're logged in",
         icon: "success",
+      }).then(function() {
+        closeAllModals();
       });
 
       get_profile_info(function (msg) {
