@@ -86,11 +86,14 @@ function api_gps_checkin() {
         showMenuBar();
     }).fail(function (err) {
         // Good on error we post
-        swal({
             'title': 'Error',
             'text': 'Try again',
             'icon': 'error',
-        });
+             buttons: [true, "Retry"],
+        }).then((retry) => {
+            if(retry) {
+            api_gps_checkin();
+        }
     });
 }
 
