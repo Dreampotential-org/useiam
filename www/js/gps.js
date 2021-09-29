@@ -93,10 +93,10 @@ function api_gps_checkin() {
             'icon': 'error',
              buttons: [true, "Retry"],
             }).then((retry) => {
-            if(retry) {
-            api_gps_checkin();
+                if(retry) {
+                api_gps_checkin();
             }
-        }
+        })
     });
 }
 
