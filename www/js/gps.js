@@ -87,13 +87,15 @@ function api_gps_checkin() {
     }).fail(function (err) {
           console.log(err)
         // Good on error we post
+            swal({
             'title': 'Error',
             'text': 'Try again',
             'icon': 'error',
              buttons: [true, "Retry"],
-        }).then((retry) => {
+            }).then((retry) => {
             if(retry) {
             api_gps_checkin();
+            }
         }
     });
 }
