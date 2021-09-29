@@ -85,6 +85,7 @@ function api_gps_checkin() {
         closeAllModals();
         showMenuBar();
     }).fail(function (err) {
+          console.log(err)
         // Good on error we post
             'title': 'Error',
             'text': 'Try again',
