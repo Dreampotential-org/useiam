@@ -1,7 +1,20 @@
 function init() {
   init_events();
   isSignIn();
+  login_via_code_url()
 }
+
+function login_via_code_url() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const code = urlParams.get('code')
+    const email = urlParams.get('email')
+    if(code && email) {
+        handle_login_code_api(email, code);
+        //window.history.pushState("", "", "/")
+    }
+}
+
 
 function init_events() {
   $("body").delegate(".video-body", "click", function () {
@@ -170,6 +183,25 @@ function signup_api(params) {
   // form.append("notify_email", 'aaronorosen@gmail.com');
   form.append("source", window.location.host);
 
+  var path = window.location.pathname;
+  var page = path.split("/").pop();
+  form.append("page", page.toLowerCase());
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const user = urlParams.get('user')
+  const id = urlParams.get('id')
+  if (user) {
+      form.append("user", user);
+  }
+  if (id) {
+      form.append("id", id);
+  }
+
+
+
+
+
    swal({
       title: "Good job!",
       text: "Now enter the passcode from email address",
@@ -230,6 +262,19 @@ function handle_login_code_api(email, code, callback) {
   var form = new FormData();
   form.append("email", email);
   form.append("code", code);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if(urlParams.get("id")) {
+    form.append("id", urlParams.get("id"));
+  }
+  if(urlParams.get("user")) {
+    form.append("user", urlParams.get("user"));
+  }
+
+
+
+  form.append("code", code);
+
   form.append("source", window.location.host);
   var settings = {
     async: true,
