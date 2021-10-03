@@ -32,7 +32,9 @@ function init() {
   load_logo_from_url()
 
   init_not_med()
-  login_via_code_url()
+    setTimeout(function() {
+        login_via_code_url()
+    }, 200);
 
 
   if (!isApp()) {

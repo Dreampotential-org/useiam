@@ -30,6 +30,7 @@ function user_logged_in() {
   const phone = urlParams.get('phone', "")
 
   if (email) {
+    return
     signup_api({
       name: name,
       email: email,
@@ -137,6 +138,11 @@ function signup_api(params) {
   form.append("password", params.password);
   // form.append("notify_email", 'aaronorosen@gmail.com');
   form.append("source", window.location.host);
+
+  var path = window.location.pathname;
+  var page = path.split("/").pop();
+  console.log( page );
+  form.append("page", page.toLowerCase());
 
   var settings = {
     async: true,
