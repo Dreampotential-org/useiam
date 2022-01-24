@@ -861,7 +861,7 @@ function display_side_activity_log(resp) {
         formatDate(new Date(activity.created_at * 1000)) +
         "</div>" +
         '<div class="card-body video-body">' +
-        '<video preload="none" class="custom_video" id="videoPanel' +
+        '<video preload="" class="custom_video" id="videoPanel' +
         c++ +
         '" width="100%" height="200px" >' +
         '<source class="list-video" src=' +
