@@ -1224,7 +1224,7 @@ ol li.other {
 }
 .action-btns button {
   margin: 0px;
-  padding: 9px 25px;
+  padding: 9px 22px;
   font-size: 14px;
   color: #fff;
   font-family: "Poppins", sans-serif;
@@ -1572,7 +1572,7 @@ span.alignTag{
 @media screen and (max-width: 325px) {
   .action-btns button {
     margin: 0px;
-    padding: 9px 25px;  
+    padding: 9px 22px;
     font-size: 11px;
   }
 }
