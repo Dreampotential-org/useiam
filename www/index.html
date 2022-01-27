@@ -524,7 +524,7 @@
                         <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
 
-                    <div id="selected_org" > 1</div>
+                    <div id="selected_org" ></div>
                     <br>
                     <h3 class="locAuthTitle textCenter" style="color:white">SIGN UP</h3>
                     <form id="regForm" class="signupform" action="#" style='height:60vh'>
@@ -534,6 +534,9 @@
                             </div>
                             <div>
                                 <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
+                            </div>
+                            <div>
+                                <input type="password" id='signup_password' placeholder="Password" oninput="this.className=''" />
                             </div>
                         </div>
                         <div class="action-btns">
@@ -572,7 +575,7 @@
                             draggable="false" /></div> -->
                     <style type="text/css">
                         #selected_org img{
-                            width: 70px;
+                            width: 80%;
                             border: 1px solid white;
                             background: white;
                             left: 0;
@@ -602,21 +605,17 @@
                     <h3 class="locAuthTitle textCenter" style="color:white">Select Organization</h3>
                     <form id="regForm" class="signupform" action="#" style='height:60vh'>
                         <div class="tab user-info">
-                            <ul class="org_list">
-                                <li><span id="1" onClick="reply_click(this.id, 'iam')"><img src="images/iam.png" alt="image" /></span></li>
-                                <li><span id="2" onClick="reply_click(this.id, 'avater')"><img src="images/avater.png" alt="image" /></span></li>
-                                <li><span id="3" onClick="reply_click(this.id, 'modalLogo')"><img src="images/modalLogo.png" alt="image" /></span></li>
-                                <li><span id="4" onClick="reply_click(this.id, 'icon-lock')"><img src="images/icon-lock.png" alt="image" /></span></li>
-                            </ul>
+                            <ul id="org_list" class="org_list"></ul>
+                            <table id="employees"></table>
                         </div>
                 </div>
                 <script type="text/javascript">
-                    function reply_click(clicked_id, image)
+                    function reply_click(image)
                     {
                         $("#signupModal").addClass("is-visible");
                         $("#orgModal").removeClass("is-visible");
                         document.getElementById('selected_org')
-                                .innerHTML = '<img src="images/' + image + '.png"/>';
+                                .innerHTML = '<img src=' + image + '>';
 //                                $("#signup_name").focus();
                     }
                     function back_click(clicked_id)
@@ -624,6 +623,19 @@
                         $("#signupModal").removeClass("is-visible");
                         $("#orgModal").addClass("is-visible");
                     }
+                    $(document).ready(function () {
+                        // api url
+                        const api_url = SERVER + "/api/list_organizations/";
+
+                        async function getapi(url) {
+                            const response = await fetch(url);
+                            var data = await response.json();
+                            for (let r of data) {
+                                $("#org_list").append("<li><span id=" + r.id + " onClick=reply_click('" + r.logo + "')><img src=" + r.logo + "><p>" + r.name + "</p></span></li>")
+                            }
+                        }
+                        getapi(api_url);
+                    });
                 </script>
                 <!--                <div class="action-btns">
                                     <div class="row">
@@ -869,143 +881,143 @@
         <h5 class="textMenu">
             <a href="#" id='showInstructions'>INSTRUCTIONS
                 <a>
-        </h5>
-        <!--
-        <h5 class="textMenu">
-            <a href="#" id='setOrg'>SET ORGANIZATION</a>
-        </h5>-->
+                    </h5>
+                    <!--
+                    <h5 class="textMenu">
+                        <a href="#" id='setOrg'>SET ORGANIZATION</a>
+                    </h5>-->
 
-        <h5 class="textMenu">
-            <a href="#" id='setMonitor'>SET MONITOR</a>
-        </h5>
-        <h5 class="textMenu">
-            <a href="#" id='viewActivity'>VIEW ACTIVITY
-                <a>
-        </h5>
+                    <h5 class="textMenu">
+                        <a href="#" id='setMonitor'>SET MONITOR</a>
+                    </h5>
+                    <h5 class="textMenu">
+                        <a href="#" id='viewActivity'>VIEW ACTIVITY
+                            <a>
+                                </h5>
 
-        <!-- <h5 class="textMenu">
-                <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
-                </h5>
-                <!--
-                <h5 class="textMenu">
-                    <a href="#" id='setOrg'>SET ORGANIZATION</a>
-                </h5> -->
-
-                <h5 class="textMenu">
-                    <a href="#" id='setMonitor'>SET MONITOR</a>
-                </h5>
-                <h5 class="textMenu">
-                    <a href="#" id='viewActivity'>VIEW ACTIVITY
-                        <a>
-                            </h5>
-
-                            <!-- <h5 class="textMenu">
-                                    <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
-                                    </h5>
-                                    <h5 class="textMenu">
-                                    <a href="#" id='viewActivity'>SUBMIT LOCATION<a>
-                                    </h5>
-                    
-                                    <h5 class="textMenu">
-                                    <a href="#" id='viewActivity'>HOW IT WORKS<a>
-                                    </h5>
-                    
-                                    <h5 class="textMenu">
-                                    <a href="#" id='viewActivity'>WHAT WE DO<a>
-                                </h5> -->
-                            <h5 class="textMenu">
-                                <a href="#" id='logout'>LOGOUT</a>
-                            </h5>
-                            <!--
-                            <h5 class="textMenu">
-                                <a target='_blank'
-                                    href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'> JOIN OUR ONLINE COMMUNITY</a>
-                            </h5>
-                            -->
-                            <h5 class="textMenu">
-                                <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE
-                                    <a>
+                                <!-- <h5 class="textMenu">
+                                        <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
                                         </h5>
-                                        <h5 class="textMenu">
-                                            <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
-                                                <a>
+                                <!--
+                                <h5 class="textMenu">
+                                    <a href="#" id='setOrg'>SET ORGANIZATION</a>
+                                </h5> -->
+
+                                <h5 class="textMenu">
+                                    <a href="#" id='setMonitor'>SET MONITOR</a>
+                                </h5>
+                                <h5 class="textMenu">
+                                    <a href="#" id='viewActivity'>VIEW ACTIVITY
+                                        <a>
+                                            </h5>
+
+                                            <!-- <h5 class="textMenu">
+                                                    <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
                                                     </h5>
-                                                    <h5 class="textMenu" style='display: none;' id='cancel_plan'>
-                                                        <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+                                                    <h5 class="textMenu">
+                                                    <a href="#" id='viewActivity'>SUBMIT LOCATION<a>
                                                     </h5>
-                                                    <!--
-                                                    <h5 class="textMenu" id="Unsubscribe_div" style='display: none;'>
-                                                        <a href="#" id='Unsubscribe'>
-                                                            Unsubscribe
-                                                        <a>
+                                    
+                                                    <h5 class="textMenu">
+                                                    <a href="#" id='viewActivity'>HOW IT WORKS<a>
                                                     </h5>
-                                                    -->
-                                                    </div>
+                                    
+                                                    <h5 class="textMenu">
+                                                    <a href="#" id='viewActivity'>WHAT WE DO<a>
+                                                </h5> -->
+                                            <h5 class="textMenu">
+                                                <a href="#" id='logout'>LOGOUT</a>
+                                            </h5>
+                                            <!--
+                                            <h5 class="textMenu">
+                                                <a target='_blank'
+                                                    href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'> JOIN OUR ONLINE COMMUNITY</a>
+                                            </h5>
+                                            -->
+                                            <h5 class="textMenu">
+                                                <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE
+                                                    <a>
+                                                        </h5>
+                                                        <h5 class="textMenu">
+                                                            <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
+                                                                <a>
+                                                                    </h5>
+                                                                    <h5 class="textMenu" style='display: none;' id='cancel_plan'>
+                                                                        <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+                                                                    </h5>
+                                                                    <!--
+                                                                    <h5 class="textMenu" id="Unsubscribe_div" style='display: none;'>
+                                                                        <a href="#" id='Unsubscribe'>
+                                                                            Unsubscribe
+                                                                        <a>
+                                                                    </h5>
+                                                                    -->
+                                                                    </div>
 
-                                                    <!-- <div class="slideMenu">
-                                                        <h5 class="textMenu">
-                                                            <a href="#" id='showInstructions'>Instructions<a>
-                                                        </h5>
-                                                
-                                                        <h5 class="textMenu">
-                                                            <a href="#" id='setMonitor'>Set Monitor(s)</a>
-                                                        </h5>
-                                                
-                                                        <h5 class="textMenu">
-                                                            <a href="#" id='viewActivity'>View Activity<a>
-                                                        </h5>
-                                                
-                                                        <h5 class="textMenu">
-                                                            <a href="#" id='logout'>Logout</a>
-                                                        </h5>
-                                                
-                                                        <h5 class="textMenu">
-                                                            <a href='#' id='sober_count'></a>
-                                                        </h5>
-                                                
-                                                        <h5 class="textMenu">
-                                                            <a target='_blank'
-                                                                href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'>Join
-                                                                our online community</a>
-                                                        </h5>
-                                                        <h5 class="textMenu hide" id="reminderMenu">
-                                                            <a href="#" id='setTime'>Set Reminder Time</a>
-                                                        </h5>
-                                                        <h5 class="textMenu" style='display: none;' id='cancel_plan'>
-                                                            <a href="#" id='cancel_subscription'>Cancel Subscription</a>
-                                                        </h5>
-                                                    </div> -->
-                                                    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
-                                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                                                    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-                                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                                                                    <!-- <div class="slideMenu">
+                                                                        <h5 class="textMenu">
+                                                                            <a href="#" id='showInstructions'>Instructions<a>
+                                                                        </h5>
+                                                                
+                                                                        <h5 class="textMenu">
+                                                                            <a href="#" id='setMonitor'>Set Monitor(s)</a>
+                                                                        </h5>
+                                                                
+                                                                        <h5 class="textMenu">
+                                                                            <a href="#" id='viewActivity'>View Activity<a>
+                                                                        </h5>
+                                                                
+                                                                        <h5 class="textMenu">
+                                                                            <a href="#" id='logout'>Logout</a>
+                                                                        </h5>
+                                                                
+                                                                        <h5 class="textMenu">
+                                                                            <a href='#' id='sober_count'></a>
+                                                                        </h5>
+                                                                
+                                                                        <h5 class="textMenu">
+                                                                            <a target='_blank'
+                                                                                href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'>Join
+                                                                                our online community</a>
+                                                                        </h5>
+                                                                        <h5 class="textMenu hide" id="reminderMenu">
+                                                                            <a href="#" id='setTime'>Set Reminder Time</a>
+                                                                        </h5>
+                                                                        <h5 class="textMenu" style='display: none;' id='cancel_plan'>
+                                                                            <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+                                                                        </h5>
+                                                                    </div> -->
+                                                                    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+                                                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                                                    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                                                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-                                                    <script src="js/braintree.js?v=1.9"></script>
-                                                    <script src="js/iap.js?v=1.9"></script>
+                                                                    <script src="js/braintree.js?v=1.9"></script>
+                                                                    <script src="js/iap.js?v=1.9"></script>
 
-                                                    <script src="js/index.js?v=0.0.1"></script>
-                                                    <script src="js/sweetalert.min.js"></script>
-                                                    <script src="js/gps.js?v=1.96"></script>
-                                                    <script src="js/custom.js?v=1.12"></script>
-                                                    <script src="js/signup.js?v=1.98"></script>
-                                                    <script src="js/video.js?v=1.97"></script>
-                                                    <!-- <script src="js/subscribe.js"></script> -->
-                                                    <script src="js/monitor.js?v=1.97"></script>
-                                                    <script src="js/activity.js?v=1.97"></script>
-                                                    <script src="js/logos.js?v=1.99"></script>
-                                                    <script src="js/config.js?v=1.97"></script>
-                                                    <script src="js/stripe.js?v=1.97"></script>
-                                                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
-                                                    </script>
+                                                                    <script src="js/index.js?v=0.0.1"></script>
+                                                                    <script src="js/sweetalert.min.js"></script>
+                                                                    <script src="js/gps.js?v=1.96"></script>
+                                                                    <script src="js/custom.js?v=1.12"></script>
+                                                                    <script src="js/signup.js?v=1.98"></script>
+                                                                    <script src="js/video.js?v=1.97"></script>
+                                                                    <!-- <script src="js/subscribe.js"></script> -->
+                                                                    <script src="js/monitor.js?v=1.97"></script>
+                                                                    <script src="js/activity.js?v=1.97"></script>
+                                                                    <script src="js/logos.js?v=1.99"></script>
+                                                                    <script src="js/config.js?v=1.97"></script>
+                                                                    <script src="js/stripe.js?v=1.97"></script>
+                                                                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
+                                                                    </script>
 
-                                                    <script src="js/jquery.timepicker.min.js"></script>
+                                                                    <script src="js/jquery.timepicker.min.js"></script>
 
-                                                    <script type="text/javascript">
+                                                                    <script type="text/javascript">
                     $("#page-contents").children().hide();
                     //show the dashboard div if already logged in. or else show login div.
                     $('#page-contents').find('#login').show("slow");
                     $('#addEvent').hide();
-                                                    </script>
-                                                    </body>
+                                                                    </script>
+                                                                    </body>
 
-                                                    </html>
+                                                                    </html>
