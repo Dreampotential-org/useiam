@@ -6,7 +6,10 @@ function init_logo() {
   var domain = parts[1];
   var type = parts[2];
 
-  if (sub == "futures") {
+   if (full == "cardoneaccountability.com") {
+    _append_logo_and_icon("img/gc.jpg");
+    $(".logo img").css("width", "200px");
+   } else if (sub == "futures") {
     _append_logo_and_icon("img/futuresLogo.png");
   } else if (sub == "gatewayfoundation") {
     _append_logo_and_icon("img/gateway.png");
