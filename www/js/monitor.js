@@ -34,7 +34,25 @@ function init_monitor() {
       }
     });
   });
+  
+  $("#org_list").on("click", function (e) {
+    list_orgs(function (msg) {
+        console.log(msg)
+       show_set_orgs();
+       alert(msg);
+      // closes side menu
+      $(".toggleBar").click();
+      $(".current-monitors").empty();
+        $("#org_ids").empty()
 
+      $("#org_list").append("<option>No Organization</option>")
+      for (var org of msg) {
+        $("#org_list").append(
+            "<option logo='" + org.logo + "' id='" + org.id + "'>" + org.name + "</option>")
+      }
+    });
+  });
+  //new code by irfan start
   $("#setMonitor").on("click", function (e) {
     get_profile_info(function (msg) {
       show_set_monitor();
