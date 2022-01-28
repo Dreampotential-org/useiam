@@ -223,16 +223,10 @@ function handle_signin() {
             return
         }
 
-        signup_api({
-            email: LAST_EMAIL,
-            password: null,
-        });
 
-        return
-
-        login_api_code(
+        login_api(
                 $("#signin_email").val().trim(),
-                $("#login_code").val().trim(),
+                $("#signin_password").val().trim(),
                 function () {
                     // after successful login or signup show dashboard contents
                     showATab("dashboard");
