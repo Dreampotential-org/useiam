@@ -116,12 +116,14 @@
                         </div>
                     </div>
                     <div id="not-subscribed-user" class="row1">
+                        <!--
                         <h3 class="textCenter subscribeText column1" style="color:white">Use IAM is a paid monthly
                             subscription service </h3>
                         <h4 class="textCenter subscribeText column1" style="color:white">$19.99 - Monthly Service</h4>
                         <div class="column1 btn2">
                             <button class="actionBtn subscribe">SUBSCRIBE</button>
                         </div>
+                        -->
                     </div>
                 </div>
 
@@ -581,7 +583,7 @@
                             draggable="false" /></div> -->
                     <style type="text/css">
                         #selected_org img{
-                            width: 80%;
+                            width:  150px;
                             border: 1px solid white;
                             background: white;
                             left: 0;
@@ -601,8 +603,8 @@
                         }
                         .org_list img{
                             width:  150px;
-                            height: auto;
-                            object-fit: cover;
+                            height: 79px;
+                            object-fit: contain;
                             border: 1px solid white;
                             background: white;
                             left: 0;
@@ -624,30 +626,19 @@
                 <script type="text/javascript">
                     function reply_click(image)
                     {
+                        console.log(image);
                         $("#signupModal").addClass("is-visible");
                         $("#orgModal").removeClass("is-visible");
-                        document.getElementById('selected_org')
+                        var selected_org = document.getElementById('selected_org')
                                 .innerHTML = '<img src=' + image + '>';
 //                                $("#signup_name").focus();
                     }
+
                     function back_click(clicked_id)
                     {
                         $("#signupModal").removeClass("is-visible");
                         $("#orgModal").addClass("is-visible");
                     }
-                    $(document).ready(function () {
-                        // api url
-                        const api_url = SERVER + "/api/list_organizations/";
-
-                        async function getapi(url) {
-                            const response = await fetch(url);
-                            var data = await response.json();
-                            for (let r of data) {
-                                $("#org_list").append("<li><span id=" + r.id + " onClick=reply_click('" + r.logo + "')><img class='img-responsive img-thumbnail' src=" + r.logo + "><p>" + r.name + "</p></span></li>")
-                            }
-                        }
-                        getapi(api_url);
-                    });
                 </script>
                 <!--                <div class="action-btns">
                                     <div class="row">

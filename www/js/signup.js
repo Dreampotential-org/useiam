@@ -1,9 +1,5 @@
 var LAST_EMAIL = null
 function init_login_stuff() {
-    // setup calender
-    // $("#sober_date").datepicker()
-    // $("#sober_date_update").datepicker()
-
     user_logged_in();
     signup_signin_buttons();
     handle_signup();
@@ -120,7 +116,7 @@ function handle_signup() {
         signup_api({
             name: $("#signup_name").val().trim(),
             email: $("#signup_email").val().trim(),
-            password: null,
+            password: $("#signup_password").val(),
             days_sober: null,
         });
     });
@@ -155,13 +151,6 @@ function signup_api(params) {
         data: form,
     };
 
-    swal({
-        title: "Check your email",
-        text: "A one time login code has been set to your email.",
-        icon: "success",
-    });
-
-
     $.ajax(settings)
             .done(function (response) {
                 console.log(response)
@@ -169,15 +158,32 @@ function signup_api(params) {
                 closeAllModals();
                 if (Object.keys(JSON.parse(response)).includes('token')) {
                     localStorage.setItem("session_id", JSON.parse(response).token);
-                    swal({
-                        title: "Good job!",
-                        text: "You're logged in",
-                        icon: "success",
-                    });
-                    $(".toggleBar").show();
-                    $(".moto").show();
-                    showATab("dashboard");
-                    closeAllModals();
+
+                    if(SELECTED_ORG_ID) {
+                        do_set_org(SELECTED_ORG_ID, SELECTED_ORG_LOGO, function() {
+                            swal({
+                                title: "Good job!",
+                                text: "You're logged in",
+                                icon: "success",
+                            });
+                            $(".toggleBar").show();
+                            $(".moto").show();
+                            showATab("dashboard");
+                            closeAllModals();
+
+
+                        });
+                    } else {
+                        swal({
+                            title: "Good job!",
+                            text: "You're logged in",
+                            icon: "success",
+                        });
+                        $(".toggleBar").show();
+                        $(".moto").show();
+                        showATab("dashboard");
+                        closeAllModals();
+                    }
                 } else {
                     $("#logincodeModal").addClass("is-visible");
                 }
@@ -222,8 +228,6 @@ function handle_signin() {
         if (!(validateEmail(LAST_EMAIL))) {
             return
         }
-
-
         login_api(
                 $("#signin_email").val().trim(),
                 $("#signin_password").val().trim(),

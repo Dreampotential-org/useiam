@@ -1,4 +1,31 @@
+var SELECTED_ORG_ID = $(this).attr("id");
+var SELECTED_ORG_LOGO = $(this).attr("org_image");
+
+function populate_signup_orgs() {
+
+    $("#org_list").append(
+        "<li id='' org_image='/img/useiam2.png'><span><img class='img-responsive img-thumbnail' src='/img/useiam2.png'><p>Default No Organization</p></span></li>")
+    list_orgs(function (msg) {
+      for (var r of msg) {
+        $("#org_list").append(
+            "<li id=" + r.id + " org_image='" + r.logo + "'><span><img class='img-responsive img-thumbnail' src=" + r.logo + "><p>" + r.name + "</p></span></li>")
+      }
+    });
+}
+
+
 function init_monitor() {
+
+  populate_signup_orgs();
+  $("body").delegate(".org_list li", "click", function (e) {
+        e.preventDefault();
+        SELECTED_ORG_ID = $(this).attr("id");
+        SELECTED_ORG_LOGO = $(this).attr("org_image");
+        $("#signupModal").addClass("is-visible");
+        $("#orgModal").removeClass("is-visible");
+        document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+   })
+
   $("#sober_count").on("click", function (e) {
     console.log("In updtate date function....");
     console.log("SRVER", SERVER);
@@ -34,12 +61,11 @@ function init_monitor() {
       }
     });
   });
-  
+    /* 
   $("#org_list").on("click", function (e) {
     list_orgs(function (msg) {
         console.log(msg)
        show_set_orgs();
-       alert(msg);
       // closes side menu
       $(".toggleBar").click();
       $(".current-monitors").empty();
@@ -52,6 +78,7 @@ function init_monitor() {
       }
     });
   });
+    */
   //new code by irfan start
   $("#setMonitor").on("click", function (e) {
     get_profile_info(function (msg) {
@@ -315,11 +342,10 @@ function do_set_sober_date() {
 // }
 
 
-
-function do_set_org(org_id) {
+function do_set_org(org_id, selected_org_logo, callback) {
   var form = new FormData();
   form.append("org_id",
-              parseInt($("#org_ids").find('option:selected').attr('id')))
+              parseInt(org_id))
   var settings = {
     async: true,
     crossDomain: true,
@@ -337,19 +363,10 @@ function do_set_org(org_id) {
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response).message;
-      swal("Org has been set", {
-        icon: "success",
-      });
-
-      $(".logo img").attr('src',
-                          $("#org_ids").find('option:selected').attr('logo'))
+      $(".logo img").attr('src', selected_org_logo)
+      callback();
 
       //after successful login or signup show dashboard contents
-      showATab("dashboard");
-      $("#setOrgModal .close").click();
-      //$(".toggleBar").click();
-      //$("#showInstructions").click();
-      console.log("Show instructions");
     })
     .fail(function (err) {
       console.log(err);
@@ -546,7 +563,7 @@ function list_orgs(callback) {
     async: true,
     crossDomain: true,
     headers: {
-      Authorization: "Token " + localStorage.getItem("session_id"),
+      //Authorization: "Token " + localStorage.getItem("session_id"),
     },
     url: SERVER + "/api/list_organizations/",
     method: "GET",
