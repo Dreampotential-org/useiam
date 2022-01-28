@@ -38,6 +38,9 @@
                 padding: 10px;
                 width: 100%;
             }
+            ul#org_list li {
+                border-radius: 10px;
+            }
         </style>
     </head>
 
@@ -530,13 +533,13 @@
                     <form id="regForm" class="signupform" action="#" style='height:60vh'>
                         <div class="tab user-info">
                             <div class="signupEmail">
-                                <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text">
+                                <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text" required="required">
                             </div>
                             <div>
-                                <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email">
+                                <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email" required="required">
                             </div>
                             <div>
-                                <input type="password" id='signup_password' placeholder="Password" oninput="this.className=''" />
+                                <input type="password" id='signup_password' placeholder="Password" oninput="this.className=''" required="required"/>
                             </div>
                         </div>
                         <div class="action-btns">
@@ -545,7 +548,7 @@
                                     <button class=" dark" onClick="back_click(this.id)" id="1">Back</button>
                                 </div>
                                 <div class="column btn2">
-                                    <button class="actionBtn dark close" id="nextBtn">Sign Up</button>
+                                    <button class="actionBtn dark" id="nextBtn">Sign Up</button>
                                 </div>
 
                             </div>
@@ -590,9 +593,13 @@
                             background: white;
                             position: inherit;
                             border: 1px solid black;
+                            height: 150px;
+                            padding: 10px 12px;
                         }
                         .org_list img{
-                            width: 70px;
+                            width:  150px;
+                            height: auto;
+                            object-fit: cover;
                             border: 1px solid white;
                             background: white;
                             left: 0;
@@ -600,7 +607,7 @@
                         }
                         ul.org_list {
                             padding: 0;
-                            max-height: 300px;
+                            max-height: 400px;
                             overflow-y: auto;
                         }
                     </style>
@@ -633,7 +640,7 @@
                             const response = await fetch(url);
                             var data = await response.json();
                             for (let r of data) {
-                                $("#org_list").append("<li><span id=" + r.id + " onClick=reply_click('" + r.logo + "')><img src=" + r.logo + "><p>" + r.name + "</p></span></li>")
+                                $("#org_list").append("<li><span id=" + r.id + " onClick=reply_click('" + r.logo + "')><img class='img-responsive img-thumbnail' src=" + r.logo + "><p>" + r.name + "</p></span></li>")
                             }
                         }
                         getapi(api_url);
