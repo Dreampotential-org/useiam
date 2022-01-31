@@ -3,8 +3,6 @@ var SELECTED_ORG_LOGO = $(this).attr("org_image");
 
 function populate_signup_orgs() {
 
-    $("#org_list").append(
-        "<li id='' org_image='/img/useiam2.png'><span><img class='img-responsive img-thumbnail' src='/img/useiam2.png'><p>Default No Organization</p></span></li>")
     list_orgs(function (msg) {
       for (var r of msg) {
         $("#org_list").append(
