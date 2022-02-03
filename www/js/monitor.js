@@ -376,8 +376,6 @@ function do_set_org(org_id, selected_org_logo, callback) {
     });
 }
 
-
-
 function do_set_monitor() {
   if (!validateEmail($("#monitor_email").val().trim())) {
     swal({
