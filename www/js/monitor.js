@@ -6,7 +6,7 @@ function populate_signup_orgs() {
     list_orgs(function (msg) {
       for (var r of msg) {
         $("#org_list").append(
-            "<li id=" + r.id + " org_image='" + r.logo + "'><span><img class='img-responsive img-thumbnail' src=" + r.logo + "><p>" + r.name + "</p></span></li>")
+            "<li id=" + r.id + " org_image='" + r.logo + "'><span><img class='img-responsive img-thumbnail' src=" + r.logo + "><p style='margin-top:-5px;'>" + r.name + "</p></span></li>")
       }
     });
 }
