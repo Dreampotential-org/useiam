@@ -153,17 +153,9 @@ function getUrlVars(url) {
 function login_monitor() {
   // create their account
   $("#login_code").on("click", function (e) {
-
-    if ($(".passcode").is(":visible")) {
-        handle_login_code_api(
-            $("#signin_email").val().trim(),
-            $("#signin_passcode").val().trim())
-    } else {
-        signup_api({
-          email: $("#signin_email").val().trim(),
-          password: null,
-        });
-    }
+    handle_login_api(
+        $("#signin_email").val().trim(),
+        $("#signin_password").val().trim());
   })
 }
 
@@ -248,10 +240,10 @@ function signup_api(params) {
     });
 }
 
-function handle_login_code_api(email, code, callback) {
+function handle_login_api(email, password, callback) {
 
     swal({
-        title: "Checking Code",
+        title: "Checking Login",
         text: "Please wait.",
         icon: "info",
         buttons: false,
@@ -260,8 +252,10 @@ function handle_login_code_api(email, code, callback) {
     });
 
   var form = new FormData();
-  form.append("email", email);
-  form.append("code", code);
+  form.append("username", email);
+  form.append("password", password);
+  form.append("source", window.location.host);
+/*
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   if(urlParams.get("id")) {
@@ -270,16 +264,12 @@ function handle_login_code_api(email, code, callback) {
   if(urlParams.get("user")) {
     form.append("user", urlParams.get("user"));
   }
+*/
 
-
-
-  form.append("code", code);
-
-  form.append("source", window.location.host);
   var settings = {
     async: true,
     crossDomain: true,
-    url: SERVER + "/api/login-user-code/",
+    url: SERVER + "/api/api-token-auth/",
     method: "POST",
     processData: false,
     contentType: false,
