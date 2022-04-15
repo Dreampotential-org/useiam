@@ -1,4 +1,90 @@
 function init_video_event() {
+  LOGO_FILE = ''
+  $('#OpenImgUpload').click(function () {
+    $('#imgupload').trigger('click');
+    $("#imgupload").on("change", function (e) {
+      e.preventDefault();
+      var file = e.target.files[0];
+      LOGO_FILE = file;
+    });
+  });
+
+  $('#org_submit').on('click', function () {
+    if (LOGO_FILE == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Upload the Logo',
+        'icon': 'error',
+      });
+    }
+
+    var form = new FormData();
+    form.append("name", $('#org_name').val());
+    form.append("hostname", $('#org_host_name').val());
+    form.append("file", LOGO_FILE, LOGO_FILE.name);
+
+    if ($('#org_name').val() == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Enter the valid Name',
+        'icon': 'error',
+      });
+
+      return false;
+    }
+
+    if ($('#org_host_name').val() == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Enter the valid Hostname',
+        'icon': 'error',
+      });
+
+      return false;
+    }
+
+    var settings = {
+      async: true,
+      crossDomain: true,
+      headers: {
+        Authorization: "Token " + localStorage.getItem("session_id"),
+      },
+      url: SERVER + "/api/add-org-client/",
+      method: "POST",
+      processData: false,
+      contentType: false,
+      mimeType: "multipart/form-data",
+      data: form,
+    };
+
+    $.ajax(settings).done(function (response) {
+
+      var msg = objToStr(JSON.parse(response));
+      $('#org_name').val('')
+      $('#org_host_name').val('')
+      swal({
+        title: "Successfully!",
+        text: "Organization Crated",
+        icon: "success",
+      });
+
+      return false;
+    }).fail(function (err) {
+      var errMsg = objArrToStr(JSON.parse(err['responseText']));
+      swal({
+        title: "Error",
+        text: err.responseText,
+        icon: "error",
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+      });
+
+      return false;
+    });
+    return false;
+  });
+
+
   $(".close").on("click", function (e) {
     closeAllModals();
   });

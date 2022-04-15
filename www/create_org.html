@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--CSS -->
+
+    <link rel="stylesheet" href="css/style.css?v=1.7">
+    <link rel="stylesheet" href="css/responsive.css?v=1.6" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+
+    <meta name="keywords"
+        content="useIAM, Accountability therapy, self help, team, journal, diary, win, life, goals, profit, growth, 10x, improve" />
+
+    <title>IAM</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+    <style>
+        select#organization {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        .action-btns {
+            padding: 0px 30px !important;
+            text-align: left;
+        }
+
+        #org_list {
+            padding: 10px;
+            width: 100%;
+        }
+
+        ul#org_list li {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div style="text-align: center; margin-top: 50px ;">
+        <img src='img/useiam_logo.png' width='200' height='200' />
+        <br><br><br>
+        <form style="text-align: center; margin: 20px;" id="regForm" action="#">
+            
+            <div class="tab get-monitor">
+                <input id="org_name" type="text" placeholder="Name" />
+            </div>
+            <div class="tab get-monitor">
+                <input id="org_host_name" type="text" placeholder="Hostname" />
+            </div>
+
+        </form>
+
+        <div class="btn1 ">
+            <div class="textCenter">
+                <input type="file" id="imgupload" accept="image/*" capture="environment" style='display:none;'>
+                <button id="OpenImgUpload" class="actionBtn btnVideo video dark videoBtn">Upload Logo</button>
+            </div>
+        </div>
+
+
+        <br><br>
+        <div style="text-align: center;">
+            <button class="actionBtn dark close" id="org_submit">Submit</button>
+        </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+    <!-- unsubscription end -->
+    <div class="modal" id="paymentForm">
+        <div class="modal-overlay"></div>
+        <div class="modal-wrapper modal-transition">
+            <div class="modal-body">
+                <div class="modal-content">
+                    <div class="">
+                        <img src='images/x-mark-black-32.png' class='close'
+                            style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                        <h3 class="locAuthTitle textCenter">Payment</h3>
+                        <p class="">You are agreeing to be charged $9.99 per month cancel anytime.</p>
+                        <form action="/charge" method="post" id="payment-form">
+                            <div class="form-row">
+                                <label for="card-element">
+                                    Credit or debit card
+                                </label>
+                                <div id="card-element">
+                                    <!-- A Stripe Element will be inserted here. -->
+                                </div>
+
+                                <!-- Used to display form errors. -->
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+                        </form>
+                        <div>
+                            <img src='images/cards.png'>
+                            <img src='images/icon-lock.png'>
+                        </div>
+                        <div>
+                            Safe and secure 256-BIT SSL encrypted
+                            <br>
+                            <br>
+                        </div>
+                        <center>
+                            <button class='submit-payment'>Submit Payment</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slideMenu" style="display:none;right:0;">
+        <!-- <a class="img_a"> -->
+        <div class="img_a">
+            <div class="image_div">
+                <img style="width:100%" src="img/logo_iamold.png">
+            </div>
+
+            <h5 class="textMenu">
+                <a href="#" id='showInstructions'>INSTRUCTIONS
+                    <a>
+            </h5>
+
+
+            <h5 class="textMenu">
+                <a href="#" id='setMonitor'>SET MONITOR</a>
+            </h5>
+            <h5 class="textMenu">
+                <a href="#" id='viewActivity'>VIEW ACTIVITY
+                    <a>
+            </h5>
+
+            <h5 class="textMenu">
+                <a href="#" id='setMonitor'>SET MONITOR</a>
+            </h5>
+            <h5 class="textMenu">
+                <a href="#" id='viewActivity'>VIEW ACTIVITY
+                    <a>
+            </h5>
+
+            <h5 class="textMenu">
+                <a href="#" id='logout'>LOGOUT</a>
+            </h5>
+
+            <h5 class="textMenu">
+                <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE
+                    <a>
+            </h5>
+            <h5 class="textMenu">
+                <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
+                    <a>
+            </h5>
+            <h5 class="textMenu" style='display: none;' id='cancel_plan'>
+                <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+            </h5>
+
+
+        </div>
+
+
+        <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="js/braintree.js?v=1.9"></script>
+        <script src="js/iap.js?v=1.9"></script>
+
+        <script src="js/index.js?v=0.0.1"></script>
+        <script src="js/sweetalert.min.js"></script>
+        <script src="js/gps.js?v=1.96"></script>
+        <script src="js/custom.js?v=1.12"></script>
+        <script src="js/signup.js?v=1.98"></script>
+        <script src="js/video.js?v=1.97"></script>
+        <!-- <script src="js/subscribe.js"></script> -->
+        <script src="js/monitor.js?v=1.97"></script>
+        <script src="js/activity.js?v=1.97"></script>
+        <script src="js/logos.js?v=1.99"></script>
+        <script src="js/config.js?v=1.97"></script>
+        <script src="js/stripe.js?v=1.97"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
+        </script>
+
+        <script src="js/jquery.timepicker.min.js"></script>
+
+</body>
+
+</html>
