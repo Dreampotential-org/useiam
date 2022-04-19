@@ -27,7 +27,7 @@ function init() {
   init_invite();
   init_activity();
   init_display();
-  init_stripe();
+  //init_stripe();
   init_iap_events()
   load_logo_from_url()
 
