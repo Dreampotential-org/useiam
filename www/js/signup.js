@@ -167,9 +167,15 @@ function signup_api(params) {
                                 icon: "success",
                             });
                             $(".toggleBar").show();
+                            $("#signupModal").hide();
+                            $("#page-contents").show();
+                            
+                            $(".logoDiv").show();
+
                             $(".moto").show();
                             showATab("dashboard");
                             closeAllModals();
+                            
 
 
                         });
@@ -383,6 +389,9 @@ function login_api(email, password, callback) {
                 localStorage.setItem("session_id", JSON.parse(response).token);
                 console.log("user logged in");
 
+                $("#signinModal").hide();
+                $("#page-contents").show();
+
                 $(".toggleBar").show();
                 $(".moto").show();
                 callback();
@@ -399,7 +408,11 @@ function login_api(email, password, callback) {
 function signup_signin_buttons() {
     $("#signin").on("click", function (e) {
         e.preventDefault();
-        $("#signinModal").addClass("is-visible");
+        // $("#signinModal").addClass("is-visible");
+        $("#signinModal").show();
+        $("#page-contents").hide();
+        $('.logoDiv').hide()
+
     });
 
     $("#signup").on("click", function (e) {
@@ -409,9 +422,21 @@ function signup_signin_buttons() {
     });
     $("#select_organize").on("click", function (e) {
         e.preventDefault();
-        $("#orgModal").addClass("is-visible");
+        $("#page-contents").hide();
+        $('.logoDiv').hide()
+
+        $("#orgModal").show();
         $("#organize_name").focus();
     });
+
+    $("#backorgButtonAction").on("click", function (e) {
+        e.preventDefault();
+        $("#orgModal").hide();
+        $("#page-contents").show();
+        $('.logoDiv').show()
+    });
+
+
     $(".close").on("click", function (e) {
         e.preventDefault();
         $("#orgModal").removeClass("is-visible");
@@ -424,8 +449,11 @@ function signup_signin_buttons() {
 
     $(".signupNeed").on("click", function (e) {
         e.preventDefault();
-        $("#signupModal").addClass("is-visible");
-        $("#signinModal").removeClass("is-visible");
+        
+        $("#signupModal").show();
+        $("#signinModal").hide();
+        // $("#signupModal").addClass("is-visible");
+        // $("#signinModal").removeClass("is-visible");
     });
 
     $("#admin").on("click", function (e) {

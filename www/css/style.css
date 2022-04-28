@@ -1111,6 +1111,17 @@ li.notification .msg {
   padding: 0 !important;
 }
 
+.register{
+  background-color: #15301B;
+  width: 180px;
+  height: 50px;
+  border-radius: 19px;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 18px;    
+}
+
 .btnBack,
 .btnInfo {
   background: none;
@@ -1436,14 +1447,26 @@ i {
   color: white;
 }
 .noteDiv{
-  background: #fff;
+  /* background: #fff;
   padding: 12px 0px 0px;
   margin: 9px auto;
-  max-width: 92%;
+  max-width: 92%; */
   /* transform: translate(0px, -300px); */
-  border-radius: 5px;
+  /* border-radius: 5px; */
   /* transform: translateY(-100%); */
-  transform: translateY(-100%);
+  /* transform: tr.anslateY(-100%); */
+
+  /* changed */
+
+  background: #fff;
+    padding: 12px 0px 0px;
+    max-width: 100%;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 
@@ -1638,17 +1661,17 @@ span.alignTag{
   width: 100%;
   font-size: 17px;
   padding: 10px;
-  color: white;
+  color: black;
 }
 .loginform div{
-  padding: 16px;
+  padding: 11px 0 11px 0;
 }
 .emailDiv{
   padding-top: 70px;
   font-family:'Poppins', sans-serif!important;
 }
 .loginform input::placeholder {
-  color: white;
+  color: black;
   opacity: 1; /* Firefox */
   font-family:'Poppins', sans-serif!important;
 }
@@ -1656,15 +1679,15 @@ span.alignTag{
 .setForm input{
   outline: 0;
   border-width: 0 0 3px;
-  border-color: rgb(0, 215, 119);
+  /* border-color: rgb(0, 215, 119); */
   background: none;
   width: 100%;
   font-size: 17px;
   padding: 10px;
-  color: white;
+  color: black;
 }
 .setForm input::placeholder {
-  color: white;
+  color: black;
   opacity: 1; /* Firefox */
   font-family:'Poppins', sans-serif!important;
 }
@@ -1676,13 +1699,13 @@ span.alignTag{
   width: 100%;
   font-size: 17px;
   padding: 10px;
-  color: white;
+  color: black;
 }
 .signupEmail{
   font-family:'Poppins', sans-serif !important;
 }
 .signupform input::placeholder {
-  color: white;
+  color: black;
   opacity: 1; /* Firefox */
   font-family:'Poppins', sans-serif!important;
 }

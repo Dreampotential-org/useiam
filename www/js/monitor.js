@@ -15,14 +15,87 @@ function populate_signup_orgs() {
 function init_monitor() {
 
   populate_signup_orgs();
+  let previous_node =''
   $("body").delegate(".org_list li", "click", function (e) {
-        e.preventDefault();
-        SELECTED_ORG_ID = $(this).attr("id");
-        SELECTED_ORG_LOGO = $(this).attr("org_image");
-        $("#signupModal").addClass("is-visible");
-        $("#orgModal").removeClass("is-visible");
-        document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
-   })
+    e.preventDefault();
+    SELECTED_ORG_ID = $(this).attr("id");
+    SELECTED_ORG_LOGO = $(this).attr("org_image");
+    console.log('check previous node',previous_node,previous_node===true)
+
+    $('#showConfirm').show()
+    
+    if(!previous_node){
+      console.log('previous node emply')
+      console.log('selected node',$(this)[0])
+      selected_node = $(this)[0]
+      selected_node.style.border = '3px solid black'
+      previous_node = selected_node
+    }
+    else{
+      console.log('selected node',$(this)[0])
+      selected_node = $(this)[0]
+      selected_node.style.border = '3px solid black'
+
+      previous_node.style.border = 'none'
+
+      previous_node = selected_node
+    
+    }
+
+  
+
+    // $("#signupModal").addClass("is-visible");
+    // $("#orgModal").removeClass("is-visible");
+    document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+    document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+
+})
+
+    $("#showConfirm").on("click", function (e) {
+      $('#showConfirm').hide()
+      $("#signupModal").show();
+      $("#orgModal").removeClass("is-visible");
+      $("#orgModal").hide();
+
+    });
+
+    $("#signUpBackButton").on("click", function (e) {
+      console.log('signupbackbutton')
+      $("#orgModal").show();
+      $("#signupModal").hide();
+
+    });
+
+    
+
+    $("#loginbutton").on("click", function (e) {
+      $("#signupModal").hide();
+      $("#signinModal").show();
+      
+      
+
+    });
+
+    $("#backButtonAction").on("click", function (e) {
+      $("#signupModal").show();
+      $("#signinModal").hide();
+      
+    
+    });
+
+    
+    
+
+
+
+  // $("body").delegate(".org_list li", "click", function (e) {
+  //       e.preventDefault();
+  //       SELECTED_ORG_ID = $(this).attr("id");
+  //       SELECTED_ORG_LOGO = $(this).attr("org_image");
+  //       $("#signupModal").addClass("is-visible");
+  //       $("#orgModal").removeClass("is-visible");
+  //       document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+  //  })
 
   $("#sober_count").on("click", function (e) {
     console.log("In updtate date function....");
@@ -82,10 +155,20 @@ function init_monitor() {
     get_profile_info(function (msg) {
       show_set_monitor();
 
+      $("#page-contents").hide();
+      $("#logoDivId").hide();
+      $("#setmonitorModal").show();
+
+
+
+
+      
+
       // closes side menu
       $(".toggleBar").click();
       $(".current-monitors").empty();
       for (var monitor of msg.monitors) {
+        console.log('monitors',monitor)
         display_monitor(monitor);
       }
     });
@@ -127,11 +210,11 @@ function init_invite() {
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
-    "<div>" +
+    "<div class='row'>" +
       monitor +
-      " - <a val='" +
+      " - <input type='checkbox' val='" +
       monitor +
-      "' class='remove-monitor buttonColor' href='#'>remove</a></div>"
+      "' class='remove-monitor buttonColor' ></div>"
   );
 
   $(".remove-monitor").on("click", function (e) {
@@ -422,10 +505,15 @@ function do_set_monitor() {
       showATab("dashboard");
       //close modals
       //closeAllModals();
+    
 
       $(".toggleBar").click();
       $("#showInstructions").click();
       console.log("Show instructions");
+
+      $("#page-contents").show();
+      $("#logoDivId").show();
+       $("#setmonitorModal").hide ();
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
@@ -436,6 +524,12 @@ function do_set_monitor() {
         icon: "error",
       });
     });
+
+
+    // $("#page-contents").show();
+    // $("#logoDivId").show();
+    // $("#setmonitorModal").hide ();
+
 }
 
 function api_remove_monitor(notify_email) {
@@ -470,7 +564,20 @@ function api_remove_monitor(notify_email) {
         icon: "error",
       });
     });
+
+    
+    $("#page-contents").show();
+    $("#logoDivId").show();
+    $("#setmonitorModal").hide ();
+    
 }
+
+$("#backbuttonsetmonitor").on("click", function (e) {
+  $("#page-contents").show();
+  $("#logoDivId").show();
+  $("#setmonitorModal").hide ();
+});
+
 
 function get_profile_info(callback) {
   if (!localStorage.getItem("session_id")) {
