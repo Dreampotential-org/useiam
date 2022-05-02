@@ -6,6 +6,16 @@ function init_activity() {
       document.getElementById("logoDivId").style.display = "block";
     }
 
+    $("#backActivityButtonAction").click(function () {
+      showATab("dashboard")
+      $('.logoDiv').show()
+      $(".toggleBar").show();
+      $(".btnBack").hide()
+
+    });
+
+    
+
     $(".toggleBar").click();
     closeAllModals();
     // showBackButton('dashboard');

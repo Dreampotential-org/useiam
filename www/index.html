@@ -328,9 +328,18 @@
             </div>
 
             <div id="activity">
-                <div class="mainContainer">
-                    <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
-                    <div class='activity-log' id="eventData">
+                <div style="width: 100%;max-width: 100%;" class="mainContainer">
+                    <div style="padding:10px 0px 10px 0px" class="row">
+                        <div style="padding-right:10px ;align-self: center;">
+                            <i id="backActivityButtonAction" style="font-size:25px;color: #7f7676;" class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <!-- <p style="margin: 0;align-self: center;color: white;font-size: 25px;">LOG IN</p> -->
+                            <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
+                        
+                        </div>
+                    </div>
+                    <div style="background: white;height: 700px;" class='activity-log' id="eventData">
                         <ol class="chat" id="activity-log"></ol>
                     </div>
                 </div>
@@ -339,9 +348,17 @@
             <div id="addEvent" class="noteDiv">
                 <div class="mainContainer">
                     <!-- <h3 class="locAuthTitle textCenter">ENTER NOTE</h3> -->
-                    <div class="text-left;padding:10px;margin-bottom:10px">
-                        <p style="margin: 0;font-size: 27px;font-weight: 700;">GPS Location Found</p>
+                    <div style="padding:10px 0px 10px 0px" class="row">
+                        <div style="padding-right:10px ;">
+                            <i id="backgpsloc" style="font-size:25px;color: #7f7676;" class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <p style="margin: 0;font-size: 27px;font-weight: 700;">GPS Location Found</p>
+                        </div>
                     </div>
+                    <!-- <div class="text-left;padding:10px;margin-bottom:10px">
+                        <p style="margin: 0;font-size: 27px;font-weight: 700;">GPS Location Found</p>
+                    </div> -->
                     <div class="text-right;padding:10px;margin-bottom">
                         <p style="margin: 0;font-size: 18px;">Describe the event</p>
                     </div>
@@ -658,12 +675,12 @@
                                 <button class="actionBtn  dark" type="button" id="nextBtn">ADD</button>
                             </div>
                         </div> -->
-                        <div style="margin-top: 20px;padding: 10px;" class="instruct_Data">
+                        <div style="margin-top: 20px" class="instruct_Data">
                             <div>
                                 <b style="color:black;margin: 20px;">Active Monitors:</b>
                             </div>
                             <hr>
-                            <div style="color: black;margin: 15px 15px;" class="current-monitors"><div>adasd@gmail.com - <a val="adasd@gmail.com" class="remove-monitor buttonColor" href="#">remove</a></div><div>asdasd@gmail.com - <a val="asdasd@gmail.com" class="remove-monitor buttonColor" href="#">remove</a></div></div>
+                            <div style="color: black;margin: 15px 0px 0px 0px;height: 53vh;overflow-y: auto;background: white;width: 100%;padding: 5px 12px;" class="current-monitors"><div>adasd@gmail.com - <a val="adasd@gmail.com" class="remove-monitor buttonColor" href="#">remove</a></div><div>asdasd@gmail.com - <a val="asdasd@gmail.com" class="remove-monitor buttonColor" href="#">remove</a></div></div>
                         </div>
                     </form>
                 </div>
@@ -897,7 +914,7 @@
             </div>
           
     
-            <div id="selected_org" ></div>
+            <div style="height: 20vh;" id="selected_org" ></div>
         </div>
 
             <div style="height: 70vh;
@@ -978,7 +995,7 @@
                     <style type="text/css">
                         #selected_org img{
                             width:  200px;
-                            height: 70px;
+                            height: inherit;
                             border: 1px solid white;
                             background: white;
                             left: 0;
