@@ -18,6 +18,16 @@ function init_gps_event() {
         $("#addEvent textarea").val("")
     });
 
+    $('#backgpsloc').on('click', function (e) {
+        $("#page-contents").show();
+        $('.logoDiv').show()
+        $('.btnBack').hide()
+        $('.toggleBar').show()
+
+        showATab('dashboard');
+        
+    });
+
     $("#allowGPS").on("click", function (e) {
         start_gps()
         found_gps_or_timeout();
