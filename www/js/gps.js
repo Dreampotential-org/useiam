@@ -4,6 +4,7 @@ function init_gps_stuff() {
 
 var CURRENT_POSITION = null;
 var CURRENT_POSITION_LOW = null;
+var GPS_FAILED = false
 
 function init_gps_event() {
     $('.btnEvent').on('click', function (e) {
@@ -115,6 +116,9 @@ function found_gps_or_timeout() {
     setTimeout(function () {
         var counter = 0;
         var i = setInterval(function () {
+            if(GPS_FAILED){
+                clearInterval(i);
+            }
             if (CURRENT_POSITION == null && CURRENT_POSITION_LOW == null) {
                 console.log("No GPS Signal. Try again");
             } else {
@@ -138,6 +142,7 @@ function isApp() {
 }
 
 function start_gps() {
+    GPS_FAILED = false;
     // log_error_to_slack("GSP INIT")
     // Start gps prob with low accuracy
     var geo_options_low = {
@@ -160,7 +165,6 @@ function start_gps() {
     }
 
     function geo_error(err) {
-
         if (err.code == 1 || err.code == err.PERMISSION_DENIED ||
             err.code == err.UNKNOWN_ERROR) {
             swal({
@@ -168,13 +172,16 @@ function start_gps() {
                 text: "Please allow gps permission",
                 icon: "error",
             });
+            navigator.geolocation.clearWatch();
+            GPS_FAILED = true
+        } else {
+            start_gps()
         }
         console.log("errror no gps")
         console.warn('ERROR(' + err.code + '): ' + err.message);
         //alert('ERROR(' + err.code + '): ' + err.message);
         //log_error_to_slack(
         //     'ERROR(' + err.code + '): ' + err.message);
-        start_gps()
     }
 
     geo_options = {

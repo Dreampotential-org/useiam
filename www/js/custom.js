@@ -352,6 +352,20 @@ $(".btnOk").on("click", function (e) {
   closeAllModals();
 });
 
+$("#feedback").on("click", function (e) {
+  document.addEventListener('deviceready', function () {
+      if(LaunchReview.isRatingSupported()){
+          LaunchReview.rating();
+      }else{
+          LaunchReview.launch(function(){
+              console.log("Successfully");
+          },function(err){
+              console.log("Error launching store app: " + err);
+          }, '1497407740');
+      }
+  }, false);
+});
+
 function closeAllModals() {
   $("#logincodeModal").removeClass("is-visible");
   $("#setOrgModal").removeClass("is-visible");

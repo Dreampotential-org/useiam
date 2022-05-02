@@ -33,6 +33,7 @@
     "cordova-plugin-wkwebview-engine": "^1.2.1"
   },
   "devDependencies": {
+    "cordova-launch-review": "^4.0.1",
     "cordova-plugin-geolocation": "github:apache/cordova-plugin-geolocation",
     "cordova-plugin-keep-awake": "git+https://github.com/snuffy/cordova-plugin-keep-awake.git",
     "cordova-plugin-whitelist": "1"
