@@ -251,7 +251,17 @@ function get_activity(callback) {
       callback(msg);
     })
     .fail(function (err) {
-      alert("Got err");
+      swal({
+        title: "Error Try Again",
+        text: "Sorry, there is an error please try again later.",
+        icon: "error",
+        buttons: [true, "Retry"],
+      }).then((retry) => {
+        if (retry) {
+            $("#viewActivity").click();
+        }
+      });
+
     });
 }
 
