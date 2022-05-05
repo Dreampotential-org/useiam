@@ -248,6 +248,8 @@ function handle_signin() {
                         icon: "success",
                     });
 
+                    $('.logoDiv').show()
+
                     //if (!isApp()) {
                     // Farrukh add subscription integration
                     // make free for webclient until we implement
