@@ -1681,9 +1681,7 @@ span.alignTag{
   border-width: 0 0 3px;
   /* border-color: rgb(0, 215, 119); */
   background: none;
-  /* width: 100%; */
-  width: 40px;
-
+  width: 100%;
   font-size: 17px;
   padding: 10px;
   color: black;

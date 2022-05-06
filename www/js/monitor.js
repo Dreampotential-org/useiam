@@ -210,11 +210,11 @@ function init_invite() {
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
-    "<div class='row'> <div style='font-size:17px;flex: 1 1 90%'>" +
+    "<div class='row'>" +
       monitor +
-      " </div> <div style='flex:1 1 10%;align-self:center'> <input type='checkbox' val='" +
+      " - <input type='checkbox' val='" +
       monitor +
-      "' class='remove-monitor buttonColor' ></div></div>"
+      "' class='remove-monitor buttonColor' ></div>"
   );
 
   $(".remove-monitor").on("click", function (e) {

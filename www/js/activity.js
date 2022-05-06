@@ -6,14 +6,6 @@ function init_activity() {
       document.getElementById("logoDivId").style.display = "block";
     }
 
-    $("#backActivityButtonAction").click(function () {
-      showATab("dashboard")
-      $('.logoDiv').show()
-      $(".toggleBar").show();
-      $(".btnBack").hide()
-
-    });
-
     $(".toggleBar").click();
     closeAllModals();
     // showBackButton('dashboard');
@@ -22,6 +14,30 @@ function init_activity() {
       display_activities(resp.events);
     });
 
+    // if (localStorage.getItem("isSubscribed") == "true") {
+    //   console.log(
+    //     "In INIT Activity ____**************",
+    //     document.getElementById("activity")
+    //   );
+
+    //   if (document.getElementById("activity")) {
+    //     document.getElementById("logoDivId").style.display = "none";
+    //   } else {
+    //     document.getElementById("logoDivId").style.display = "block";
+    //   }
+
+    //   $(".toggleBar").click();
+    //   closeAllModals();
+    //   // showBackButton('dashboard');
+    //   showATab("activity");
+    //   get_activity(function (resp) {
+    //     display_activities(resp.events);
+    //   });
+    // } else {
+    //   $(".toggleBar").click();
+    //   closeAllModals();
+    //   showATab("dashboard");
+    // }
   });
 
   $(".open-pdf").on("click", function (e) {
@@ -58,10 +74,6 @@ function init_activity() {
         localStorage.getItem("session_id") +
         ' type="video/mp4">'
     );
-    get_content_comments(id, user)
-
-
-
 
     $("button").on("click", fav);
     function fav(e) {
@@ -251,17 +263,7 @@ function get_activity(callback) {
       callback(msg);
     })
     .fail(function (err) {
-      swal({
-        title: "Error Try Again",
-        text: "Sorry, there is an error please try again later.",
-        icon: "error",
-        buttons: [true, "Retry"],
-      }).then((retry) => {
-        if (retry) {
-            $("#viewActivity").click();
-        }
-      });
-
+      alert("Got err");
     });
 }
 
@@ -366,31 +368,4 @@ function getUrlVars(url) {
     vars[key] = value;
   });
   return vars;
-}
-
-
-function get_content_comments(id, user) {
-  var settings = {
-    async: true,
-    crossDomain: true,
-    headers: {
-      Authorization: "Token " + localStorage.getItem("session_id"),
-    },
-    url: SERVER + "/api/get-video-info/?token=" + localStorage.getItem("session_id") + "&user=" + user + "&id=" + id,
-    method: "GET",
-    processData: false,
-    contentType: false,
-    mimeType: "multipart/form-data",
-  };
-
-  $.ajax(settings)
-    .done(function (response) {
-      var msg = JSON.parse(response);
-      console.log(response)
-      videoData = JSON.parse(response);
-      var allData = JSON.parse(response);
-      for(var feedback of allData.feedback) {
-        console.log(feedback);
-      }
-    })
 }
