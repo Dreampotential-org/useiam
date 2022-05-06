@@ -1,258 +1,252 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <!--CSS -->
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <!--CSS -->
 
-    <link rel="stylesheet" href="css/style.css?v=1.7">
-    <link rel="stylesheet" href="css/responsive.css?v=1.6" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="css/style.css?v=1.7">
+        <link rel="stylesheet" href="css/responsive.css?v=1.6" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 
-    <meta name="keywords"
-        content="useIAM, Accountability therapy, self help, team, journal, diary, win, life, goals, profit, growth, 10x, improve" />
+        <meta name="keywords"
+              content="useIAM, Accountability therapy, self help, team, journal, diary, win, life, goals, profit, growth, 10x, improve" />
 
-    <title>IAM</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/jquery.timepicker.min.css">
-    <style>
-        select#organization {
-            width: 100%;
-            height: 40px;
-            border-radius: 5px;
-        }
+        <title>IAM</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+        <style>
+            select#organization {
+                width: 100%;
+                height: 40px;
+                border-radius: 5px;
+            }
 
-        .action-btns {
-            padding: 0px 30px !important;
-            text-align: left;
-        }
+            .action-btns {
+                padding: 0px 30px !important;
+                text-align: left;
+            }
+            #org_list {
+                padding: 10px;
+                width: 100%;
+            }
+            ul#org_list li {
+                border-radius: 10px;
+            }
 
-        #org_list {
-            padding: 10px;
-            width: 100%;
-        }
+               
+.step_img{
+    width: 100%;
+    height: inherit;
+   }
+   
+   .mainFrame{
+    background: white;
+    position: absolute;
+    top: 416px;
+    height: 60vh;
+    width: 100vw;
+    border-radius: 70px 71px 0 0;
+    min-height: 430px;
+    bottom: 0;
+   }
 
-        ul#org_list li {
-            border-radius: 10px;
-        }
+   .contentContainer{
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        width: 75%;
+        margin: auto;
+        flex-direction: column;
+        margin-top: 50px;
+        align-items: center;
+   }
 
+   .headingTag{
+        margin: 0;
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 36px;
+        margin-bottom: 10px;
+        text-align: center;
+   }
 
-        .step_img {
-            width: 100%;
-            height: inherit;
-        }
+   .contentTag{
+        margin: 0;
+        font-size: 19px;
+        font-weight: 300;
+        line-height: 33.25px;
+        margin-bottom: 10px;
+        text-align: center;
+   }
 
-        .mainFrame {
-            background: white;
-            position: absolute;
-            top: 416px;
-            height: 60vh;
-            width: 100vw;
-            border-radius: 70px 71px 0 0;
-            min-height: 430px;
-            bottom: 0;
-        }
+   .step_button{
+        background: #5F683C;
+        height: 70px;
+        border-radius: 20px;
+        width: 280px;
+        outline: none;
+        border: none;
+        font-size: 22px;
+        color: white;
+        font-weight: 600;
+   }
 
-        .contentContainer {
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            width: 75%;
-            margin: auto;
-            flex-direction: column;
-            margin-top: 50px;
-            align-items: center;
-        }
+   .endTag{
+         font-size: 20px;
+         text-decoration: underline;
+   }
 
-        .headingTag {
-            margin: 0;
-            font-size: 27px;
-            font-weight: 600;
-            line-height: 36px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+   ::placeholder {
+                color: black;
+                     opacity: 1; /* Firefox */
+                }
+        </style>
+    </head>
 
-        .contentTag {
-            margin: 0;
-            font-size: 19px;
-            font-weight: 300;
-            line-height: 33.25px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+    <body>
+        <header>
+            <div id="mainBox" class="mainContainer" style="position: relative">
+                <button class="btnBack">
+                    <img src="images/left-arrow.png" alt="" />
+                    <input type="hidden" id="backTabID" />
+                </button>
+                <button class="btnInfo">
+                    <img src="images/nfo.png" alt="" />
+                </button>
+                <nav class="toggleBar">
+                    <span class="bar bar1"></span>
+                    <span class="bar bar2"></span>
+                    <span class="bar bar3"></span>
+                </nav>
+            </div>
+        </header>
 
-        .step_button {
-            background: #5F683C;
-            height: 70px;
-            border-radius: 20px;
-            width: 280px;
-            outline: none;
-            border: none;
-            font-size: 22px;
-            color: white;
-            font-weight: 600;
-        }
+        <div class="logoDiv" id="logoDivId">
+            <div class="logo" style='display:none'></div>
 
-        .endTag {
-            font-size: 20px;
-            text-decoration: underline;
-        }
-
-        ::placeholder {
-            color: black;
-            opacity: 1;
-            /* Firefox */
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <div id="mainBox" class="mainContainer" style="position: relative">
-            <button class="btnBack">
-                <img src="images/left-arrow.png" alt="" />
-                <input type="hidden" id="backTabID" />
-            </button>
-            <button class="btnInfo">
-                <img src="images/nfo.png" alt="" />
-            </button>
-            <nav class="toggleBar">
-                <span class="bar bar1"></span>
-                <span class="bar bar2"></span>
-                <span class="bar bar3"></span>
-            </nav>
-        </div>
-    </header>
-
-    <div class="logoDiv" id="logoDivId">
-        <div class="logo" style='display:none'></div>
-
-        <!-- <div class="logo2" style='color:white;'>
+            <!-- <div class="logo2" style='color:white;'>
                 <h1>ACCOUNTABLE</h1>
             </div> -->
-        <div class='moto'>
-        </div>
-    </div>
-    <div class="onboarding_step" id="step1">
-        <div style="width: 100vw;height: 457px;">
-            <img class="step_img" src="./images/check.png">
-        </div>
-
-        <div class="mainFrame">
-
-            <div class="contentContainer">
-
-                <div>
-                    <p class="headingTag">
-                        Document your daily activities
-                    </p>
-
-                </div>
-                <div>
-                    <p class="contentTag">Submit a daily video talking about plans for the day or taking doctor
-                        prescribed medicine.</p>
-                </div>
-                <div style="margin-bottom: 12px;">
-                    <button class="step_button" id="button_step_1">NEXT</button>
-                </div>
-                <div>
-                    <p id="skipButton" class="endTag">Skip</p>
-                </div>
-
+            <div class='moto'>
             </div>
-
         </div>
-    </div>
-    <div class="onboarding_step" id="step2">
-        <div style="width: 100vw;height: 457px;">
-            <img class="step_img" src="./images/check_2.png">
-        </div>
-
-        <div class="mainFrame">
-
-            <div class="contentContainer">
-
-                <div>
-                    <p class="headingTag">
-                        Trust and accountability
-                    </p>
-
-                </div>
-                <div>
-                    <p class="contentTag">We have partnered with
-                        your recovery program in
-                        guiding you with your journey.</p>
-                </div>
-                <div style="margin-bottom: 12px;">
-                    <button class="step_button" id="button_step_2">NEXT</button>
-                </div>
-                <div>
-                    <p id="skipButton2" class="endTag">Skip</p>
-                </div>
-
+        <div id="step1">
+            <div style="width: 100vw;height: 457px;">
+                <img class="step_img" src="./images/check.png">
             </div>
-
-        </div>
-    </div>
-
-    <div class="onboarding_step" id="step3">
-        <div style="width: 100vw;height: 457px;">
-            <img class="step_img" src="./images/check_3.png">
-        </div>
-        <div style="background-color:#5F683C;height: 60vh;">
+            
             <div class="mainFrame">
-
-                <div class="contentContainer">
-
+        
+                <div class="contentContainer" >
+        
                     <div>
-                        <p class="headingTag">
-                            Your road to recovery
+                        <p class="headingTag" >
+                            Document your daily activities
                         </p>
-
+        
                     </div>
                     <div>
-                        <p class="contentTag">UseIAM is an effective tool to nurture self introspection
-                            and foster growth.</p>
+                        <p class="contentTag" >Submit a daily video talking about plans for the day or taking doctor prescribed medicine.</p>
                     </div>
                     <div style="margin-bottom: 12px;">
-                        <button class="step_button" id="button_step_3">Let's Get Started </button>
+                        <button class="step_button" id="button_step_1" >NEXT</button>
                     </div>
-
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-    <div id="page-contents">
-        <div id="login">
-            <div class="mainContainer" style="text-align: -webkit-center;">
-                <div>
                     <div>
-                        <p style="font-size: 27px;line-height: 36px;margin-top: 60px;margin-bottom: 11px;font-weight: 600;"
-                            class="card-title">Hello, Meet useIAM,</p>
-                        <p style="font-size: 20px;line-height: 36px;" class="card-text">Your Interactive Accountability
-                            Manager</p>
-                        <!--<label class="control-label" for="company">Select Organization</label>
+                        <p id="skipButton"  class="endTag"  >Skip</p>
+                    </div>
+        
+                </div>
+            
+            </div>  
+        </div> 
+         <div id="step2">
+            <div style="width: 100vw;height: 457px;">
+                <img class="step_img"  src="./images/check_2.png">
+            </div>
+            
+            <div class="mainFrame">
+        
+                <div class="contentContainer" >
+        
+                    <div>
+                        <p class="headingTag" >
+                            Trust and accountability
+                        </p>
+        
+                    </div>
+                    <div>
+                        <p class="contentTag" >We have partnered with 
+                            your recovery program in 
+                            guiding you with your journey.</p>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <button class="step_button" id="button_step_2" >NEXT</button>
+                    </div>
+                    <div>
+                        <p id="skipButton2"   class="endTag"  >Skip</p>
+                    </div>
+        
+                </div>
+            
+            </div>  
+        </div> 
+    
+         <div id="step3">
+            <div style="width: 100vw;height: 457px;">
+                <img class="step_img" src="./images/check_3.png">
+            </div>
+            <div style="background-color:#5F683C;height: 60vh;">
+                <div class="mainFrame">
+        
+                    <div class="contentContainer" >
+            
+                        <div>
+                            <p class="headingTag" >
+                                Your road to recovery
+                            </p>
+            
+                        </div>
+                        <div>
+                            <p class="contentTag" >UseIAM is an effective tool to nurture self introspection 
+                                and foster growth.</p>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <button class="step_button" id="button_step_3" >Let's Get Started </button>
+                        </div>
+                       
+            
+                    </div>
+                
+                </div>
+            </div>
+           
+        </div>
+        <div id="page-contents">
+            <div id="login">
+                <div class="mainContainer" style="text-align: -webkit-center;">
+                    <div>
+                        <div >
+                              <p style="font-size: 27px;line-height: 36px;margin-top: 60px;margin-bottom: 11px;font-weight: 600;" class="card-title">Hello, Meet useIAM,</p>
+                              <p style="font-size: 20px;line-height: 36px;" class="card-text">Your Interactive Accountability Manager</p>
+                            <!--<label class="control-label" for="company">Select Organization</label>
                             <div class="col-sm-12">
                                 <select id="organization" class="form-control"></select>
                             </div>-->
+                        </div>
                     </div>
-                </div>
-                <div class="action-btns">
-                    <div style="display: flex;flex-direction: column;align-items: center;">
-                        <div style="margin-bottom: 10px;" class="column btn1">
-                            <!--<button class=" dark" id="signup">I AM NEW</button>-->
-                            <button style="background: #5F683C;
+                    <div class="action-btns">
+                        <div style="display: flex;flex-direction: column;align-items: center;">
+                            <div style="margin-bottom: 10px;" class="column btn1">
+                                <!--<button class=" dark" id="signup">I AM NEW</button>-->
+                                <button style="background: #5F683C;
                                 height: 70px;
                                 border-radius: 20px;
                                 width: 280px;
@@ -261,9 +255,9 @@
                                 font-size: 22px;
                                 color: white;
                                 font-weight: 600;" class=" dark" id="select_organize">I AM NEW</button>
-                        </div>
-                        <div class="column btn2">
-                            <button style="background: #5F683C;
+                            </div>
+                            <div class="column btn2">
+                                <button style="background: #5F683C;
                                 height: 70px;
                                 border-radius: 20px;
                                 width: 280px;
@@ -272,31 +266,31 @@
                                 font-size: 22px;
                                 color: white;
                                 font-weight: 600; " class=" dark" id="signin">SIGN IN</button>
+                            </div>
+                            <br><br>
                         </div>
-                        <br><br>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="dashboard">
-            <div class="secAction"></div>
-            <div class="action-btns">
-                <div id="subscribed-user">
-                    <div class="row1">
-                        <div class="column1 btn1 subVideoBtn ">
-                            <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+            <div id="dashboard">
+                <div class="secAction"></div>
+                <div class="action-btns">
+                    <div id="subscribed-user">
+                        <div class="row1">
+                            <div class="column1 btn1 subVideoBtn ">
+                                <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+                            </div>
+                        </div>
+                        <div class="row1">
+
+                            <div class="column1 btn2">
+                                <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="row1">
-
-                        <div class="column1 btn2">
-                            <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="not-subscribed-user" class="row1">
-                    <!--
+                    <div id="not-subscribed-user" class="row1">
+                        <!--
                         <h3 class="textCenter subscribeText column1" style="color:white">Use IAM is a paid monthly
                             subscription service </h3>
                         <h4 class="textCenter subscribeText column1" style="color:white">$19.99 - Monthly Service</h4>
@@ -304,60 +298,60 @@
                             <button class="actionBtn subscribe">SUBSCRIBE</button>
                         </div>
                         -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="takeVideo">
+                <div class="mainContainer">
+                    <video width="100%" height="auto" autoplay="true" id="videoElement">
+                    </video>
+                </div>
+                <div class="secAction recording" id="recordingAction">
+                    <button class="actionBtn btnRecord">&nbsp;</button>
+                    <button class="actionBtn btnSwitchCamera">
+                        <img width="20px" src="images/ico-refresh.png" alt="" />
+                    </button>
                 </div>
             </div>
 
-        </div>
+            <div id="submitVideo">
+                <div class="mainContainer">
+                    <video width="100%" height="auto">
 
-        <div id="takeVideo">
-            <div class="mainContainer">
-                <video width="100%" height="auto" autoplay="true" id="videoElement">
-                </video>
-            </div>
-            <div class="secAction recording" id="recordingAction">
-                <button class="actionBtn btnRecord">&nbsp;</button>
-                <button class="actionBtn btnSwitchCamera">
-                    <img width="20px" src="images/ico-refresh.png" alt="" />
-                </button>
-            </div>
-        </div>
-
-        <div id="submitVideo">
-            <div class="mainContainer">
-                <video width="100%" height="auto">
-
-                </video>
-            </div>
-            <div class="secAction recorded">
-                <button class="actionBtn submitRecordingBtn">Submit Recording</button>
-            </div>
-        </div>
-
-        <div id="activity">
-            <div class="mainContainer">
-                <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
-                <div class='activity-log' id="eventData">
-                    <ol class="chat" id="activity-log"></ol>
+                    </video>
+                </div>
+                <div class="secAction recorded">
+                    <button class="actionBtn submitRecordingBtn">Submit Recording</button>
                 </div>
             </div>
-        </div>
 
-        <div id="addEvent" class="noteDiv">
-            <div class="mainContainer">
-                <!-- <h3 class="locAuthTitle textCenter">ENTER NOTE</h3> -->
-                <div class="text-left;padding:10px;margin-bottom:10px">
-                    <p style="margin: 0;font-size: 27px;font-weight: 700;">GPS Location Found</p>
-                </div>
-                <div class="text-right;padding:10px;margin-bottom">
-                    <p style="margin: 0;font-size: 18px;">Describe the event</p>
-                </div>
-                <div class="eventBox">
-                    <textarea class="note" rows="5" placeholder="Add Description"></textarea>
+            <div id="activity">
+                <div class="mainContainer">
+                    <h3 class="locAuthTitle textCenter">ACTIVITY LOG</h3>
+                    <div class='activity-log' id="eventData">
+                        <ol class="chat" id="activity-log"></ol>
+                    </div>
                 </div>
             </div>
-            <div class="secAction">
-                <div>
-                    <button style="width: 300px;
+
+            <div id="addEvent" class="noteDiv">
+                <div class="mainContainer">
+                    <!-- <h3 class="locAuthTitle textCenter">ENTER NOTE</h3> -->
+                    <div class="text-left;padding:10px;margin-bottom:10px">
+                        <p style="margin: 0;font-size: 27px;font-weight: 700;">GPS Location Found</p>
+                    </div>
+                    <div class="text-right;padding:10px;margin-bottom">
+                        <p style="margin: 0;font-size: 18px;">Describe the event</p>
+                    </div>
+                    <div class="eventBox">
+                        <textarea class="note" rows="5" placeholder="Add Description"></textarea>
+                    </div>
+                </div>
+                <div class="secAction">
+                    <div  >
+                        <button style="width: 300px;
                         min-width: 300px;
                         height: 60px;
                         border-radius: 19px;
@@ -365,147 +359,143 @@
                         color: white;
                         font-size: 22px;
                         outline: none;
-                        border: none;" id="locationAuth">Submit Location</button>
+                        border: none;"  id="locationAuth">Submit Location</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div id="success">
-            <div class="mainContainer">
-                <ol class="chat">
-                    <li class="other">
-                        <div class="avatar">
-                            <img src="images/iam.png" draggable="false" />
-                        </div>
-                        <div class="msg">
-                            <p>What would you like to do?</p>
-                        </div>
-                    </li>
-                </ol>
+            <div id="success">
+                <div class="mainContainer">
+                    <ol class="chat">
+                        <li class="other">
+                            <div class="avatar">
+                                <img src="images/iam.png" draggable="false" />
+                            </div>
+                            <div class="msg">
+                                <p>What would you like to do?</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+                <div class="secAction">
+                    <button class="actionBtn btnVideo">Take a Video</button>
+                    <button class="actionBtn btnEvent">Attend Event
+                        <span>(Check-In/Check-Out)</span>
+                    </button>
+                </div>
             </div>
-            <div class="secAction">
-                <button class="actionBtn btnVideo">Take a Video</button>
-                <button class="actionBtn btnEvent">Attend Event
-                    <span>(Check-In/Check-Out)</span>
-                </button>
+
+            <div id="eventView">
+                <div class='content'></div>
             </div>
+
         </div>
 
-        <div id="eventView">
-            <div class='content'></div>
-        </div>
 
-    </div>
+        <div style="display: none;" id="signinModal">
 
-
-    <div style="display: none;" id="signinModal">
-
-        <style>
-            ::placeholder {
+            <style>
+                ::placeholder {
                 color: black;
-                opacity: 1;
-                /* Firefox */
-            }
+                     opacity: 1; /* Firefox */
+                }
 
-            #selected_org1 img {
-                width: 200px;
-                height: 70px;
-                border: 1px solid white;
-                background: white;
-                left: 0;
-                right: 0;
-            }
+                #selected_org1 img{
+                            width:  200px;
+                            height: 70px;
+                            border: 1px solid white;
+                            background: white;
+                            left: 0;
+                            right: 0;
+                        }
+                #selected_org1{
+                            text-align: center;
+                        }
 
-            #selected_org1 {
-                text-align: center;
-            }
+                        .logingoogle{
+                            background-color: #E3E3E3;
+                            width: 215px;
+                            min-width: 215px;
+                            height: 50px;
+                            border-radius: 19px;
+                            color: white;
+                            outline: none;
+                            border: none;
+                            color: #707070;
+                            font-weight: 600;
+                            font-size: 18px;   
+                        }
+            </style>
+            <div  >
 
-            .logingoogle {
-                background-color: #E3E3E3;
-                width: 215px;
-                min-width: 215px;
-                height: 50px;
-                border-radius: 19px;
-                color: white;
-                outline: none;
-                border: none;
-                color: #707070;
-                font-weight: 600;
-                font-size: 18px;
-            }
-        </style>
-        <div>
+                <div  style="height: 20vh">
+                   
+                        <div style="width: 90%;margin: auto;">
+                            <div style="padding:10px 0px 10px 0px" class="row">
+                                <div style="padding-right:10px ;">
+                                    <i id="backButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <p style="margin: 0;align-self: center;color: white;font-size: 25px;">LOG IN</p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                   
+            
+                    <div id="selected_org1" ></div>
+                </div>
 
-            <div style="height: 20vh">
-
-                <div style="width: 90%;margin: auto;">
-                    <div style="padding:10px 0px 10px 0px" class="row">
-                        <div style="padding-right:10px ;">
-                            <i id="backButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left"
-                                aria-hidden="true"></i>
+                <div style="height: 80vh;background: white;border-radius: 45px 45px 0 0;padding: 20px 20px;">
+                    <form class="popupForm loginform" action='#' style='height:60vh'>
+                        <div class="emailDiv">
+                            <input type="Email" placeholder="Email" id='signin_email'>
                         </div>
                         <div>
-                            <p style="margin: 0;align-self: center;color: white;font-size: 25px;">LOG IN</p>
+                            <input type="password" placeholder="Password" id='signin_password'>
                         </div>
-                    </div>
+                        <p class="textCenter" style="padding-bottom:10px;">
+                            <a style="color: black;" class="passwordA" id='forgot_password' href="javascript:void(0)">Forgot password?</a>
+                        </p>
+
+                        <div style="text-align: center;" class="column btn2">
+                            <button  id="loginBtn" class="register loginToDashboard iconDiv">
+                            LogIn
+                            </button>
+                        </div> 
+
+                        <div style="text-align: center;">
+                            <p style="margin: 0;">Or</p>
+                        </div>
+
+                        <div style="text-align: center;" class=" btn2">
+                            <button class="logingoogle" id="nextBtn">
+                                <span>
+                                    <i class="fa fa-google" aria-hidden="true"></i>
+            
+                                </span>
+                                Log in with google</button>
+                        </div> 
+
+
+                        <div style="width: 300px;min-width: 300px;">
+                            <div class="row">
+                                <p style="margin: 0;align-self: center;">New to interlace care?</p>
+                                <button style="color: #15301B;font-weight: 800;" class=" dark btnP accountP signupNeed">
+                                    Register
+                                   </button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                    
                 </div>
 
-
-
-                <div id="selected_org1"></div>
-            </div>
-
-            <div style="height: 80vh;background: white;border-radius: 45px 45px 0 0;padding: 20px 20px;">
-                <form class="popupForm loginform" action='#' style='height:60vh'>
-                    <div class="emailDiv">
-                        <input type="Email" placeholder="Email" id='signin_email'>
-                    </div>
-                    <div>
-                        <input type="password" placeholder="Password" id='signin_password'>
-                    </div>
-                    <p class="textCenter" style="padding-bottom:10px;">
-                        <a style="color: black;" class="passwordA" id='forgot_password' href="javascript:void(0)">Forgot
-                            password?</a>
-                    </p>
-
-                    <div style="text-align: center;" class="column btn2">
-                        <button id="loginBtn" class="register loginToDashboard iconDiv">
-                            LogIn
-                        </button>
-                    </div>
-
-                    <div style="text-align: center;">
-                        <p style="margin: 0;">Or</p>
-                    </div>
-
-                    <div style="text-align: center;" class=" btn2">
-                        <button class="logingoogle" id="nextBtn">
-                            <span>
-                                <i class="fa fa-google" aria-hidden="true"></i>
-
-                            </span>
-                            Log in with google</button>
-                    </div>
-
-
-                    <div style="width: 300px;min-width: 300px;">
-                        <div class="row">
-                            <p style="margin: 0;align-self: center;">New to interlace care?</p>
-                            <button style="color: #15301B;font-weight: 800;" class=" dark btnP accountP signupNeed">
-                                Register
-                            </button>
-                        </div>
-                    </div>
-
-
-                </form>
-
-
-            </div>
-
-            <!-- start: login form -->
-            <!-- <div class="modal-body modal_background login-form-div">
+                <!-- start: login form -->
+                <!-- <div class="modal-body modal_background login-form-div">
                     <div class="modal-content" style='height:70v'>
                         <div class='close' style="text-align: end;">
                             <i class="fa fa-times closeIcon" aria-hidden="true"></i>
@@ -514,45 +504,45 @@
                     </div>
                   
                 </div> -->
-            <!-- end: login form -->
+                <!-- end: login form -->
 
-            <!-- start: forgot password -->
-            <div class="modal-body modal_background forgot-form-div" style="display: none;">
-                <div class="modal-content">
-                    <div class='close' style="text-align: end;">
-                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="locAuthTitle textCenter" style="color:white">Forgot Password</h3>
-                    <form id="forgot-form" class="popupForm loginform" action='#'>
-                        <div class="emailDiv">
-                            <input type="Email" placeholder="Email" id='forgot_email'>
+                <!-- start: forgot password -->
+                <div class="modal-body modal_background forgot-form-div" style="display: none;">
+                    <div class="modal-content">
+                        <div class='close' style="text-align: end;">
+                            <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                         </div>
-                        <button id="forgotBtn" class=" iconDiv">
-                            <div class="avatar">
-                                <i id="forgot-icon" class="fa fa-arrow-right" aria-hidden="true"></i>
-                                <i id="forgot-spinner-icon" class="fa fa-spinner fa-spin" aria-hidden="true"
-                                    style="display: none;"></i>
+                        <h3 class="locAuthTitle textCenter" style="color:white">Forgot Password</h3>
+                        <form id="forgot-form" class="popupForm loginform" action='#'>
+                            <div class="emailDiv">
+                                <input type="Email" placeholder="Email" id='forgot_email'>
                             </div>
-                        </button>
-                    </form>
+                            <button id="forgotBtn" class=" iconDiv">
+                                <div class="avatar">
+                                    <i id="forgot-icon" class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    <i id="forgot-spinner-icon" class="fa fa-spinner fa-spin" aria-hidden="true"
+                                       style="display: none;"></i>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="column btn1 accountbtn">
+                        <button class=" dark btnP accountP signupNeed"> New Account</button>
+                    </div>
+                    <p class="textCenter" style="padding-bottom:10px;">
+                        <a class="passwordA" id='login_form_btn' href="javascript:void(0)">Login</a>
+                    </p>
                 </div>
-                <div class="column btn1 accountbtn">
-                    <button class=" dark btnP accountP signupNeed"> New Account</button>
-                </div>
-                <p class="textCenter" style="padding-bottom:10px;">
-                    <a class="passwordA" id='login_form_btn' href="javascript:void(0)">Login</a>
-                </p>
-            </div>
-            <!-- end: forgot password -->
+                <!-- end: forgot password -->
 
+            </div>
         </div>
-    </div>
     </div>
 
 
     <div class="modal" id="setOrgModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition sub-modal">
+        <div class="modal-wrapper modal-transition sub-modal" >
 
             <div class="modal-body">
                 <div class="modal-content">
@@ -565,8 +555,7 @@
                     <form id="regForm " class="setForm" action="#">
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor" style="padding: 10px;">
-                            <p class="instruct_Data" style="text-align: center;">Organization you are enrolled with to
-                                send updates too</p>
+                            <p class="instruct_Data" style="text-align: center;">Organization you are enrolled with to send updates too</p>
                             <select placeholder="Select Organization" id='org_ids'>
                             </select>
                         </div>
@@ -622,14 +611,13 @@
     </div> -->
 
     <div class="" id="setmonitorModal" style="display:none;position: absolute;top: 9%;bottom: 0;border-radius: 148px;">
-        <style>
+       <style>
             ::placeholder {
                 color: #707070;
-                opacity: 1;
-                /* Firefox */
-            }
-        </style>
-
+                     opacity: 1; /* Firefox */
+                }
+       </style>
+       
         <div></div>
         <div class="" style="border-radius: 51px;">
 
@@ -638,24 +626,19 @@
 
                     <div class="row">
 
-                        <i id="backbuttonsetmonitor" style="font-size:25px;color: black;align-self: center;"
-                            class="fa fa-arrow-left" aria-hidden="true"></i>
-                        <p style="margin: 0;color:#15301B;font-size: 27px;font-weight: 700;padding: 15px;">Set Monitor
-                        </p>
+                        <i id="backbuttonsetmonitor" style="font-size:25px;color: black;align-self: center;" class="fa fa-arrow-left" aria-hidden="true"></i>
+                        <p style="margin: 0;color:#15301B;font-size: 27px;font-weight: 700;padding: 15px;">Set Monitor</p>
                     </div>
 
                     <form id="regForm " class="setForm" action="#">
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor" style="padding: 10px;">
-                            <p style="color: black;" class="instruct_Data">Email address of person monitoring you who
-                                will receive your video
+                            <p style="color: black;" class="instruct_Data">Email address of person monitoring you who will receive your video
                                 and gps submissions
                             </p>
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-10">
-                                    <input style="outline: 0;background: #E3E3E3;font-size: 17px;color: black;"
-                                        placeholder="Add Monitor" id="monitor_email" oninput="this.className = ''"
-                                        type="email">
+                                    <input style="outline: 0;background: #E3E3E3;font-size: 17px;color: black;" placeholder="Add Monitor" id="monitor_email" oninput="this.className = ''" type="email">
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-2" style="text-align: center;
                                 width: 54px;
@@ -678,25 +661,20 @@
                                 <b style="color:black;margin: 20px;">Active Monitors:</b>
                             </div>
                             <hr>
-                            <div style="color: black;margin: 15px 15px;" class="current-monitors">
-                                <div>adasd@gmail.com - <a val="adasd@gmail.com" class="remove-monitor buttonColor"
-                                        href="#">remove</a></div>
-                                <div>asdasd@gmail.com - <a val="asdasd@gmail.com" class="remove-monitor buttonColor"
-                                        href="#">remove</a></div>
-                            </div>
+                            <div style="color: black;margin: 15px 15px;" class="current-monitors"><div>adasd@gmail.com - <a val="adasd@gmail.com" class="remove-monitor buttonColor" href="#">remove</a></div><div>asdasd@gmail.com - <a val="asdasd@gmail.com" class="remove-monitor buttonColor" href="#">remove</a></div></div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
+        
 
     </div>
 
     <div class="modal" id="setSoberDate">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition sub-modal"
-            style="background: url(img/popup_login.jpg);height: 55vh;">
+             style="background: url(img/popup_login.jpg);height: 55vh;">
 
             <div class="modal-body">
                 <div class="modal-content">
@@ -709,7 +687,7 @@
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor">
                             <input READONLY=READONLY placeholder="Sober Since" id='sober_date_update'
-                                oninput="this.className = ''" type="email">
+                                   oninput="this.className = ''" type="email">
                         </div>
                         <div style="text-align: center;position: relative;top: 50px;">
                             <button class="actionBtn dark close" id="nextBtn">Update</button>
@@ -777,7 +755,7 @@
     <div class="modal" id="instructionsModal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition sub-modal"
-            style="background: url(img/popup_login.jpg);    margin-bottom: 15px;">
+             style="background: url(img/popup_login.jpg);    margin-bottom: 15px;">
             <div class="">
                 <div class="modal-body">
                     <div class="modal-content">
@@ -851,8 +829,7 @@
                     <form id="regForm" class="signupform" action="#" style='height:60vh'>
                         <div class="tab user-info">
                             <div>
-                                <input placeholder="One Time Login Code" id='login_code' oninput="this.className = ''"
-                                    type="tel">
+                                <input placeholder="One Time Login Code" id='login_code' oninput="this.className = ''" type="tel">
                             </div>
                         </div>
                         <div>
@@ -867,77 +844,74 @@
     </div>
 
 
-    <div style="display: none;" id="signupModal">
+    <div style="display: none;"   id="signupModal">
 
         <style>
             ::placeholder {
                 color: black;
-                opacity: 1;
-                /* Firefox */
-            }
+                     opacity: 1; /* Firefox */
+                }
 
-            .register {
-                background-color: #15301B;
-                width: 180px;
-                height: 50px;
-                border-radius: 19px;
-                color: white;
-                outline: none;
-                border: none;
-                font-size: 18px;
-            }
+                .register{
+                    background-color: #15301B;
+                    width: 180px;
+                    height: 50px;
+                    border-radius: 19px;
+                    color: white;
+                    outline: none;
+                    border: none;
+                    font-size: 18px;    
+                }
+                .signupgoogle{
+                    background-color: #E3E3E3;
+                    width: 215px;
+                    min-width: 215px;
+                    height: 50px;
+                    border-radius: 19px;
+                    color: white;
+                    outline: none;
+                    border: none;
+                    color: #707070;
+                    font-weight: 600;
+                    font-size: 18px;   
+                }
 
-            .signupgoogle {
-                background-color: #E3E3E3;
-                width: 215px;
-                min-width: 215px;
-                height: 50px;
-                border-radius: 19px;
-                color: white;
-                outline: none;
-                border: none;
-                color: #707070;
-                font-weight: 600;
-                font-size: 18px;
-            }
+                
+                
         </style>
 
 
 
-        <div style="height: 30vh">
+        <div  style="height: 30vh">
             <div style="width: 90%;margin: auto;">
                 <div style="padding:10px 0px 10px 0px" class="row">
                     <div style="padding-right:10px ;">
-                        <i id="signUpBackButton" style="font-size:25px;color: white;" class="fa fa-arrow-left"
-                            aria-hidden="true"></i>
+                        <i id="signUpBackButton" style="font-size:25px;color: white;" class="fa fa-arrow-left" aria-hidden="true"></i>
                     </div>
                     <div>
                         <p style="margin: 0;align-self: center;color: white;font-size: 25px;">SIGN UP</p>
                     </div>
                 </div>
             </div>
-
-
-            <div id="selected_org"></div>
+          
+    
+            <div id="selected_org" ></div>
         </div>
 
-        <div style="height: 70vh;
+            <div style="height: 70vh;
         background: white;
         border-radius: 45px 45px 0 0;
         padding: 20px 20px;">
             <form id="regForm" class="signupform" action="#" style='height:60vh'>
                 <div class="tab user-info">
                     <div class="signupEmail">
-                        <input placeholder="Name" id='signup_name' oninput="this.className = ''" type="text"
-                            required="required">
+                        <input  placeholder="Name" id='signup_name' oninput="this.className = ''" type="text" required="required">
                     </div>
                     <div>
-                        <input placeholder="Email" id='signup_email' oninput="this.className = ''" type="email"
-                            required="required">
+                        <input  placeholder="Email" id='signup_email' oninput="this.className = ''" type="email" required="required">
                     </div>
                     <div>
-                        <input type="password" id='signup_password' placeholder="Password" oninput="this.className=''"
-                            required="required" />
+                        <input  type="password" id='signup_password' placeholder="Password" oninput="this.className=''" required="required"/>
                     </div>
                 </div>
 
@@ -948,20 +922,20 @@
 
                     <div style="text-align: center;" class="column btn2">
                         <button class="register" id="nextBtn">Register</button>
-                    </div>
-                </div>
+                    </div>               
+                 </div>
+                 
+                 <div class="text-center">
+                     <p>Or</p>
+                 </div>
 
-                <div class="text-center">
-                    <p>Or</p>
-                </div>
 
-
-                <div style="text-align: center;" class=" btn2">
+                 <div style="text-align: center;" class=" btn2">
                     <button class="signupgoogle" id="nextBtn"><span>
-                            <i class="fa fa-google" aria-hidden="true"></i>
+                        <i class="fa fa-google" aria-hidden="true"></i>
 
-                        </span>Sign up with google</button>
-                </div>
+                    </span>Sign up with google</button>
+                </div> 
 
                 <div class="action-btns">
                     <div class="row">
@@ -969,8 +943,8 @@
                             <button class=" dark" onClick="back_click(this.id)" id="1">Back</button>
                         </div> -->
 
-
-
+                        
+                        
 
                     </div>
                 </div>
@@ -980,17 +954,17 @@
             </form>
 
         </div>
+        
 
-
-
+           
     </div>
     <!--Start select Organization====================-->
-    <div style="display: none;" id="orgModal">
+    <div style="display: none;"  id="orgModal">
+      
+        <div  >
 
-        <div>
-
-            <div>
-                <div>
+            <div >
+                <div >
                     <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
 
                     <!-- <div class='close' style="text-align: end;">
@@ -1000,28 +974,25 @@
                     <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
                             draggable="false" /></div> -->
                     <style type="text/css">
-                        #selected_org img {
-                            width: 200px;
+                        #selected_org img{
+                            width:  200px;
                             height: 70px;
                             border: 1px solid white;
                             background: white;
                             left: 0;
                             right: 0;
                         }
-
-                        #selected_org1 img {
-                            width: 200px;
+                        #selected_org1 img{
+                            width:  200px;
                             height: 70px;
                             border: 1px solid white;
                             background: white;
                             left: 0;
                             right: 0;
                         }
-
-                        #selected_org {
+                        #selected_org{
                             text-align: center;
                         }
-
                         .org_list li {
                             list-style: none;
                             text-align: center;
@@ -1032,9 +1003,8 @@
                             padding: 10px 12px;
                             margin: 5px;
                         }
-
-                        .org_list img {
-                            width: 150px;
+                        .org_list img{
+                            width:  150px;
                             height: 79px;
                             object-fit: contain;
                             border: 1px solid white;
@@ -1042,7 +1012,6 @@
                             left: 0;
                             right: 0;
                         }
-
                         ul.org_list {
                             padding: 0;
                             max-height: 570px;
@@ -1051,8 +1020,7 @@
                     </style>
                     <div style="padding:10px 0px 10px 0px" class="row">
                         <div style="padding-right:10px ;align-self: center;">
-                            <i id="backorgButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left"
-                                aria-hidden="true"></i>
+                            <i id="backorgButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left" aria-hidden="true"></i>
                         </div>
                         <div>
                             <h3 class="locAuthTitle textCenter" style="color:white">Select Organization</h3>
@@ -1065,16 +1033,18 @@
                         </div>
                 </div>
                 <script type="text/javascript">
-                    function reply_click(image) {
+                    function reply_click(image)
+                    {
                         console.log(image);
                         $("#signupModal").addClass("is-visible");
                         $("#orgModal").removeClass("is-visible");
                         var selected_org = document.getElementById('selected_org')
-                            .innerHTML = '<img src=' + image + '>';
-                        //                                $("#signup_name").focus();
+                                .innerHTML = '<img src=' + image + '>';
+//                                $("#signup_name").focus();
                     }
 
-                    function back_click(clicked_id) {
+                    function back_click(clicked_id)
+                    {
                         $("#signupModal").removeClass("is-visible");
                         $("#orgModal").addClass("is-visible");
                     }
@@ -1083,161 +1053,160 @@
             </div>
         </div>
     </div>
-    <div id="showConfirm"
-        style="display:none;background: #15301B;position: fixed;bottom: 0;width: 100%;text-align: center;height: 40px;border: 2px solid black;color: white;align-self: center;padding: 10px;">
+    <div id="showConfirm" style="display:none;background: #15301B;position: fixed;bottom: 0;width: 100%;text-align: center;height: 40px;border: 2px solid black;color: white;align-self: center;padding: 10px;">
         Confirm
     </div>
-    </div>
+</div>
 
-    <!--End select Organization====================-->
+<!--End select Organization====================-->
 
-    <div class="modal" id="LocationModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition"
-            style="background: url(img/popup_login.jpg);margin-top: 13px;height:55vh;">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="textCenter">
-                        <!-- <img src="images/location.png" style="width: 100px"> -->
-                        <div class='close' style="text-align: end;">
-                            <i class="fa fa-times closeIcon" aria-hidden="true"></i>
-                        </div>
-                        <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
+<div class="modal" id="LocationModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition"
+         style="background: url(img/popup_login.jpg);margin-top: 13px;height:55vh;">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="textCenter">
+                    <!-- <img src="images/location.png" style="width: 100px"> -->
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
+                    </div>
+                    <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
                             draggable="false" /></div> -->
-                        <h3 class="locAuthTitle textCenter">MY LOCATION</h3>
+                    <h3 class="locAuthTitle textCenter">MY LOCATION</h3>
 
-                        <!-- <p class="locAuthDesc">Please allow permissions for accessing your location through GPS.</p> -->
+                    <!-- <p class="locAuthDesc">Please allow permissions for accessing your location through GPS.</p> -->
 
-                        <ul class="listLocation">
-                            <li>Please allow permissions for accessing your location through GPS.</li>
-                        </ul>
+                    <ul class="listLocation">
+                        <li>Please allow permissions for accessing your location through GPS.</li>
+                    </ul>
 
+                </div>
+                <div class="allowBtnDiv">
+                    <button id='allowGPS' class="actionBtn dark btnSubmit m-0 submitEventBtn">Allow</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="videoInfo">
+    <div class="modal-overlay"></div>
+
+    <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg); margin-bottom: 15px;">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
+                    <div class='close' style="text-align: end;">
+                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
                     </div>
-                    <div class="allowBtnDiv">
-                        <button id='allowGPS' class="actionBtn dark btnSubmit m-0 submitEventBtn">Allow</button>
-                    </div>
 
+                    <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div> -->
+                    <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
+                    <p class="locAuthDesc">Step One
+                        <br />
+                    <ul class="instruct_Data">
+                        <ol style='padding-inline-start: 0px;'>
+                            Record video journal entry saying anything you like, plans for the day, yesterday's
+                            memories, how you feel, dreams, hopes,
+                            fears, thoughts, etc. Then, submit video, which will be sent to your secure email
+                            address.
+                        </ol>
+                    </ul>
+                    <p class="locAuthDesc">Step Two
+                        <br />
+                    <ul class="instruct_Data">
+                        <ol style='padding-inline-start: 0px;'>
+                            If you choose to have an accountability buddy, share your journal entry with an
+                            observer, who can give you feedback, go to
+                            the menu bar (SET MONITOR) and add the observer's secure email address.
+                        </ol>
+                    </ul>
+
+                    <p class="locAuthDesc meds">Medication Monitoring
+                        <br />
+                    <ul class="instruct_Data meds">
+                        <ol style='padding-inline-start: 0px;'>
+                            In the menu bar add the set monitor bar to your monitor's secure email address. When
+                            recording the video, show your pill
+                            bottle, then take your medication, showing the medication being taken. Then submit
+                            video.
+
+                        </ol>
+                    </ul>
+                </div>
+                <div class="textCenter">
+                    <form id='upload_vid_form' method='post' enctype="multipart/form-data">
+                        <input type="file" accept="video/*" id='upload-vid' capture="environment"
+                               style='display:none;'>
+                        <button class="actionBtn dark btnOk">OK</button>
+                        <!-- <input type="button" value="OK"   class="actionBtn dark btnOk"> -->
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 
-    <div class="modal" id="videoInfo">
-        <div class="modal-overlay"></div>
-
-        <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg); margin-bottom: 15px;">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="">
-                        <!-- <img src='images/x-mark-black-32.png' class='close' style='margin-top:10px;width:30px;height:30px;cursor:pointer' /> -->
-                        <div class='close' style="text-align: end;">
-                            <i class="fa fa-times closeIcon" aria-hidden="true"></i>
-                        </div>
-
-                        <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;" draggable="false"/></div> -->
-                        <h3 class="locAuthTitle textCenter">INSTRUCTIONS</h3>
-                        <p class="locAuthDesc">Step One
-                            <br />
-                        <ul class="instruct_Data">
-                            <ol style='padding-inline-start: 0px;'>
-                                Record video journal entry saying anything you like, plans for the day, yesterday's
-                                memories, how you feel, dreams, hopes,
-                                fears, thoughts, etc. Then, submit video, which will be sent to your secure email
-                                address.
-                            </ol>
-                        </ul>
-                        <p class="locAuthDesc">Step Two
-                            <br />
-                        <ul class="instruct_Data">
-                            <ol style='padding-inline-start: 0px;'>
-                                If you choose to have an accountability buddy, share your journal entry with an
-                                observer, who can give you feedback, go to
-                                the menu bar (SET MONITOR) and add the observer's secure email address.
-                            </ol>
-                        </ul>
-
-                        <p class="locAuthDesc meds">Medication Monitoring
-                            <br />
-                        <ul class="instruct_Data meds">
-                            <ol style='padding-inline-start: 0px;'>
-                                In the menu bar add the set monitor bar to your monitor's secure email address. When
-                                recording the video, show your pill
-                                bottle, then take your medication, showing the medication being taken. Then submit
-                                video.
-
-                            </ol>
-                        </ul>
-                    </div>
+<div class="modal" id="proTip">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <img src='images/x-mark-black-32.png' class='close'
+                         style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                    <h3 class="locAuthTitle textCenter">PRO TIP</h3>
+                    <p class="locAuthDesc">Make finding this webapp easy by installing it your phones home screen.
+                    </p>
+                    <p class="locAuthDesc">Tap
+                        <img src="images/upload_icon.png" width="24" alt="" /> below and select add to home screen.
+                    </p>
                     <div class="textCenter">
-                        <form id='upload_vid_form' method='post' enctype="multipart/form-data">
-                            <input type="file" accept="video/*" id='upload-vid' capture="environment"
-                                style='display:none;'>
-                            <button class="actionBtn dark btnOk">OK</button>
-                            <!-- <input type="button" value="OK"   class="actionBtn dark btnOk"> -->
-                        </form>
+                        <button class="actionBtn btnClose">
+                            <img src="images/upload-16.png" height="100%" alt="" />
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
+<!-- subscription start -->
+<div class="modal" id="subscriptionModule">
+    <div class="modal-overlay"></div>
 
-    <div class="modal" id="proTip">
-        <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="">
-                        <img src='images/x-mark-black-32.png' class='close'
-                            style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
-                        <h3 class="locAuthTitle textCenter">PRO TIP</h3>
-                        <p class="locAuthDesc">Make finding this webapp easy by installing it your phones home screen.
-                        </p>
-                        <p class="locAuthDesc">Tap
-                            <img src="images/upload_icon.png" width="24" alt="" /> below and select add to home screen.
-                        </p>
-                        <div class="textCenter">
-                            <button class="actionBtn btnClose">
-                                <img src="images/upload-16.png" height="100%" alt="" />
-                            </button>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <h3 class="locAuthTitle textCenter">Subscription</h3>
+
+                </div>
+                <div>
+                    <form id='subscription_form' style="padding: 4%;">
+                        <div>
+                            <input type="hidden" id="nonce" name="payment_method_nonce" />
+                            <input type="hidden" id="client_token">
+                            <input type="hidden" value="IAM001" id="subscription_plan_ID">
                         </div>
-                    </div>
+                        <br><br>
+                        <div id="bt-dropin"></div>
+                        <!-- Used to display form errors. -->
+                        <div id="card-errors" role="alert"></div>
+                        <button class="actionBtn dark btnOk" id="subsciptionSubmit" type="submit">OK</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- subscription start -->
-    <div class="modal" id="subscriptionModule">
-        <div class="modal-overlay"></div>
-
-        <div class="modal-wrapper modal-transition">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="">
-                        <h3 class="locAuthTitle textCenter">Subscription</h3>
-
-                    </div>
-                    <div>
-                        <form id='subscription_form' style="padding: 4%;">
-                            <div>
-                                <input type="hidden" id="nonce" name="payment_method_nonce" />
-                                <input type="hidden" id="client_token">
-                                <input type="hidden" value="IAM001" id="subscription_plan_ID">
-                            </div>
-                            <br><br>
-                            <div id="bt-dropin"></div>
-                            <!-- Used to display form errors. -->
-                            <div id="card-errors" role="alert"></div>
-                            <button class="actionBtn dark btnOk" id="subsciptionSubmit" type="submit">OK</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- subscription end -->
-    <!-- unsubscription start -->
-    <!-- <div class="modal" id="unsubscriptionModule">
+</div>
+<!-- subscription end -->
+<!-- unsubscription start -->
+<!-- <div class="modal" id="unsubscriptionModule">
 <div class="modal-overlay"></div>
 
 <div class="modal-wrapper modal-transition">
@@ -1262,68 +1231,68 @@
     </div>
 </div>
 </div> -->
-    <!-- unsubscription end -->
-    <div class="modal" id="paymentForm">
-        <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition">
-            <div class="modal-body">
-                <div class="modal-content">
-                    <div class="">
-                        <img src='images/x-mark-black-32.png' class='close'
-                            style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
-                        <h3 class="locAuthTitle textCenter">Payment</h3>
-                        <p class="">You are agreeing to be charged $9.99 per month cancel anytime.</p>
-                        <form action="/charge" method="post" id="payment-form">
-                            <div class="form-row">
-                                <label for="card-element">
-                                    Credit or debit card
-                                </label>
-                                <div id="card-element">
-                                    <!-- A Stripe Element will be inserted here. -->
-                                </div>
-
-                                <!-- Used to display form errors. -->
-                                <div id="card-errors" role="alert"></div>
+<!-- unsubscription end -->
+<div class="modal" id="paymentForm">
+    <div class="modal-overlay"></div>
+    <div class="modal-wrapper modal-transition">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="">
+                    <img src='images/x-mark-black-32.png' class='close'
+                         style='margin-top:10px;width:30px;height:30px;cursor:pointer' />
+                    <h3 class="locAuthTitle textCenter">Payment</h3>
+                    <p class="">You are agreeing to be charged $9.99 per month cancel anytime.</p>
+                    <form action="/charge" method="post" id="payment-form">
+                        <div class="form-row">
+                            <label for="card-element">
+                                Credit or debit card
+                            </label>
+                            <div id="card-element">
+                                <!-- A Stripe Element will be inserted here. -->
                             </div>
-                        </form>
-                        <div>
-                            <img src='images/cards.png'>
-                            <img src='images/icon-lock.png'>
+
+                            <!-- Used to display form errors. -->
+                            <div id="card-errors" role="alert"></div>
                         </div>
-                        <div>
-                            Safe and secure 256-BIT SSL encrypted
-                            <br>
-                            <br>
-                        </div>
-                        <center>
-                            <button class='submit-payment'>Submit Payment</button>
-                        </center>
+                    </form>
+                    <div>
+                        <img src='images/cards.png'>
+                        <img src='images/icon-lock.png'>
                     </div>
+                    <div>
+                        Safe and secure 256-BIT SSL encrypted
+                        <br>
+                        <br>
+                    </div>
+                    <center>
+                        <button class='submit-payment'>Submit Payment</button>
+                    </center>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="slideMenu" style="display:none;right:0;">
-        <!-- <a class="img_a"> -->
-        <div class="img_a">
-            <div class="image_div">
-                <img style="width:100%" src="img/logo_iamold.png">
-            </div>
-            <!-- </a>  -->
-            <h5 class="textMenu">
-                <a href="#" id='showInstructions'>INSTRUCTIONS
-                    <a>
-            </h5>
-            <!--
+<div class="slideMenu" style="display:none;right:0;">
+    <!-- <a class="img_a"> -->
+    <div class="img_a">
+        <div class="image_div">
+            <img style="width:100%" src="img/logo_iamold.png">
+        </div>
+        <!-- </a>  -->
+        <h5 class="textMenu">
+            <a href="#" id='showInstructions'>INSTRUCTIONS
+                <a>
+                    </h5>
+                    <!--
                     <h5 class="textMenu">
                         <a href="#" id='setOrg'>SET ORGANIZATION</a>
                     </h5>-->
 
-            <h5 class="textMenu">
-                <a href="#" id='setMonitor'>SET MONITOR</a>
-            </h5>
-            <!-- <h5 class="textMenu">
+                    <h5 class="textMenu">
+                        <a href="#" id='setMonitor'>SET MONITOR</a>
+                    </h5>
+                                <!-- <h5 class="textMenu">
                                         <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
                                         </h5>
                                 <!--
@@ -1331,12 +1300,12 @@
                                     <a href="#" id='setOrg'>SET ORGANIZATION</a>
                                 </h5> -->
 
-            <h5 class="textMenu">
-                <a href="#" id='viewActivity'>VIEW ACTIVITY
-                    <a>
-            </h5>
+                                <h5 class="textMenu">
+                                    <a href="#" id='viewActivity'>VIEW ACTIVITY
+                                        <a>
+                                            </h5>
 
-            <!-- <h5 class="textMenu">
+                                            <!-- <h5 class="textMenu">
                                                     <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
                                                     </h5>
                                                     <h5 class="textMenu">
@@ -1350,40 +1319,40 @@
                                                     <h5 class="textMenu">
                                                     <a href="#" id='viewActivity'>WHAT WE DO<a>
                                                 </h5> -->
-            <h5 class="textMenu">
-                <a href="#" id='feedback'>APPSTORE FEEDBACK</a>
-            </h5>
+                                            <h5 class="textMenu">
+                                                <a href="#" id='feedback'>APPSTORE FEEDBACK</a>
+                                            </h5>
 
-            <h5 class="textMenu">
-                <a href="#" id='logout'>LOGOUT</a>
-            </h5>
-            <!--
+                                            <h5 class="textMenu">
+                                                <a href="#" id='logout'>LOGOUT</a>
+                                            </h5>
+                                            <!--
                                             <h5 class="textMenu">
                                                 <a target='_blank'
                                                     href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'> JOIN OUR ONLINE COMMUNITY</a>
                                             </h5>
                                             -->
-            <h5 class="textMenu">
-                <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE
-                    <a>
-            </h5>
-            <h5 class="textMenu">
-                <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
-                    <a>
-            </h5>
-            <h5 class="textMenu" style='display: none;' id='cancel_plan'>
-                <a href="#" id='cancel_subscription'>Cancel Subscription</a>
-            </h5>
-            <!--
+                                            <h5 class="textMenu">
+                                                <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE
+                                                    <a>
+                                                        </h5>
+                                                        <h5 class="textMenu">
+                                                            <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
+                                                                <a>
+                                                                    </h5>
+                                                                    <h5 class="textMenu" style='display: none;' id='cancel_plan'>
+                                                                        <a href="#" id='cancel_subscription'>Cancel Subscription</a>
+                                                                    </h5>
+                                                                    <!--
                                                                     <h5 class="textMenu" id="Unsubscribe_div" style='display: none;'>
                                                                         <a href="#" id='Unsubscribe'>
                                                                             Unsubscribe
                                                                         <a>
                                                                     </h5>
                                                                     -->
-        </div>
+                                                                    </div>
 
-        <!-- <div class="slideMenu">
+                                                                    <!-- <div class="slideMenu">
                                                                         <h5 class="textMenu">
                                                                             <a href="#" id='showInstructions'>Instructions<a>
                                                                         </h5>
@@ -1416,128 +1385,115 @@
                                                                             <a href="#" id='cancel_subscription'>Cancel Subscription</a>
                                                                         </h5>
                                                                     </div> -->
-        <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+                                                                    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+                                                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                                                                    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+                                                                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+                                                                    <script src="js/braintree.js?v=1.9"></script>
+                                                                    <script src="js/iap.js?v=1.9"></script>
+
+                                                                    <script src="js/index.js?v=0.0.1"></script>
+                                                                    <script src="js/sweetalert.min.js"></script>
+                                                                    <script src="js/gps.js?v=1.96"></script>
+                                                                    <script src="js/custom.js?v=1.12"></script>
+                                                                    <script src="js/signup.js?v=1.98"></script>
+                                                                    <script src="js/video.js?v=1.97"></script>
+                                                                    <!-- <script src="js/subscribe.js"></script> -->
+                                                                    <script src="js/monitor.js?v=1.97"></script>
+                                                                    <script src="js/activity.js?v=1.97"></script>
+                                                                    <script src="js/logos.js?v=1.99"></script>
+                                                                    <script src="js/config.js?v=1.97"></script>
+                                                                    <script src="js/stripe.js?v=1.97"></script>
+                                                                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
+                                                                    </script>
+
+                                                                    <script src="js/jquery.timepicker.min.js"></script>
+
+                                                                    <script type="text/javascript">
+                     
+if(localStorage.getItem('session_id')){
+
+            $('#step1').hide()
+            $('#step2').hide()
+            $('#step3').hide()
+
+            $("#page-contents").children().hide();
+        // show the dashboard div if already logged in. or else show login div.
+            $('#page-contents').find('#login').show("slow");
+            $('#addEvent').hide();
+    }
+        else{
+            $('#step1').show()
+            $('#step2').hide()
+            $('#step3').hide()
+
+            $("#page-contents").hide();
+            $("#logoDivId").hide();
+            $("#mainBox").hide();
 
 
-        <script src="js/braintree.js?v=1.9"></script>
-        <script src="js/iap.js?v=1.9"></script>
+        }
 
-        <script src="js/index.js?v=0.0.1"></script>
-        <script src="js/sweetalert.min.js"></script>
-        <script src="js/gps.js?v=1.96"></script>
-        <script src="js/custom.js?v=1.12"></script>
-        <script src="js/signup.js?v=1.98"></script>
-        <script src="js/video.js?v=1.97"></script>
-        <!-- <script src="js/subscribe.js"></script> -->
-        <script src="js/monitor.js?v=1.97"></script>
-        <script src="js/activity.js?v=1.97"></script>
-        <script src="js/logos.js?v=1.99"></script>
-        <script src="js/config.js?v=1.97"></script>
-        <script src="js/stripe.js?v=1.97"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
-        </script>
+        $('#button_step_1').on('click', function () {
+             console.log('button step 1 pressed')
+            $('#step1').hide();
+            $('#step3').hide();
 
-        <script src="js/jquery.timepicker.min.js"></script>
+            $('#step2').show();
+        });
 
-        <script type="text/javascript">
+        $('#button_step_2').on('click', function () {
+             console.log('button  step 2 pressed')
+            $('#step1').hide();
+            $('#step2').hide();
+            $('#step3').show();
 
-            $(document).ready(function () {
-                const stepsIds = ['step1', 'step2', 'step3'];
-                $(".mainFrame").on('swipeleft', function (e) {
-                    const currentStepIndex = stepsIds.indexOf($('.onboarding_step:visible').attr('id'));
-                    if (currentStepIndex < 2) {
-                        $(`#step${currentStepIndex + 1}`).hide();
-                        $(`#step${currentStepIndex + 2}`).show('slide', { direction: 'right' }, 500);
-                    }
-                })
-            });
+        });
 
-            if (localStorage.getItem('session_id')) {
+        $('#button_step_3').on('click', function () {
+             console.log('button  step 2 pressed')
+            $('#step1').hide();
+            $('#step2').hide();
+            $('#step3').hide();
+            $("#page-contents").show();
+            $("#logoDivId").show();
+            $("#mainBox").show();
+            $("#page-contents").children().hide();
+        //show the dashboard div if already logged in. or else show login div.
+            $('#page-contents').find('#login').show("slow");
+            $('#addEvent').hide();
+        });
 
-                $('#step1').hide()
-                $('#step2').hide()
-                $('#step3').hide()
+        $('#skipButton').on('click', function () {
+             console.log('button  step 2 pressed')
+            $('#step1').hide();
+            $('#step2').hide();
+            $('#step3').hide();
+            $("#page-contents").show();
+            $("#logoDivId").show();
+            $("#mainBox").show();
+            $("#page-contents").children().hide();
+        //show the dashboard div if already logged in. or else show login div.
+            $('#page-contents').find('#login').show("slow");
+            $('#addEvent').hide();
+        });
 
-                $("#page-contents").children().hide();
-                // show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            }
-            else {
-                $('#step1').show()
-                $('#step2').hide()
-                $('#step3').hide()
+        $('#skipButton2').on('click', function () {
+             console.log('button  step 2 pressed')
+            $('#step1').hide();
+            $('#step2').hide();
+            $('#step3').hide();
+            $("#page-contents").show();
+            $("#logoDivId").show();
+            $("#mainBox").show();
+            $("#page-contents").children().hide();
+        //show the dashboard div if already logged in. or else show login div.
+            $('#page-contents').find('#login').show("slow");
+            $('#addEvent').hide();
+        });
 
-                $("#page-contents").hide();
-                $("#logoDivId").hide();
-                $("#mainBox").hide();
+                                                                    </script>
+                                                                    </body>
 
-
-            }
-
-            $('#button_step_1').on('click', function () {
-                console.log('button step 1 pressed')
-                // $('#step1').hide();
-                $('#step1').hide('slide', { direction: 'left' }, 500);
-
-                $('#step2').show('slide', { direction: 'right' }, 500);
-            });
-
-            $('#button_step_2').on('click', function () {
-                console.log('button  step 2 pressed')
-                // $('#step1').hide();
-                $('#step2').hide('slide', { direction: 'left' }, 500);
-                $('#step3').show('slide', { direction: 'right' }, 500);
-
-            });
-
-            $('#button_step_3').on('click', function () {
-                console.log('button  step 2 pressed')
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-
-            $('#skipButton').on('click', function () {
-                console.log('button  step 2 pressed')
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-
-            $('#skipButton2').on('click', function () {
-                console.log('button  step 2 pressed')
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-
-        </script>
-</body>
-
-</html>
+                                                                    </html>
