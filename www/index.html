@@ -911,7 +911,7 @@
                         <input  placeholder="Email" id='signup_email' oninput="this.className = ''" type="email" required="required">
                     </div>
                     <div>
-                        <input  type="password" id='signup_password' placeholder="Password" oninput="this.className=''" required="required"/>
+                        <input  type="password" id='signup_password' placeholder="Password" oninput="this.className =''" required="required"/>
                     </div>
                 </div>
 
@@ -1028,7 +1028,49 @@
                     </div>
                     <form id="regForm" class="signupform" action="#" style='height:60vh'>
                         <div class="tab user-info">
-                            <ul id="org_list" class="org_list"></ul>
+                            <style>
+                                .order {
+                                    display: grid;
+                                    grid-template-columns: 1fr;
+                                }
+                                ul#org_list>li:nth-child(4) {
+                                    order: 1;
+                                }
+                                ul#org_list>li:nth-child(3) {
+                                    order: 2;
+                                }
+                                ul#org_list>li:nth-child(2) {
+                                    order: 3;
+                                }
+                                ul#org_list>li:nth-child(1) {
+                                    order: 4;
+                                }
+                                ul#org_list>li:nth-child(5) {
+                                    order: 5;
+                                }
+                                ul#org_list>li:nth-child(6) {
+                                    order: 6;
+                                }
+                                ul#org_list>li:nth-child(7) {
+                                    order: 7;
+                                }
+                                ul#org_list>li:nth-child(8) {
+                                    order: 8;
+                                }
+                                ul#org_list>li:nth-child(9) {
+                                    order: 9;
+                                }
+                                ul#org_list>li:nth-child(10) {
+                                    order: 10;
+                                }
+                                ul#org_list>li:nth-child(11) {
+                                    order: 11;
+                                }
+                                ul#org_list>li:nth-child(12) {
+                                    order: 12;
+                                }
+                            </style>
+                            <ul id="org_list" class="org_list order"></ul>
                             <table id="employees"></table>
                         </div>
                 </div>
