@@ -507,7 +507,15 @@
                 <!-- end: login form -->
 
                 <!-- start: forgot password -->
-                <div class="modal-body modal_background forgot-form-div" style="display: none;">
+                <style>
+                    .overlay {
+                        position: absolute;
+                        top: 0;
+                        width: 100%;
+                        background: #5F683C
+                    }
+                </style>
+                <div class="modal-body modal_background forgot-form-div modal-overlay" style="display: none;">
                     <div class="modal-content">
                         <div class='close' style="text-align: end;">
                             <i class="fa fa-times closeIcon" aria-hidden="true"></i>
