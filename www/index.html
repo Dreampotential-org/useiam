@@ -24,6 +24,10 @@
         <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/jquery.timepicker.min.css">
         <style>
+
+
+
+
             select#organization {
                 width: 100%;
                 height: 40px;
@@ -41,7 +45,6 @@
             ul#org_list li {
                 border-radius: 10px;
             }
-
                
 .step_img{
     width: 100%;
@@ -86,6 +89,10 @@
         margin-bottom: 10px;
         text-align: center;
    }
+.step_button_one{
+    list-style: none;
+}
+ 
 
    .step_button{
         background: #5F683C;
@@ -138,6 +145,39 @@
             <div class='moto'>
             </div>
         </div>
+        <div id="splash-container">
+            <div style="width: 100vw;height: 100vh;">
+                <img id="splash-image" class="step_img" src="./images/step-one.png">
+            </div>
+            
+           
+
+
+            
+            <!-- <div class="mainFrame">
+        
+                <div class="contentContainer" >
+        
+                    <div>
+                        <p class="headingTag" >
+                            Document your daily activities
+                        </p>
+        
+                    </div>
+                    <div>
+                        <p class="contentTag" >Submit a daily video talking about plans for the day or taking doctor prescribed medicine.</p>
+                    </div>
+                    <div style="margin-bottom: 12px;" class="step_button_one">
+                        <button class="step_button" id="button_step_one" >NEXT</button>
+                    </div>
+                    <div>
+                        <p id="skipButton_one"  class="endTag"  >Skip</p>
+                    </div>
+        
+                </div>
+            
+            </div>   -->
+        </div> 
         <div id="step1">
             <div style="width: 100vw;height: 457px;">
                 <img class="step_img" src="./images/check.png">
@@ -1462,9 +1502,28 @@
                                                                     <script src="js/jquery.timepicker.min.js"></script>
 
                                                                     <script type="text/javascript">
+
+// onload=setTimeout(function(){document.getElementById("step0").display = "block";}, 2000);
+// $(splash-container).delay(2000).fadeIn("slow");
+
+// function displaypage()
+// {
+// var t=setTimeout("displaydiv()",1000);//Number of seconds *1000, Currently its **3** seconds 
+// }
+// function displaydiv()
+// {
+// document.getElementById("splash-container").style.display='block';
+
+// }    
+
+
                      
 if(localStorage.getItem('session_id')){
 
+
+
+        
+            // $('#splash-container').hide()
             $('#step1').hide()
             $('#step2').hide()
             $('#step3').hide()
@@ -1475,27 +1534,38 @@ if(localStorage.getItem('session_id')){
             $('#addEvent').hide();
     }
         else{
-            $('#step1').show()
+            // $('#step0').show()
+            $('#step1').hide()
             $('#step2').hide()
             $('#step3').hide()
 
             $("#page-contents").hide();
             $("#logoDivId").hide();
             $("#mainBox").hide();
-
+      
 
         }
 
+    
+        setTimeout(() => {
+            $('#splash-container').hide();
+            $('#step1').show();
+            $('#step2').hide();
+            $('#step3').hide();
+        }, 3000);
+       
+
         $('#button_step_1').on('click', function () {
              console.log('button step 1 pressed')
+           
             $('#step1').hide();
-            $('#step3').hide();
-
             $('#step2').show();
+            $('#step3').hide();
         });
 
         $('#button_step_2').on('click', function () {
              console.log('button  step 2 pressed')
+         
             $('#step1').hide();
             $('#step2').hide();
             $('#step3').show();
@@ -1503,7 +1573,8 @@ if(localStorage.getItem('session_id')){
         });
 
         $('#button_step_3').on('click', function () {
-             console.log('button  step 2 pressed')
+             console.log('button  step 3 pressed')
+        
             $('#step1').hide();
             $('#step2').hide();
             $('#step3').hide();
@@ -1517,7 +1588,20 @@ if(localStorage.getItem('session_id')){
         });
 
         $('#skipButton').on('click', function () {
-             console.log('button  step 2 pressed')
+             console.log('button  step skipButton pressed')
+            $('#step1').hide();
+            $('#step2').hide();
+            $('#step3').hide();
+            $("#page-contents").show();
+            $("#logoDivId").show();
+            $("#mainBox").show();
+            $("#page-contents").children().hide();
+        //show the dashboard div if already logged in. or else show login div.
+            $('#page-contents').find('#login').show("slow");
+            $('#addEvent').hide();
+        });
+        $('#skipButton_one').on('click', function () {
+             console.log('button  step0 skipButton_one pressed')
             $('#step1').hide();
             $('#step2').hide();
             $('#step3').hide();
@@ -1530,8 +1614,9 @@ if(localStorage.getItem('session_id')){
             $('#addEvent').hide();
         });
 
+
         $('#skipButton2').on('click', function () {
-             console.log('button  step 2 pressed')
+             console.log('button  step skipButton2 pressed')
             $('#step1').hide();
             $('#step2').hide();
             $('#step3').hide();
