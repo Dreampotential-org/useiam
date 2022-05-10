@@ -275,7 +275,7 @@ div#activity {
   overflow-x: hidden;
 }
 .activity-log .chat {
-  padding: 0 0 0 30px;
+  padding: 50 0 0 30px;
 }
 .activity-log .chat .other {
   padding-bottom: 10px;
