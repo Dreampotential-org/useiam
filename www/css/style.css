@@ -1787,3 +1787,10 @@ table.ui-datepicker-calendar {
   padding: 10px;
   width: 100%;
 }
+
+
+#title{
+  float: right;
+  color: #fff;
+}
+

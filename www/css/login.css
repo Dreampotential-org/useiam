@@ -1,0 +1,113 @@
+#title{
+    float: right;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+  }
+  
+  /* style glyph */
+  .inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+  
+  /* align glyph */
+  .left-addon .glyphicon  { left:  0px;}
+  .right-addon .glyphicon { right: 0px;}
+  
+  /* add padding  */
+  .left-addon input  { padding-left:  30px; }
+  .right-addon input { padding-right: 30px; }
+  
+  .login-form {
+        padding: 30px;
+        margin: 20px;
+        display: block;
+    }
+    .login-form input {
+        background: #fff;
+        border: none;
+        padding: 8px;
+    }
+  body {
+  }
+
+  #myInput{
+      width: 100%;
+      padding-left: 40px;
+  }
+
+
+  .input-search{
+    position: absolute;
+    right: 21px;
+    vertical-align: middle;
+    padding-top: 3px;
+  }
+
+  /* .icon{
+    position: absolute;
+    padding: 10px;
+  } */
+
+  .icon{
+    /* position: absolute;
+    right: 43px;
+    padding-top: 35px;
+    color: #009688; */
+    position: absolute;
+    right: 43px;
+    padding-top: 83px;
+    color:  #747c7c;
+  }
+
+  .env{
+    position: absolute;
+    padding: 26px 0px 0px 12px;
+    color: #009688;
+  }
+
+  .loc{
+    position: absolute;
+    font-size: 26px;
+    padding: 12px;
+    color: #009688;
+  }
+
+  .icon-pass{
+    position: absolute;
+    right: 0;
+    padding-right: 44px;
+    padding-top: 30px;
+    color: #747c7c; 
+  }
+
+  .img-fluid-logo{
+      width: 50%;
+  }
+
+  .form-div{
+      text-align: center;
+  }
+
+  a{
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .anchor{
+    text-align: center;
+  }
+
+  #login{
+    border-radius: 10px;
+    color: black;
+    background-color: #fff;
+  }
