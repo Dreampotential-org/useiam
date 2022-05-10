@@ -265,6 +265,9 @@ header {
 #activity {
   margin-top: 45px;
 }
+div#activity {
+    background: #5f683c;
+}
 .activity-log {
   /* border-left: 1px solid #dddddd; */
   height: 100vh;
