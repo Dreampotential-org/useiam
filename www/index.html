@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!--CSS -->
 
-    <link rel="stylesheet" href="css/style.css?v=1.7">
+    <link rel="stylesheet" href="css/style.css?v=1.8">
     <link rel="stylesheet" href="css/responsive.css?v=1.6" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
@@ -23,6 +23,80 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .image-content {
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 60vh;
+            width: 100%;
+        }
+
+        .swiper-slide .main-content .skip-button {
+            font-size: 18px;
+            text-decoration: underline;
+            margin: 10px 0;
+        }
+
+        .swiper-slide .main-content .next-button {
+            background: #5F683C;
+            color: white;
+            height: 50px;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            outline: none;
+            border: 0;
+            width: 100%;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .swiper-slide .main-content .content-tag {
+            margin: 0 0 10px;
+            font-size: 18px;
+            font-weight: 300;
+        }
+
+        .swiper-slide .main-content .heading-tag {
+            font-size: 27px;
+            font-weight: 600;
+            margin: 0 0 10px;
+        }
+
+        .swiper-slide .main-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 20px 10px;
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+            text-align: center;
+            min-height: 45vh;
+        }
+
+        .swiper-slide .back-image {
+            position: absolute;
+            left: 0;
+            z-index: 2;
+            width: 30px;
+            left: 16px;
+            top: 16px;
+            border: 5px solid #ffffff;
+            border-radius: 50%;
+        }
+    </style>
     <style>
         select#organization {
             width: 100%;
@@ -119,6 +193,49 @@
 </head>
 
 <body>
+    <!-- Slider -->
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="image-content" style="background-image: url('images/check.png')">
+                </div>
+                <div class="main-content">
+                    <h3 class="heading-tag">Document your daily activities</h3>
+                    <p class="content-tag">Submit a daily video talking about plans for the day or taking doctor
+                        prescribed medicine.</p>
+                    <button class="next-button next_click">Next</button>
+                    <p class="skip-button skip_click">Skip</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img class="back-image back_click" src="images/back_button.png" alt="back">
+                <div class="image-content" style="background-image: url('images/check_2.png')">
+                </div>
+                <div class="main-content">
+                    <h3 class="heading-tag">Trust and accountability</h3>
+                    <p class="content-tag">We have partnered with your recovery program in guiding you with your
+                        journey.</p>
+                    <button class="next-button next_click">Next</button>
+                    <p class="skip-button skip_click">Skip</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img class="back-image back_click" src="images/back_button.png" alt="back">
+                <div class="image-content" style="background-image: url('images/check_3.png')">
+                </div>
+                <div class="main-content">
+                    <h3 class="heading-tag">Your road to <br>recovery</h3>
+                    <p class="content-tag">UseIAM is an effective tool to nurture self introspection and foster growth.
+                    </p>
+                    <button class="next-button skip_click">Let's Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Slider -->
+
+
     <header>
         <div id="mainBox" class="mainContainer" style="position: relative">
             <button class="btnBack">
@@ -145,132 +262,7 @@
         <div class='moto'>
         </div>
     </div>
-    <div id="splash-container">
-        <div style="width: 100vw;height: 100vh;">
-            <img id="splash-image" class="step_img" src="./images/step-one.png">
-        </div>
-
-
-
-
-
-        <!-- <div class="mainFrame">
-        
-                <div class="contentContainer" >
-        
-                    <div>
-                        <p class="headingTag" >
-                            Document your daily activities
-                        </p>
-        
-                    </div>
-                    <div>
-                        <p class="contentTag" >Submit a daily video talking about plans for the day or taking doctor prescribed medicine.</p>
-                    </div>
-                    <div style="margin-bottom: 12px;" class="step_button_one">
-                        <button class="step_button" id="button_step_one" >NEXT</button>
-                    </div>
-                    <div>
-                        <p id="skipButton_one"  class="endTag"  >Skip</p>
-                    </div>
-        
-                </div>
-            
-            </div>   -->
-    </div>
-    <div id="step1">
-        <div style="width: 100vw;height: 457px;">
-            <img class="step_img" src="./images/check.png">
-        </div>
-
-        <div class="mainFrame">
-
-            <div class="contentContainer">
-
-                <div>
-                    <p class="headingTag">
-                        Document your daily activities
-                    </p>
-
-                </div>
-                <div>
-                    <p class="contentTag">Submit a daily video talking about plans for the day or taking doctor
-                        prescribed medicine.</p>
-                </div>
-                <div style="margin-bottom: 12px;">
-                    <button class="step_button" id="button_step_1">NEXT</button>
-                </div>
-                <div>
-                    <p id="skipButton" class="endTag">Skip</p>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <div id="step2">
-        <div style="width: 100vw;height: 457px;">
-            <img class="step_img" src="./images/check_2.png">
-        </div>
-
-        <div class="mainFrame">
-
-            <div class="contentContainer">
-
-                <div>
-                    <p class="headingTag">
-                        Trust and accountability
-                    </p>
-
-                </div>
-                <div>
-                    <p class="contentTag">We have partnered with
-                        your recovery program in
-                        guiding you with your journey.</p>
-                </div>
-                <div style="margin-bottom: 12px;">
-                    <button class="step_button" id="button_step_2">NEXT</button>
-                </div>
-                <div>
-                    <p id="skipButton2" class="endTag">Skip</p>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div id="step3">
-        <div style="width: 100vw;height: 457px;">
-            <img class="step_img" src="./images/check_3.png">
-        </div>
-        <div style="background-color:#5F683C;height: 60vh;">
-            <div class="mainFrame">
-
-                <div class="contentContainer">
-
-                    <div>
-                        <p class="headingTag">
-                            Your road to recovery
-                        </p>
-
-                    </div>
-                    <div>
-                        <p class="contentTag">UseIAM is an effective tool to nurture self introspection
-                            and foster growth.</p>
-                    </div>
-                    <div style="margin-bottom: 12px;">
-                        <button class="step_button" id="button_step_3">Let's Get Started </button>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-    <div id="page-contents" style="margin: 9rem 0px;">
+    <div id="page-contents">
         <div id="login">
             <div class="mainContainer" style="text-align: -webkit-center;">
                 <div>
@@ -447,7 +439,7 @@
 
             #selected_org1 img {
                 width: 200px;
-                height: 70px;
+                /* height: 70px; */
                 border: 1px solid white;
                 background: white;
                 left: 0;
@@ -474,26 +466,29 @@
         </style>
         <div>
 
-            <div style="height: 20vh">
-
+            <div>
                 <div style="width: 90%;margin: auto;">
-                    <div style="padding:10px 0px 10px 0px" class="row">
+                    <div style="padding:10px 0px" class="row">
                         <div style="padding-right:10px ;">
                             <i id="backButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left"
                                 aria-hidden="true"></i>
                         </div>
                         <div>
-                            <p style="margin: 0;align-self: center;color: white;font-size: 25px;">LOG IN</p>
+                            <p style="margin: 0;color: white;font-size: 25px;">LOG IN</p>
                         </div>
                     </div>
                 </div>
-
-
-
+                <div class="logo" id="signin_logo"></div>
                 <div id="selected_org1"></div>
             </div>
 
-            <div style="height: 80vh;background: white;border-radius: 45px 45px 0 0;padding: 20px 20px;">
+            <div style="height: 65vh;
+            background: white;
+            border-radius: 45px 45px 0 0;
+            padding: 20px 20px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;">
                 <form class="popupForm loginform" action='#' style='height:60vh'>
                     <div class="emailDiv">
                         <input type="Email" placeholder="Email" id='signin_email'>
@@ -520,21 +515,16 @@
                         <button class="logingoogle" id="nextBtn">
                             <span>
                                 <i class="fa fa-google" aria-hidden="true"></i>
-
                             </span>
                             Log in with google</button>
                     </div>
 
-
-                    <div style="width: 300px;min-width: 300px;">
-                        <div class="row">
-                            <p style="margin: 0;align-self: center;">New to interlace care?</p>
-                            <button style="color: #15301B;font-weight: 800;" class=" dark btnP accountP signupNeed">
-                                Register
-                            </button>
-                        </div>
+                    <div class="row" style="justify-content: center;">
+                        <p style="margin: 0;align-self: center;">New to interlace care?</p>
+                        <button style="color: #15301B;font-weight: 800;" class=" dark btnP accountP signupNeed">
+                            Register
+                        </button>
                     </div>
-
 
                 </form>
 
@@ -564,30 +554,60 @@
 
             <!-- start: forgot password -->
             <div class="modal-body modal_background forgot-form-div overlay" style="display: none;">
-                <div class="modal-content">
-                    <div class='close' style="text-align: end;">
-                        <i class="fa fa-times closeIcon" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="locAuthTitle textCenter" style="color:white">Forgot Password</h3>
-                    <form id="forgot-form" class="popupForm loginform" action='#'>
-                        <div class="emailDiv">
-                            <input type="Email" placeholder="Email" id='forgot_email'>
+                <div style="width: 90%;margin: auto;">
+                    <div style="padding:10px 0px" class="row">
+                        <div style="padding-right:10px;">
+                            <i id='close_fp_form_btn' style="font-size:25px;color: white;" class="fa fa-arrow-left"
+                                aria-hidden="true"></i>
                         </div>
-                        <button id="forgotBtn" class=" iconDiv">
-                            <div class="avatar">
-                                <i id="forgot-icon" class="fa fa-arrow-right" aria-hidden="true"></i>
-                                <i id="forgot-spinner-icon" class="fa fa-spinner fa-spin" aria-hidden="true"
-                                    style="display: none;"></i>
+                        <div>
+                            <p style="margin: 0;color: white;font-size: 25px;">FORGOT PASSWORD</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo"></div>
+                <div style="height: 50vh;
+                background: white;
+                border-radius: 45px 45px 0 0;
+                padding: 20px 20px;
+                position: absolute;
+                width: 100%;
+                bottom: 0;">
+                    <div class="modal-content">
+                        <form id="forgot-form" class="popupForm loginform" action='#'>
+                            <div class="emailDiv">
+                                <input type="Email" placeholder="Email" id='forgot_email'>
                             </div>
+                            <!-- <button id="forgotBtn" class=" iconDiv">
+                                <div class="avatar">
+                                    <i id="forgot-icon" class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    <i id="forgot-spinner-icon" class="fa fa-spinner fa-spin" aria-hidden="true"
+                                        style="display: none;"></i>
+                                </div>
+                            </button> -->
+                            <div style="text-align: center;" class="column btn2">
+                                <button id="forgotBtn" class="register loginToDashboard iconDiv">
+                                    submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="column" style="text-align: center;">
+                        <button class=" dark btnP signupNeed" style="color:black"> New Account</button>
+                    </div> -->
+                    <!-- <p class="textCenter" style="padding-bottom:10px;">
+                        <a class="passwordA" id='login_form_btn' href="javascript:void(0)">Login</a>
+                    </p> -->
+                    <p class="textCenter loginNeed" style="color: black;">Joined us before?
+                        <a id="login_form_btn" href="#" style="color: #15301B;font-weight: 800;">Log In</a>
+                    </p>
+                    <div class="row" style="justify-content: center;">
+                        <p style="margin: 0;align-self: center;">New to interlace care?</p>
+                        <button style="color: #15301B;font-weight: 800;" class=" dark btnP accountP signupNeed">
+                            Register
                         </button>
-                    </form>
+                    </div>
                 </div>
-                <div class="column btn1 accountbtn">
-                    <button class=" dark btnP accountP signupNeed"> New Account</button>
-                </div>
-                <p class="textCenter" style="padding-bottom:10px;">
-                    <a class="passwordA" id='login_form_btn' href="javascript:void(0)">Login</a>
-                </p>
             </div>
             <!-- end: forgot password -->
 
@@ -679,7 +699,7 @@
         <div></div>
         <div class="" style="border-radius: 51px;">
 
-            <div style="width: 100%;background: white;height: 91vh;border-radius: 20px  20px 0  0;">
+            <div style="width: 100%;background: white;height: 100%;border-radius: 20px  20px 0  0;">
                 <div>
 
                     <div class="row">
@@ -697,7 +717,7 @@
                                 will receive your video
                                 and gps submissions
                             </p>
-                            <div class="row">
+                            <div class="row" style="justify-content: space-evenly;">
                                 <div class="col-md-10 col-sm-10 col-10">
                                     <input style="outline: 0;background: #E3E3E3;font-size: 17px;color: black;"
                                         placeholder="Add Monitor" id="monitor_email" oninput="this.className = ''"
@@ -967,10 +987,13 @@
             <div id="selected_org"></div>
         </div>
 
-        <div style="height: 70vh;
+        <div style="height: 65vh;
         background: white;
         border-radius: 45px 45px 0 0;
-        padding: 20px 20px;">
+        padding: 20px 20px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;">
             <form id="regForm" class="signupform" action="#" style='height:60vh'>
                 <div class="tab user-info">
                     <div class="signupEmail">
@@ -988,7 +1011,7 @@
                 </div>
 
                 <div>
-                    <div class="text-center">
+                    <div style="text-align: center;" id="su_fp">
                         <p>Forgot Password?</p>
                     </div>
 
@@ -997,7 +1020,7 @@
                     </div>
                 </div>
 
-                <div class="text-center">
+                <div style="text-align: center;">
                     <p>Or</p>
                 </div>
 
@@ -1014,10 +1037,6 @@
                         <!-- <div class="column btn1">
                             <button class=" dark" onClick="back_click(this.id)" id="1">Back</button>
                         </div> -->
-
-
-
-
                     </div>
                 </div>
                 <p class="textCenter loginNeed" style="color: black;">Joined us before?
@@ -1048,7 +1067,7 @@
                     <style type="text/css">
                         #selected_org img {
                             width: 200px;
-                            height: 70px;
+                            /* height: 70px; */
                             border: 1px solid white;
                             background: white;
                             left: 0;
@@ -1057,7 +1076,7 @@
 
                         #selected_org1 img {
                             width: 200px;
-                            height: 70px;
+                            /* height: 70px; */
                             border: 1px solid white;
                             background: white;
                             left: 0;
@@ -1091,8 +1110,9 @@
 
                         ul.org_list {
                             padding: 0;
-                            max-height: 570px;
+                            /* max-height: 570px; */
                             overflow-y: auto;
+                            margin-bottom: 50px;
                         }
                     </style>
                     <div style="padding:10px 0px 10px 0px" class="row">
@@ -1104,7 +1124,8 @@
                             <h3 class="locAuthTitle textCenter" style="color:white">Select Organization</h3>
                         </div>
                     </div>
-                    <form id="regForm" class="signupform" action="#" style='height:60vh'>
+                    <!-- style='height:60vh' -->
+                    <form id="regForm" class="signupform" action="#">
                         <div class="tab user-info">
                             <style>
                                 .order {
@@ -1446,12 +1467,12 @@
                                                     <h5 class="textMenu">
                                                     <a href="#" id='viewActivity'>HOW IT WORKS<a>
                                                     </h5>
-                                    lllljljlkjkjkjkjkjlkjlkjkjkjkjkjkjkjkjkjkjkkj
+                                    
                                                     <h5 class="textMenu">
                                                     <a href="#" id='viewActivity'>WHAT WE DO<a>
                                                 </h5> -->
-            <h5 class="textMenu">
-                <a href="#" id='feedbacks'>APPSTORE FEEDBACK</a>
+            <h5 class="textMenu" id="appstore_feedback_btn">
+                <a href="#" id='feedback'>APPSTORE FEEDBACK</a>
             </h5>
 
             <h5 class="textMenu">
@@ -1467,9 +1488,7 @@
                 <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE</a>
             </h5>
             <h5 class="textMenu">
-                <!-- <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT</a> -->
-                <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT
-                </a>
+                <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT</a>
             </h5>
             <h5 class="textMenu" style='display: none;' id='cancel_plan'>
                 <a href="#" id='cancel_subscription'>Cancel Subscription</a>
@@ -1479,10 +1498,9 @@
                                                                         <a href="#" id='Unsubscribe'>
                                                                             Unsubscribe
                                                                         <a>
-                                                                   </h5>
+                                                                    </h5>
                                                                     -->
         </div>
-    </div>
 
         <!-- <div class="slideMenu">
                                                                         <h5 class="textMenu">
@@ -1525,14 +1543,14 @@
         <script src="js/braintree.js?v=1.9"></script>
         <script src="js/iap.js?v=1.9"></script>
 
-        <script src="js/index.js?v=0.0.1"></script>
+        <script src="js/index.js?v=0.0.4"></script>
         <script src="js/sweetalert.min.js"></script>
         <script src="js/gps.js?v=1.96"></script>
         <script src="js/custom.js?v=1.12"></script>
-        <script src="js/signup.js?v=1.98"></script>
+        <script src="js/signup.js?v=2.3"></script>
         <script src="js/video.js?v=1.97"></script>
         <!-- <script src="js/subscribe.js"></script> -->
-        <script src="js/monitor.js?v=1.97"></script>
+        <script src="js/monitor.js?v=2.0"></script>
         <script src="js/activity.js?v=1.97"></script>
         <script src="js/logos.js?v=1.99"></script>
         <script src="js/config.js?v=1.97"></script>
@@ -1542,115 +1560,79 @@
 
         <script src="js/jquery.timepicker.min.js"></script>
 
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
         <script type="text/javascript">
+             if (isApp()) { 
+                 $('#appstore_feedback_btn').show();
+             }else{
+                $('#appstore_feedback_btn').hide();
+             }
 
+            const swiper = new Swiper('.swiper', {
+                // Optional parameters
+                direction: 'horizontal',
+                loop: false,
+            });
 
+            // if (localStorage.getItem('session_id')) {
+            //     // window.location.href = 'main.html';
+            // }
 
-            if (localStorage.getItem('session_id')) {
-                $('#splash-container').hide()
-                $('#step1').hide()
-                $('#step2').hide()
-                $('#step3').hide()
-
+            $(".next_click").click(function (e) {
+                swiper.slideNext();
+            });
+            $(".back_click").click(function (e) {
+                swiper.slidePrev();
+            });
+            $(".skip_click").click(function (e) {
+                // window.location.href = 'main.html';
                 $("#page-contents").children().hide();
                 // show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
                 $('#addEvent').hide();
-            }
-            else {
-           
-                $('#step1').hide()
-                $('#step2').hide()
-                $('#step3').hide()
+                $('.swiper').hide();
+                $("#logoDivId").show();
+            });
+        </script>
 
-                $("#page-contents").hide();
+        <script type="text/javascript">
+
+            // onload=setTimeout(function(){document.getElementById("step0").display = "block";}, 2000);
+            // $(splash-container).delay(2000).fadeIn("slow");
+
+            // function displaypage()
+            // {
+            // var t=setTimeout("displaydiv()",1000);//Number of seconds *1000, Currently its **3** seconds 
+            // }
+            // function displaydiv()
+            // {
+            // document.getElementById("splash-container").style.display='block';
+
+            // }   
+
+
+
+            if (localStorage.getItem('session_id')) {
+                $("#page-contents").children().hide();
+                // show the dashboard div if already logged in. or else show login div.
+                $('#page-contents').find('#login').show("slow");
+                $("#logoDivId").show();
+
+                $('#addEvent').hide();
+                // hide slider
+                $('.swiper').hide();
+            } else {
+                $("#page-contents").show();
                 $("#logoDivId").hide();
-                $("#mainBox").hide();
+                $("#mainBox").show();
+                $("#page-contents").children().hide();
+                //show the dashboard div if already logged in. or else show login div.
+                $('#page-contents').find('#login').show("slow");
+                $('#addEvent').hide();
+                // Show slider
+                $('.swiper').show();
 
-                setTimeout(() => {
-                $('#splash-container').hide();
-                $('#step1').show();
-                $('#step2').hide();
-                $('#step3').hide();
-                
-            }, 3000);
             }
-
-
-            $('#button_step_1').on('click', function () {
-                console.log('button step 1 pressed')
-
-                $('#step1').hide();
-                $('#step2').show();
-                $('#step3').hide();
-            });
-
-            $('#button_step_2').on('click', function () {
-                console.log('button  step 2 pressed')
-
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').show();
-
-            });
-
-            $('#button_step_3').on('click', function () {
-                console.log('button  step 3 pressed')
-
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-
-            $('#skipButton').on('click', function () {
-                console.log('button  step skipButton pressed')
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-            $('#skipButton_one').on('click', function () {
-                console.log('button  skipButton_one pressed')
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-
-
-            $('#skipButton2').on('click', function () {
-                console.log('button  step skipButton2 pressed')
-                $('#step1').hide();
-                $('#step2').hide();
-                $('#step3').hide();
-                $("#page-contents").show();
-                $("#logoDivId").show();
-                $("#mainBox").show();
-                $("#page-contents").children().hide();
-                //show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
-            });
-
         </script>
 </body>
 

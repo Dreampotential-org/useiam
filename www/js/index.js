@@ -137,7 +137,7 @@ $(document).ready(function () {
     $('.forgot-form-div').show();
   });
 
-  $('#login_form_btn').on('click', function () {
+  $('#login_form_btn, #close_fp_form_btn').on('click', function () {
     $('.login-form-div').show();
     $('.forgot-form-div').hide();
   });
