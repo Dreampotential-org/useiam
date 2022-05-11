@@ -152,77 +152,77 @@ function signup_api(params) {
     };
 
     $.ajax(settings)
-            .done(function (response) {
-                console.log(response)
-                $("#signupModal #nextBtn").removeClass("running");
-                closeAllModals();
-                if (Object.keys(JSON.parse(response)).includes('token')) {
-                    localStorage.setItem("session_id", JSON.parse(response).token);
+        .done(function (response) {
+            console.log(response)
+            $("#signupModal #nextBtn").removeClass("running");
+            closeAllModals();
+            if (Object.keys(JSON.parse(response)).includes('token')) {
+                localStorage.setItem("session_id", JSON.parse(response).token);
 
-                    if(SELECTED_ORG_ID) {
-                        do_set_org(SELECTED_ORG_ID, SELECTED_ORG_LOGO, function() {
-                            swal({
-                                title: "Good job!",
-                                text: "You're logged in",
-                                icon: "success",
-                            });
-                            $(".toggleBar").show();
-                            $("#signupModal").hide();
-                            $("#page-contents").show();
-                            
-                            $(".logoDiv").show();
-
-                            $(".moto").show();
-                            showATab("dashboard");
-                            closeAllModals();
-                            
-
-
-                        });
-                    } else {
+                if (SELECTED_ORG_ID) {
+                    do_set_org(SELECTED_ORG_ID, SELECTED_ORG_LOGO, function () {
                         swal({
                             title: "Good job!",
                             text: "You're logged in",
                             icon: "success",
                         });
                         $(".toggleBar").show();
+                        $("#signupModal").hide();
+                        $("#page-contents").show();
+
+                        $(".logoDiv").show();
+
                         $(".moto").show();
                         showATab("dashboard");
                         closeAllModals();
-                    }
+
+
+
+                    });
                 } else {
-                    $("#logincodeModal").addClass("is-visible");
+                    swal({
+                        title: "Good job!",
+                        text: "You're logged in",
+                        icon: "success",
+                    });
+                    $(".toggleBar").show();
+                    $(".moto").show();
+                    showATab("dashboard");
+                    closeAllModals();
                 }
+            } else {
+                $("#logincodeModal").addClass("is-visible");
+            }
 
-                get_profile_info(function (msg) {
-                    // XXX Check payment status
+            get_profile_info(function (msg) {
+                // XXX Check payment status
 
-                    // show_set_monitor();
-                    // if (!isApp()) {
-                    // Farrukh add subscription integration
-                    // make free for webclient until we implement
-                    console.log(msg)
-                    //$("#not-subscribed-user").show();
-                    ////$("#subscribed-user").hide();
-                    $("#not-subscribed-user").hide();
-                    $("#subscribed-user").show();
-                    $("#Unsubscribe_div").show();
+                // show_set_monitor();
+                // if (!isApp()) {
+                // Farrukh add subscription integration
+                // make free for webclient until we implement
+                console.log(msg)
+                //$("#not-subscribed-user").show();
+                ////$("#subscribed-user").hide();
+                $("#not-subscribed-user").hide();
+                $("#subscribed-user").show();
+                $("#Unsubscribe_div").show();
 
-                    //}
-                });
-
-                // $("#proTip").addClass("is-visible");
-            })
-            .fail(function (err) {
-                console.log(err);
-                $("#signupModal #nextBtn").removeClass("running");
-                console.log(err);
-                swal({
-                    title: "Error",
-                    text: "Invalid email or password",
-                    icon: "error",
-                });
+                //}
             });
+
+            // $("#proTip").addClass("is-visible");
+        })
+        .fail(function (err) {
+            console.log(err);
+            $("#signupModal #nextBtn").removeClass("running");
+            console.log(err);
+            swal({
+                title: "Error",
+                text: "Invalid email or password",
+                icon: "error",
+            });
+        });
 }
 
 function handle_signin() {
@@ -235,30 +235,30 @@ function handle_signin() {
             return
         }
         login_api(
-                $("#signin_email").val().trim(),
-                $("#signin_password").val().trim(),
-                function () {
-                    // after successful login or signup show dashboard contents
-                    showATab("dashboard");
-                    // close modals
-                    closeAllModals();
-                    swal({
-                        title: "Good job!",
-                        text: "You're logged in",
-                        icon: "success",
-                    });
+            $("#signin_email").val().trim(),
+            $("#signin_password").val().trim(),
+            function () {
+                // after successful login or signup show dashboard contents
+                showATab("dashboard");
+                // close modals
+                closeAllModals();
+                swal({
+                    title: "Good job!",
+                    text: "You're logged in",
+                    icon: "success",
+                });
 
-                    //if (!isApp()) {
-                    // Farrukh add subscription integration
-                    // make free for webclient until we implement
-                    $("#not-subscribed-user").show();
-                    $("#subscribed-user").hide();
+                //if (!isApp()) {
+                // Farrukh add subscription integration
+                // make free for webclient until we implement
+                $("#not-subscribed-user").show();
+                $("#subscribed-user").hide();
 
-                    get_profile_info(function (msg) {
-                        console.log(msg)
-                        // show_set_monitor();
-                    });
-                }
+                get_profile_info(function (msg) {
+                    console.log(msg)
+                    // show_set_monitor();
+                });
+            }
         );
     });
 }
@@ -280,21 +280,21 @@ function login_api_code(email, code, callback) {
         data: form,
     };
     $.ajax(settings)
-            .done(function (response) {
-                localStorage.setItem("session_id", JSON.parse(response).token);
-                console.log("user logged in");
-
-                $(".toggleBar").show();
-                $(".moto").show();
-                callback();
-            })
-            .fail(function (err) {
-                swal({
-                    title: "Error",
-                    text: "Invalid email or password",
-                    icon: "error",
-                });
+        .done(function (response) {
+            localStorage.setItem("session_id", JSON.parse(response).token);
+            console.log("user logged in");
+            $("#logoDivId").show();
+            $(".toggleBar").show();
+            $(".moto").show();
+            callback();
+        })
+        .fail(function (err) {
+            swal({
+                title: "Error",
+                text: "Invalid email or password",
+                icon: "error",
             });
+        });
 }
 
 function handle_login_code_api(email, code, callback) {
@@ -323,49 +323,49 @@ function handle_login_code_api(email, code, callback) {
         data: form,
     };
     $.ajax(settings)
-            .done(function (response) {
-                console.log(response)
-                localStorage.setItem("session_id", JSON.parse(response).token);
-                console.log("user logged in");
+        .done(function (response) {
+            console.log(response)
+            localStorage.setItem("session_id", JSON.parse(response).token);
+            console.log("user logged in");
 
-                $(".toggleBar").show();
-                $(".moto").show();
-                showATab("dashboard");
+            $(".toggleBar").show();
+            $(".moto").show();
+            showATab("dashboard");
+            closeAllModals();
+            swal({
+                title: "Good job!",
+                text: "You're logged in",
+                icon: "success",
+            }).then(function () {
                 closeAllModals();
-                swal({
-                    title: "Good job!",
-                    text: "You're logged in",
-                    icon: "success",
-                }).then(function () {
-                    closeAllModals();
-                });
-
-                get_profile_info(function (msg) {
-                    // XXX Check payment status
-
-                    // show_set_monitor();
-                    // if (!isApp()) {
-                    // Farrukh add subscription integration
-                    // make free for webclient until we implement
-                    console.log(msg)
-                    //$("#not-subscribed-user").show();
-                    ////$("#subscribed-user").hide();
-                    $("#not-subscribed-user").hide();
-                    $("#subscribed-user").show();
-                    $("#Unsubscribe_div").show();
-
-                    //}
-                });
-
-            })
-            .fail(function (err) {
-                $("#logincodeModal").addClass("is-visible");
-                swal({
-                    title: "Error",
-                    text: "Invalid code",
-                    icon: "error",
-                });
             });
+
+            get_profile_info(function (msg) {
+                // XXX Check payment status
+
+                // show_set_monitor();
+                // if (!isApp()) {
+                // Farrukh add subscription integration
+                // make free for webclient until we implement
+                console.log(msg)
+                //$("#not-subscribed-user").show();
+                ////$("#subscribed-user").hide();
+                $("#not-subscribed-user").hide();
+                $("#subscribed-user").show();
+                $("#Unsubscribe_div").show();
+
+                //}
+            });
+
+        })
+        .fail(function (err) {
+            $("#logincodeModal").addClass("is-visible");
+            swal({
+                title: "Error",
+                text: "Invalid code",
+                icon: "error",
+            });
+        });
 }
 
 
@@ -385,24 +385,23 @@ function login_api(email, password, callback) {
         data: form,
     };
     $.ajax(settings)
-            .done(function (response) {
-                localStorage.setItem("session_id", JSON.parse(response).token);
-                console.log("user logged in");
-
-                $("#signinModal").hide();
-                $("#page-contents").show();
-
-                $(".toggleBar").show();
-                $(".moto").show();
-                callback();
-            })
-            .fail(function (err) {
-                swal({
-                    title: "Error",
-                    text: "Invalid email or password",
-                    icon: "error",
-                });
+        .done(function (response) {
+            localStorage.setItem("session_id", JSON.parse(response).token);
+            console.log("user logged in");
+            $("#signinModal").hide();
+            $("#page-contents").show();
+            $("#logoDivId").show();
+            $(".toggleBar").show();
+            $(".moto").show();
+            callback();
+        })
+        .fail(function (err) {
+            swal({
+                title: "Error",
+                text: "Invalid email or password",
+                icon: "error",
             });
+        });
 }
 
 function signup_signin_buttons() {
@@ -434,6 +433,7 @@ function signup_signin_buttons() {
         $("#orgModal").hide();
         $("#page-contents").show();
         $('.logoDiv').show()
+        $('#showConfirm').hide()
     });
 
 
@@ -449,9 +449,15 @@ function signup_signin_buttons() {
 
     $(".signupNeed").on("click", function (e) {
         e.preventDefault();
-        
-        $("#signupModal").show();
+
         $("#signinModal").hide();
+        $("#page-contents").hide();
+        $('.logoDiv').hide()
+        $("#orgModal").show();
+        $("#organize_name").focus();
+
+        // $("#signupModal").show();
+
         // $("#signupModal").addClass("is-visible");
         // $("#signinModal").removeClass("is-visible");
     });

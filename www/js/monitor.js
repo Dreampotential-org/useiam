@@ -48,6 +48,7 @@ function init_monitor() {
     // $("#orgModal").removeClass("is-visible");
     document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
     document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+    $('#signin_logo').hide();
 
 })
 
@@ -210,9 +211,9 @@ function init_invite() {
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
-    "<div class='row'>" +
+    "<div class='row' style='justify-content: space-between;margin: 10px 0px;'>" +
       monitor +
-      " - <input type='checkbox' val='" +
+      " - <input type='checkbox' style='width:auto' val='" +
       monitor +
       "' class='remove-monitor buttonColor' ></div>"
   );

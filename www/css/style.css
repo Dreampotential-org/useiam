@@ -265,6 +265,9 @@ header {
 #activity {
   margin-top: 45px;
 }
+div#activity {
+    background: #5f683c;
+}
 .activity-log {
   /* border-left: 1px solid #dddddd; */
   height: 100vh;
@@ -272,7 +275,7 @@ header {
   overflow-x: hidden;
 }
 .activity-log .chat {
-  padding: 0 0 0 30px;
+  padding: 50 0 0 30px;
 }
 .activity-log .chat .other {
   padding-bottom: 10px;
@@ -305,7 +308,7 @@ header {
   margin-top: 0;
   width: 2px;
   height: 134px;
-  background-color: green;
+  background-color: white;
 }
 .activity-log .chat .other .msg:after {
   /* content: "";
@@ -1399,10 +1402,13 @@ i {
 
 #page-contents {
   background: white;
-  height: 70vh;
-  margin: 10px 0px;
+  /* height: 70vh; */
+  /* margin: 10px 0px; */
   border-radius: 50px 50px 0 0;
   padding-top: 40px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .mainDiv {
