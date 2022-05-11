@@ -267,6 +267,7 @@ header {
 }
 div#activity {
     background: #5f683c;
+    margin-top: -30vh;
 }
 .activity-log {
   /* border-left: 1px solid #dddddd; */
@@ -1401,13 +1402,14 @@ i {
 
 #page-contents {
   background: white;
-  /* height: 70vh; */
+   height: 70vh; 
   /* margin: 10px 0px; */
   border-radius: 50px 50px 0 0;
   padding-top: 40px;
   position: absolute;
-  width: 100%;
+  width: 94%;
   bottom: 0;
+  left: 3%;
 }
 
 .mainDiv {
