@@ -1,0 +1,21 @@
+body{
+    background-color: #009688;
+}
+
+#root-div{
+    font-family: Poppins, Medium;
+    background-color: #009688;
+    color: #FFF;
+}
+
+.content{
+    font-size: 20px ;
+}
+
+#ok{
+    color: black;
+    background-color: #FFF;
+    padding: 10px 30px 10px 30px;
+    border-radius: 10px;
+}
+
