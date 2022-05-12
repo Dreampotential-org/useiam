@@ -265,10 +265,12 @@ header {
 #activity {
   margin-top: 45px;
 }
-div#activity {
+div#activity, div#eventView {
     background: #5f683c;
     margin-top: -30vh;
+    height: 100vh;
 }
+
 .activity-log {
   /* border-left: 1px solid #dddddd; */
   height: 100vh;
@@ -721,6 +723,10 @@ video {
   border-radius: 5px;
   margin: 12px 0px;
 }
+video.activityVideo{
+  margin: 12px 0 0 0;
+
+}
 /* video::-webkit-media-controls {
   display: none;
 } */
@@ -733,11 +739,10 @@ video {
   text-transform: uppercase;
 }
 .nextButton {
-  background: rgb(0, 215, 119);
+  background: #5f683c !important;
   border: 1px solid #b7b4b4;
-  padding: 10px;
-  /* border-radius: 10px; */
-  /* border-radius: 50%; */
+  padding: 10px 25px;
+  border-radius: 20px;
   color: white;
 }
 .nextButton i {
@@ -1510,6 +1515,15 @@ p.alignTag {
   color: white;
   letter-spacing: 0.8px;
 }
+#eventView .videoDetailsDiv {
+  padding: 0;
+  color: black;
+  letter-spacing: 0.8px;
+  width: 100%;
+}
+#eventView .detailsDiv{
+  margin:0px;
+}
 hr {
   margin: 0px 8px;
 }
@@ -1560,11 +1574,11 @@ textarea#message::placeholder {
 }
 
 .favBtn {
-  float: right;
+  /* float: right; */
   background: transparent;
-  box-shadow: none;
+  /* box-shadow: none; */
   border: none;
-  margin-right: -7px;
+  /* margin-right: -7px; */
 }
 i.fa.starIcon.fa-star-o {
   font-size: 25px;
@@ -1801,3 +1815,53 @@ table.ui-datepicker-calendar {
   color: #fff;
 }
 
+
+
+#feedbacks {
+  margin-top: 10px;
+}
+
+.list {
+  background: white;
+  border-radius: 2px;
+  list-style: none;
+  padding: 0;
+  margin:0;
+}
+
+.list-item {
+  display: flex;
+  /* margin: 10px;*/
+  padding-bottom: 5px;
+  padding-top: 5px; 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item-image {
+  border-radius: 50%;
+  width: 50px;
+}
+
+.list-item-content {
+  margin-left: 15px;
+}
+
+.list-item-content h4,
+.list-item-content p {
+  margin: 0;
+}
+
+.list-item-content h4 {
+  /* margin-top: 10px; */
+  font-size: 16px;
+  margin: 0;
+}
+
+.list-item-content p {
+  /* margin-top: 2px; */
+  color: black;
+}

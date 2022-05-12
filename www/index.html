@@ -1562,11 +1562,11 @@
 
         <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
         <script type="text/javascript">
-             if (isApp()) { 
-                 $('#appstore_feedback_btn').show();
-             }else{
+            if (isApp()) {
+                $('#appstore_feedback_btn').show();
+            } else {
                 $('#appstore_feedback_btn').hide();
-             }
+            }
 
             const swiper = new Swiper('.swiper', {
                 // Optional parameters
@@ -1585,13 +1585,22 @@
                 swiper.slidePrev();
             });
             $(".skip_click").click(function (e) {
-                // window.location.href = 'main.html';
-                $("#page-contents").children().hide();
-                // show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
+                localStorage.setItem('show_intro', 0);
+                if (localStorage.getItem('session_id')) {
+                    $("#page-contents").show();
+                    $("#mainBox").show();
+                    $("#page-contents").children().hide();
+                    $('#page-contents').find('#dashboard').show('slow');
+                    $('#addEvent').hide();
+                    $("#logoDivId").show();
+
+                } else {
+                    $("#page-contents").children().hide();
+                    $('#page-contents').find('#login').show("slow");
+                    $("#logoDivId").show();
+                    $('#addEvent').hide();
+                }
                 $('.swiper').hide();
-                $("#logoDivId").show();
             });
         </script>
 
@@ -1611,23 +1620,24 @@
             // }   
 
 
-
             if (localStorage.getItem('session_id')) {
+                if (localStorage.getItem('show_intro') == '1') {
+                    $('.swiper').show();
+                } else {
+                    $('.swiper').hide();
+                }
                 $("#page-contents").children().hide();
                 // show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
                 $("#logoDivId").show();
-
                 $('#addEvent').hide();
-                // hide slider
-                $('.swiper').hide();
             } else {
                 $("#page-contents").show();
-                $("#logoDivId").hide();
                 $("#mainBox").show();
                 $("#page-contents").children().hide();
                 //show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
+                $("#logoDivId").hide();
                 $('#addEvent').hide();
                 // Show slider
                 $('.swiper').show();
