@@ -93,7 +93,9 @@ function init_video_event() {
     // clicking back btn takes you to dashboard
     // showBackButton('dashboard');
     // showATab('takeVideo');
-    $("#videoInfo").addClass("is-visible");
+
+    // $("#videoInfo").addClass("is-visible"); // bypass instruction page
+    $("#upload-vid").click();
   });
 
   $("#upload_vid_form").submit(function (e) {
