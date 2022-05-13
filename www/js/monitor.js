@@ -48,7 +48,7 @@ function init_monitor() {
     // $("#orgModal").removeClass("is-visible");
     document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
     document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
-    $('#signin_logo').hide();
+    // $('#signin_logo').hide();
 
 })
 

@@ -47,7 +47,7 @@ function init_video_event() {
       async: true,
       crossDomain: true,
       headers: {
-        Authorization: "Token " + localStorage.getItem("session_id"),
+        // Authorization: "Token " + localStorage.getItem("session_id"),
       },
       url: SERVER + "/api/add-org-client/",
       method: "POST",
@@ -93,9 +93,7 @@ function init_video_event() {
     // clicking back btn takes you to dashboard
     // showBackButton('dashboard');
     // showATab('takeVideo');
-
-    // $("#videoInfo").addClass("is-visible"); // bypass instruction page
-    $("#upload-vid").click();
+    $("#videoInfo").addClass("is-visible");
   });
 
   $("#upload_vid_form").submit(function (e) {

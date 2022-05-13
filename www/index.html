@@ -105,8 +105,8 @@
         }
 
         .action-btns {
-            padding: 0px 30px !important;
-            text-align: left;
+            /* padding: 0px 30px !important; */
+            /* text-align: left; */
         }
 
         #org_list {
@@ -314,13 +314,13 @@
                 <div id="subscribed-user">
                     <div class="row1">
                         <div class="column1 btn1 subVideoBtn ">
-                            <button class="actionBtn btnVideo video dark videoBtn">SUBMIT VIDEO</button>
+                            <button class="actionBtn btnVideo video dark homeVideoBtn">SUBMIT VIDEO</button>
                         </div>
                     </div>
                     <div class="row1">
 
                         <div class="column1 btn2">
-                            <button class="actionBtn btnEvent location videoBtn">POST LOCATION</button>
+                            <button class="actionBtn btnEvent location homeVideoBtn">POST LOCATION</button>
                         </div>
                     </div>
                 </div>
@@ -466,7 +466,7 @@
         </style>
         <div>
 
-            <div>
+            <div style="height: 30vh;">
                 <div style="width: 90%;margin: auto;">
                     <div style="padding:10px 0px" class="row">
                         <div style="padding-right:10px ;">
@@ -479,10 +479,10 @@
                     </div>
                 </div>
                 <div class="logo" id="signin_logo"></div>
-                <div id="selected_org1"></div>
+                <!-- <div id="selected_org1"></div> -->
             </div>
 
-            <div style="height: 65vh;
+            <div style="height: 70vh;
             background: white;
             border-radius: 45px 45px 0 0;
             padding: 20px 20px;
@@ -982,18 +982,10 @@
                     </div>
                 </div>
             </div>
-
-
             <div id="selected_org"></div>
         </div>
 
-        <div style="height: 65vh;
-        background: white;
-        border-radius: 45px 45px 0 0;
-        padding: 20px 20px;
-        position: absolute;
-        width: 100%;
-        bottom: 0;">
+        <div class="signup-div">
             <form id="regForm" class="signupform" action="#" style='height:60vh'>
                 <div class="tab user-info">
                     <div class="signupEmail">
@@ -1562,11 +1554,11 @@
 
         <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
         <script type="text/javascript">
-             if (isApp()) { 
-                 $('#appstore_feedback_btn').show();
-             }else{
+            if (isApp()) {
+                $('#appstore_feedback_btn').show();
+            } else {
                 $('#appstore_feedback_btn').hide();
-             }
+            }
 
             const swiper = new Swiper('.swiper', {
                 // Optional parameters
@@ -1585,13 +1577,22 @@
                 swiper.slidePrev();
             });
             $(".skip_click").click(function (e) {
-                // window.location.href = 'main.html';
-                $("#page-contents").children().hide();
-                // show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $('#addEvent').hide();
+                localStorage.setItem('show_intro', 0);
+                if (localStorage.getItem('session_id')) {
+                    $("#page-contents").show();
+                    $("#mainBox").show();
+                    $("#page-contents").children().hide();
+                    $('#page-contents').find('#dashboard').show('slow');
+                    $('#addEvent').hide();
+                    $("#logoDivId").show();
+
+                } else {
+                    $("#page-contents").children().hide();
+                    $('#page-contents').find('#login').show("slow");
+                    $("#logoDivId").show();
+                    $('#addEvent').hide();
+                }
                 $('.swiper').hide();
-                $("#logoDivId").show();
             });
         </script>
 
@@ -1611,23 +1612,24 @@
             // }   
 
 
-
             if (localStorage.getItem('session_id')) {
+                if (localStorage.getItem('show_intro') == '1') {
+                    $('.swiper').show();
+                } else {
+                    $('.swiper').hide();
+                }
                 $("#page-contents").children().hide();
                 // show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
                 $("#logoDivId").show();
-
                 $('#addEvent').hide();
-                // hide slider
-                $('.swiper').hide();
             } else {
                 $("#page-contents").show();
-                $("#logoDivId").hide();
                 $("#mainBox").show();
                 $("#page-contents").children().hide();
                 //show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
+                $("#logoDivId").hide();
                 $('#addEvent').hide();
                 // Show slider
                 $('.swiper').show();
