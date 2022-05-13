@@ -1882,3 +1882,13 @@ table.ui-datepicker-calendar {
   width: 100%;
   bottom: 0;
 }
+.homeVideoBtn {
+  background: white !important;
+  color: #2a2e1c !important;
+  border-radius: 16px!important;
+  font-weight: 900!important;
+  letter-spacing: 1px!important;
+  width: 210px!important;
+  padding: 20px 10px!important;
+  font-size: 18px!important;
+}
