@@ -232,7 +232,8 @@ function loadOrganization() {
       let val = $('#organization').val();
       if(val!='Select Organization'){
         $('.logo').empty();
-        let img = "<img src='" + loadData[val-1].logo + "'width='200'height='200'/>";
+        console.log('logo');
+        let img = "<img src='" + loadData[val-1].logo + "' style='width:160px'/>";
         $(".logo").append(img);
       }
       else{

@@ -57,7 +57,7 @@ function init_activity() {
     showATab('eventView');
     showBackButton('activity');
     $('#eventView .content').html(
-      '<video controls autoplay="" name="media" id="video" class="activityVideo" width="170" height="240"></video>' +
+      '<video controls autoplay playsinline preload="auto" name="media" id="video" class="activityVideo" width="170" height="240"></video>' +
       '<div class="detailsDiv">' +
       '<div class="row">' +
       '<div class="col-4 col-md-4 col-sm-03"><p><button class="nextButton" id="previousBtn">Prev</button></p></div>' +
@@ -118,8 +118,8 @@ function init_activity() {
         'user'
       ];
       get_content_comments(idNext, userNext)
-      // var vid = document.getElementById("video");
-      // vid.play();
+      var vid = document.getElementById("video");
+      vid.pause();
       $('#video').html(
         '<source src=' +
         SERVER +
@@ -139,7 +139,7 @@ function init_activity() {
         $('#previousBtn').show();
         $('#nextBtn').show();
       }
-      var vid = document.getElementById('video');
+      
       vid.load();
       vid.play();
     });
@@ -149,6 +149,8 @@ function init_activity() {
       var userPrev = getUrlVars(videoData.events[CurrVdeoIndex - 1].url)[
         'user'
       ];
+      var vid = document.getElementById("video");
+      vid.pause();
       get_content_comments(idPrev, userPrev)
       $('#video').html(
         '<source src=' +
@@ -169,7 +171,7 @@ function init_activity() {
         $('#previousBtn').show();
         $('#nextBtn').show();
       }
-      var vid = document.getElementById('video');
+      // var vid = document.getElementById('video');
       vid.load();
       vid.play();
     });
