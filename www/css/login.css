@@ -40,11 +40,15 @@
     background: #009688;
   }
 
-  #myInput{
+  #myInputEmail{
       width: 100%;
       padding-left: 40px;
   }
 
+  #myInputPassword{
+    width: 100%;
+    padding-left: 40px;
+}
 
   .input-search{
     position: absolute;

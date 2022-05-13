@@ -1,0 +1,15 @@
+#comment{
+    display: flex;
+}
+
+#send_feedback{
+    margin-right: 25px;
+}
+
+#div-text{
+    padding-left: 25px;
+}
+
+img{
+    height: 50%;
+}

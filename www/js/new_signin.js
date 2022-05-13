@@ -19,17 +19,23 @@ function getUrlVars() {
 function login_monitor() {
   // create their account
   $("#login").on("click", function (e) {
+   debugger
     login_api(
-      $("#signin_email").val().trim(),
-      $("#signin_password").val().trim(),
+      // $("#signin_email").val().trim(),
+      // $("#signin_password").val().trim(),
+
+      $("#myInputEmail").val().trim(),
+      $("#myInputPassword").val().trim(),
+
       function () {
         // swal({
         //     'title': 'Login Success!',
         //     'text': 'You will now be able to view video links from email',
         //     'icon': 'success',
         // });
-
+debugger
         if (localStorage.getItem("redirect_url")) {
+          console.log("url =====>"+redirect_url)
           var redirect = localStorage.getItem("redirect_url");
           localStorage.removeItem("redirect_url");
           window.location = redirect;
@@ -43,6 +49,7 @@ function login_monitor() {
 }
 
 function login_api(email, password, callback) {
+  debugger
   var form = new FormData();
   form.append("username", email);
   form.append("password", password);
@@ -56,9 +63,10 @@ function login_api(email, password, callback) {
     mimeType: "multipart/form-data",
     data: form,
   };
-
+  console.log("settings =>"+settings)
   $.ajax(settings)
     .done(function (response) {
+      console.log("RESPONSE=>"+response)
       localStorage.setItem("session_id", JSON.parse(response).token);
       console.log("user logged in");
       getOrganizationId();
