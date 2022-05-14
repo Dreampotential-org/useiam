@@ -60,9 +60,9 @@ function init_activity() {
       '<video controls autoplay playsinline preload="auto" name="media" id="video" class="activityVideo" width="170" height="240"></video>' +
       '<div class="detailsDiv">' +
       '<div class="row">' +
-      '<div class="col-4 col-md-4 col-sm-03"><p><button class="nextButton" id="previousBtn">Prev</button></p></div>' +
-      '<div class="col-4 col-md-4 col-sm-03"><p><button class="nextButton" id="nextBtn">Next</button></p></div>' +
-      '<div class="col-4 col-md-4 col-sm-03"><p><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button></p></div>' +
+      '<div class="col-4 col-md-4 col-sm-03 "><p><button class="nextButton" id="previousBtn">Prev</button></p></div>' +
+      '<div class="col-4 col-md-4 col-sm-03 pText"><p><button class="nextButton" id="nextBtn">Next</button></p></div>' +
+      '<div class="col-4 col-md-4 col-sm-03 pText"><p><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button></p></div>' +
       '</div>' +
       '<div class="row" id="feedbacks">' +
 
@@ -412,9 +412,9 @@ function get_content_comments(id, user) {
         for (var feedback of allData.feedback) {
           $('#feedback_list').append(
             '<li class="list-item">' +
-            '<div style="align-self: center;">' +
-            '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" class="list-item-image">' +
-            '</div>' +
+            // '<div style="align-self: center;">' +
+            // '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" class="list-item-image">' +
+            // '</div>' +
             '<div class="list-item-content">' +
             '<h4>' + feedback.user + '</h4>' +
             '<p>' + feedback.message + '</p>' +
@@ -423,6 +423,15 @@ function get_content_comments(id, user) {
             '</li>'
           )
         }
+      }else{
+        $('#feedbacks').append(
+          '<div class="videoDetailsDiv"><b>No Feedback Received</b><br>' +
+          '<div class="feedback_received">' +
+          '<ul class="list"  id="feedback_list">' +
+          '</ul>' +
+          '</div>' +
+          '</div>'
+        );
       }
     })
 }

@@ -1841,14 +1841,14 @@ table.ui-datepicker-calendar {
   border-bottom: none;
 }
 
-.list-item-image {
+/* .list-item-image {
   border-radius: 50%;
   width: 50px;
-}
+} */
 
-.list-item-content {
+/* .list-item-content {
   margin-left: 15px;
-}
+} */
 
 .list-item-content h4,
 .list-item-content p {
@@ -1869,9 +1869,9 @@ table.ui-datepicker-calendar {
 /* Dashboard */
 #dashboard {
   background: #5f683c;
-  margin-top: -6vh;
+  margin-top: -8vh;
   height: 70vh;
-  padding-top: 50px;
+  padding-top: 45px;
 }
 .signup-div {
   height: 70vh;
