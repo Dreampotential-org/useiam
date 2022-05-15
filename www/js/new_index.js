@@ -51,7 +51,7 @@ function init_events() {
             get_video_info(id, user, function() {});
 
             swal({
-              title: "Feedback Send",
+              title: "Feedback Sent",
               text: "Your feedback sent successfully",
               icon: "success",
             });

@@ -1,7 +1,7 @@
 function init() {
 
     get_all_activity(function(events) {
-        for(var e of events['events']) {
+        for(var e of events['results']) {
             console.log(e);
         }
         // populate screen....
