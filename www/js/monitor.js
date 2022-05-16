@@ -44,7 +44,7 @@ function init_monitor() {
     // $("#signupModal").addClass("is-visible");
     // $("#orgModal").removeClass("is-visible");
     document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
-    document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+    // document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
     // $('#signin_logo').hide();
   })
 

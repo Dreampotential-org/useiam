@@ -1407,7 +1407,7 @@ i {
 
 #page-contents {
   background: white;
-   height: 65vh; 
+   height: 70vh; 
   /* margin: 10px 0px; */
   border-radius: 50px 50px 0 0;
   padding-top: 40px;
@@ -1675,7 +1675,7 @@ span.alignTag {
   color: black;
 }
 .loginform div {
-  padding: 11px 0 11px 0;
+  padding: 6px 0 6px 0;
 }
 .emailDiv {
   padding-top: 70px;
@@ -1870,14 +1870,14 @@ table.ui-datepicker-calendar {
 #dashboard {
   background: #5f683c;
   margin-top: -8vh;
-  height: 70vh;
+  height: 72vh;
   padding-top: 45px;
 }
 .signup-div {
-  height: 70vh;
+  height: 65vh;
   background: white;
   border-radius: 45px 45px 0 0;
-  padding: 20px 20px;
+  padding: 10px 20px;
   position: absolute;
   width: 100%;
   bottom: 0;
