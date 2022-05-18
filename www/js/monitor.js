@@ -3,91 +3,73 @@ var SELECTED_ORG_LOGO = $(this).attr("org_image");
 
 function populate_signup_orgs() {
 
-    list_orgs(function (msg) {
+  list_orgs(function (msg) {
+    console.log('list_orgs > msg', msg)
+    msg.sort(function (a, b) {
+      return (a.id - b.id);
+    });
+    setTimeout(() => {
       for (var r of msg) {
         $("#org_list").append(
-            "<li id=" + r.id + " org_image='" + r.logo + "'><span><img class='img-responsive img-thumbnail' src=" + r.logo + "><p style='margin-top:-5px;'>" + r.name + "</p></span></li>")
+          "<li id=" + r.id + " org_image='" + r.logo + "'>" +
+          "<span><img class='img-responsive img-thumbnail' src=" + r.logo + ">" +
+          "<p style='margin-top:-5px;'>" + r.name + "</p></span></li>"
+        );
       }
-    });
+    }, 100);
+
+  });
 }
 
 
 function init_monitor() {
-
   populate_signup_orgs();
-  let previous_node =''
+  let previous_node = ''
   $("body").delegate(".org_list li", "click", function (e) {
     e.preventDefault();
     SELECTED_ORG_ID = $(this).attr("id");
     SELECTED_ORG_LOGO = $(this).attr("org_image");
-    console.log('check previous node',previous_node,previous_node===true)
-
     $('#showConfirm').show()
-    
-    if(!previous_node){
-      console.log('previous node emply')
-      console.log('selected node',$(this)[0])
+    if (!previous_node) {
       selected_node = $(this)[0]
       selected_node.style.border = '3px solid black'
       previous_node = selected_node
-    }
-    else{
-      console.log('selected node',$(this)[0])
+    } else {
+      console.log('selected node', $(this)[0])
       selected_node = $(this)[0]
       selected_node.style.border = '3px solid black'
-
       previous_node.style.border = 'none'
-
       previous_node = selected_node
-    
     }
-
-  
-
     // $("#signupModal").addClass("is-visible");
     // $("#orgModal").removeClass("is-visible");
     document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
-    document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
+    // document.getElementById('selected_org1').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
     // $('#signin_logo').hide();
+  })
 
-})
+  $("#showConfirm").on("click", function (e) {
+    $('#showConfirm').hide()
+    $("#signupModal").show();
+    $("#orgModal").removeClass("is-visible");
+    $("#orgModal").hide();
 
-    $("#showConfirm").on("click", function (e) {
-      $('#showConfirm').hide()
-      $("#signupModal").show();
-      $("#orgModal").removeClass("is-visible");
-      $("#orgModal").hide();
+  });
 
-    });
+  $("#signUpBackButton").on("click", function (e) {
+    $("#orgModal").show();
+    $("#signupModal").hide();
+  });
 
-    $("#signUpBackButton").on("click", function (e) {
-      console.log('signupbackbutton')
-      $("#orgModal").show();
-      $("#signupModal").hide();
+  $("#loginbutton").on("click", function (e) {
+    $("#signupModal").hide();
+    $("#signinModal").show();
+  });
 
-    });
-
-    
-
-    $("#loginbutton").on("click", function (e) {
-      $("#signupModal").hide();
-      $("#signinModal").show();
-      
-      
-
-    });
-
-    $("#backButtonAction").on("click", function (e) {
-      $("#signupModal").show();
-      $("#signinModal").hide();
-      
-    
-    });
-
-    
-    
-
-
+  $("#backButtonAction").on("click", function (e) {
+    $("#signupModal").show();
+    $("#signinModal").hide();
+  });
 
   // $("body").delegate(".org_list li", "click", function (e) {
   //       e.preventDefault();
@@ -99,9 +81,6 @@ function init_monitor() {
   //  })
 
   $("#sober_count").on("click", function (e) {
-    console.log("In updtate date function....");
-    console.log("SRVER", SERVER);
-
     get_profile_info(function (msg) {
       if (msg.sober_date) {
         $("#sober_date_update").val(msg.sober_date);
@@ -116,60 +95,54 @@ function init_monitor() {
     do_set_sober_date();
   });
 
-
   $("#setOrg").on("click", function (e) {
     list_orgs(function (msg) {
-        console.log(msg)
-       show_set_orgs();
+      console.log(msg)
+      show_set_orgs();
       // closes side menu
       $(".toggleBar").click();
       $(".current-monitors").empty();
-        $("#org_ids").empty()
+      $("#org_ids").empty()
 
       $("#org_ids").append("<option>No Organization</option>")
       for (var org of msg) {
         $("#org_ids").append(
-            "<option logo='" + org.logo + "' id='" + org.id + "'>" + org.name + "</option>")
+          "<option logo='" + org.logo + "' id='" + org.id + "'>" + org.name + "</option>")
       }
     });
   });
-    /* 
-  $("#org_list").on("click", function (e) {
-    list_orgs(function (msg) {
-        console.log(msg)
-       show_set_orgs();
-      // closes side menu
-      $(".toggleBar").click();
-      $(".current-monitors").empty();
-        $("#org_ids").empty()
+  /* 
+$("#org_list").on("click", function (e) {
+  list_orgs(function (msg) {
+      console.log(msg)
+     show_set_orgs();
+    // closes side menu
+    $(".toggleBar").click();
+    $(".current-monitors").empty();
+      $("#org_ids").empty()
 
-      $("#org_list").append("<option>No Organization</option>")
-      for (var org of msg) {
-        $("#org_list").append(
-            "<option logo='" + org.logo + "' id='" + org.id + "'>" + org.name + "</option>")
-      }
-    });
+    $("#org_list").append("<option>No Organization</option>")
+    for (var org of msg) {
+      $("#org_list").append(
+          "<option logo='" + org.logo + "' id='" + org.id + "'>" + org.name + "</option>")
+    }
   });
-    */
+});
+  */
   //new code by irfan start
   $("#setMonitor").on("click", function (e) {
     get_profile_info(function (msg) {
       show_set_monitor();
 
       $("#page-contents").hide();
+      $("#dashboard").hide();
       $("#logoDivId").hide();
       $("#setmonitorModal").show();
-
-
-
-
-      
-
       // closes side menu
       $(".toggleBar").click();
       $(".current-monitors").empty();
       for (var monitor of msg.monitors) {
-        console.log('monitors',monitor)
+        console.log('monitors', monitor)
         display_monitor(monitor);
       }
     });
@@ -186,11 +159,9 @@ function init_monitor() {
 }
 
 function init_time() {
-  console.log("In Init Time fun()......................");
   $("#setTime").on("click", function (e) {
     get_profile_info(function (msg) {
       show_set_time();
-
       // closes side menu
       $(".toggleBar").click();
     });
@@ -198,11 +169,9 @@ function init_time() {
 }
 
 function init_invite() {
-  console.log("In Invite fun()......................");
   $("#invite").on("click", function (e) {
     get_profile_info(function (msg) {
       show_invite();
-
       // closes side menu
       $(".toggleBar").click();
     });
@@ -212,10 +181,10 @@ function init_invite() {
 function display_monitor(monitor) {
   $(".current-monitors").append(
     "<div class='row' style='justify-content: space-between;margin: 10px 0px;'>" +
-      monitor +
-      " - <input type='checkbox' style='width:auto' val='" +
-      monitor +
-      "' class='remove-monitor buttonColor' ></div>"
+    monitor +
+    " - <input type='checkbox' style='width:auto' val='" +
+    monitor +
+    "' class='remove-monitor buttonColor' ></div>"
   );
 
   $(".remove-monitor").on("click", function (e) {
@@ -294,15 +263,14 @@ function do_set_not_paying(iap_blurb) {
       get_profile_info();
       swal("Thanks for using useIAM", {
         icon: "success",
-      }).then(function() {
-          // XXX currently doing reload as there are some elements from
-          // iap braintree seems to explore clean up issue.
-          window.location.reload()
+      }).then(function () {
+        // XXX currently doing reload as there are some elements from
+        // iap braintree seems to explore clean up issue.
+        window.location.reload()
       })
 
-      $("#not-subscribed-user").hide();
-      $("#subscribed-user").show();
-
+      // $("#not-subscribed-user").hide();
+      // $("#subscribed-user").show();
       //after successful login or signup show dashboard contents
       showATab("dashboard");
       //close modals
@@ -358,9 +326,6 @@ function do_set_paying(iap_blurb) {
       });
     });
 }
-
-
-
 
 function do_set_sober_date() {
   var form = new FormData();
@@ -427,7 +392,7 @@ function do_set_sober_date() {
 function do_set_org(org_id, selected_org_logo, callback) {
   var form = new FormData();
   form.append("org_id",
-              parseInt(org_id))
+    parseInt(org_id))
   var settings = {
     async: true,
     crossDomain: true,
@@ -461,6 +426,7 @@ function do_set_org(org_id, selected_org_logo, callback) {
 }
 
 function do_set_monitor() {
+
   if (!validateEmail($("#monitor_email").val().trim())) {
     swal({
       title: "Error Invalid email address",
@@ -476,7 +442,6 @@ function do_set_monitor() {
       return;
     }
   }
-
   var form = new FormData();
   form.append("notify_email", $("#monitor_email").val().trim());
   form.append("source", window.location.host);
@@ -503,18 +468,19 @@ function do_set_monitor() {
 
       $("#monitor_email").val("");
       //after successful login or signup show dashboard contents
-      showATab("dashboard");
       //close modals
       //closeAllModals();
-    
 
-      $(".toggleBar").click();
-      $("#showInstructions").click();
-      console.log("Show instructions");
+      
 
-      $("#page-contents").show();
+      // $(".toggleBar").click();
+      // $("#showInstructions").click();
+      // console.log("Show instructions");
+
+      // $("#page-contents").show();
       $("#logoDivId").show();
-       $("#setmonitorModal").hide ();
+      $("#setmonitorModal").hide();
+      showATab("dashboard");
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
@@ -527,9 +493,9 @@ function do_set_monitor() {
     });
 
 
-    // $("#page-contents").show();
-    // $("#logoDivId").show();
-    // $("#setmonitorModal").hide ();
+  // $("#page-contents").show();
+  // $("#logoDivId").show();
+  // $("#setmonitorModal").hide ();
 
 }
 
@@ -566,17 +532,18 @@ function api_remove_monitor(notify_email) {
       });
     });
 
-    
-    $("#page-contents").show();
-    $("#logoDivId").show();
-    $("#setmonitorModal").hide ();
-    
+
+  // $("#page-contents").show();
+  $("#logoDivId").show();
+  $("#setmonitorModal").hide();
+
 }
 
 $("#backbuttonsetmonitor").on("click", function (e) {
-  $("#page-contents").show();
+  // $("#page-contents").show();
   $("#logoDivId").show();
-  $("#setmonitorModal").hide ();
+  $('#dashboard').show();
+  $("#setmonitorModal").hide();
 });
 
 
@@ -604,9 +571,9 @@ function get_profile_info(callback) {
         $(".logo img").attr('src', msg.user_org.logo);
       }
 
-        $("#not-subscribed-user").hide();
-        $("#subscribed-user").show();
-        $("#Unsubscribe_div").hide();
+      $("#not-subscribed-user").hide();
+      $("#subscribed-user").show();
+      $("#Unsubscribe_div").hide();
 
       // if is not app and is paying
       if (true) {
@@ -616,10 +583,10 @@ function get_profile_info(callback) {
       }
       // app paying free
       else if (isApp() == true) {
-         $("#not-subscribed-user").show();
-         $("#subscribed-user").show();
-         $("#Unsubscribe_div").hide();
-      // if not paying browser make pay
+        $("#not-subscribed-user").show();
+        $("#subscribed-user").show();
+        $("#Unsubscribe_div").hide();
+        // if not paying browser make pay
       }
       // else {
       //   $("#not-subscribed-user").show();
@@ -663,6 +630,8 @@ function list_monitors(callback) {
 
 
 function list_orgs(callback) {
+  console.log('monitor.js > list_orgs');
+
   var settings = {
     async: true,
     crossDomain: true,

@@ -1,13 +1,13 @@
 var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function handleOpenURL(url) {
-  setTimeout(function() {
+  setTimeout(function () {
     alert("received url: " + url);
   }, 0);
 }
 
 function init() {
-   onDeviceReady()
+  onDeviceReady()
 
   //  https://github.com/apache/cordova-ios/issues/417
   $(document).on("blur", "input", function () {
@@ -32,9 +32,9 @@ function init() {
   load_logo_from_url()
 
   init_not_med()
-    setTimeout(function() {
-        login_via_code_url()
-    }, 200);
+  setTimeout(function () {
+    login_via_code_url()
+  }, 200);
 
 
   if (!isApp()) {
@@ -52,41 +52,44 @@ function init() {
 }
 
 function block_desktop() {
-    if (!window.location.pathname.includes('reset-password')) {
-        if (!isMobile) {
-            swal({
-            title: "Computer not supported",
-            text: "Use IAM with your smartphone or tablet.",
-            icon: "info",
-            closeOnEsc: false,
-            closeOnClickOutside: false,
-            });
-        }
+  if (!window.location.pathname.includes('reset-password')) {
+    if (!isMobile) {
+      swal({
+        title: "Computer not supported",
+        text: "Use IAM with your smartphone or tablet.",
+        icon: "info",
+        closeOnEsc: false,
+        closeOnClickOutside: false,
+      });
     }
+  }
 }
 function login_via_code_url() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const code = urlParams.get('code')
-    const email = urlParams.get('email')
-    if(code && email) {
-        handle_login_code_api(email, code);
-        closeAllModals()
-        window.history.pushState("", "", "/")
-    }
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const code = urlParams.get('code')
+  const email = urlParams.get('email')
+  if (code && email) {
+    handle_login_code_api(email, code);
+    closeAllModals()
+    window.history.pushState("", "", "/")
+  }
 }
 
 
 function init_not_med() {
   if (window.location.hostname == 'cardoneaccountability.com') {
-        $(".meds").remove()
+    $(".meds").remove()
   }
 
 }
 
 function init_display() {
-  if (localStorage.getItem("session_id")) {
-    $(".toggleBar").show();
+  console.log('init_display')
+  if (localStorage.getItem("session_id") && localStorage.getItem('show_intro') == '0') {
+    console.log('init_display > show');
+    toggleBar.show();
+    $('#header').show();
     $(".moto").show();
   }
 }
@@ -143,7 +146,6 @@ $(".toggleBar").on("click", function (e) {
   $(".slideMenu").toggle("slow");
   $(this).toggleClass("toggleClose");
   if ($(this).hasClass("toggleClose")) {
-    // $('header').css('margin-left','400px');
     $("#page-contents").css("margin-left", "400px");
   } else {
     $("header").css("margin-left", "0");
@@ -190,8 +192,8 @@ function nextPrev(n) {
     document.getElementById("regForm").submit();
     //hiding popup and showing dashboard
     $("#signupModal").toggle("fast");
-    parentDiv.children().hide();
-    parentDiv.find("#dashboard").show("slow");
+    // parentDiv.children().hide();
+    // parentDiv.find("#dashboard").show("slow");
 
     return false;
   } else {
@@ -260,7 +262,7 @@ $(".submitRecordingBtn").on("click", function (e) {
   setTimeout(function () {
     $(
       '<li class="other" style="display: none"><div class="avatar"><img src="images/avater.png" draggable="false"/></div><div class="msg">' +
-        "<p>Your video was submitted successfully!</p> </div> </li>"
+      "<p>Your video was submitted successfully!</p> </div> </li>"
     )
       .appendTo(parentDiv.find("#success .chat"))
       .show("slow");
@@ -272,21 +274,18 @@ var toggleBar = $(".toggleBar");
 var infoBtn = $(".btnInfo");
 //showing back button instead of the side menu bars
 function showBackButton(backTabID) {
+  console.log('showBackButton', backTabID);
   toggleBar.hide();
   backBtn.show();
+
   $("input[id=backTabID]").val(backTabID);
   backBtn.id = backTabID;
   //alert("showbackbutton: "+backTabID);
 }
 
 backBtn.on("click", function (e) {
-  console.log("On Back Button Click()___&&&&&&&");
+  console.log('custom.js',"On Back Button");
 
-  //hide info button if visible
-
-  //alert("onclickbackbutton: "+$('input[id=backTabID]').val());
-
-  //var tabToShow  = backBtn.id;
   var tabToShow = $("input[id=backTabID]").val();
   if (tabToShow == "activity") {
     document.getElementById("logoDivId").style.display = "none";
@@ -295,7 +294,11 @@ backBtn.on("click", function (e) {
   }
   showATab(tabToShow);
 
-  if (tabToShow == "dashboard") showMenuBar();
+  if (tabToShow == "dashboard") {
+    showMenuBar();
+    $("#page-contents").hide();
+    $('#dashboard').show('slow');
+  }
 });
 
 function showInfoBtn(modalID) {
@@ -313,26 +316,29 @@ function hideInfoBtn() {
 }
 
 function showMenuBar() {
+  $('#header').show();
   backBtn.hide();
   toggleBar.show();
 }
 
 function showATab(tabID) {
+  console.log('showATab', tabID)
+
   parentDiv.children().hide();
   parentDiv.find("#" + tabID).show("fast");
 
-  // if (localStorage.getItem("isSubscribed") == "true") {
-  //   $("#subscribed-user").show();
-  //   $("#not-subscribed-user").hide();
+  if (tabID == "dashboard" && localStorage.getItem('show_intro') == '0') {
+    $("#page-contents").hide();
+    $('#dashboard').show('slow');
+  }
 
-  //   // $("#subscribed-user").hide();
-  //   // $("#not-subscribed-user").show();
-  // } else {
-  //   $("#subscribed-user").hide();
-  //   $("#not-subscribed-user").show();
-  // }
+  if (tabID == "addEvent") {
+    showBackButton("dashboard");
+  }
 
   if (tabID == "activity") {
+    $('#dashboard').hide();
+    $('#page-contents').show('slow');
     showBackButton("dashboard");
   }
 
@@ -354,15 +360,15 @@ $(".btnOk").on("click", function (e) {
 
 $("#feedback").on("click", function (e) {
   document.addEventListener('deviceready', function () {
-      if(LaunchReview.isRatingSupported()){
-          LaunchReview.rating();
-      }else{
-          LaunchReview.launch(function(){
-              console.log("Successfully");
-          },function(err){
-              console.log("Error launching store app: " + err);
-          }, '1497407740');
-      }
+    if (LaunchReview.isRatingSupported()) {
+      LaunchReview.rating();
+    } else {
+      LaunchReview.launch(function () {
+        console.log("Successfully");
+      }, function (err) {
+        console.log("Error launching store app: " + err);
+      }, '1497407740');
+    }
   }, false);
 });
 
@@ -398,43 +404,43 @@ $("#submitVideo").css({
 });
 
 function objToStr(obj) {
-    var text = '';
-    $.each(obj, function(k, v) {
-        text += v;
-    }); 
-    return text;
+  var text = '';
+  $.each(obj, function (k, v) {
+    text += v;
+  });
+  return text;
 }
 
 function objArrToStr(obj) {
-    var text = '';
-    $.each(obj, function() {
-        var key = Object.keys(this)[0];
-        var value = this[key];
-        text += value+' ';
-    });
-    return text;
+  var text = '';
+  $.each(obj, function () {
+    var key = Object.keys(this)[0];
+    var value = this[key];
+    text += value + ' ';
+  });
+  return text;
 }
 
 
 // device APIs are available
 //
 function onDeviceReady() {
-    document.addEventListener("pause", onPause, false);
-    document.addEventListener("resume", onResume, false);
+  document.addEventListener("pause", onPause, false);
+  document.addEventListener("resume", onResume, false);
 }
 
 function onPause() {
-    // Handle the pause event
-    setTimeout(function() {
-            // TODO report to server user activity
-        }, 0);
+  // Handle the pause event
+  setTimeout(function () {
+    // TODO report to server user activity
+  }, 0);
 }
 
 function onResume() {
-    // Handle the resume event
-    setTimeout(function() {
-            // TODO report to server user activity
-        }, 0);
+  // Handle the resume event
+  setTimeout(function () {
+    // TODO report to server user activity
+  }, 0);
 
 }
 

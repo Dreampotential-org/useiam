@@ -19,7 +19,7 @@ function getUrlVars() {
 function login_monitor() {
   // create their account
   $("#login").on("click", function (e) {
-   debugger
+  //  debugger
     login_api(
       // $("#signin_email").val().trim(),
       // $("#signin_password").val().trim(),
@@ -33,7 +33,7 @@ function login_monitor() {
         //     'text': 'You will now be able to view video links from email',
         //     'icon': 'success',
         // });
-debugger
+// debugger
         if (localStorage.getItem("redirect_url")) {
           console.log("url =====>"+redirect_url)
           var redirect = localStorage.getItem("redirect_url");
@@ -49,7 +49,7 @@ debugger
 }
 
 function login_api(email, password, callback) {
-  debugger
+  // debugger
   var form = new FormData();
   form.append("username", email);
   form.append("password", password);
@@ -201,7 +201,7 @@ function getOrganizationId(){
   //  "mimeType": "multipart/form-data",
   });
   request.done(function(res){
-    console.log(res)
+    console.log("getOrganizationId"+JSON.stringify(res))
     localStorage.setItem('organizationId',res.organization_id);
     localStorage.setItem('patient_org_id',res.Patient_org_id)
   });

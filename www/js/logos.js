@@ -67,7 +67,7 @@ function init_logo() {
     $(".logo img").css("width", "200px");
   } else {
     _append_logo_and_icon("img/useiam_logo.png");
-    $(".logo img").css("width", "200px");
+    $(".logo img").css("width", "160px");
   }
   $(".logo img").show();
 }
