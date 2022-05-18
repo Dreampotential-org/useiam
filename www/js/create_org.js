@@ -21,6 +21,10 @@ function init_video_event() {
     var form = new FormData();
     form.append("name", $('#org_name').val());
     form.append("hostname", $('#org_host_name').val());
+    form.append("city", $('#org_city').val());
+    form.append("address", $('#org_address').val());
+    form.append("state", $('#org_state').val());
+
     form.append("file", LOGO_FILE, LOGO_FILE.name);
 
     if ($('#org_name').val() == '') {
@@ -37,6 +41,36 @@ function init_video_event() {
       swal({
         'title': 'Error',
         'text': 'Enter the valid Hostname',
+        'icon': 'error',
+      });
+
+      return false;
+    }
+
+    if ($('#org_city').val() == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Enter the valid City',
+        'icon': 'error',
+      });
+
+      return false;
+    }
+
+    if ($('#org_address').val() == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Enter the valid Address',
+        'icon': 'error',
+      });
+
+      return false;
+    }
+
+    if ($('#org_state').val() == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Enter the valid State',
         'icon': 'error',
       });
 
@@ -62,6 +96,10 @@ function init_video_event() {
       var msg = objToStr(JSON.parse(response));
       $('#org_name').val('')
       $('#org_host_name').val('')
+      $('#org_city').val('')
+      $('#org_address').val('')
+      $('#org_state').val('')
+
       swal({
         title: "Successfully!",
         text: "Organization Crated",
