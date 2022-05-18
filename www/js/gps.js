@@ -10,8 +10,11 @@ function init_gps_event() {
     $('.btnEvent').on('click', function (e) {
         // before showing add event tab enable back btn
         // dashboard will be shown when the back btn is clicked
+        $('#dashboard').hide();
         showBackButton('dashboard');
+
         showATab('addEvent');
+        $('#page-contents').show('slow');
         // hide info button if visible
         $("#LocationModal").addClass("is-visible");
         // clear text area content
@@ -81,10 +84,10 @@ function api_gps_checkin() {
             confirmButtonText: "ok",
             icon: "success",
         })
-        showATab('dashboard');
         //close modals
         closeAllModals();
         showMenuBar();
+        showATab('dashboard');
     }).fail(function (err) {
           console.log(err)
         // Good on error we post

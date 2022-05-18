@@ -135,6 +135,7 @@ $("#org_list").on("click", function (e) {
       show_set_monitor();
 
       $("#page-contents").hide();
+      $("#dashboard").hide();
       $("#logoDivId").hide();
       $("#setmonitorModal").show();
       // closes side menu
@@ -158,11 +159,9 @@ $("#org_list").on("click", function (e) {
 }
 
 function init_time() {
-  console.log("In Init Time fun()......................");
   $("#setTime").on("click", function (e) {
     get_profile_info(function (msg) {
       show_set_time();
-
       // closes side menu
       $(".toggleBar").click();
     });
@@ -170,11 +169,9 @@ function init_time() {
 }
 
 function init_invite() {
-  console.log("In Invite fun()......................");
   $("#invite").on("click", function (e) {
     get_profile_info(function (msg) {
       show_invite();
-
       // closes side menu
       $(".toggleBar").click();
     });
@@ -272,9 +269,8 @@ function do_set_not_paying(iap_blurb) {
         window.location.reload()
       })
 
-      $("#not-subscribed-user").hide();
-      $("#subscribed-user").show();
-
+      // $("#not-subscribed-user").hide();
+      // $("#subscribed-user").show();
       //after successful login or signup show dashboard contents
       showATab("dashboard");
       //close modals
@@ -430,7 +426,7 @@ function do_set_org(org_id, selected_org_logo, callback) {
 }
 
 function do_set_monitor() {
- 
+
   if (!validateEmail($("#monitor_email").val().trim())) {
     swal({
       title: "Error Invalid email address",
@@ -475,15 +471,16 @@ function do_set_monitor() {
       //close modals
       //closeAllModals();
 
-      showATab("dashboard");
+      
 
       // $(".toggleBar").click();
       // $("#showInstructions").click();
       // console.log("Show instructions");
 
-      $("#page-contents").show();
+      // $("#page-contents").show();
       $("#logoDivId").show();
       $("#setmonitorModal").hide();
+      showATab("dashboard");
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
@@ -536,15 +533,16 @@ function api_remove_monitor(notify_email) {
     });
 
 
-  $("#page-contents").show();
+  // $("#page-contents").show();
   $("#logoDivId").show();
   $("#setmonitorModal").hide();
 
 }
 
 $("#backbuttonsetmonitor").on("click", function (e) {
-  $("#page-contents").show();
+  // $("#page-contents").show();
   $("#logoDivId").show();
+  $('#dashboard').show();
   $("#setmonitorModal").hide();
 });
 

@@ -236,7 +236,7 @@
     <!-- End Slider -->
 
 
-    <header>
+    <header id="header">
         <div id="mainBox" class="mainContainer" style="position: relative">
             <button class="btnBack">
                 <img src="images/left-arrow.png" alt="" />
@@ -253,21 +253,48 @@
         </div>
     </header>
 
-    <div class="logoDiv" id="logoDivId">
-        <div class="logo" style='display:none'></div>
-
-        <!-- <div class="logo2" style='color:white;'>
+    <div id="dashboard" class="dashboard-new">
+        <div class="logoDiv" id="logoDivId">
+            <div class="logo">
+            </div>
+            <div class="logo2" style='color:white;'>
                 <h1>ACCOUNTABLE</h1>
-            </div> -->
-        <div class='moto'>
+            </div>
+            <div class="moto" style="display: block;">
+            </div>
+        </div>
+        <div class="secAction"></div>
+        <div class="action-btns">
+            <div id="subscribed-user">
+                <div class="row1">
+                    <div class="column1 btn1 subVideoBtn ">
+                        <button class="actionBtn btnVideo video dark homeVideoBtn">SUBMIT VIDEO</button>
+                    </div>
+                </div>
+                <div class="row1">
+
+                    <div class="column1 btn2">
+                        <button class="actionBtn btnEvent location homeVideoBtn">POST LOCATION</button>
+                    </div>
+                </div>
+            </div>
+            <div id="not-subscribed-user" class="row1" style="display: none;">
+            </div>
         </div>
     </div>
+
+
+    <!-- <div class="logoDiv" id="logoDivId">
+        <div class="logo" style='display:none'></div>
+        <div class='moto'>
+        </div>
+    </div> -->
     <div id="page-contents">
         <div id="login">
             <div class="mainContainer" style="text-align: -webkit-center;">
                 <div>
                     <div>
-                        <p style="font-size: 27px;line-height: 36px;margin-top: 60px;margin-bottom: 11px;font-weight: 600;"
+                        <p style="font-size: 27px;line-height: 36px;margin-top: 35px;margin-bottom: 11px;font-weight: 600;"
                             class="card-title">Hello, Meet useIAM,</p>
                         <p style="font-size: 20px;line-height: 36px;" class="card-text">Your Interactive Accountability
                             Manager</p>
@@ -308,7 +335,7 @@
             </div>
         </div>
 
-        <div id="dashboard">
+        <!-- <div id="dashboard">
             <div class="secAction"></div>
             <div class="action-btns">
                 <div id="subscribed-user">
@@ -325,18 +352,10 @@
                     </div>
                 </div>
                 <div id="not-subscribed-user" class="row1">
-                    <!--
-                        <h3 class="textCenter subscribeText column1" style="color:white">Use IAM is a paid monthly
-                            subscription service </h3>
-                        <h4 class="textCenter subscribeText column1" style="color:white">$19.99 - Monthly Service</h4>
-                        <div class="column1 btn2">
-                            <button class="actionBtn subscribe">SUBSCRIBE</button>
-                        </div>
-                        -->
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
         <div id="takeVideo">
             <div class="mainContainer">
@@ -466,7 +485,7 @@
         </style>
         <div>
 
-            <div >
+            <div>
                 <div style="width: 90%;margin: auto;">
                     <div style="padding:10px 0px" class="row">
                         <div style="padding-right:10px ;">
@@ -482,7 +501,7 @@
                 <!-- <div id="selected_org1"></div> -->
             </div>
 
-            <div style="height: 65vh;
+            <div style="height: 67vh;
             background: white;
             border-radius: 45px 45px 0 0;
             padding: 15px 20px;
@@ -955,8 +974,8 @@
 
             .signupgoogle {
                 background-color: #E3E3E3;
-                width: 215px;
-                min-width: 215px;
+                /* width: 215px; */
+                /* min-width: 215px; */
                 height: 50px;
                 border-radius: 19px;
                 color: white;
@@ -964,7 +983,7 @@
                 border: none;
                 color: #707070;
                 font-weight: 600;
-                font-size: 18px;
+                font-size: 14px;
             }
         </style>
 
@@ -1004,7 +1023,7 @@
 
                 <div>
                     <div style="text-align: center;" id="su_fp">
-                        <p>Forgot Password?</p>
+                        <p style="margin:5px 0px">Forgot Password?</p>
                     </div>
 
                     <div style="text-align: center;" class="column btn2">
@@ -1013,7 +1032,7 @@
                 </div>
 
                 <div style="text-align: center;">
-                    <p>Or</p>
+                    <p style="margin:5px 0px">Or</p>
                 </div>
 
 
@@ -1124,54 +1143,6 @@
                                     display: grid;
                                     grid-template-columns: 1fr;
                                 }
-
-                                /* ul#org_list>li:nth-child(4) {
-                                    order: 1;
-                                }
-
-                                ul#org_list>li:nth-child(3) {
-                                    order: 2;
-                                }
-
-                                ul#org_list>li:nth-child(2) {
-                                    order: 3;
-                                }
-
-                                ul#org_list>li:nth-child(1) {
-                                    order: 4;
-                                }
-
-                                ul#org_list>li:nth-child(5) {
-                                    order: 5;
-                                }
-
-                                ul#org_list>li:nth-child(6) {
-                                    order: 6;
-                                }
-
-                                ul#org_list>li:nth-child(7) {
-                                    order: 7;
-                                }
-
-                                ul#org_list>li:nth-child(8) {
-                                    order: 8;
-                                }
-
-                                ul#org_list>li:nth-child(9) {
-                                    order: 9;
-                                }
-
-                                ul#org_list>li:nth-child(10) {
-                                    order: 10;
-                                }
-
-                                ul#org_list>li:nth-child(11) {
-                                    order: 11;
-                                }
-
-                                ul#org_list>li:nth-child(12) {
-                                    order: 12;
-                                } */
                             </style>
                             <ul id="org_list" class="org_list order"></ul>
                             <table id="employees"></table>
@@ -1206,9 +1177,16 @@
 
     <div class="modal" id="LocationModal">
         <div class="modal-overlay"></div>
-        <div class="modal-wrapper modal-transition"
-            style="background: url(img/popup_login.jpg);margin-top: 13px;height:55vh;">
+        <div class="modal-wrapper modal-transition">
             <div class="modal-body">
+                <div class="logoDiv" id="logoDivId" style="display: block;">
+                    <div class="logo">
+                    </div>
+                    <div class="logo2" style='color:white;'>
+                    </div>
+                    <div class="moto" style="display: block;">
+                    </div>
+                </div>
                 <div class="modal-content">
                     <div class="textCenter">
                         <!-- <img src="images/location.png" style="width: 100px"> -->
@@ -1217,6 +1195,7 @@
                         </div>
                         <!-- <div class="avatar" style="text-align: center;"><img src="images/iam.png" style="width: 100px;"
                             draggable="false" /></div> -->
+
                         <h3 class="locAuthTitle textCenter">MY LOCATION</h3>
 
                         <!-- <p class="locAuthDesc">Please allow permissions for accessing your location through GPS.</p> -->
@@ -1417,116 +1396,39 @@
         </div>
     </div>
 
-    <div class="slideMenu" style="display:none;right:0;">
-        <!-- <a class="img_a"> -->
-        <div class="img_a">
+    <div class="slideMenu mainSlideMenu">
+        <div class="slideMenu">
             <div class="image_div">
                 <img style="width:100%" src="img/logo_iamold.png">
             </div>
-            <!-- </a>  -->
             <h5 class="textMenu">
-                <a href="#" id='showInstructions'>INSTRUCTIONS
-                    <a>
+                <a href="#" id='showInstructions'>Instructions <a>
             </h5>
-            <!--
-                    <h5 class="textMenu">
-                        <a href="#" id='setOrg'>SET ORGANIZATION</a>
-                    </h5>-->
-
             <h5 class="textMenu">
-                <a href="#" id='setMonitor'>SET MONITOR</a>
+                <a href="#" id='setMonitor'>Set Monitor</a>
             </h5>
-            <!-- <h5 class="textMenu">
-                                        <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
-                                        </h5>
-                                
-                                <h5 class="textMenu">
-                                    <a href="#" id='setOrg'>SET ORGANIZATION</a>
-                                </h5> -->
-
             <h5 class="textMenu">
-                <a href="#" id='viewActivity'>VIEW ACTIVITY
-                    <a>
+                <a href="#" id='viewActivity'>View Activity <a>
             </h5>
-
-            <!-- <h5 class="textMenu">
-                                                    <a href="#" id='viewActivity'>HOW TO SUBMIT<a>
-                                                    </h5>
-                                                    <h5 class="textMenu">
-                                                    <a href="#" id='viewActivity'>SUBMIT LOCATION<a>
-                                                    </h5>
-                                    
-                                                    <h5 class="textMenu">
-                                                    <a href="#" id='viewActivity'>HOW IT WORKS<a>
-                                                    </h5>
-                                    
-                                                    <h5 class="textMenu">
-                                                    <a href="#" id='viewActivity'>WHAT WE DO<a>
-                                                </h5> -->
             <h5 class="textMenu" id="appstore_feedback_btn">
-                <a href="#" id='feedback'>APPSTORE FEEDBACK</a>
+                <a href="#" id='feedback'>Appstore Feedback</a>
             </h5>
 
             <h5 class="textMenu">
-                <a href="#" id='logout'>LOGOUT</a>
+                <a href="#" id='logout'>Logout</a>
             </h5>
-            <!--
-                                            <h5 class="textMenu">
-                                                <a target='_blank'
-                                                    href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'> JOIN OUR ONLINE COMMUNITY</a>
-                                            </h5>
-                                            -->
+
             <h5 class="textMenu">
-                <a target='_blank' class="open-pdf" href="terms.pdf">TERMS OF SERVICE</a>
+                <a target='_blank' class="open-pdf" href="terms.pdf">Terms of Service</a>
             </h5>
             <h5 class="textMenu">
-                <a target='_blank' class="open-pdf" href="service_agreement.pdf">SERVICE AGREEMENT</a>
+                <a target='_blank' class="open-pdf" href="service_agreement.pdf">Service Agreement</a>
             </h5>
             <h5 class="textMenu" style='display: none;' id='cancel_plan'>
                 <a href="#" id='cancel_subscription'>Cancel Subscription</a>
             </h5>
-            <!--
-                                                                    <h5 class="textMenu" id="Unsubscribe_div" style='display: none;'>
-                                                                        <a href="#" id='Unsubscribe'>
-                                                                            Unsubscribe
-                                                                        <a>
-                                                                    </h5>
-                                                                    -->
         </div>
 
-        <!-- <div class="slideMenu">
-                                                                        <h5 class="textMenu">
-                                                                            <a href="#" id='showInstructions'>Instructions<a>
-                                                                        </h5>
-                                                                
-                                                                        <h5 class="textMenu">
-                                                                            <a href="#" id='setMonitor'>Set Monitor(s)</a>
-                                                                        </h5>
-                                                                
-                                                                        <h5 class="textMenu">
-                                                                            <a href="#" id='viewActivity'>View Activity<a>
-                                                                        </h5>
-                                                                
-                                                                        <h5 class="textMenu">
-                                                                            <a href="#" id='logout'>Logout</a>
-                                                                        </h5>
-                                                                
-                                                                        <h5 class="textMenu">
-                                                                            <a href='#' id='sober_count'></a>
-                                                                        </h5>
-                                                                
-                                                                        <h5 class="textMenu">
-                                                                            <a target='_blank'
-                                                                                href='https://join.slack.com/t/useiam/shared_invite/enQtOTI4NjY0NDAyOTc2LWQ0ZmNiNjMzNzIzMWM0Yzc5MmRkNTQwZjc0MzczNDVkOGQyY2FhM2M0NTQzNWY1ZGE1NmY2ZTVkNGIyOWM4MTA'>Join
-                                                                                our online community</a>
-                                                                        </h5>
-                                                                        <h5 class="textMenu hide" id="reminderMenu">
-                                                                            <a href="#" id='setTime'>Set Reminder Time</a>
-                                                                        </h5>
-                                                                        <h5 class="textMenu" style='display: none;' id='cancel_plan'>
-                                                                            <a href="#" id='cancel_subscription'>Cancel Subscription</a>
-                                                                        </h5>
-                                                                    </div> -->
         <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -1579,18 +1481,21 @@
             $(".skip_click").click(function (e) {
                 localStorage.setItem('show_intro', 0);
                 if (localStorage.getItem('session_id')) {
-                    $("#page-contents").show();
-                    $("#mainBox").show();
-                    $("#page-contents").children().hide();
-                    $('#page-contents').find('#dashboard').show('slow');
-                    $('#addEvent').hide();
+                    $("#page-contents").hide();
+                    $("#header").show();
+                    $('.toggleBar').show();
                     $("#logoDivId").show();
+                    $("#dashboard").show('slow');
+                    // $("#mainBox").show();
+                    // $("#page-contents").children().hide();
+                    // $('#page-contents').find('#dashboard').show('slow');
+                    // $('#addEvent').hide();
 
                 } else {
                     $("#page-contents").children().hide();
                     $('#page-contents').find('#login').show("slow");
                     $("#logoDivId").show();
-                    $('#addEvent').hide();
+                    // $('#addEvent').hide();
                 }
                 $('.swiper').hide();
             });
@@ -1598,42 +1503,35 @@
 
         <script type="text/javascript">
 
-            // onload=setTimeout(function(){document.getElementById("step0").display = "block";}, 2000);
-            // $(splash-container).delay(2000).fadeIn("slow");
-
-            // function displaypage()
-            // {
-            // var t=setTimeout("displaydiv()",1000);//Number of seconds *1000, Currently its **3** seconds 
-            // }
-            // function displaydiv()
-            // {
-            // document.getElementById("splash-container").style.display='block';
-
-            // }   
-
-
             if (localStorage.getItem('session_id')) {
                 if (localStorage.getItem('show_intro') == '1') {
+                    console.log('i m here');
                     $('.swiper').show();
+                    $('#dashboard').hide();
+                    $('#header').hide();
+                    $('.toggleBar').hide();
                 } else {
                     $('.swiper').hide();
+                    $("#page-contents").hide();
+                    $('#dashboard').show();
+                    $('#header').show();
                 }
-                $("#page-contents").children().hide();
+                // $("#page-contents").children().hide();
                 // show the dashboard div if already logged in. or else show login div.
-                $('#page-contents').find('#login').show("slow");
-                $("#logoDivId").show();
-                $('#addEvent').hide();
+                // $('#page-contents').find('#login').show("slow");
+                // $("#logoDivId").show();
+                // $('#addEvent').hide();
             } else {
+                $('#dashboard').hide();
+                // $("#mainBox").show();
                 $("#page-contents").show();
-                $("#mainBox").show();
                 $("#page-contents").children().hide();
                 //show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
                 $("#logoDivId").hide();
-                $('#addEvent').hide();
+                // $('#addEvent').hide();
                 // Show slider
                 $('.swiper').show();
-
             }
         </script>
 </body>
