@@ -706,7 +706,7 @@
         </div>
     </div> -->
 
-    <div class="" id="setmonitorModal" style="display:none;position: absolute;top: 9%;bottom: 0;border-radius: 148px;">
+    <div class="" id="setmonitorModal" style="display:none;position: absolute;top: 9%;bottom: 0;border-top-left-radius: 148px;border-top-right-radius:148px;background:#ffffff">
         <style>
             ::placeholder {
                 color: #707070;
@@ -758,7 +758,7 @@
                                 <button class="actionBtn  dark" type="button" id="nextBtn">ADD</button>
                             </div>
                         </div> -->
-                        <div style="margin-top: 20px;padding: 10px;" class="instruct_Data">
+                        <div style="margin-top: 20px;padding: 10px;height: 400px;overflow:scroll" id="emailList" class="instruct_Data">
                             <div>
                                 <b style="color:black;margin: 20px;">Active Monitors:</b>
                             </div>
@@ -1096,6 +1096,7 @@
 
                         #selected_org {
                             text-align: center;
+                            padding-top: 15%;
                         }
 
                         .org_list li {
@@ -1126,7 +1127,7 @@
                             margin-bottom: 50px;
                         }
                     </style>
-                    <div style="padding:10px 0px 10px 0px" class="row">
+                    <div style="padding:10px 0px 10px 0px;padding-top: 10%" class="row">
                         <div style="padding-right:10px ;align-self: center;">
                             <i id="backorgButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left"
                                 aria-hidden="true"></i>
@@ -1168,7 +1169,7 @@
         </div>
     </div>
     <div id="showConfirm"
-        style="display:none;background: #15301B;position: fixed;bottom: 0;width: 100%;text-align: center;height: 40px;border: 2px solid black;color: white;align-self: center;padding: 10px;">
+        style="display:none;background: #15301B;position: fixed;bottom: 0;width: 100%;text-align: center;height: 60px;border: 2px solid black;color: white;align-self: center;padding: 10px;">
         Confirm
     </div>
     </div>
