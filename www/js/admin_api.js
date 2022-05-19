@@ -28,10 +28,11 @@ function get_all_activity(callback) {
       var msg= JSON.parse(response);
       videoData =JSON.parse(response);
       var allData = JSON.parse(response);
-      console.log(allData)
+    
 
-      display_table_list(allData.results);
-      comments(allData.results)
+      display_table_list(allData);
+
+      comments(allData)
       // callback(msg);
     }).fail(function(err) {
       alert("Got err");
@@ -42,7 +43,6 @@ function get_all_activity(callback) {
 
 function display_table_list(patients) {
   var html = "";
-
   for (var patient of patients) {
     var created_at=new Date(patient.created_at)
     var date=created_at.getDate();

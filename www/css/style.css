@@ -712,6 +712,15 @@ video.activityVideo{
   font-size: 20px;
 }
 
+@media screen and (max-width:767px) {
+  .logoDiv {
+    padding-top: 35%;
+  }
+  .two-btns{
+    margin-top: 50%!important;
+  } 
+}
+
 @media screen and (max-width: 640px) {
   .actionBtn {
     min-width: 200px;
@@ -728,6 +737,13 @@ video.activityVideo{
   .btnEvent {
     margin-right: 0;
   }
+  .two-btns{
+    margin-top: 40%!important;
+  } 
+  .logoDiv {
+    padding-top: 35%!important;
+  }
+
 }
 @media screen and (max-width: 560px) {
   .other .msg {
@@ -1853,7 +1869,7 @@ table.ui-datepicker-calendar {
 .dashboard-new {
   display: none;
   z-index: 9999 !important;
-  background: url(./../images/home-bg.jpeg) center no-repeat !important;
+  background: url(./../images/gif-resize/Windmill.gif) center no-repeat !important;
   height: 100vh !important;
   margin: 0 !important;
   background-position: center center;
