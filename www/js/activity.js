@@ -92,7 +92,6 @@ function loadGPS(id, lat, lng) {
   });
 }
 
-
 function loadBtns(id) {
   var prevBtn = nextBtn = '';
   if (parseInt(id) !== 0) {
@@ -142,9 +141,6 @@ $('body').delegate('#nextBtn', 'click', function () {
     } else if (event.type == 'gps') {
       loadGPS(nextKey, event.lat, event.lng)
     }
-    // var id = getUrlVars(video_url)['id'];
-    // var user = getUrlVars(video_url)['user'];
-    // get_content_comments(id, user)
   }
 })
 
@@ -159,9 +155,6 @@ $('body').delegate('#previousBtn', 'click', function () {
     } else if (event.type == 'gps') {
       loadGPS(prevKey, event.lat, event.lng)
     }
-    // var id = getUrlVars(video_url)['id'];
-    // var user = getUrlVars(video_url)['user'];
-    // get_content_comments(id, user)
   }
 })
 
@@ -206,7 +199,6 @@ function get_activity(callback) {
 
 function display_activities(activities) {
   $('#activity-log').empty();
-  // for (var [key, activity] of activities) {
   activities.forEach(function (activity, key) {
     if (activity.type == 'gps') {
       $('#activity-log').append(
@@ -248,15 +240,6 @@ function getUrlVars(url) {
     vars[key] = value;
   });
   return vars;
-}
-
-function findIndexInData(data, property, value) {
-  for (var i = 0, l = data.length; i < l; i++) {
-    if (data[i][property] === value) {
-      return i;
-    }
-  }
-  return -1;
 }
 
 function formatDate(date) {
