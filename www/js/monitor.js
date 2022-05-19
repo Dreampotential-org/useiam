@@ -140,6 +140,7 @@ $("#org_list").on("click", function (e) {
       $("#setmonitorModal").show();
       // closes side menu
       $(".toggleBar").click();
+      $(".toggleBar").hide();
       $(".current-monitors").empty();
       for (var monitor of msg.monitors) {
         console.log('monitors', monitor)
@@ -478,8 +479,9 @@ function do_set_monitor() {
       // console.log("Show instructions");
 
       // $("#page-contents").show();
-      $("#logoDivId").show();
       $("#setmonitorModal").hide();
+      $(".toggleBar").show();
+      $("#logoDivId").show();
       showATab("dashboard");
     })
     .fail(function (err) {
@@ -535,15 +537,17 @@ function api_remove_monitor(notify_email) {
 
   // $("#page-contents").show();
   $("#logoDivId").show();
+  $(".toggleBar").show();
   $("#setmonitorModal").hide();
 
 }
 
 $("#backbuttonsetmonitor").on("click", function (e) {
   // $("#page-contents").show();
+  $("#setmonitorModal").hide();
+  $(".toggleBar").show();
   $("#logoDivId").show();
   $('#dashboard').show();
-  $("#setmonitorModal").hide();
 });
 
 
