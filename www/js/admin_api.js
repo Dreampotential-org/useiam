@@ -48,11 +48,11 @@ function display_table_list(patients) {
     var date=created_at.getDate();
     var month=created_at.getMonth()+1;
     var year=created_at.getFullYear();
-    html += `<tr>
+    html += `<tr style="text-align: -webkit-center;">
                 <td>${patient.name}</td>
                 <td>${date} - ${month} -${year} </td>
                 <td>
-                    <i class="material-icons align-middle">play_circle_filled${patient.type}</i>
+                    <i class="material-icons align-middle" style="color: #009688; font-size: 30px">play_circle_filled</i>
                 </td>
               </tr>
               
@@ -78,13 +78,23 @@ function display_table_list(patients) {
 
 }
 
+
+
 function comments(patients_comment){
   var html = "";
   for (var patient of patients_comment) {
     html += `<div>
-                  <img src="../icon.png" alt=img/>
-                  <p>${patient.email}</p>
-                  <p>${patient.msg} </p>
+                <div>
+                <div style="display:flex">
+                    <div>
+                      <img src="../icon.png" alt=img/>
+                    </div>
+                    <div>
+                      <p>${patient.email}</p>
+                      <p>${patient.msg} </p>
+                    </div>
+                  </div>
+                </div>
               </div>`;
   }
 
