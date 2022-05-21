@@ -142,10 +142,12 @@ $("#org_list").on("click", function (e) {
       $(".toggleBar").click();
       $(".toggleBar").hide();
       $(".current-monitors").empty();
+
+      $('#monitorCounts').html('(' + msg.monitors.length + ')');
       for (var monitor of msg.monitors) {
-        console.log('monitors', monitor)
         display_monitor(monitor);
       }
+      LetterAvatar.transform();
     });
   });
 
@@ -181,12 +183,21 @@ function init_invite() {
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
-    "<div class='row' style='justify-content: space-between;margin: 10px 0px;'>" +
-    monitor +
-    " - <input type='checkbox' style='width:auto' val='" +
-    monitor +
-    "' class='remove-monitor buttonColor' ></div>"
+    "<label class='container-checkbox'>" +
+    "<img class='round' width='30' height='30' avatar='" + monitor + "'>" +
+    "<p>" + monitor + "</p>" +
+    "<input type='checkbox'  val='" + monitor + "' class='remove-monitor'>" +
+    "<span class='checkmark'></span>" +
+    "</label>"
   );
+
+  // $(".current-monitors").append(
+  // "<div class='row' style='justify-content: space-between;margin: 10px 0px;'>" +
+  // monitor +
+  // " <input type='checkbox' style='width:auto' val='" + monitor + "' class='remove-monitor buttonColor' >" +
+  // "</div>"
+  // );
+
 
   $(".remove-monitor").on("click", function (e) {
     var remove_monitor = $(this).attr("val");
@@ -472,7 +483,7 @@ function do_set_monitor() {
       //close modals
       //closeAllModals();
 
-      
+
 
       // $(".toggleBar").click();
       // $("#showInstructions").click();

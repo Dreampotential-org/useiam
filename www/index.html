@@ -708,30 +708,25 @@
         </div>
     </div> -->
 
-    <div class="" id="setmonitorModal" style="display:none;position: absolute;top: 9%;bottom: 0;border-top-left-radius: 148px;border-top-right-radius:148px;background:#ffffff">
+    <div id="setmonitorModal">
         <style>
             ::placeholder {
                 color: #707070;
                 opacity: 1;
-                /* Firefox */
             }
         </style>
 
-        <div></div>
-        <div class="" style="border-radius: 51px;">
-
+        <div style="border-radius: 51px;">
             <div style="width: 100%;background: white;height: 100%;border-radius: 20px  20px 0  0;">
                 <div>
-
                     <div class="row">
-
                         <i id="backbuttonsetmonitor" style="font-size:25px;color: black;align-self: center;"
                             class="fa fa-arrow-left" aria-hidden="true"></i>
                         <p style="margin: 0;color:#15301B;font-size: 27px;font-weight: 700;padding: 15px;">Set Monitor
                         </p>
                     </div>
 
-                    <form id="regForm " class="setForm" action="#">
+                    <form id="monitorForm" class="setForm" action="#" >
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor" style="padding: 10px;">
                             <p style="color: black;" class="instruct_Data">Email address of person monitoring you who
@@ -751,26 +746,16 @@
                                 color: white;
                                 font-size: 18px;">
                                     <p style="margin: 0;padding: 10px;" id="nextBtn">+</p>
-                                    <!-- <button class="actionBtn  dark" type="button" id="nextBtn">ADD</button> -->
                                 </div>
                             </div>
                         </div>
-                        <!-- <div>
-                            <div style="text-align: center;">
-                                <button class="actionBtn  dark" type="button" id="nextBtn">ADD</button>
-                            </div>
-                        </div> -->
-                        <div style="margin-top: 20px;padding: 10px;height: 400px;overflow:scroll" id="emailList" class="instruct_Data">
-                            <div>
-                                <b style="color:black;margin: 20px;">Active Monitors:</b>
-                            </div>
-                            <hr>
-                            <div style="color: black;margin: 15px 15px;" class="current-monitors">
-                                <div>adasd@gmail.com - <a val="adasd@gmail.com" class="remove-monitor buttonColor"
-                                        href="#">remove</a></div>
-                                <div>asdasd@gmail.com - <a val="asdasd@gmail.com" class="remove-monitor buttonColor"
-                                        href="#">remove</a></div>
-                            </div>
+
+                        <div>
+                            <b style="color:black;margin: 20px;">
+                                <span id="monitorCounts"></span> Active Monitors:
+                            </b>
+                        </div>
+                        <div id="monitorList" class="current-monitors">
                         </div>
                     </form>
                 </div>
@@ -1452,6 +1437,7 @@
         <script src="js/logos.js?v=1.99"></script>
         <script src="js/config.js?v=1.97"></script>
         <script src="js/stripe.js?v=1.97"></script>
+        <script src="js/avatar.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
         </script>
 
