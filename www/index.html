@@ -104,11 +104,6 @@
             border-radius: 5px;
         }
 
-        .action-btns {
-            /* padding: 0px 30px !important; */
-            /* text-align: left; */
-        }
-
         #org_list {
             padding: 10px;
             width: 100%;
@@ -193,6 +188,25 @@
 </head>
 
 <body>
+
+    <div id="page-onboarding">
+        <div class="logo-div">
+            <img src="img/initial-page/logo-black.png">
+        </div>
+        <div class="heading">
+            <p>Start your</p>
+            <p>journey!</p>
+        </div>
+        <p class="description">
+            Track your journey to recovery from mental illness or substance abuse.
+        </p>
+        <div class="img-div">
+            <img src="img/initial-page/onboarding-1.png">
+        </div>
+        <div class="btn-div">
+            <button id="btnStartActivate">Start Activate</button>
+        </div>
+    </div>
     <!-- Slider -->
     <div class="swiper">
         <div class="swiper-wrapper">
@@ -235,7 +249,6 @@
     </div>
     <!-- End Slider -->
 
-
     <header id="header">
         <div id="mainBox" class="mainContainer" style="position: relative">
             <button class="btnBack">
@@ -265,19 +278,15 @@
             <div class="moto" style="display: block;">
             </div>
         </div>
-        <div class="secAction"></div>
+        <!-- <div class="secAction"></div> -->
         <div class="action-btns">
             <div id="subscribed-user">
-                <div class="row1">
-                    <div class="column1 btn1 subVideoBtn ">
-                        <button class="actionBtn btnVideo video dark homeVideoBtn">SUBMIT VIDEO</button>
-                    </div>
+                <div class="column1 btn1 subVideoBtn ">
+                    <button class="actionBtn btnVideo video dark homeVideoBtn">SUBMIT VIDEO</button>
                 </div>
-                <div class="row1">
 
-                    <div class="column1 btn2">
-                        <button class="actionBtn btnEvent location homeVideoBtn">POST LOCATION</button>
-                    </div>
+                <div class="column1 btn2">
+                    <button class="actionBtn btnEvent location homeVideoBtn">POST LOCATION</button>
                 </div>
             </div>
             <div id="not-subscribed-user" class="row1" style="display: none;">
@@ -726,7 +735,7 @@
                         </p>
                     </div>
 
-                    <form id="monitorForm" class="setForm" action="#" >
+                    <form id="monitorForm" class="setForm" action="#">
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor" style="padding: 10px;">
                             <p style="color: black;" class="instruct_Data">Email address of person monitoring you who
@@ -901,15 +910,6 @@
         </div>
     </div>
 
-    <script>
-        jQuery(document).ready(function ($) {
-            $("#organization").change(function () {
-                // $('#signupModal').addClass('is-visible'); // hide all divs by removing class visible
-            });
-        });
-
-    </script>
-
     <div class="modal" id="logincodeModal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg)">
@@ -940,7 +940,6 @@
 
 
     <div style="display: none;" id="signupModal">
-
         <style>
             ::placeholder {
                 color: black;
@@ -1450,16 +1449,10 @@
             } else {
                 $('#appstore_feedback_btn').hide();
             }
-
             const swiper = new Swiper('.swiper', {
-                // Optional parameters
                 direction: 'horizontal',
                 loop: false,
             });
-
-            // if (localStorage.getItem('session_id')) {
-            //     // window.location.href = 'main.html';
-            // }
 
             $(".next_click").click(function (e) {
                 swiper.slideNext();
@@ -1475,26 +1468,30 @@
                     $('.toggleBar').show();
                     $("#logoDivId").show();
                     $("#dashboard").show('slow');
-                    // $("#mainBox").show();
-                    // $("#page-contents").children().hide();
-                    // $('#page-contents').find('#dashboard').show('slow');
-                    // $('#addEvent').hide();
 
                 } else {
                     $("#page-contents").children().hide();
                     $('#page-contents').find('#login').show("slow");
                     $("#logoDivId").show();
-                    // $('#addEvent').hide();
                 }
                 $('.swiper').hide();
             });
         </script>
 
         <script type="text/javascript">
+            $("#btnStartActivate").click(function (e) {
+                $('#page-onboarding').hide();
+                $('.swiper').show();
+                $("#page-contents").show();
+            });
+            $(document).ready(function () {
+                $('.swiper').hide();
+                $("#page-contents").hide();
+                $("#page-onboarding").show();
 
+            })
             if (localStorage.getItem('session_id')) {
                 if (localStorage.getItem('show_intro') == '1') {
-                    console.log('i m here');
                     $('.swiper').show();
                     $('#dashboard').hide();
                     $('#header').hide();
@@ -1505,20 +1502,13 @@
                     $('#dashboard').show();
                     $('#header').show();
                 }
-                // $("#page-contents").children().hide();
-                // show the dashboard div if already logged in. or else show login div.
-                // $('#page-contents').find('#login').show("slow");
-                // $("#logoDivId").show();
-                // $('#addEvent').hide();
             } else {
                 $('#dashboard').hide();
-                // $("#mainBox").show();
-                $("#page-contents").show();
+                // $("#page-contents").show();
                 $("#page-contents").children().hide();
                 //show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
                 $("#logoDivId").hide();
-                // $('#addEvent').hide();
                 // Show slider
                 $('.swiper').show();
             }
