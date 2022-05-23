@@ -40,29 +40,58 @@ function get_all_activity(callback) {
     });
 }
 
+function play_video(index,url) {
+  // alert('hiii-----'+index+"url"+url);
+
+
+  var modal = document.getElementById("myModal" + index);
+  console.log(modal);
+
+  var btn = document.getElementById("myBtn");
+  console.log(btn);
+
+  modal.style.display = "block";
+}
 
 function display_table_list(patients) {
   var html = "";
   for (var patient of patients) {
+
+    var i = patients.indexOf(patient);
+
     var created_at=new Date(patient.created_at)
     var date=created_at.getDate();
     var month=created_at.getMonth()+1;
     var year=created_at.getFullYear();
+
     html += `<tr style="text-align: -webkit-center;">
                 <td>${patient.name}</td>
                 <td>${date} - ${month} -${year} </td>
                 <td>
-                    <i class="material-icons align-middle" style="color: #009688; font-size: 30px">play_circle_filled</i>
+                    <i class="material-icons align-middle" style="color: #009688; cursor:pointer; font-size: 30px" id="myBtn" onclick="play_video(${i},'${
+                      patient.url
+                    }')">play_circle_filled</i>
+
+                    <div id="myModal${i}" class="modal">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content"><div class="p-2"><p  onclick="closeModal(${i})" class="close" id="closeModal">&times;</p></div><br/>
+                      <video controls="" name="media"  class="video">
+                          
+                      </video>
+                      <div class="card m-2 rounded-0">
+                        <div class="card-body">
+                            <div class="feedback_received">
+                            </div>
+                        </div>
+                      </div>
+                    </div></div></div>
+
                 </td>
               </tr>
               
             
-              <div>
-                  <p>${patient.email}</p>
-                  <p>${patient.msg} </p>
-              </div>
-
-              `;
+  
+               `;
 
   }
   
@@ -102,6 +131,23 @@ function comments(patients_comment){
 }
 
 
+
+function display_patients(patients) {
+
+  var g_count = 0;
+  var v_count = 0;
+
+  for (var patient of patients) {
+    // for (var event of patient.events) {
+    //   if (event.type == "gps") {
+    //     g_count++;
+    //   } else {
+    //     v_count++;
+    //   }
+    // }
+  }
+
+}
 
 
 window.addEventListener("DOMContentLoaded", init, false);
