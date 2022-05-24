@@ -2043,12 +2043,12 @@ table.ui-datepicker-calendar {
 }
 
 #page-onboarding .img-div img {
-  width: 100%;
+  width: 95%;
 }
 
 #page-onboarding .btn-div {
   text-align: center;
-  margin-top: 28px;
+  margin-top: 10%;
 }
 
 #page-onboarding .btn-div button {
@@ -2079,5 +2079,19 @@ table.ui-datepicker-calendar {
   #page-onboarding .heading p:last-child {
     margin-top: 0px;
     margin-bottom: 12px;
+  }
+}
+
+@media screen and (orientation:landscape) {
+  #page-onboarding {
+    height: auto;
+  }
+
+  #page-onboarding .img-div img {
+    width: 50%;
+  }
+
+  #page-onboarding .btn-div button {
+    width: 30%;
   }
 }

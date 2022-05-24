@@ -1479,17 +1479,20 @@
         </script>
 
         <script type="text/javascript">
+            $(document).ready(function () {
+                $('.swiper').hide();
+                $("#page-contents").hide();
+                $('#dashboard').hide();
+                $('.toggleBar').hide();
+                $("#page-onboarding").show();
+            });
+
             $("#btnStartActivate").click(function (e) {
                 $('#page-onboarding').hide();
                 $('.swiper').show();
                 $("#page-contents").show();
             });
-            $(document).ready(function () {
-                $('.swiper').hide();
-                $("#page-contents").hide();
-                $("#page-onboarding").show();
 
-            })
             if (localStorage.getItem('session_id')) {
                 if (localStorage.getItem('show_intro') == '1') {
                     $('.swiper').show();
