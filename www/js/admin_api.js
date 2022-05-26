@@ -51,6 +51,54 @@ function play_video(index,url) {
   console.log(btn);
 
   modal.style.display = "block";
+  
+  console.log(url["id"], url["user"]);
+
+  
+  get_video_info(getUrlVars(url)["id"], getUrlVars(url)["user"], function (
+    data
+  ) {});
+}
+
+function get_video_info(id,user,callback){
+  $.get(
+    SERVER +
+      "/api/review-video?token=" +
+      localStorage.getItem("session_id") +
+      "&user=" +
+      user +
+      "&id=" +
+      id,
+    function (res) {
+      console.log(res);
+
+      callback(res);
+    }
+  );
+
+}
+
+//Get id and user from storage
+function getUrlVars(url) {
+  var video_url = "";
+
+  if (url == undefined) {
+    var ele = $("#video").find("source");
+    console.log(ele);
+    video_url = $(ele).attr("src");
+  } else {
+    video_url = url;
+  }
+
+  var vars = {};
+  var parts = video_url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (
+    m,
+    key,
+    value
+  ) {
+    vars[key] = value;
+  });
+  return vars;
 }
 
 function display_table_list(patients) {
@@ -87,31 +135,22 @@ function display_table_list(patients) {
                     </div></div></div>
 
                 </td>
-              </tr>
-              
-            
-  
-               `;
-
+              </tr> `;
   }
   
   $(".list").html(html);
-  
-
   html += ` <div>
                   <p>${patient.email}</p>
                   <p>${patient.msg} </p>
-              </div>
-
-              `;
-
+              </div> `;
 }
-
-
 
 function comments(patients_comment){
   var html = "";
   for (var patient of patients_comment) {
+
+
+
     html += `<div>
                 <div>
                 <div style="display:flex">
@@ -125,28 +164,11 @@ function comments(patients_comment){
                   </div>
                 </div>
               </div>`;
+
   }
+
 
   $(".comment").html(html);
-}
-
-
-
-function display_patients(patients) {
-
-  var g_count = 0;
-  var v_count = 0;
-
-  for (var patient of patients) {
-    // for (var event of patient.events) {
-    //   if (event.type == "gps") {
-    //     g_count++;
-    //   } else {
-    //     v_count++;
-    //   }
-    // }
-  }
-
 }
 
 
