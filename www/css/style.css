@@ -64,26 +64,12 @@ a:hover {
   width: 750px;
   margin: auto;
 }
-header {
-  /* padding-top: 30px; */
-}
-.toggleBar.toggleClose {
-  /* margin-left: -390px; */
-  /* margin-right: 23px; */
-}
+
 .toggleBar {
-  /* display: none;
-  cursor: pointer;
-  width: 40px;
-  margin-top: 25px;
-  float: left;
-  position: fixed;
-  z-index: 10000; */
   display: none;
   cursor: pointer;
   width: 40px;
-  margin-top: 35px;
-  /* float: left; */
+  margin-top: 15%;
   position: relative;
   z-index: 10000;
   float: right;
@@ -240,7 +226,7 @@ header {
 }
 div#activity, div#eventView {
     background: #5f683c;
-    margin-top: -35vh;
+    margin-top: -36vh;
     height: 100vh;
 }
 
@@ -1124,6 +1110,10 @@ li.notification .msg {
 .btnInfo img {
   height: 35px;
 }
+.btnBack {
+  margin-top: 10%;
+  z-index: 99;
+}
 .btnBack img {
   margin: 10px 0px;
   height: 30px;
@@ -1209,9 +1199,6 @@ ol li.other {
   padding: 0 10px;
 }
 
-/* .row1{
-  display: -webkit-inline-box;
-} */
 .column1 {
   flex: 50%;
   padding: 12px;
@@ -1235,9 +1222,6 @@ ol li.other {
   /* min-width: 155px; */
   cursor: pointer;
   border-radius: 3px;
-}
-.action-btns .btn2 {
-  /* text-align: left; */
 }
 
 .forgotPassword {
@@ -1389,9 +1373,9 @@ i {
   border-radius: 50px 50px 0 0;
   padding-top: 40px;
   position: absolute;
-  width: 94%;
+  width: 100%;
   bottom: 0;
-  left: 3%;
+  left: 0;
 }
 
 .mainDiv {
@@ -1431,17 +1415,6 @@ i {
   color: white;
 }
 .noteDiv {
-  /* background: #fff;
-  padding: 12px 0px 0px;
-  margin: 9px auto;
-  max-width: 92%; */
-  /* transform: translate(0px, -300px); */
-  /* border-radius: 5px; */
-  /* transform: translateY(-100%); */
-  /* transform: tr.anslateY(-100%); */
-
-  /* changed */
-
   background: #fff;
   padding: 12px 0px 0px;
   max-width: 100%;
@@ -1451,8 +1424,8 @@ i {
   bottom: 0;
   left: 0;
   right: 0;
+  margin-top: -50%;
 }
-
 .allowBtnDiv {
   text-align: center;
   padding: 15px;
@@ -1869,7 +1842,7 @@ table.ui-datepicker-calendar {
 .dashboard-new {
   display: none;
   z-index: 9999 !important;
-  background: url(./../images/gif-resize/Windmill.gif) center no-repeat !important;
+  background: url(./../images/home-bg.svg) center no-repeat !important;
   height: 100vh !important;
   margin: 0 !important;
   background-position: center center;
@@ -1926,4 +1899,219 @@ table.ui-datepicker-calendar {
   border-bottom: 1px solid white;
   padding: 10px 0px 10px 15px;
 }
+<<<<<<< HEAD
 /* Side menu end */
+=======
+/* Side menu end */
+
+/* Set Monitor */
+#setmonitorModal {
+  display: none;
+  position: absolute;
+  top: 9%;
+  bottom: 0;
+  border-top-left-radius: 148px;
+  border-top-right-radius: 148px;
+  background: #ffffff
+}
+#monitorList {
+  padding: 12px;
+  height: 50vh;
+  overflow: scroll;
+  margin: 15px 15px;
+  border:1px solid #707070;
+}
+#monitorForm{
+  padding: 20px;
+}
+
+/* The container */
+.container-checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container-checkbox p{
+  margin:0;
+  padding-left: 8px;
+}
+
+/* Hide the browser's default checkbox */
+.container-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: auto !important;
+}
+
+/* Create a custom checkbox */
+.container-checkbox .checkmark {
+  position: absolute;
+  top: 5;
+  right: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-checkbox input:checked ~ .checkmark {
+  background-color: #5F683C;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.container-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-checkbox .checkmark:after {
+  left: 7px;
+  top: 1px;
+  width: 7px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.round {
+  border-radius: 50%;
+}
+
+.dashboard-new .action-btns {
+  position: absolute;
+  width: 100%;
+  height: 55vh;
+}
+
+#subscribed-user {
+  position: absolute;
+  bottom: 30%;
+  width: 100%;
+}
+
+#page-onboarding {
+  width: 100%;
+  height: 100vh;
+  padding: 1.5rem;
+  background-color: white;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+}
+
+#page-onboarding .logo-div,
+#page-onboarding .heading,
+#page-onboarding .description,
+#page-onboarding .img-div,
+#page-onboarding .btn-div {
+  flex: 1
+}
+
+#page-onboarding .logo-div img {
+  width: 74px;
+}
+
+#page-onboarding .heading {
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+#page-onboarding .heading p:first-child {
+  margin-top: 14px;
+  margin-bottom: 0px;
+}
+
+#page-onboarding .heading p:last-child {
+  margin-top: 0px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#page-onboarding .description {
+  font-size: 16px;
+}
+
+#page-onboarding .img-div {
+  text-align: center;
+}
+
+#page-onboarding .img-div img {
+  width: 95%;
+}
+
+#page-onboarding .btn-div {
+  text-align: center;
+  margin-top: 10%;
+}
+
+#page-onboarding .btn-div button {
+  width: 70%;
+  background: #5F683C;
+  height: 42px;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+@media screen and (max-height: 640px) {
+  #page-onboarding .img-div img {
+    width: 80%;
+  }
+
+  #page-onboarding .heading {
+    font-size: 28px;
+  }
+
+  #page-onboarding .heading p:first-child {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
+  #page-onboarding .heading p:last-child {
+    margin-top: 0px;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (orientation:landscape) {
+  #page-onboarding {
+    height: auto;
+  }
+
+  #page-onboarding .img-div img {
+    width: 50%;
+  }
+
+  #page-onboarding .btn-div button {
+    width: 30%;
+  }
+}
+>>>>>>> b3e6aa23c01d1d9b21004ec50c7cb6c98a22d993

@@ -4,7 +4,6 @@ var SELECTED_ORG_LOGO = $(this).attr("org_image");
 function populate_signup_orgs() {
 
   list_orgs(function (msg) {
-    console.log('list_orgs > msg', msg)
     msg.sort(function (a, b) {
       return (a.id - b.id);
     });
@@ -35,7 +34,6 @@ function init_monitor() {
       selected_node.style.border = '3px solid black'
       previous_node = selected_node
     } else {
-      console.log('selected node', $(this)[0])
       selected_node = $(this)[0]
       selected_node.style.border = '3px solid black'
       previous_node.style.border = 'none'
@@ -97,7 +95,6 @@ function init_monitor() {
 
   $("#setOrg").on("click", function (e) {
     list_orgs(function (msg) {
-      console.log(msg)
       show_set_orgs();
       // closes side menu
       $(".toggleBar").click();
@@ -140,11 +137,14 @@ $("#org_list").on("click", function (e) {
       $("#setmonitorModal").show();
       // closes side menu
       $(".toggleBar").click();
+      $(".toggleBar").hide();
       $(".current-monitors").empty();
+
+      $('#monitorCounts').html('(' + msg.monitors.length + ')');
       for (var monitor of msg.monitors) {
-        console.log('monitors', monitor)
         display_monitor(monitor);
       }
+      LetterAvatar.transform();
     });
   });
 
@@ -180,12 +180,21 @@ function init_invite() {
 
 function display_monitor(monitor) {
   $(".current-monitors").append(
-    "<div class='row' style='justify-content: space-between;margin: 10px 0px;'>" +
-    monitor +
-    " - <input type='checkbox' style='width:auto' val='" +
-    monitor +
-    "' class='remove-monitor buttonColor' ></div>"
+    "<label class='container-checkbox'>" +
+    "<img class='round' width='30' height='30' avatar='" + monitor + "'>" +
+    "<p>" + monitor + "</p>" +
+    "<input type='checkbox'  val='" + monitor + "' class='remove-monitor'>" +
+    "<span class='checkmark'></span>" +
+    "</label>"
   );
+
+  // $(".current-monitors").append(
+  // "<div class='row' style='justify-content: space-between;margin: 10px 0px;'>" +
+  // monitor +
+  // " <input type='checkbox' style='width:auto' val='" + monitor + "' class='remove-monitor buttonColor' >" +
+  // "</div>"
+  // );
+
 
   $(".remove-monitor").on("click", function (e) {
     var remove_monitor = $(this).attr("val");
@@ -279,8 +288,6 @@ function do_set_not_paying(iap_blurb) {
       $(".toggleBar").click();
     })
     .fail(function (err) {
-      // XXX loggg to slack
-      console.log(err);
       swal({
         title: "Error",
         text: "",
@@ -317,8 +324,6 @@ function do_set_paying(iap_blurb) {
       get_profile_info();
     })
     .fail(function (err) {
-      // XXX loggg to slack
-      console.log(err);
       swal({
         title: "Error",
         text: "",
@@ -364,7 +369,6 @@ function do_set_sober_date() {
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
-      console.log(err);
       swal({
         title: "Error",
         text: "",
@@ -416,7 +420,6 @@ function do_set_org(org_id, selected_org_logo, callback) {
       //after successful login or signup show dashboard contents
     })
     .fail(function (err) {
-      console.log(err);
       swal({
         title: "Error",
         text: "",
@@ -471,20 +474,20 @@ function do_set_monitor() {
       //close modals
       //closeAllModals();
 
-      
+
 
       // $(".toggleBar").click();
       // $("#showInstructions").click();
       // console.log("Show instructions");
 
       // $("#page-contents").show();
-      $("#logoDivId").show();
       $("#setmonitorModal").hide();
+      $(".toggleBar").show();
+      $("#logoDivId").show();
       showATab("dashboard");
     })
     .fail(function (err) {
       $("#setmonitorModal #nextBtn").removeClass("running");
-      console.log(err);
       swal({
         title: "Error",
         text: "",
@@ -535,15 +538,17 @@ function api_remove_monitor(notify_email) {
 
   // $("#page-contents").show();
   $("#logoDivId").show();
+  $(".toggleBar").show();
   $("#setmonitorModal").hide();
 
 }
 
 $("#backbuttonsetmonitor").on("click", function (e) {
   // $("#page-contents").show();
+  $("#setmonitorModal").hide();
+  $(".toggleBar").show();
   $("#logoDivId").show();
   $('#dashboard').show();
-  $("#setmonitorModal").hide();
 });
 
 
@@ -597,8 +602,6 @@ function get_profile_info(callback) {
       if (callback) callback(msg);
     })
     .fail(function (err) {
-      console.log("ERR");
-      console.log(err);
       localStorage.clear();
       //location.reload();
     });
@@ -620,7 +623,6 @@ function list_monitors(callback) {
 
   $.ajax(settings)
     .done(function (response) {
-      //var msg = JSON.parse(response)
       callback(response);
     })
     .fail(function (err) {
@@ -648,7 +650,6 @@ function list_orgs(callback) {
   $.ajax(settings)
     .done(function (response) {
       var msg = JSON.parse(response)
-      console.log(msg)
       callback(msg);
     })
     .fail(function (err) {

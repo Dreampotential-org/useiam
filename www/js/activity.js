@@ -5,39 +5,12 @@ function init_activity() {
     } else {
       document.getElementById('logoDivId').style.display = 'block';
     }
-
     $('.toggleBar').click();
     closeAllModals();
-    // showBackButton('dashboard');
     showATab('activity');
     get_activity(function (resp) {
       display_activities(resp.events);
     });
-
-    // if (localStorage.getItem("isSubscribed") == "true") {
-    //   console.log(
-    //     "In INIT Activity ____**************",
-    //     document.getElementById("activity")
-    //   );
-
-    //   if (document.getElementById("activity")) {
-    //     document.getElementById("logoDivId").style.display = "none";
-    //   } else {
-    //     document.getElementById("logoDivId").style.display = "block";
-    //   }
-
-    //   $(".toggleBar").click();
-    //   closeAllModals();
-    //   // showBackButton('dashboard');
-    //   showATab("activity");
-    //   get_activity(function (resp) {
-    //     display_activities(resp.events);
-    //   });
-    // } else {
-    //   $(".toggleBar").click();
-    //   closeAllModals();
-    //   showATab("dashboard");
-    // }
   });
 
   $('.open-pdf').on('click', function (e) {
@@ -51,188 +24,142 @@ function init_activity() {
       false
     );
   });
-
-  $('body').delegate('.view-video', 'click', function (e) {
-    var video_url = $(this).attr('url');
-    showATab('eventView');
-    showBackButton('activity');
-    $('#eventView .content').html(
-      '<video controls autoplay playsinline preload="auto" name="media" id="video" class="activityVideo" width="170" height="240"></video>' +
-      '<div class="detailsDiv">' +
-      '<div class="row">' +
-      '<div class="col-4 col-md-4 col-sm-03 "><p><button class="nextButton" id="previousBtn">Prev</button></p></div>' +
-      '<div class="col-4 col-md-4 col-sm-03 pText"><p><button class="nextButton" id="nextBtn">Next</button></p></div>' +
-      '<div class="col-4 col-md-4 col-sm-03 pText"><p><button class="favBtn"><i class="fa fa-star-o starIcon"></i></button></p></div>' +
-      '</div>' +
-      '<div class="row" id="feedbacks">' +
-
-      '</div>' +
-      '</div>'
-
-    );
-    var id = getUrlVars(video_url)['id'];
-    var user = getUrlVars(video_url)['user'];
-    get_content_comments(id, user)
-    $('#video').html(
-      '<source src=' +
-      SERVER +
-      '/api/review-video/?id=' +
-      id +
-      '&user=' +
-      user +
-      '&token=' +
-      localStorage.getItem('session_id') +
-      ' type="video/mp4">'
-    );
-
-    $('button').on('click', fav);
-    function fav(e) {
-      $(this).find('.fa').toggleClass('fa-star-o fa-star');
-    }
-
-    $(document).ready(function () {
-      $('p').click(function () {
-        var text = $(this).text();
-        $('textarea').val(text);
-      });
-    });
-
-    // var $currVideo =videourl;
-
-    var $currVideo = '/review-video.html?id=' + id + '&user=' + user;
-
-    var CurrVdeoIndex = findIndexInData(videoData.events, 'url', $currVideo);
-
-    if (CurrVdeoIndex == 0) {
-      $('#previousBtn').hide();
-    }
-    if (CurrVdeoIndex == videoData.events.length - 1) {
-      $('#nextBtn').hide();
-    }
-
-    $('#nextBtn').click(function () {
-      // var newUrl= videoData.events[CurrVdeoIndex+1].url
-
-      var idNext = getUrlVars(videoData.events[CurrVdeoIndex + 1].url)['id'];
-      var userNext = getUrlVars(videoData.events[CurrVdeoIndex + 1].url)[
-        'user'
-      ];
-      get_content_comments(idNext, userNext)
-      var vid = document.getElementById("video");
-      vid.pause();
-      $('#video').html(
-        '<source src=' +
-        SERVER +
-        '/api/review-video/?id=' +
-        idNext +
-        '&user=' +
-        userNext +
-        '&token=' +
-        localStorage.getItem('session_id') +
-        ' type="video/mp4">'
-      );
-      $currVideo = '/review-video.html?id=' + idNext + '&user=' + userNext;
-      CurrVdeoIndex = findIndexInData(videoData.events, 'url', $currVideo);
-      if (CurrVdeoIndex == videoData.events.length - 1) {
-        $('#nextBtn').hide();
-      } else {
-        $('#previousBtn').show();
-        $('#nextBtn').show();
-      }
-      
-      vid.load();
-      vid.play();
-    });
-
-    $('#previousBtn').click(function () {
-      var idPrev = getUrlVars(videoData.events[CurrVdeoIndex - 1].url)['id'];
-      var userPrev = getUrlVars(videoData.events[CurrVdeoIndex - 1].url)[
-        'user'
-      ];
-      var vid = document.getElementById("video");
-      vid.pause();
-      get_content_comments(idPrev, userPrev)
-      $('#video').html(
-        '<source src=' +
-        SERVER +
-        '/api/review-video/?id=' +
-        idPrev +
-        '&user=' +
-        userPrev +
-        '&token=' +
-        localStorage.getItem('session_id') +
-        ' type="video/mp4">'
-      );
-      $currVideo = '/review-video.html?id=' + idPrev + '&user=' + userPrev;
-      CurrVdeoIndex = findIndexInData(videoData.events, 'url', $currVideo);
-      if (CurrVdeoIndex == 0) {
-        $('#previousBtn').hide();
-      } else {
-        $('#previousBtn').show();
-        $('#nextBtn').show();
-      }
-      // var vid = document.getElementById('video');
-      vid.load();
-      vid.play();
-    });
-  });
-
-  $('body').delegate('.view-gps', 'click', function (e) {
-    showATab('eventView');
-    showBackButton('activity');
-
-    $('#eventView .content').html(
-      "<div id='gps-view' style='width:100%;height:400px;'></div>"
-    );
-    var spot = {
-      lat: parseFloat($(this).attr('lat')),
-      lng: parseFloat($(this).attr('lng')),
-    };
-    var name = '';
-    var latlng = spot;
-    var geocoder = new google.maps.Geocoder();
-
-    var panorama = new google.maps.Map(document.getElementById('gps-view'), {
-      center: { lat: spot.lat, lng: spot.lng },
-      zoom: 18,
-    });
-
-    geocoder.geocode({ location: latlng }, function (results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-          name = results[0].formatted_address;
-          // alert(name);
-          var marker = new google.maps.Marker({
-            position: spot,
-            map: panorama,
-            icon: 'images/map_icon.png',
-          });
-          var infowindow = new google.maps.InfoWindow({
-            content: name,
-          });
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(panorama, marker);
-          marker.addListener('click', function () {
-            infowindow.open(panorama, marker);
-          });
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-    });
-  });
-
-  /*
-    $("#viewActivity").click()
-    $(".toggleBar").click()
-    get_activity(function(resp) {  display_activities(resp.events) });
-    */
 }
 
+function loadVideo(id, video_url) {
+  $('#eventView .content').html(
+    '<video controls autoplay playsinline preload="auto" name="media" id="video" class="activityVideo" width="170" height="240"></video>'
+  );
+  loadBtns(id)
+  var uid = getUrlVars(video_url)['id'];
+  var user = getUrlVars(video_url)['user'];
+  get_content_comments(uid, user)
+  var vid = document.getElementById("video");
+  vid.pause();
+  $('#video').html(
+    '<source src=' +
+    SERVER +
+    '/api/review-video/?id=' +
+    uid +
+    '&user=' +
+    user +
+    '&token=' +
+    localStorage.getItem('session_id') +
+    ' type="video/mp4">'
+  );
+  vid.load();
+  vid.play();
+}
+
+function loadGPS(id, lat, lng) {
+  $('#eventView .content').html(
+    "<div id='gps-view' style='width:100%;height:400px;'></div>"
+  );
+  loadBtns(id)
+  var spot = {
+    lat: parseFloat(lat),
+    lng: parseFloat(lng),
+  };
+  var name = '';
+  var latlng = spot;
+  var geocoder = new google.maps.Geocoder();
+
+  var panorama = new google.maps.Map(document.getElementById('gps-view'), {
+    center: { lat: spot.lat, lng: spot.lng },
+    zoom: 18,
+  });
+  geocoder.geocode({ location: latlng }, function (results, status) {
+    if (status === 'OK') {
+      if (results[0]) {
+        name = results[0].formatted_address;
+        var marker = new google.maps.Marker({
+          position: spot,
+          map: panorama,
+          icon: 'images/map_icon.png',
+        });
+        var infowindow = new google.maps.InfoWindow({ content: name });
+        infowindow.setContent(results[0].formatted_address);
+        infowindow.open(panorama, marker);
+        marker.addListener('click', function () {
+          infowindow.open(panorama, marker);
+        });
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
+
+function loadBtns(id) {
+  var prevBtn = nextBtn = '';
+  if (parseInt(id) !== 0) {
+    prevBtn = '<div class="col-4 col-md-4 col-sm-03 "><p><button class="nextButton" key=' + id + ' id="previousBtn">Prev</button></p></div>';
+  }
+  if (parseInt(id) !== allData.events.length - 1) {
+    nextBtn = '<div class="col-4 col-md-4 col-sm-03 pText"><p><button class="nextButton" key=' + id + ' id="nextBtn">Next</button></p></div>';
+  }
+
+  $('#eventView .content').append(
+    '<div class="detailsDiv">' +
+    '<div class="row">' + prevBtn + nextBtn +
+    '<div class="col-4 col-md-4 col-sm-03 pText"><p><button class="favBtn"   id="favBtn"><i class="fa fa-star-o starIcon"></i></button></p></div>' +
+    '</div>' +
+    '<div class="row" id="feedbacks">' +
+
+    '</div>' +
+    '</div>'
+  );
+}
+
+$('body').delegate('.view-event', 'click', function (e) {
+  var id = $(this).attr('id');
+  var type = $(this).attr('type');
+  showATab('eventView');
+  showBackButton('activity');
+
+  if (type === "video") {
+    loadVideo(id, $(this).attr('url'));
+  } else if (type === "gps") {
+    loadGPS(id, $(this).attr('lat'), $(this).attr('lng'));
+  }
+})
+
+$('body').delegate('#favBtn', 'click', function () {
+  $(this).find('.fa').toggleClass('fa-star-o fa-star');
+});
+
+$('body').delegate('#nextBtn', 'click', function () {
+  var key = parseInt($(this).attr('key'));
+  var nextKey = key + 1;
+  if (nextKey <= allData.events.length) {
+    var event = allData.events[nextKey];
+    console.log(event);
+    if (event.type == 'video') {
+      loadVideo(nextKey, event.url)
+    } else if (event.type == 'gps') {
+      loadGPS(nextKey, event.lat, event.lng)
+    }
+  }
+})
+
+$('body').delegate('#previousBtn', 'click', function () {
+  var key = parseInt($(this).attr('key'));
+  var prevKey = key - 1;
+  if (prevKey >= 0) {
+    var event = allData.events[prevKey];
+    console.log(event);
+    if (event.type == 'video') {
+      loadVideo(prevKey, event.url)
+    } else if (event.type == 'gps') {
+      loadGPS(prevKey, event.lat, event.lng)
+    }
+  }
+})
+
 var videoData;
-var videourl;
+var allData;
 function get_activity(callback) {
   var settings = {
     async: true,
@@ -246,44 +173,73 @@ function get_activity(callback) {
     contentType: false,
     mimeType: 'multipart/form-data',
   };
-
   $.ajax(settings)
     .done(function (response) {
-      var msg = JSON.parse(response);
-      videoData = JSON.parse(response);
-      var allData = JSON.parse(response);
+      allData = JSON.parse(response);
       var events = [];
       for (var i = 0; i < allData.events.length; i++) {
         if (allData.events[i].type == 'video') {
           events.push(allData.events[i]);
         }
       }
+      console.log(allData);
       videoData = { events: events };
-
-      // videourl = videoData.events[0].url;
-
-      if (msg.events.length == 0) {
+      if (allData.events.length == 0) {
         document.getElementById('eventData').style.height = 'auto';
         document.getElementById('activity-log').style.padding = '0px';
-
         $('#activity-log.chat').html(
           '<div class="noActivityDiv"><h3>No Activities in List</h3> </div>'
         );
       }
-      callback(msg);
-    })
-    .fail(function (err) {
+      callback(allData);
+    }).fail(function (err) {
       alert('Got err');
     });
 }
 
-function findIndexInData(data, property, value) {
-    for (var i = 0, l = data.length; i < l; i++) {
-      if (data[i][property] === value) {
-        return i;
-      }
+function display_activities(activities) {
+  $('#activity-log').empty();
+  activities.forEach(function (activity, key) {
+    if (activity.type == 'gps') {
+      $('#activity-log').append(
+        '<li class="other"><div class="msg"> <p class="dateClass">' +
+        formatDate(new Date(activity.created_at * 1000)) +
+        // "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
+        "<div style='width:80%'>" +
+        activity.msg +
+        " <span class='alignTag'>" +
+        "<a href='#' class='view-event customLinkBtn' type=" + activity.type + " id=" + key + " lat=" + activity.lat + ' ' + 'lng=' + activity.lng + '> '
+        + activity.type +
+        '<span><i class="fa fa-angle-double-right"></i></span>' +
+        '</a>' +
+        '</span></div>' +
+        ' <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>' +
+        '</div> </li>'
+      );
     }
-  return -1;
+    if (activity.type == 'video') {
+      $('#activity-log').append(
+        '<li class="other dark"><div class="msg"> <p class="dateClass">' +
+        formatDate(new Date(activity.created_at * 1000)) +
+        '</p>' +
+        "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'>" +
+        "<a url=" + activity.url + " id=" + key + "  type=" + activity.type + "  href='#' class='view-event customLinkBtn'>" +
+        activity.type +
+        '<span><i class="fa fa-angle-double-right"></i></span>' +
+        '</a></span></div>' +
+        '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
+        '</div> </li>'
+      );
+    }
+  });
+}
+
+function getUrlVars(url) {
+  var vars = {};
+  url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    vars[key] = value;
+  });
+  return vars;
 }
 
 function formatDate(date) {
@@ -295,89 +251,6 @@ function formatDate(date) {
   minutes = minutes < 10 ? '0' + minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return date.toLocaleDateString('en-US') + ' ' + strTime;
-}
-
-function display_activities(activities) {
-  $('#activity-log').empty();
-  for (var activity of activities) {
-    if (activity.type == 'gps') {
-      $('#activity-log').append(
-        '<li class="other"><div class="msg"> <p class="dateClass">' +
-        formatDate(new Date(activity.created_at * 1000)) +
-        // "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
-        "<div style='width:80%'>" +
-        activity.msg +
-        " <span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
-        activity.lat +
-        ' ' +
-        'lng=' +
-        activity.lng +
-        '> ' +
-        activity.type +
-        '<span><i class="fa fa-angle-double-right"></i></span>' +
-        '</a>' +
-        '</span></div>' +
-        ' <div class="icon"><img src="img/wifi-signal.svg" alt=""/></div>' +
-        '</div> </li>'
-      );
-      // $("#activity-log").append(
-      //   '<li class="other"><div class="msg"> <p class="dateClass">' +
-      //     formatDate(new Date(activity.created_at * 1000)) +
-      //     "</p>" +"<p class='msgText'>"+ activity.msg +"</p>"+
-      //     "<div style='width:80%'><span class='alignTag'><a href='#' class='view-gps customLinkBtn' lat=" +
-      //     activity.lat +
-      //     " " +
-      //     "lng=" +
-      //     activity.lng +
-      //     "> " +
-      //     activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
-      //     "</a>" +
-
-      //     "</span></div>" +
-      //     '<div class="icon"><img src="images/place.png" alt=""/></div>' +
-      //     "</div> </li>"
-      // );
-    }
-    // if (activity.type == "video") {
-    //   $("#activity-log").append(
-    //     '<li class="other dark"><div class="msg"> <p class="dateClass">' +
-    //       formatDate(new Date(activity.created_at * 1000)) +
-    //       "</p>" +
-    //       "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
-    //       activity.url +
-    //       " href='#' class='view-video customLinkBtn'>" +
-    //       activity.type +'<span><i class="fa fa-angle-double-right"></i></span>'+
-    //       "</a></span></div>" +
-    //       '<div class="icon"><div class="borderDiv"><img src="images/Play_Video.png" alt=""/></div></div>' +
-    //       "</div> </li>"
-    //     //   <img src="images/play_icon.png" alt=""/>
-    //   );
-    // }
-    if (activity.type == 'video') {
-      $('#activity-log').append(
-        '<li class="other dark"><div class="msg"> <p class="dateClass">' +
-        formatDate(new Date(activity.created_at * 1000)) +
-        '</p>' +
-        "<div style='width:80%'><i class='fa fa-star iconStar'></i><span class='alignTag'><a url=" +
-        activity.url +
-        " href='#' class='view-video customLinkBtn'>" +
-        activity.type +
-        '<span><i class="fa fa-angle-double-right"></i></span>' +
-        '</a></span></div>' +
-        '<div class="icon"><div class="borderDiv"><img src="img/play-button_black.svg" alt=""/></div></div>' +
-        '</div> </li>'
-        //   <img src="images/play_icon.png" alt=""/>
-      );
-    }
-  }
-}
-
-function getUrlVars(url) {
-  var vars = {};
-  var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-    vars[key] = value;
-  });
-  return vars;
 }
 
 function get_content_comments(id, user) {
@@ -396,8 +269,6 @@ function get_content_comments(id, user) {
 
   $.ajax(settings)
     .done(function (response) {
-      // var msg = JSON.parse(response);
-      // videoData = JSON.parse(response);
       $('#feedbacks').html('');
       var allData = JSON.parse(response);
       if (allData.feedback && allData.feedback.length > 0) {
@@ -412,9 +283,6 @@ function get_content_comments(id, user) {
         for (var feedback of allData.feedback) {
           $('#feedback_list').append(
             '<li class="list-item">' +
-            // '<div style="align-self: center;">' +
-            // '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/488320/profile/profile-80.jpg" class="list-item-image">' +
-            // '</div>' +
             '<div class="list-item-content">' +
             '<h4>' + feedback.user + '</h4>' +
             '<p>' + feedback.message + '</p>' +
@@ -423,7 +291,7 @@ function get_content_comments(id, user) {
             '</li>'
           )
         }
-      }else{
+      } else {
         $('#feedbacks').append(
           '<div class="videoDetailsDiv"><b>No Feedback Received</b><br>' +
           '<div class="feedback_received">' +

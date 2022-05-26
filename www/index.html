@@ -198,12 +198,31 @@
 </head>
 
 <body>
+
+    <div id="page-onboarding">
+        <div class="logo-div">
+            <img src="img/initial-page/logo-black.png">
+        </div>
+        <div class="heading">
+            <p>Start your</p>
+            <p>journey!</p>
+        </div>
+        <p class="description">
+            Track your journey to recovery from mental illness or substance abuse.
+        </p>
+        <div class="img-div">
+            <img src="img/initial-page/onboarding-1.png">
+        </div>
+        <div class="btn-div">
+            <button id="btnStartActivate">Start Activate</button>
+        </div>
+    </div>
     <!-- Slider -->
     <div class="swiper">
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-                <div class="image-content" style="background-image: url('images/gif-resize/Selfie.gif')">
+                <div class="image-content" style="background-image: url('images/Selfie.svg')">
                 </div>
                 <div class="main-content">
                     <h3 class="heading-tag">Document your daily activities</h3>
@@ -215,7 +234,7 @@
             </div>
             <div class="swiper-slide">
                 <img class="back-image back_click" src="images/back_button.png" alt="back">
-                <div class="image-content" style="background-image: url('images/gif-resize/Doctor.gif')">
+                <div class="image-content" style="background-image: url('images/Doctor.svg')">
                 </div>
                 <div class="main-content">
                     <h3 class="heading-tag">Trust and accountability</h3>
@@ -227,7 +246,7 @@
             </div>
             <div class="swiper-slide">
                 <img class="back-image back_click" src="images/back_button.png" alt="back">
-                <div class="image-content" style="background-image: url('images/gif-resize/Girl.gif')">
+                <div class="image-content" style="background-image: url('images/Reading.svg')">
                 </div>
                 <div class="main-content">
                     <h3 class="heading-tag">Your road to <br>recovery</h3>
@@ -239,7 +258,6 @@
         </div>
     </div>
     <!-- End Slider -->
-
 
     <header id="header">
         <div id="mainBox" class="mainContainer" style="position: relative">
@@ -259,8 +277,9 @@
     </header>
 
     <div id="dashboard" class="dashboard-new">
-    <div>
-        <div class="logoDiv" id="logoDivId">
+        <div class="logoDiv" id="logoDivId" style="margin: auto;
+        text-align: center;
+        width: 70%;padding-top: 15%;">
             <div class="logo">
             </div>
             <div class="logo2" style='color:white;'>
@@ -269,27 +288,20 @@
             <div class="moto" style="display: block;">
             </div>
         </div>
-        <div class="secAction"></div>
+        <!-- <div class="secAction"></div> -->
         <div class="action-btns">
             <div id="subscribed-user">
-                <div class="two-btns">
-                <div class="row1">
-                    <div class="column1 btn1 subVideoBtn ">
-                        <button class="actionBtn btnVideo video dark homeVideoBtn">SUBMIT VIDEO</button>
-                    </div>
+                <div class="column1 btn1 subVideoBtn ">
+                    <button class="actionBtn btnVideo video dark homeVideoBtn">SUBMIT VIDEO</button>
                 </div>
-                <div class="row1">
 
-                    <div class="column1 btn2">
-                        <button class="actionBtn btnEvent location homeVideoBtn">POST LOCATION</button>
-                    </div>
+                <div class="column1 btn2">
+                    <button class="actionBtn btnEvent location homeVideoBtn">POST LOCATION</button>
                 </div>
-            </div>
             </div>
             <div id="not-subscribed-user" class="row1" style="display: none;">
             </div>
         </div>
-    </div>
     </div>
 
 
@@ -715,30 +727,25 @@
         </div>
     </div> -->
 
-    <div class="" id="setmonitorModal" style="display:none;position: absolute;top: 9%;bottom: 0;border-radius: 148px;">
+    <div id="setmonitorModal">
         <style>
             ::placeholder {
                 color: #707070;
                 opacity: 1;
-                /* Firefox */
             }
         </style>
 
-        <div></div>
-        <div class="" style="border-radius: 51px;">
-
+        <div style="border-radius: 51px;">
             <div style="width: 100%;background: white;height: 100%;border-radius: 20px  20px 0  0;">
                 <div>
-
                     <div class="row">
-
                         <i id="backbuttonsetmonitor" style="font-size:25px;color: black;align-self: center;"
                             class="fa fa-arrow-left" aria-hidden="true"></i>
                         <p style="margin: 0;color:#15301B;font-size: 27px;font-weight: 700;padding: 15px;">Set Monitor
                         </p>
                     </div>
 
-                    <form id="regForm " class="setForm" action="#">
+                    <form id="monitorForm" class="setForm" action="#">
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab get-monitor" style="padding: 10px;">
                             <p style="color: black;" class="instruct_Data">Email address of person monitoring you who
@@ -758,26 +765,16 @@
                                 color: white;
                                 font-size: 18px;">
                                     <p style="margin: 0;padding: 10px;" id="nextBtn">+</p>
-                                    <!-- <button class="actionBtn  dark" type="button" id="nextBtn">ADD</button> -->
                                 </div>
                             </div>
                         </div>
-                        <!-- <div>
-                            <div style="text-align: center;">
-                                <button class="actionBtn  dark" type="button" id="nextBtn">ADD</button>
-                            </div>
-                        </div> -->
-                        <div style="margin-top: 20px;padding: 10px;" class="instruct_Data">
-                            <div>
-                                <b style="color:black;margin: 20px;">Active Monitors:</b>
-                            </div>
-                            <hr>
-                            <div style="color: black;margin: 15px 15px;" class="current-monitors">
-                                <div>adasd@gmail.com - <a val="adasd@gmail.com" class="remove-monitor buttonColor"
-                                        href="#">remove</a></div>
-                                <div>asdasd@gmail.com - <a val="asdasd@gmail.com" class="remove-monitor buttonColor"
-                                        href="#">remove</a></div>
-                            </div>
+
+                        <div>
+                            <b style="color:black;margin: 20px;">
+                                <span id="monitorCounts"></span> Active Monitors:
+                            </b>
+                        </div>
+                        <div id="monitorList" class="current-monitors">
                         </div>
                     </form>
                 </div>
@@ -923,15 +920,6 @@
         </div>
     </div>
 
-    <script>
-        jQuery(document).ready(function ($) {
-            $("#organization").change(function () {
-                // $('#signupModal').addClass('is-visible'); // hide all divs by removing class visible
-            });
-        });
-
-    </script>
-
     <div class="modal" id="logincodeModal">
         <div class="modal-overlay"></div>
         <div class="modal-wrapper modal-transition" style="background: url(img/popup_login.jpg)">
@@ -962,7 +950,6 @@
 
 
     <div style="display: none;" id="signupModal">
-
         <style>
             ::placeholder {
                 color: black;
@@ -1054,10 +1041,10 @@
 
                 <!-- <div class="action-btns">
                     <div class="row"> -->
-                        <!-- <div class="column btn1">
+                <!-- <div class="column btn1">
                             <button class=" dark" onClick="back_click(this.id)" id="1">Back</button>
                         </div> -->
-                    <!-- </div>
+                <!-- </div>
                 </div> -->
                 <p class="textCenter loginNeed" style="color: black;">Joined us before?
                     <a id="loginbutton" href="#" style="color: #15301B;font-weight: 800;">Log In</a>
@@ -1105,6 +1092,7 @@
 
                         #selected_org {
                             text-align: center;
+                            padding-top: 15%;
                         }
 
                         .org_list li {
@@ -1135,7 +1123,7 @@
                             margin-bottom: 50px;
                         }
                     </style>
-                    <div style="padding:10px 0px 10px 0px" class="row">
+                    <div style="padding:10px 0px 10px 0px;padding-top: 10%" class="row">
                         <div style="padding-right:10px ;align-self: center;">
                             <i id="backorgButtonAction" style="font-size:25px;color: white;" class="fa fa-arrow-left"
                                 aria-hidden="true"></i>
@@ -1177,7 +1165,7 @@
         </div>
     </div>
     <div id="showConfirm"
-        style="display:none;background: #15301B;position: fixed;bottom: 0;width: 100%;text-align: center;height: 40px;border: 2px solid black;color: white;align-self: center;padding: 10px;">
+        style="display:none;background: #15301B;position: fixed;bottom: 0;width: 100%;text-align: center;height: 60px;border: 2px solid black;color: white;align-self: center;padding: 10px;">
         Confirm
     </div>
     </div>
@@ -1458,6 +1446,7 @@
         <script src="js/logos.js?v=1.99"></script>
         <script src="js/config.js?v=1.97"></script>
         <script src="js/stripe.js?v=1.97"></script>
+        <script src="js/avatar.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEYIL86ek3icvHx6F-55qSFCfhe2fynfg">
         </script>
 
@@ -1470,16 +1459,10 @@
             } else {
                 $('#appstore_feedback_btn').hide();
             }
-
             const swiper = new Swiper('.swiper', {
-                // Optional parameters
                 direction: 'horizontal',
                 loop: false,
             });
-
-            // if (localStorage.getItem('session_id')) {
-            //     // window.location.href = 'main.html';
-            // }
 
             $(".next_click").click(function (e) {
                 swiper.slideNext();
@@ -1495,16 +1478,11 @@
                     $('.toggleBar').show();
                     $("#logoDivId").show();
                     $("#dashboard").show('slow');
-                    // $("#mainBox").show();
-                    // $("#page-contents").children().hide();
-                    // $('#page-contents').find('#dashboard').show('slow');
-                    // $('#addEvent').hide();
 
                 } else {
                     $("#page-contents").children().hide();
                     $('#page-contents').find('#login').show("slow");
                     $("#logoDivId").show();
-                    // $('#addEvent').hide();
                 }
                 $('.swiper').hide();
             });
@@ -1515,6 +1493,19 @@
 
 
         <script type="text/javascript">
+            $(document).ready(function () {
+                $('.swiper').hide();
+                $("#page-contents").hide();
+                $('#dashboard').hide();
+                $('.toggleBar').hide();
+                $("#page-onboarding").show();
+            });
+
+            $("#btnStartActivate").click(function (e) {
+                $('#page-onboarding').hide();
+                $('.swiper').show();
+                $("#page-contents").show();
+            });
 
             if (localStorage.getItem('session_id')) {
                 if (localStorage.getItem('show_intro') == '1') {
@@ -1529,20 +1520,13 @@
                     $('#dashboard').show();
                     $('#header').show();
                 }
-                // $("#page-contents").children().hide();
-                // show the dashboard div if already logged in. or else show login div.
-                // $('#page-contents').find('#login').show("slow");
-                // $("#logoDivId").show();
-                // $('#addEvent').hide();
             } else {
                 $('#dashboard').hide();
-                // $("#mainBox").show();
-                $("#page-contents").show();
+                // $("#page-contents").show();
                 $("#page-contents").children().hide();
                 //show the dashboard div if already logged in. or else show login div.
                 $('#page-contents').find('#login').show("slow");
                 $("#logoDivId").hide();
-                // $('#addEvent').hide();
                 // Show slider
                 $('.swiper').show();
             }
