@@ -1,6 +1,7 @@
 function init() {
 
     get_all_activity(function(events) {
+        console.log(events)
         for(var e of events['results']) {
             console.log(e);
         }
@@ -17,7 +18,7 @@ function get_all_activity(callback) {
     headers: {
       Authorization: "Token " + localStorage.getItem("session_id")
     },
-    url: SERVER + "/api/list-patient-events-v2/",
+    url: SERVER + "/api/list-patient-events/",
     method: "GET",
     processData: false,
     contentType: false,
