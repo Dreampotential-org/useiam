@@ -910,7 +910,7 @@ function display_side_activity_log(resp) {
   var c=0;
 
     console.log(resp)
-  for (var activity of resp.events) {
+  for (var activity of resp) {
     if (activity.type == "video") {
       html +=
         '<div class="card mt-2"id="' +
