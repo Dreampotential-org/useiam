@@ -121,18 +121,25 @@ function display_table_list(patients) {
                     }')">play_circle_filled</i>
 
                     <div id="myModal${i}" class="modal">
-                    <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content"><div class="p-2"><p  onclick="closeModal(${i})" class="close" id="closeModal">&times;</p></div><br/>
-                      <video controls="" name="media"  class="video">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="p-2">
+                            <p  onclick="closeModal(${i})" class="close" id="closeModal">&times;</p>
+                          </div>
+                          <br/>
                           
-                      </video>
-                      <div class="card m-2 rounded-0">
-                        <div class="card-body">
-                            <div class="feedback_received">
+                          
+                                    <video class="" controls="" autoplay="" name="media" id='video' width='100%' height='600'></video>
+                   
+                          <div class="card m-2 rounded-0">
+                            <div class="card-body">
+                                <div class="feedback_received">
+                                </div>
                             </div>
+                          </div>
                         </div>
                       </div>
-                    </div></div></div>
+                    </div>
 
                 </td>
               </tr> `;
@@ -149,11 +156,10 @@ function comments(patients_comment){
   var html = "";
   for (var patient of patients_comment) {
 
-
-
-    html += `<div>
+    if(patients_comment=patient.msg){
+    html +=   `<div>
                 <div>
-                <div style="display:flex">
+                  <div style="display:flex">
                     <div>
                       <img src="../icon.png" alt=img/>
                     </div>
@@ -164,7 +170,7 @@ function comments(patients_comment){
                   </div>
                 </div>
               </div>`;
-
+    }
   }
 
 
