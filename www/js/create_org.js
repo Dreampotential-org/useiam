@@ -23,6 +23,8 @@ function init_video_event() {
     form.append("hostname", $('#org_host_name').val());
     form.append("city", $('#org_city').val());
     form.append("address", $('#org_address').val());
+    form.append("phone_no", $('#org_phone').val());
+
     form.append("state", $('#org_state').val());
 
     form.append("file", LOGO_FILE, LOGO_FILE.name);
@@ -51,6 +53,15 @@ function init_video_event() {
       swal({
         'title': 'Error',
         'text': 'Enter the valid City',
+        'icon': 'error',
+      });
+
+      return false;
+    }
+    if ($('#org_phone').val() == '') {
+      swal({
+        'title': 'Error',
+        'text': 'Enter the valid Phone no',
         'icon': 'error',
       });
 
@@ -97,6 +108,8 @@ function init_video_event() {
       $('#org_name').val('')
       $('#org_host_name').val('')
       $('#org_city').val('')
+      $('#org_phone').val('')
+
       $('#org_address').val('')
       $('#org_state').val('')
 
