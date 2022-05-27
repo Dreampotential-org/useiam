@@ -1,0 +1,184 @@
+.right-main{
+    background: #009688;
+}
+
+.right-div{
+    background: #009688;
+    display: flex;
+    justify-content: space-evenly;  
+}
+
+@media screen and (min-width:769px) {
+    #signin-div{
+        background-image: url(../images/header.jpg);
+        height: 100vh;
+        background-position: left center;
+        background-position: -400px center;
+        background-size: cover;
+        position: relative;
+    }
+
+    .right-main {
+        position: relative;
+    }
+    .right-main:before {
+        background: url(../img/shape_new.png);
+        content: "";
+        height: 100%;
+        width: 220px;
+        position: absolute;
+        left: -160px;
+        background-size: cover;
+        /* z-index: 9999; */
+        top: 0px;
+        background-position: center;
+    }
+
+    .img-header{
+        display: none;
+    }
+}
+
+#welcome{
+    font-size: 30px;
+}
+
+#welcome-back{
+    float: right;
+    font-size: 30px;
+}
+
+.img-logo{
+    width: 30%;
+    height: auto;
+}
+
+.btn-login{
+    text-align: center;
+}
+
+#login_code{
+    background: #fff;
+    padding: 5px 45px 5px 45px;
+    border: 10px;
+    border-radius: 10px;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 500;
+
+}
+
+.anchor{
+    color: #fff;
+    font-size: 20px;
+}
+
+/* .input-icons{
+    text-align: center;
+}
+
+.input-field{
+    width: 50%;
+} */
+
+
+.input-icons i {
+    /* position: absolute; */
+}
+ 
+.input-icons {
+    /* background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; */
+    width: 42%;
+}
+
+.img-header{
+    width: 100%;
+    /* height: 100vh!important; */
+}
+
+ 
+.icon {
+    padding: 10px;
+    color: green;
+    min-width: 50px;
+    text-align: center;
+}
+ 
+.input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    padding-left: 10%!important;
+}
+ 
+h2 {
+    color: green;
+}
+
+ input:focus-visible{
+    outline: none;
+}
+
+.center {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.center-div{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.icon-left{
+    position: absolute;
+    left: 10px;
+    color: #009688;
+    
+}
+
+.icon-right{
+    position: absolute;
+    right: 10px;
+    color: #009688;
+}
+
+@media screen and (max-width:768px) {
+    .input-icons {
+        /* background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center; */
+        width: 90%;
+
+    }
+    /* .input-icons {
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 80%;
+    } */
+    .img-logo{
+        width: 40%;
+        height: auto;
+        z-index: 9;
+    }
+    #welcome{
+        font-size: 30px;
+    }
+    #welcome-back{
+        font-size: 30px;
+    }
+    .center{
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

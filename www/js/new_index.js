@@ -609,7 +609,8 @@ function display_patients(patients) {
                     </div>
                     <div class="card-body">
                         <h6 class="card-subtitle">${patient.name}</h6>
-                        <p class="m-0 mt-1 text-primary"><span class="mr-2"><i class="material-icons align-middle mr-1">room</i>${g_count} </span> <span class="mr-2"><i class="material-icons align-middle mr-1">play_circle_filled</i>${v_count}</span></p>
+                        <p class="m-0 mt-1 text-primary"><span class="mr-2"><i class="material-icons align-middle mr-1">room</i>${g_count} </span> 
+                        <span class="mr-2"><i class="material-icons align-middle mr-1">play_circle_filled</i>${v_count}</span></p>
                         <p class="d-none patient-email">${patient.email}</p>
                     </div>
                 </div>
@@ -667,16 +668,15 @@ function display_events(response) {
     if (e.type == "video") {
       html += `<a href="javascript:void(0);" id="myBtn" type="button" aria-pressed="true" onclick="openModal(${i},'${
         e.url
-      }')"><i class="material-icons align-middle">play_circle_filled</i></a>
+      }')">
+      <i class="material-icons align-middle">play_circle_filled</i></a>
                 <div id="myModal${i}" class="modal">
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content"><div class="p-2"><p  onclick="closeModal(${i})" class="close" id="closeModal">&times;</p></div><br/>
-                <video controls="" name="media"  class="video">
-                    <source src="${SERVER}${e.url}&token=${localStorage.getItem(
-        "session_id"
-      )}" type="video/mp4">
-                </video>
-                <div class="card m-2 rounded-0">
+                  <video controls="" name="media"  class="video">
+                      <source src="${SERVER}${e.url}&token=${localStorage.getItem("session_id")}" type="video/mp4">
+                  </video>
+                  <div class="card m-2 rounded-0">
                     <div class="card-body">
                         <h6 class="card-subtitle">Comments</h6>
                         <!--<div class="form-group">
@@ -687,7 +687,10 @@ function display_events(response) {
                         <div class="text-right">
                             <button id="send_feedback" class="btn btn-primary active" role="button" aria-pressed="true">Comment</button>
                         </div>-->
-                        <div class="feedback_received"></div></div></div>
+                        <div class="feedback_received">
+                        </div>
+                    </div>
+                  </div>
                 </div></div></div>`;
     }
 

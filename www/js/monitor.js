@@ -632,6 +632,8 @@ function list_monitors(callback) {
 
 
 function list_orgs(callback) {
+  console.log('monitor.js > list_orgs');
+
   var settings = {
     async: true,
     crossDomain: true,

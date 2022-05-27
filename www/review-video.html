@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html>      
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -7,7 +7,7 @@
 
         <!-- Material Design for Bootstrap fonts and icons -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-
+        <link rel="stylesheet" href="css/review-video.css">
         <!-- Material Design for Bootstrap CSS -->
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
         <title>USEIAM</title>
@@ -107,12 +107,20 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons align-middle mr-2">filter</i> Filter Patient
                   </a>
+
+
+                  <a href="./design1.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i
+                    class="material-icons align-middle mr-2">event</i> Design 1</a>
+      
+                    <a href="./design2.html" class="btn btn-primary text-left" role="button" aria-pressed="true"><i
+                      class="material-icons align-middle mr-2">event</i> Design 2</a>
+
                 </ul>
             </div>
             <main class="bmd-layout-content">
                 <div class="container-fluid h-100">
                     <!-- Sign In Start -->
-                    <div id="signin-div" class="row h-100 bg-primary">
+                    <!-- <div id="signin-div" class="row h-100 bg-primary">
                         <div class="col-lg-4 col-md-2 col-sm-3"> </div>       
                         <div class="col-lg-4 col-md-8 col-sm-6 d-flex align-items-center">
                             <div class="card">
@@ -136,7 +144,75 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-2 col-sm-3"> </div>
+                    </div> -->
+
+                    <div class="row" id="signin-div" >
+                        <div class="col-lg-6 p-0">
+                            <div class="position-relative">
+                                <div class="header-img">
+                                    <img src="./images/header.jpg" class="img-header  " alt="...">
+                                </div>
+
+
+                
+                                <!-- <div class="curved-div">
+                                    <svg viewBox="500 70 900 300">
+                                        <path fill="#009688" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                                    </svg>
+                                </div> -->
+                            </div>
+                        </div>
+            
+                        <div class="col-lg-6 right-main pt-5 pb-5">
+                            <div class="mt-5">
+
+
+                    <div class="right-div mt-5">
+                        <div class="center mt-5">
+                            
+                     
+                                <img class="img-logo" src="./img/useiam_logo.png" width="100%" height="100%" alt="">
+                            <div>
+                                <p id="welcome">Welcome </p>
+                                <P id="welcome-back">back!</P>
+                            </div>
+                            
+                        </div>
                     </div>
+
+
+                    <div class="mt-5" style="margin: auto;">
+                        <div>
+                            <div class="center-div">
+                                <div class="input-icons">
+                                    <i class="fa fa-envelope icon-left"></i>
+                                    <input class="input-field" id="signin_email" type="text" placeholder="Email"/>
+                                    <i class="icon-pass fa fa-check icon-right"></i>
+                                </div>
+                            </div>
+                            <div class="center-div">
+                                <div class="input-icons mt-3">
+                                    <i class="fa fa-lock icon-left"></i>
+                                    <input class="input-field" id="signin_password" type="password" placeholder="Password">
+                                    <i class="fa fa-eye-slash icon-right"></i>
+                                </div>
+                            </div>
+                       </div>
+                            <div class="btn-login mt-5">
+                                <button type="button" id='login_code'>Sign in</button>
+                            </div>
+                            <div class="btn-login mt-3">
+                                <a class="anchor" href = "link">Forgot password?</a> 
+                            </div>
+                            <div class="btn-login mt-2">
+                                <a class="anchor" href = "link">Client Interface</a> 
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
                     <!-- Sign In End -->
                     <!-- Review Video Start -->
                     <div id="video-div" class="row mt-2 review-video">
