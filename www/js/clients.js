@@ -112,7 +112,7 @@ function loadOrganization() {
         });
     });
     request.fail(function (err) {
-        alert(err)
+        // alert(err)
     });
 }
 
@@ -380,7 +380,7 @@ $('#add_patient').click(function (e) {
     });
     request.fail(function (jqXHR, textStatus) {
 
-        alert("Request Failed: " + jqXHR.status);
+        // alert("Request Failed: " + jqXHR.status);
     });
 });
 function openModal(ind) {
@@ -571,7 +571,7 @@ function hittingRecordApi(url) {
         paginate();
     });
     request.fail(function (err) {
-        alert(err)
+        // alert(err)
     });
 
 }
