@@ -251,14 +251,16 @@ function display_table_list(patients) {
 
     var i = patients.indexOf(patient);
 
-    var created_at=new Date(patient.created_at)
+    var created_at=new Date(patient.created_at*1000)
     var date=created_at.getDate();
     var month=created_at.getMonth()+1;
     var year=created_at.getFullYear();
 
+    console.log('check date',created_at,i,date,month,year)
+
     html += `<tr style="text-align: -webkit-center;">
                 <td>${patient.name}</td>
-                <td>${date} - ${month} -${year} </td>` ;
+                <td>${month} - ${date} -${year} </td>` ;
                 if (patient.type == "gps") {
                   html +=
                     // `<a target="_blank" href="https://www.google.com/maps/place/${e.lat},${e.lng}"><i class="material-icons align-middle">room</i></a>`
