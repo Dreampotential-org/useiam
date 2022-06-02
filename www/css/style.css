@@ -2015,9 +2015,11 @@ table.ui-datepicker-calendar {
   height: 100vh;
   padding: 1.5rem;
   background-color: white;
-  justify-content: space-evenly;
+  background: url(../img/initial-page/onboarding-1.svg) no-repeat, #fff;
+  /* justify-content: space-evenly; */
   display: flex;
   flex-direction: column;
+  background-position: center;
 }
 
 #page-onboarding .logo-div,
@@ -2028,30 +2030,41 @@ table.ui-datepicker-calendar {
   flex: 1
 }
 
+#page-onboarding .logo-div {
+  text-align: center
+}
+
 #page-onboarding .logo-div img {
-  width: 74px;
+  width: 100px;
 }
 
 #page-onboarding .heading {
-  font-size: 38px;
+  margin-top: 20rem;
+  font-size: 28px;
   font-weight: 300;
   line-height: 1;
+  text-align: center;
 }
 
 #page-onboarding .heading p:first-child {
-  margin-top: 14px;
-  margin-bottom: 0px;
+  /* margin-top: 5rem; */
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 18px;
 }
 
-#page-onboarding .heading p:last-child {
+/* #page-onboarding .heading p:last-child {
   margin-top: 0px;
   margin-bottom: 18px;
   font-weight: 700;
   line-height: 1.2;
-}
+} */
 
 #page-onboarding .description {
   font-size: 16px;
+  text-align: center;
+  padding: 0px 20px;
+  color: #7c7c7c;
 }
 
 #page-onboarding .img-div {
@@ -2064,7 +2077,7 @@ table.ui-datepicker-calendar {
 
 #page-onboarding .btn-div {
   text-align: center;
-  margin-top: 10%;
+  /* margin-top: 10%; */
 }
 
 #page-onboarding .btn-div button {
@@ -2079,12 +2092,12 @@ table.ui-datepicker-calendar {
   font-weight: 600;
 }
 @media screen and (max-height: 640px) {
-  #page-onboarding .img-div img {
+  /* #page-onboarding .img-div img {
     width: 80%;
-  }
+  } */
 
   #page-onboarding .heading {
-    font-size: 28px;
+    margin-top: 14rem;
   }
 
   #page-onboarding .heading p:first-child {
@@ -2092,10 +2105,10 @@ table.ui-datepicker-calendar {
     margin-bottom: 0px;
   }
 
-  #page-onboarding .heading p:last-child {
+  /* #page-onboarding .heading p:last-child {
     margin-top: 0px;
     margin-bottom: 12px;
-  }
+  } */
 }
 
 @media screen and (orientation:landscape) {
@@ -2103,9 +2116,9 @@ table.ui-datepicker-calendar {
     height: auto;
   }
 
-  #page-onboarding .img-div img {
+  /* #page-onboarding .img-div img {
     width: 50%;
-  }
+  } */
 
   #page-onboarding .btn-div button {
     width: 30%;
