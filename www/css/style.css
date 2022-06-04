@@ -2063,15 +2063,16 @@ table.ui-datepicker-calendar {
 }
 
 #page-onboarding .btn-div button {
-  width: 70%;
   background: rgb(241, 90, 41);
-  height: 42px;
-  border-radius: 26px;
-  outline: none;
-  border: none;
-  font-size: 18px;
+  height: 50px;
   color: white;
+  border-radius: 20px;
+  font-size: 20px;
   font-weight: 600;
+  outline: none;
+  border: 0;
+  width: 80%;
+  margin-top: 10px;
   
 }
 @media screen and (max-height: 640px) {
