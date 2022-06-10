@@ -4,16 +4,66 @@ function init() {
       location.href ='login.html'
     }
 
+    list_patients(function (response) {
+      
+      display_activity_patients(response.patients);
+    });
+
     get_all_activity(function(events) {
         console.log(events)
         for(var e of events['results']) {
             console.log(e);
         }
         // populate screen....
-    })
+    }) 
 
 }
 
+function list_patients(callback) {
+  var settings = {
+    async: true,
+    crossDomain: true,
+    headers: {
+      Authorization: "Token " + localStorage.getItem("session_id"),
+    },
+    url: SERVER + "/api/list-patients/",
+    method: "GET",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+  };
+  $.ajax(settings)
+    .done(function (response) {
+      console.log('123123')
+      console.log(response);
+      callback(JSON.parse(response));
+    })
+    .fail(function (err) {
+      console.log(err);
+    });
+}
+
+function display_activity_patients(patients, value) {
+  
+
+  var html = "<option text-primary' value=''>All Patients</option>";
+
+  for (var patient of patients) {
+    html +=
+      "<option value='" +
+      patient.email +
+      "'>" +
+      patient.name +
+      "(" +
+      patient.email +
+      ")" +
+      "</option>";
+  }
+
+  $(".select-patient").html(html);
+
+  $(".select-patient").val(value);
+}
 
 function get_all_activity(callback) {
   var settings = {
@@ -40,7 +90,7 @@ function get_all_activity(callback) {
 
       display_table_list(allData.results);
 
-      comments(allData)
+      // comments(allData.results)
       // callback(msg);
     }).fail(function(err) {
       alert("Got err");
@@ -50,15 +100,23 @@ function get_all_activity(callback) {
 
 function play_video(index,url) {
   // alert('hiii-----'+index+"url"+url);
+  console.log('server',SERVER,url,localStorage.getItem('session_id'))
 
+  var video = document.getElementById('video-tag');
+  video.src = SERVER+url+'&token='+localStorage.getItem("session_id")
+  console.log('videi',video)
 
-  var modal = document.getElementById("myModal" + index);
-  console.log(modal);
+  get_video_info(getUrlVars(url)["id"], getUrlVars(url)["user"], function (
+    data
+  ) {});
 
-  var btn = document.getElementById("myBtn");
-  console.log(btn);
+  // var modal = document.getElementById("myModal" + index);
+  // console.log(modal);
+
+  // var btn = document.getElementById("myBtn");
+  // console.log(btn);
  
-  modal.style.display = "block";
+  // modal.style.display = "block";
 
   // get_video_info(getUrlVars(url)["id"], getUrlVars(url)["user"], function (
   //   data
@@ -112,31 +170,31 @@ function get_video_info(id, user, callback) {
 
       var html = "";
 
-      // if (res.feedback.length == 0) {
-      //   html +=
-      //     '<div class="d-flex mt-3">' +
-      //     '<div class="ml-3 border-bottom border-light">' +
-      //     '<p class="font-weight-bold mb-0">No comments found!</p>' +
-      //     "</div>" +
-      //     "</div>";
-      //   //)
-      // } else {
-      //   for (var message of res.feedback.reverse()) {
-      //     html +=
-      //       '<div class="d-flex mt-3">' +
-      //       '<img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">' +
-      //       '<div class="ml-3 border-bottom border-light">' +
-      //       '<p class="font-weight-bold mb-0">' +
-      //       message.user +
-      //       "</p>" +
-      //       '<p class="font-weight-normal">' +
-      //       message.message +
-      //       "</p>" +
-      //       "</div>" +
-      //       "</div>";
-      //     //)
-      //   }
-      // }
+      if (res.feedback.length == 0) {
+        html +=
+          '<div class="d-flex mt-3">' +
+          '<div class="ml-3 border-bottom border-light">' +
+          '<p class="font-weight-bold mb-0">No comments found!</p>' +
+          "</div>" +
+          "</div>";
+        //)
+      } else {
+        for (var message of res.feedback.reverse()) {
+          html +=
+            '<div class="d-flex mt-3">' +
+            '<img src="./img/logoReviewVideo.png" class="rounded-circle comment-img" alt="...">' +
+            '<div class="ml-3 border-bottom border-light">' +
+            '<p class="font-weight-bold mb-0">' +
+            message.user +
+            "</p>" +
+            '<p class="font-weight-normal">' +
+            message.message +
+            "</p>" +
+            "</div>" +
+            "</div>";
+          //)
+        }
+      }
 
       $(".feedback_received").html(html);
       callback(res);
@@ -256,7 +314,7 @@ function display_table_list(patients) {
     var month=created_at.getMonth()+1;
     var year=created_at.getFullYear();
 
-    console.log('check date',created_at,i,date,month,year)
+    console.log('check date',created_at,i,date,month,year) 
 
     html += `<tr style="text-align: -webkit-center;">
                 <td>${patient.name}</td>
@@ -322,7 +380,6 @@ function comments(patients_comment){
                 <div>
                 <div style="display:flex">
                     <div>
-                      <img src="../icon.png" alt=img/>
                     </div>
                     <div>
                       <p>${patient.email}</p>
@@ -343,7 +400,7 @@ function display_patients(patients) {
   var g_count = 0;
   var v_count = 0;
 
-  for (var patient of patients) {
+  // for (var patient of patients) {
     // for (var event of patient.events) {
     //   if (event.type == "gps") {
     //     g_count++;
@@ -351,7 +408,7 @@ function display_patients(patients) {
     //     v_count++;
     //   }
     // }
-  }
+  // }
 
 }
 
