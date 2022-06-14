@@ -14,15 +14,17 @@ function init_activity() {
   });
 
   $('.open-pdf').on('click', function (e) {
-    var pdfUrl = $(this).attr('href');
-    e.preventDefault();
-    document.addEventListener(
-      'deviceready',
-      function () {
-        cordova.InAppBrowser.open(pdfUrl, '_blank', 'location=no');
-      },
-      false
-    );
+    if(device.platform){
+      var pdfUrl = $(this).attr('href');
+      e.preventDefault();
+      document.addEventListener(
+        'deviceready',
+        function () {
+          cordova.InAppBrowser.open(device.platform === 'Android'? `https://docs.google.com/gview?embedded=true&url=https://m.useiam.com/${pdfUrl}` : pdfUrl, '_blank', 'location=no');
+        },
+        false
+      );
+    }
   });
 }
 

@@ -65,7 +65,8 @@ function init_monitor() {
   });
 
   $("#backButtonAction").on("click", function (e) {
-    $("#signupModal").show();
+    $("#page-contents").show();
+    $('.logoDiv').show()
     $("#signinModal").hide();
   });
 

@@ -871,6 +871,12 @@ video.activityVideo{
   width: inherit;
   transition: all 0.5s;
 }
+.pageLogo {
+      position: fixed;
+      top: 8%;
+      left: 50%;
+      margin-left: -80px;
+}
 
 /*****************SIGN UP FORM TABS*****************/
 
