@@ -17,6 +17,71 @@ function init() {
         // populate screen....
     }) 
 
+    $("#send_feedback").on("click", function (e) {
+      var url = URL
+      var id = getUrlVars(url)["id"]
+      var user = getUrlVars(url)["user"];
+  
+      if ($("#message").val().trim() != "") {
+        $.ajax({
+          type: "POST",
+          url:
+            SERVER +
+            "/api/send-feedback/?token=" +
+            localStorage.getItem("session_id") +
+            "&user=" +
+            user +
+            "&id=" +
+            id,
+          data: { message: $("#message").val() },
+        })
+          .done(function (resp) {
+            console.log(resp);
+  
+            if (resp.status == "okay") {
+              get_video_info(id, user, function() {});
+  
+              swal({
+                title: "Feedback Sent",
+                text: "Your feedback sent successfully",
+                icon: "success",
+              });
+            } else {
+              swal({
+                title: "Please try again later.",
+                icon: "error",
+              });
+            }
+  
+            $("#message").val("");
+          })
+          .fail(function (err) {
+            console.log(err);
+            swal({
+              title: "Something wrong",
+              icon: "error",
+            });
+          });
+      } else {
+        swal({
+          text: "Comment field should not be empty.",
+          icon: "error",
+        });
+      }
+    });
+
+}
+
+function throughUrl() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (
+    m,
+    key,
+    value
+  ) {
+    vars[key] = value;
+  });
+  return vars;
 }
 
 function list_patients(callback) {
@@ -46,23 +111,42 @@ function list_patients(callback) {
 function display_activity_patients(patients, value) {
   
 
-  var html = "<option text-primary' value=''>All Patients</option>";
+  var html = "";
 
-  for (var patient of patients) {
-    html +=
-      "<option value='" +
-      patient.email +
-      "'>" +
-      patient.name +
-      "(" +
-      patient.email +
-      ")" +
-      "</option>";
-  }
+  patients.forEach((patient,i)=>{
+    html+=`<div class="accordion" id="accordionExample" style="margin:10px">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading${i}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne">
+        ${patient.name}
+        </button>
+      </h2>
+      <div id="collapse${i}" class="accordion-collapse collapse" aria-labelledby="heading${i}" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <p>${patient.email}</p>
+        </div>
+      </div>
+    </div>
+  </div>`
+  })
+
+  // for (var [patient,i] of patients.keys()) {
+    // html +=
+    //   "<option value='" +
+    //   patient.email +
+    //   "'>" +
+    //   patient.name +
+    //   "(" +
+    //   patient.email +
+    //   ")" +
+    //   "</option>";
+
+      
+  // }
 
   $(".select-patient").html(html);
 
-  $(".select-patient").val(value);
+  // $(".select-patient").val(value);
 }
 
 function get_all_activity(callback) {
@@ -100,6 +184,7 @@ function get_all_activity(callback) {
 
 function play_video(index,url) {
   // alert('hiii-----'+index+"url"+url);
+  URL = url
   console.log('server',SERVER,url,localStorage.getItem('session_id'))
 
   var video = document.getElementById('video-tag');
@@ -217,6 +302,9 @@ $("body").delegate(".next", "click", function (e) {
   });
   
 });
+
+
+
 
 function api_list_patient_events(url, callback) {
   var settings = {
