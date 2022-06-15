@@ -112,19 +112,28 @@ function display_activity_patients(patients, value) {
   
 
   var html = "";
+  html+= `<div class="accordion" id="accordionExample" style="margin:10px">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Filter patients
+              </button>
+    </h2>
+   
+  </div>
+</div>`
+
 
   patients.forEach((patient,i)=>{
-    html+=`<div class="accordion" id="accordionExample" style="margin:10px">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="heading${i}">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne">
-        ${patient.name}
-        </button>
-      </h2>
-      <div id="collapse${i}" class="accordion-collapse collapse" aria-labelledby="heading${i}" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <p>${patient.email}</p>
-        </div>
+    html+= `<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div style="padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 1px 1px #c7c4c4;" class="accordion-body">
+      <div>
+      <p style="font-weight:600;margin:0">${patient.name }</p>
+
+      <p>${patient.email}</p>
       </div>
     </div>
   </div>`
