@@ -6,7 +6,5 @@ var SERVER = 'https://prod-api.useiam.com'
  var organization_id = null;
  // plan id = IAM001
  // test plan id = 007
- var URL = ''
- 
  //var SERVER = 'http://192.168.100.166:8081'
  
