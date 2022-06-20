@@ -193,7 +193,12 @@ function signup_api(params) {
                     closeAllModals();
                 }
             } else {
-                $("#logincodeModal").addClass("is-visible");
+                // $("#logincodeModal").addClass("is-visible");
+                swal({
+                    title: "Error",
+                    text: "user already exists",
+                    icon: "error",
+                });
             }
 
             get_profile_info(function (msg) {

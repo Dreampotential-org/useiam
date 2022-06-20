@@ -206,7 +206,10 @@ function get_all_activity(callback) {
 
 function playXYZ(patient,index,patients){
  
-  
+  console.log('xyz')
+  $(".next").show();
+  $(".prev").show();
+
   var abcd= document.getElementById('mycustom')
  
   abcd.click()
@@ -235,6 +238,11 @@ function playXYZ(patient,index,patients){
       $(".count").text(allData.count);
 
       console.log('check',NEXT_PAGE_URL)
+      if(!allData.next){
+        $(".next").hide();
+        $(".prev").hide();
+
+      }
 
       display_table_list(allData.results);
 
