@@ -373,7 +373,7 @@ $("#feedback").on("click", function (e) {
 });
 
 function closeAllModals() {
-  $("#logincodeModal").removeClass("is-visible");
+  // $("#logincodeModal").removeClass("is-visible");
   $("#setOrgModal").removeClass("is-visible");
   $("#signinModal").removeClass("is-visible");
   $("#signupModal").removeClass("is-visible");
