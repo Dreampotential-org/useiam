@@ -17,6 +17,13 @@ function init() {
         // populate screen....
     }) 
 
+   
+    $("#send_feedback").on("click", function (e) {
+      
+      
+    });
+    
+
     $("#send_feedback").on("click", function (e) {
       var url = URL
       var id = getUrlVars(url)["id"]
@@ -100,7 +107,6 @@ function list_patients(callback) {
   $.ajax(settings)
     .done(function (response) {
       console.log('123123')
-      console.log(response);
       callback(JSON.parse(response));
     })
     .fail(function (err) {
@@ -108,14 +114,19 @@ function list_patients(callback) {
     });
 }
 
+
+
 function display_activity_patients(patients, value) {
   
+  $(".abcded").on("click", function(e){
+    console.log('div clicked')
+  })
 
   var html = "";
-  html+= `<div class="accordion" id="accordionExample" style="margin:10px">
+  html+= `<div class="accordion accordianClick" id="accordionExample" style="margin:10px">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      <button id="mycustom" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" >
         Filter patients
               </button>
     </h2>
@@ -125,13 +136,13 @@ function display_activity_patients(patients, value) {
 
 
   patients.forEach((patient,i)=>{
-    html+= `<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    html+= `<div id="collapseOne" onclick="playXYZ('${patient.email}','${i}','${patients}')" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
     <div style="padding: 10px;
     border-radius: 5px;
     margin: 10px;
-    box-shadow: 1px 1px #c7c4c4;" class="accordion-body">
+    box-shadow: 2px 2px 1px #9d9c9c;" class="accordion-body">
       <div>
-      <p style="font-weight:600;margin:0">${patient.name }</p>
+      <p  style="font-weight:600;margin:0">${patient.name }</p>
 
       <p>${patient.email}</p>
       </div>
@@ -179,7 +190,59 @@ function get_all_activity(callback) {
       console.log('all data',allData)
     
       NEXT_PAGE_URL = SERVER + "/api" + allData.next.split("/api")[1];
+      $(".count").text(allData.count);
+
       console.log('check',NEXT_PAGE_URL)
+
+      display_table_list(allData.results);
+
+      // comments(allData.results)
+      // callback(msg);
+    }).fail(function(err) {
+      alert("Got err");
+      console.log(err);
+    });
+}
+
+function playXYZ(patient,index,patients){
+ 
+  console.log('xyz')
+  $(".next").show();
+  $(".prev").show();
+
+  var abcd= document.getElementById('mycustom')
+ 
+  abcd.click()
+
+
+  var settings = {
+    async: true,
+    crossDomain: true,
+    headers: {
+      Authorization: "Token " + localStorage.getItem("session_id")
+    },
+    url: SERVER + "/api/list-patient-events/?email="+ patient,
+    method: "GET",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data"
+  };
+
+  $.ajax(settings).done(function(response) {
+      var msg= JSON.parse(response);
+      videoData =JSON.parse(response);
+      var allData = JSON.parse(response);
+      console.log('all data',allData)
+    
+      NEXT_PAGE_URL = SERVER + "/api" + allData.next?.split("/api")[1];
+      $(".count").text(allData.count);
+
+      console.log('check',NEXT_PAGE_URL)
+      if(!allData.next){
+        $(".next").hide();
+        $(".prev").hide();
+
+      }
 
       display_table_list(allData.results);
 
@@ -332,7 +395,7 @@ function api_list_patient_events(url, callback) {
     .done(function (response) {
       var r = JSON.parse(response);
 
-      console.log(r);
+      console.log('response',r);
       $(".count").text(r.count);
       if (r.next) {
         NEXT_PAGE_URL = SERVER + "/api" + r.next.split("/api")[1];
@@ -411,7 +474,6 @@ function display_table_list(patients) {
     var month=created_at.getMonth()+1;
     var year=created_at.getFullYear();
 
-    console.log('check date',created_at,i,date,month,year) 
 
     html += `<tr style="text-align: -webkit-center;">
                 <td>${patient.name}</td>
