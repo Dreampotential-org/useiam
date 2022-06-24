@@ -163,11 +163,11 @@ function signup_api(params) {
 
                 if (SELECTED_ORG_ID) {
                     do_set_org(SELECTED_ORG_ID, SELECTED_ORG_LOGO, function () {
-                        // swal({
-                        //     title: "Good job!",
-                        //     text: "You're logged in",
-                        //     icon: "success",
-                        // });
+                        swal({
+                            title: "Good job!",
+                            text: "You're logged in",
+                            icon: "success",
+                        });
                         $(".toggleBar").show();
                         $("#signupModal").hide();
                         $("#page-contents").show();
@@ -182,11 +182,11 @@ function signup_api(params) {
 
                     });
                 } else {
-                    // swal({
-                    //     title: "Good job!",
-                    //     text: "You're logged in",
-                    //     icon: "success",
-                    // });
+                    swal({
+                        title: "Good job!",
+                        text: "You're logged in",
+                        icon: "success",
+                    });
                     $(".toggleBar").show();
                     $(".moto").show();
                     showATab("dashboard");
