@@ -15,7 +15,7 @@
   <link rel="stylesheet"
     href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
     integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <title>Design 1</title>
 
 </head>
@@ -47,7 +47,7 @@
       <header class="bmd-layout-header bg-primary">
         <div class="navbar navbar-light bg-faded">
           <button class="navbar-toggler text-light border-light" type="button" data-toggle="drawer"
-           data-target="#dw-s1">
+           data-target="#dw-s1" style="border:none;">
             <span class="sr-only">Toggle drawer</span>
             <i class="material-icons">menu</i>
           </button>
@@ -63,26 +63,43 @@
       <div id="includedSideMenu"></div>
 
 <style>
-    table ,tr td{
-    border:1px solid gray
+.table {
 }
-tbody {
-    display:block;
-    height:730px;
-    overflow:auto;
+.table thead th {
+    border-bottom: none !important;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #009688;
+}
+.table .viewCol {
+    width: 112px;
+    text-align: center;
 }
 thead, tbody tr {
     display:table;
     width:100%;
     table-layout:fixed;
 }
-thead {
-    width: calc( 100% - 1em )
+tbody tr td {
+    text-align: left;
+    border: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #373737;
 }
-table {
-    width:400px;
+.tableContainer {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+    border-radius: 6px;
+    border: 1px solid #E2E2E2;
 }
-
 #collapseOne:hover{
     opacity: 0.7;
     cursor: pointer;
@@ -91,7 +108,7 @@ table {
 
 </style>
 
-      <main class="bmd-layout-content">
+      <main class="bmd-layout-content" style="background-color: white;">
         <div class="container-fluid searchRow">
             <div id="root-div">
                 <!-- <div class="get_in mt-3 mb-2">
@@ -106,19 +123,36 @@ table {
                     </select> -->
                 </div>
             <div class="row">
-                <div class="col-sm">
-                    <table class="table">
-                        <thead>
-                            <tr id="heading">                               
-                                <th scope="col">Name</th>
-                                <th scope="col">Last Submission</th>
-                                <th scope="col">View</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list">
-                        </tbody>
-                    </table>
-
+                <div class="col-sm-5">
+                    <div class="stats-div">
+                        <div class="stat">
+                            <span>120</span>
+                            <label>Total Clients</label>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="stat">
+                            <span>500</span>
+                            <label>Total Submission</label>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="stat">
+                            <span>70</span>
+                            <label>Submissions in 48 Hrs.</label>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <table class="table">
+                            <thead>
+                                <tr id="heading">                               
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Last Submission</th>
+                                    <th class="viewCol" scope="col">View</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                            </tbody>
+                        </table>
+                    </div>
                           <!-- Activity Log Start -->
 
                           <div id="activity-div" class="activity-log">
@@ -126,7 +160,7 @@ table {
                             <div class="row events"></div>
                             <div class='results'></div>
                             <div class="paginationDiv py-3">
-                                <span class="text-primary">Number of results :</span>  <span class='count font-weight-bold'></span>
+                                <span class="text-primary">Number of results :</span>  <span class='count text-primary'></span>
                                 <span class='next float-right'><a href='#'>Next<i class="material-icons align-middle">keyboard_arrow_right</i></a></span>
                                 <span class='prev float-right pr-2'><a href='#'> <i class="material-icons align-middle ">keyboard_arrow_left</i>Prev</a></span>
                             </div>
@@ -137,28 +171,31 @@ table {
 
                 </div>
 
-                <div class="col-sm" >
+                <div class="col-sm-4" style="background: #e7e7e729">
                     <!-- <iframe width="100%" height="800" src="https://www.youtube.com/embed/_debXPUnJkQ" 
                                         title="YouTube video player" 
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                     </iframe> -->
-                    <div  class="card-header font-weight-bold">
-                        <video  id="video-tag" class="" controls="" autoplay="" name="media" id='video' width='100%' height='750'>
+                    <div>
+                        <video  id="video-tag" class="" controls="" autoplay="" name="media" id='video' width='100%'>
                             
                         </video>
                     </div> 
 
+                    <div id="googleMapsDiv" style="width: 100%; height: 80vh"></div>
                 </div>
 
-                <div class="col-sm">
-                    <h1>Leave a Comment</h1>
-                    <div>
-                        <textarea id="message" id="w3review" name="w3review" rows="7" cols="43"></textarea>
-                    </div>
-                    <button id="send_feedback" class="btn btn-primary active" role="button" aria-pressed="true">Send Messages</button>
+                <div class="col-sm-3 thirdDiv">
+                    <h6>Notes:</h6>
+                    <textarea placeholder="Add Notes" id="notes" rows="5"></textarea>
+                    <button id="notes_btn" class="mt-2 btn-cls" role="button" aria-pressed="true">Save</button>
                 
-                    <h5 class="mt-3">Comments:</h5>
-                    <div class="comment" style="overflow: scroll;  height:470px;">
+                    <h6 class="mt-4">Leave a comment:</h6>
+                    <textarea placeholder="Add Monitor Comment" id="message" id="w3review" name="w3review" rows="3"></textarea>
+                    <button id="send_feedback" class="mt-2 btn-cls" role="button" aria-pressed="true"><i class="material-icons">send</i>Send Message</button>
+                
+                    <h6 class="mt-4">Comments:</h6>
+                    <div class="comment" style="overflow-y: auto;  height:26vh;">
                         <!-- <div id="div-text">
                             <p>aaronorosen@gmail.com </p>
                             <p>Nice </p>

@@ -1,5 +1,8 @@
 function init() {
 
+    $("#video-tag").hide();
+    $("#googleMapsDiv").hide();
+
     if(!localStorage.getItem('session_id')){
       location.href ='login.html'
     }
@@ -258,7 +261,8 @@ function play_video(index,url) {
   // alert('hiii-----'+index+"url"+url);
   URL = url
   console.log('server',SERVER,url,localStorage.getItem('session_id'))
-
+  $("#googleMapsDiv").hide();
+  $("#video-tag").show();
   var video = document.getElementById('video-tag');
   video.src = SERVER+url+'&token='+localStorage.getItem("session_id")
   console.log('videi',video)
@@ -428,7 +432,10 @@ function openMap(lat, lng) {
     zoom: 10,
   };
 
-  var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+  $("#video-tag").hide();
+  $("#googleMapsDiv").show();
+
+  var map = new google.maps.Map(document.getElementById("googleMapsDiv"), mapProp);
 
   geocoder.geocode(
     { location: { lat: parseFloat(lat), lng: parseFloat(lng) } },
@@ -460,7 +467,7 @@ function openMap(lat, lng) {
   );
 
   // mapModal.style.display = "block";
-  $("#mapModal").modal("show");
+  // $("#mapModal").modal("show");
 }
 
 function display_table_list(patients) {
@@ -481,13 +488,13 @@ function display_table_list(patients) {
                 if (patient.type == "gps") {
                   html +=
                     // `<a target="_blank" href="https://www.google.com/maps/place/${e.lat},${e.lng}"><i class="material-icons align-middle">room</i></a>`
-                  ` <td>
+                  ` <td class="viewCol">
                       <a href="javascript:void(0);" onclick="openMap(${patient.lat},${patient.lng})"><i class="material-icons align-middle">room</i></a>
                    </td>`
                 }
                 if(patient.type =="video")
                 html+=`
-                <td>
+                <td class="viewCol">
                     <i class="material-icons align-middle" style="color: #009688; cursor:pointer; font-size: 30px" id="myBtn" onclick="play_video(${i},'${
                       patient.url
                     }')">play_circle_filled</i>
