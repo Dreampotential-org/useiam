@@ -37,7 +37,38 @@
         return `${element.name} ${element.submission}`;
     })
 
+    window.addEventListener('mouseup', function(e){
+        // do logic here
+        var container = $("#myDropdown");
+        var dropBtnContainer = $("#dropBtn");
+
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!container.is(e.target) && container.has(e.target).length === 0 && !dropBtnContainer.is(e.target)) 
+        {
+            document.getElementById("myDropdown").classList.remove('show');
+        }
+    });
     // console.log(userFullnames);
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function filterFunction() {
+        var input, filter, ul, li, spans, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        spans = div.getElementsByTagName("span");
+        for (i = 0; i < spans.length; i++) {
+            txtValue = spans[i].textContent || spans[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            spans[i].style.display = "";
+            } else {
+            spans[i].style.display = "none";
+            }
+        }
+    }
 
 </script>
 
@@ -109,20 +140,31 @@ tbody tr td {
 </style>
 
       <main class="bmd-layout-content" style="background-color: white;">
-        <div class="container-fluid searchRow">
+        <div class="container-fluid searchRow m-0">
             <div id="root-div">
                 <!-- <div class="get_in mt-3 mb-2">
                     <h3>All Patients</h3>
                 </div> -->
-                <div class="form-group">
+                <!-- <div class="form-group"> -->
                     <!-- <label style="font-size:20px;font- weight:700;margin-left: 10px;color: #009688!important;" for="exampleFormControlSelect1">Filter Patient</label> -->
-                    <div class="select-patient">
+                    <!-- <div class="select-patient">
 
-                    </div>
+                    </div> -->
                     <!-- <select class="form-control select-patient" id="exampleFormControlSelect1">
                     </select> -->
+                <!-- </div> -->
+                <div class="row align-items-center" style="background: #F9F9F9;">
+                    <div style="width:max-content;" class="dropdown">
+                        <div onclick="myFunction()" id="dropBtn" class="dropbtn">Filter Patient <i class="material-icons">arrow_drop_down</i></div>
+                        <div id="myDropdown" class="dropdown-content">
+                        </div>
+                    </div>
+                    <div id="selectedPatient" class="selectedPatient">
+                        <span></span>
+                        <i id="deleteSelectedPatient" class="material-icons">close</i>
+                    </div>
                 </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-sm-5">
                     <div class="stats-div">
                         <div class="stat">
