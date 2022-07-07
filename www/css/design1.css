@@ -1,264 +1,387 @@
-#heading{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
-    color: #009688;
+#heading {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #009688;
 }
 
-#table-bottom{
-    display: flex;
-    justify-content: space-between;
-    color: #009688;
-    font-size: 20px;
+#table-bottom {
+  display: flex;
+  justify-content: space-between;
+  color: #009688;
+  font-size: 20px;
 }
 
-#send-msg-btn{
-    text-align: right;
-}
-#comment{
-    display: flex;
+#send-msg-btn {
+  text-align: right;
 }
 
-.btn-cls{
-    background: #00635A;
-    border-radius: 6px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    color: #FFFFFF;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    height: 44px;
-    border: none;
+#comment {
+  display: flex;
 }
 
-.btn-cls i{
-    transform: rotate(-45deg);
-    height: 32px;
+.btn-cls {
+  background: #00635A;
+  border-radius: 6px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  border: none;
 }
 
-#div-text{
-    padding-left: 25px;
+.btn-cls i {
+  transform: rotate(-45deg);
+  height: 32px;
+}
+
+#div-text {
+  padding-left: 25px;
 }
 
 .stats-div {
-    border-radius: 6px;
-    border: 1px solid #E2E2E2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
+  border-radius: 6px;
+  border: 1px solid #E2E2E2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
 }
 
 .stats-div .stat {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
+
 .stats-div .stat span {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-    display: flex;
-    align-items: center;
-    color: #009688;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  color: #009688;
 }
+
 .stats-div .stat label {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    color: #797979;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #797979;
 }
+
 .stats-div .divider {
-    width: 62px;
-    height: 0px;
-    border: 1px solid #979797;
-    transform: rotate(90deg);
+  width: 62px;
+  height: 0px;
+  border: 1px solid #979797;
+  transform: rotate(90deg);
 }
+
 .paginationDiv {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 30px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
 }
+
 #video-tag {
-    height: 80vh;
+  height: 80vh;
 }
-.thirdDiv h6{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 23px;
-    line-height: 28px;
-    color: #000000;
+
+.thirdDiv h6 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 23px;
+  line-height: 28px;
+  color: #000000;
 }
+
 .thirdDiv textarea {
- width: 100%;   
- background: #F9F9F9;  
-border-radius: 5px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 22px;
-resize: none;
-padding: 5px 10px;
+  width: 100%;
+  background: #F9F9F9;
+  border-radius: 5px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  resize: none;
+  padding: 5px 10px;
 }
 
 /* Dropdown Button */
 .dropbtn {
-    cursor: pointer;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 36px;
-    display: flex;
-    align-items: center;
-    color: #373737;
-    padding: 16px 24px;
-  }
-  
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-    background: #E2E2E2;
-    color: #009688;
+  cursor: pointer;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  color: #373737;
+  padding: 16px 24px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+  background: #E2E2E2;
+  color: #009688;
+}
+
+.dropbtn .material-icons {
+  font-size: 50px;
+  height: 50px;
+  width: 50px;
+  margin-left: 40px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
+.searchField {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  background: white;
+  border-bottom: 1px solid #d3d3d36b;
+}
+
+.searchField img {
+  width: 48px;
+  height: 48px;
+  background: #00635A;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+/* The search field */
+#myInput {
+  width: 458px !important;
+  height: 48px;
+  background: #F4F4F4;
+  border-radius: 6px;
+  margin-right: 8px;
+  border: none;
+}
+
+.namePtag {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #4E4E4E;
+}
+
+.emailPtag {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #4E4E4E;
+}
+
+.menuItemsContainer {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.menuItemDiv {
+  background: white;
+  cursor: pointer;
+  padding: 16px 24px;
+  border-bottom: 1px solid #d3d3d357;
+}
+
+.menuItemDiv:hover {
+  background: #f8f8f8;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {
+  outline: none;
+  border: none;
+}
+
+.selectedPatient {
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 10px;
+  height: 43px;
+  background: #E6F5F4;
+  border: 1px solid #009688;
+  border-radius: 20px;
+}
+
+.selectedPatient span {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #009688;
+}
+
+.selectedPatient i {
+  color: #797979;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+
+@media (max-width: 640px) {
+  .dropbtn {
+    font-size: 13px;
+    line-height: 13px;
+    padding: 10px;
   }
 
-  .dropbtn .material-icons{
-    font-size: 50px;
-    height: 50px;
-    width: 50px;
-    margin-left: 40px;
+  .dropbtn .material-icons {
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
   }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    border: 1px solid #ddd;
-    z-index: 1;
-    border-radius: 6px;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
 
   .searchField {
-    display: flex;
-    align-items: center;
-    padding: 24px;
-    background: white;
-    border-bottom: 1px solid #d3d3d36b;
+    padding: 10px;
   }
+
+  #myInput {
+    width: 240px !important;
+    height: 40px;
+    margin-right: 5px;
+    padding: 10px;
+  }
+
   .searchField img {
-    width: 48px;
-    height: 48px;
-    background: #00635A;
-    border-radius: 6px;
-    padding: 8px;
+    width: 38px;
+    height: 38px;
+    padding: 10px;
   }
-    /* The search field */
-    #myInput {
-        width: 458px !important;
-        height: 48px;
-        background: #F4F4F4;
-        border-radius: 6px;
-        margin-right: 8px;
-        border: none;
-      }
 
-      .namePtag {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 29px;
-        color: #4E4E4E;
-      }
+  .namePtag {
+    font-size: 15px;
+    line-height: 18px;
+  }
 
-      .emailPtag {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 24px;
-        color: #4E4E4E;
-      }
-      .menuItemsContainer {
-        max-height: 260px;
-        overflow-y: auto;    
-      }
+  .emailPtag {
+    font-size: 13px;
+    line-height: 16px;
+  }
 
-      .menuItemDiv {
-        background: white;
-        cursor: pointer;
-        padding: 16px 24px;
-        border-bottom: 1px solid #d3d3d357;
-      }
+  .selectedPatient {
+    padding: 10px;
+    height: 35px;
+  }
 
-      .menuItemDiv:hover {
-        background: #f8f8f8;
-      }
-      
-      /* The search field when it gets focus/clicked on */
-      #myInput:focus {outline: none; border: none;}    
+  .selectedPatient span {
+    font-size: 12px;
+  }
 
-      .selectedPatient {
-        width: max-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 8px 24px;
-        gap: 10px;
-        height: 43px;
-        background: #E6F5F4;
-        border: 1px solid #009688;
-        border-radius: 20px;
-      }
-      .selectedPatient span {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 24px;
-        color: #009688;
-      }
-      .selectedPatient i {
-        color: #797979;
-        cursor: pointer;
-        font-weight: 700;
-      }
+  .stats-div {
+    padding: 10px;
+  }
+
+  .stats-div .stat label {
+    font-size: 13px;
+    line-height: 14px;
+  }
+
+  .table thead th {
+    font-size: 13px !important;
+    line-height: 15px !important;
+  }
+
+  .table .viewCol {
+    width: 60px !important;
+  }
+
+  tbody tr td {
+    font-size: 13px !important;
+    line-height: 15px !important;
+  }
+
+  .paginationDiv {
+    font-size: 13px;
+    line-height: 15px;
+  }
+
+  #googleMapsDiv,
+  #video-tag,
+  .tableContainer {
+    height: 50vh !important;
+  }
+
+  .thirdDiv h6 {
+    font-size: 17px;
+    line-height: 20px;
+  }
+
+  .thirdDiv textarea {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .btn-cls {
+    font-size: 13px;
+    height: 36px;
+  }
+}
+
 /* img{
     height: 50%;
 } */
