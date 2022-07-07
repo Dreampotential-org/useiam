@@ -1,12 +1,17 @@
 function init() {
 
+    $("#video-tag").hide();
+    $("#googleMapsDiv").hide();
+    $("#selectedPatient").hide();
+
     if(!localStorage.getItem('session_id')){
       location.href ='login.html'
     }
 
     list_patients(function (response) {
       
-      display_activity_patients(response.patients);
+      // display_activity_patients(response.patients);
+      displayPatientsDropDown(response.patients);
     });
 
     get_all_activity(function(events) {
@@ -21,6 +26,16 @@ function init() {
     $("#send_feedback").on("click", function (e) {
       
       
+    });
+
+    $("#deleteSelectedPatient").on("click", function (e) {
+      var selectedPatient= document.getElementById('selectedPatient');
+      if (selectedPatient) {
+        selectedPatient.getElementsByTagName('span')[0].innerText = '';
+        $("#selectedPatient").hide();
+      }
+      get_all_activity(function(events) {
+      });
     });
     
 
@@ -136,7 +151,7 @@ function display_activity_patients(patients, value) {
 
 
   patients.forEach((patient,i)=>{
-    html+= `<div id="collapseOne" onclick="playXYZ('${patient.email}','${i}','${patients}')" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    html+= `<div id="collapseOne" onclick="playXYZ('${patient.email}','${i}','${patient.name}')" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
     <div style="padding: 10px;
     border-radius: 5px;
     margin: 10px;
@@ -167,6 +182,26 @@ function display_activity_patients(patients, value) {
   $(".select-patient").html(html);
 
   // $(".select-patient").val(value);
+}
+
+function displayPatientsDropDown(patients) {
+  var html = "";
+  html+= `<div class="searchField">
+    <input type="text" placeholder="Search patient" id="myInput" onkeyup="filterFunction()">
+    <img src="./img/search.png"/>
+  </div>
+  <div class="menuItemsContainer">`
+  patients.forEach((patient,i)=>{
+  html+=
+    `<span onclick="playXYZ('${patient.email}','${i}','${patient.name}')">
+        <div class="menuItemDiv">
+          <p class="m-0 namePtag">${patient.name }</p>
+          <p class="m-0 emailPtag">${patient.email}</p>
+        </div>
+    </span>`;
+  });
+  html+= `</div>`
+  $("#myDropdown").html(html);
 }
 
 function get_all_activity(callback) {
@@ -204,16 +239,20 @@ function get_all_activity(callback) {
     });
 }
 
-function playXYZ(patient,index,patients){
- 
-  console.log('xyz')
+function playXYZ(patient,index,name){
   $(".next").show();
   $(".prev").show();
-
-  var abcd= document.getElementById('mycustom')
+  
+  
+  var selectedPatient= document.getElementById('selectedPatient');
+  if (selectedPatient) {
+    selectedPatient.getElementsByTagName('span')[0].innerText = name;
+    $("#selectedPatient").show();
+  }
+  var abcd= document.getElementById('mycustom');
  
-  abcd.click()
-
+  abcd && abcd.click();
+  document.getElementById("myDropdown") && document.getElementById("myDropdown").classList.remove('show');
 
   var settings = {
     async: true,
@@ -258,7 +297,8 @@ function play_video(index,url) {
   // alert('hiii-----'+index+"url"+url);
   URL = url
   console.log('server',SERVER,url,localStorage.getItem('session_id'))
-
+  $("#googleMapsDiv").hide();
+  $("#video-tag").show();
   var video = document.getElementById('video-tag');
   video.src = SERVER+url+'&token='+localStorage.getItem("session_id")
   console.log('videi',video)
@@ -428,7 +468,11 @@ function openMap(lat, lng) {
     zoom: 10,
   };
 
-  var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+  $("#video-tag").hide();
+  $("#googleMapsDiv").show();
+  $(".feedback_received").html('');
+
+  var map = new google.maps.Map(document.getElementById("googleMapsDiv"), mapProp);
 
   geocoder.geocode(
     { location: { lat: parseFloat(lat), lng: parseFloat(lng) } },
@@ -460,7 +504,7 @@ function openMap(lat, lng) {
   );
 
   // mapModal.style.display = "block";
-  $("#mapModal").modal("show");
+  // $("#mapModal").modal("show");
 }
 
 function display_table_list(patients) {
@@ -481,13 +525,13 @@ function display_table_list(patients) {
                 if (patient.type == "gps") {
                   html +=
                     // `<a target="_blank" href="https://www.google.com/maps/place/${e.lat},${e.lng}"><i class="material-icons align-middle">room</i></a>`
-                  ` <td>
+                  ` <td class="viewCol">
                       <a href="javascript:void(0);" onclick="openMap(${patient.lat},${patient.lng})"><i class="material-icons align-middle">room</i></a>
                    </td>`
                 }
                 if(patient.type =="video")
                 html+=`
-                <td>
+                <td class="viewCol">
                     <i class="material-icons align-middle" style="color: #009688; cursor:pointer; font-size: 30px" id="myBtn" onclick="play_video(${i},'${
                       patient.url
                     }')">play_circle_filled</i>
