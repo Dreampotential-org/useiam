@@ -462,7 +462,6 @@ function api_list_patient_events(url, callback) {
 
 function openMap(lat, lng) {
   var geocoder = new google.maps.Geocoder();
-
   var mapProp = {
     center: new google.maps.LatLng(lat, lng),
     zoom: 10,
