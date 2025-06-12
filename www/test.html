@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RecordRTC Simple Demos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="js/sweetalert.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.6.31/dist/dbr.js"></script>
+    <style>
+      video {
+        max-width: 100%;
+      }
+
+      #video-container {
+        position: relative;
+      }
+
+      #overlay {
+        max-width: 100%;
+      }
+      
+      .absolute {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+
+      .barcode-polygon {
+        fill:rgba(85,240,40,0);          
+        stroke:green;
+        stroke-width:5;
+      }
+          
+      .barcode-polygon:hover {
+        fill:rgba(85,240,40,0.5);
+        stroke:green;
+        stroke-width:5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <select id="select-camera"></select>
+    <select id="select-resolution">
+      <option selected>640x480</option>
+      <option>1280x720</option>
+      <option>1920x1080</option>
+      <option>3840x2160</option>
+    </select>
+    
+    <button id="btn-start-recording">Start Recording</button>
+    <button id="btn-stop-recording" disabled>Stop Recording</button>
+    <label>
+      Stop after reading a barcode
+      <input checked type="checkbox" id="chk-stop-after-decoding" value="true"/>
+    </label>
+    <hr>
+    <div id="video-container">
+      <video class="absolute" controls autoplay playsinline></video>
+      <svg class="absolute" id="overlay" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <button id="btn-download">Download</button>
+    <script src="RecordRTC.js"></script>
+    <script>
+    var video = document.querySelector('video');
+    var overlay = document.getElementById("overlay");
+    var cameraSelect = document.getElementById("select-camera");
+    var resolutionSelect = document.getElementById("select-resolution");
+    var devices;
+    var hasMicrophone = true;
+    var scanner;
+    var interval;
+    var decoding = false;
+    window.onload = function(){
+      listDevices();
+      initDBR();
+    }
+
+    video.onloadeddata = function(){
+      document.getElementById("video-container").style.height = video.clientHeight + "px";
+      overlay.setAttribute("width",video.clientWidth);
+      overlay.setAttribute("height",video.clientHeight);
+      overlay.setAttribute("viewBox","0 0 "+video.videoWidth+" "+video.videoHeight);
+    }
+
+    function startScanning(){
+      stopScanning();
+      overlay.style.display = "";
+      interval = setInterval(captureAndDecode,200);
+    }
+
+    function stopScanning(){
+      overlay.style.display = "none";
+      if (interval) {
+        clearInterval(interval);
+        interval = undefined;
+      }
+      decoding = false;
+    }
+
+    async function captureAndDecode(){
+      if (decoding === false) {
+        decoding = true;
+        try {
+          var results = await scanner.decode(video);
+          drawOverlay(results);
+          if (document.getElementById("chk-stop-after-decoding").checked) {
+            if (results.length>0) {
+              stopRecording();
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
+        decoding = false;
+      }
+    }
+
+    async function initDBR(){
+      Dynamsoft.DBR.BarcodeScanner.license = 'DLS2eyJoYW5kc2hha2VDb2RlIjoiMjAwMDAxLTE2NDk4Mjk3OTI2MzUiLCJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSIsInNlc3Npb25QYXNzd29yZCI6IndTcGR6Vm05WDJrcEQ5YUoifQ=='; //one-day public trial
+      scanner = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+    }
+
+    async function listDevices(){
+      devices = await getCameraDevices()
+      for (let index = 0; index < devices.length; index++) {
+        const device = devices[index];
+        cameraSelect.appendChild(new Option(device.label ?? "Camera "+index,device.deviceId));
+      }
+    }
+
+    async function getCameraDevices(){
+      await askForPermissions();
+      var devices = await navigator.mediaDevices.enumerateDevices();
+      var cameraDevices = [];
+      for (var i=0;i<devices.length;i++){
+        var device = devices[i];
+        if (device.kind == 'videoinput'){
+          cameraDevices.push(device);
+        }
+      }
+      return cameraDevices;
+    }
+
+    async function askForPermissions(){
+      var stream;
+      try {
+        var constraints = {video: true, audio: true}; //ask for camera and microphone permission
+        stream = await navigator.mediaDevices.getUserMedia(constraints);  
+      } catch (error) {
+        console.log(error);
+        var constraints = {video: true, audio: false}; //ask for camera permission only
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        hasMicrophone = false;
+      }
+      closeStream(stream);
+    }
+
+    function closeStream(stream){
+      try{
+        if (stream){
+          stream.getTracks().forEach(track => track.stop());
+        }
+      } catch (e){
+        alert(e.message);
+      }
+    }
+
+    function captureCamera(callback) {
+      var constraints = {
+        audio:false,
+        video:true
+      }
+      if (cameraSelect.selectedOptions[0]) {
+        var device = devices[cameraSelect.selectedIndex];
+        var deviceID = device.deviceId;
+        console.log(deviceID);
+        constraints = {
+          video: {deviceId: deviceID},
+          audio: hasMicrophone
+        }
+      }
+      if (resolutionSelect.selectedOptions[0]) {
+        let desiredWidth = resolutionSelect.selectedOptions[0].label.split("x")[0];
+        let desiredHeight = resolutionSelect.selectedOptions[0].label.split("x")[1];
+        if (constraints["video"]["deviceId"]) {
+          constraints["video"]["width"] = desiredWidth;
+          constraints["video"]["height"] = desiredHeight;
+        }else{
+          constraints = {width:desiredWidth,height:desiredHeight};
+        }
+      }
+      navigator.mediaDevices.getUserMedia(constraints).then(function(camera) {
+        //video.srcObject = camera;
+        callback(camera);
+      }).catch(function(error) {
+        alert('Unable to capture your camera. Please check console logs.');
+        console.error(error);
+      });
+    }
+
+    function drawOverlay(results){
+      overlay.innerHTML = "";
+      for (let index = 0; index < results.length; index++) {
+        const result = results[index];
+        var points = getPointsData(result.localizationResult);
+        var polygon = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+        polygon.setAttribute("points",points);
+        polygon.setAttribute("class","barcode-polygon");
+        var title = document.createElementNS("http://www.w3.org/2000/svg","title");
+        title.textContent = result.barcodeText;
+        polygon.append(title);
+        overlay.append(polygon);
+      }
+    }
+
+    function getPointsData(lr){
+        var pointsData = lr.x1+","+lr.y1 + " ";
+        pointsData = pointsData+ lr.x2+","+lr.y2 + " ";
+        pointsData = pointsData+ lr.x3+","+lr.y3 + " ";
+        pointsData = pointsData+ lr.x4+","+lr.y4;
+        return pointsData;
+    }
+
+    function stopRecordingCallback() {
+      video.src = video.srcObject = null;
+      video.muted = false;
+      video.volume = 1;
+      video.src = URL.createObjectURL(recorder.getBlob());
+      
+      recorder.camera.stop();
+      recorder.destroy();
+      recorder = null;
+    }
+
+    var recorder; // globally accessible
+
+    document.getElementById('btn-start-recording').onclick = function() {
+      this.disabled = true;
+      captureCamera(function(camera) {
+        video.muted = true;
+        video.volume = 0;
+        video.srcObject = camera;
+        startScanning();
+        recorder = RecordRTC(camera, {
+          type: 'video'
+        });
+
+        recorder.startRecording();
+
+        // release camera on stopRecording
+        recorder.camera = camera;
+
+        document.getElementById('btn-stop-recording').disabled = false;
+      });
+    };
+
+    document.getElementById('btn-stop-recording').onclick = function() {
+      stopRecording();
+    };
+
+    function stopRecording(){
+      stopScanning();
+      document.getElementById('btn-stop-recording').disabled = true;
+      document.getElementById('btn-start-recording').disabled = false;
+      recorder.stopRecording(stopRecordingCallback);
+    }
+
+    document.getElementById("btn-download").onclick = function() {
+      if (!interval) {
+        var a = document.createElement("a");
+        a.href = video.src;
+        document.body.appendChild(a);
+        a.click();
+        a.remove()
+      }
+    };
+    </script>
+  </body>
+</html>
