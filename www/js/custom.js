@@ -47,7 +47,7 @@ function init() {
   //  init_doctor_login_stuff();
 
   // populates user profile image
-  get_profile_info();
+  get_profile_info(function() {}, false);
   $("body").show();
 }
 

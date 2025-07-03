@@ -70,26 +70,6 @@ function init_monitor() {
     $("#signinModal").hide();
   });
 
-  // $("body").delegate(".org_list li", "click", function (e) {
-  //       e.preventDefault();
-  //       SELECTED_ORG_ID = $(this).attr("id");
-  //       SELECTED_ORG_LOGO = $(this).attr("org_image");
-  //       $("#signupModal").addClass("is-visible");
-  //       $("#orgModal").removeClass("is-visible");
-  //       document.getElementById('selected_org').innerHTML = '<img src=' + $(this).attr("org_image") + '>';
-  //  })
-
-  $("#sober_count").on("click", function (e) {
-    get_profile_info(function (msg) {
-      if (msg.sober_date) {
-        $("#sober_date_update").val(msg.sober_date);
-      }
-      show_set_sober_date();
-      // closes side menu
-      $(".toggleBar").click();
-    });
-  });
-
   $("#setSoberDate #nextBtn").on("click", function (e) {
     do_set_sober_date();
   });
@@ -463,8 +443,10 @@ function do_set_monitor() {
     data: form,
   };
 
+  toggleloadingon()
   $.ajax(settings)
     .done(function (response) {
+      toggleloadingoff()
       var msg = JSON.parse(response).message;
       swal("Monitor has been added", {
         icon: "success",
@@ -553,7 +535,10 @@ $("#backbuttonsetmonitor").on("click", function (e) {
 });
 
 
-function get_profile_info(callback) {
+function get_profile_info(callback, loading) {
+   if (loading != false) 
+       toggleloadingon()
+
   if (!localStorage.getItem("session_id")) {
     return;
   }
@@ -572,6 +557,7 @@ function get_profile_info(callback) {
 
   $.ajax(settings)
     .done(function (response) {
+      toggleloadingoff()
       var msg = JSON.parse(response);
       if (msg.user_org && msg.user_org.logo) {
         $(".logo img").attr('src', msg.user_org.logo);
@@ -632,8 +618,9 @@ function list_monitors(callback) {
 }
 
 
+
 function list_orgs(callback) {
-  console.log('monitor.js > list_orgs');
+  console.log('monitor.js > listorgs');
 
   var settings = {
     async: true,

@@ -11,6 +11,22 @@ function init_login_stuff() {
 
 }
 
+function toggleloadingon() { 
+
+   swal({
+      title: "Setting up",
+      text: "Just a momemt,.",
+      icon: "info",
+      buttons: false,
+      closeOnEsc: false,
+      closeOnClickOutside: false,
+    });
+
+}
+function toggleloadingoff() { 
+    swal.close()
+}
+
 function user_logged_in() {
     if (localStorage.getItem("session_id")) {
         showATab("dashboard");
@@ -125,6 +141,7 @@ function handle_signup() {
 }
 
 function signup_api(params) {
+    toggleloadingon()
     if (params.days_sober == null) {
         params.days_sober = "0";
     }
@@ -145,6 +162,7 @@ function signup_api(params) {
     var settings = {
         async: true,
         crossDomain: true,
+	    // TODO rename to createuser
         url: SERVER + "/api/create-user/",
         method: "POST",
         processData: false,
@@ -155,7 +173,20 @@ function signup_api(params) {
 
     $.ajax(settings)
         .done(function (response) {
-            console.log(response)
+	   
+            if (JSON.parse(response).message.includes("User already exists")) {
+	      // XXX try login account with users email/password 
+		swal({
+		title: "Whoops",
+		text: "Account for email already exists",
+		icon: "error",
+		});
+            	$("#signupModal #nextBtn").removeClass("running");
+		return
+	   }
+
+
+
             $("#signupModal #nextBtn").removeClass("running");
             closeAllModals();
             if (Object.keys(JSON.parse(response)).includes('token')) {
@@ -177,8 +208,6 @@ function signup_api(params) {
                         $(".moto").show();
                         showATab("dashboard");
                         closeAllModals();
-
-
 
                     });
                 } else {

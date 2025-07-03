@@ -1,4 +1,4 @@
-docker-compose -f docker-compose-prod.yml down
-docker-compose -f docker-compose-prod.yml build
-docker-compose -f docker-compose-prod.yml up -d
+sudo docker compose -f docker-compose-prod.yml down
+sudo docker compose -f docker-compose-prod.yml build
+sudo docker compose -f docker-compose-prod.yml up -d
 
