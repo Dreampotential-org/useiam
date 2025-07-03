@@ -401,6 +401,7 @@ function handle_login_code_api(email, code, callback) {
 
 
 function login_api(email, password, callback) {
+    toggleloadingon()
     var form = new FormData();
     form.append("username", email);
     form.append("password", password);
@@ -417,6 +418,7 @@ function login_api(email, password, callback) {
     };
     $.ajax(settings)
         .done(function (response) {
+	    toggleloadingoff();
             localStorage.setItem("session_id", JSON.parse(response).token);
             console.log("user logged in");
             $("#signinModal").hide();
