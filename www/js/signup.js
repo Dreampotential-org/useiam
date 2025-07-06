@@ -151,7 +151,6 @@ function signup_api(params) {
     form.append("days_sober", params.days_sober);
     form.append("sober_date", null);
     form.append("password", params.password);
-    // form.append("notify_email", 'aaronorosen@gmail.com');
     form.append("source", window.location.host);
 
     var path = window.location.pathname;
@@ -192,6 +191,9 @@ function signup_api(params) {
             if (Object.keys(JSON.parse(response)).includes('token')) {
                 localStorage.setItem("session_id", JSON.parse(response).token);
 
+		//if (SELECTED_ORG_ID == null) {
+                //   SELECTED_ORG_ID = getUrlVars(url)["orgid"]
+		//}
                 if (SELECTED_ORG_ID) {
                     do_set_org(SELECTED_ORG_ID, SELECTED_ORG_LOGO, function () {
                         swal({

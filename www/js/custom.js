@@ -372,22 +372,6 @@ $("#feedback").on("click", function (e) {
   }, false);
 });
 
-function closeAllModals() {
-  // $("#logincodeModal").removeClass("is-visible");
-  $("#setOrgModal").removeClass("is-visible");
-  $("#signinModal").removeClass("is-visible");
-  $("#signupModal").removeClass("is-visible");
-  $("#LocationModal").removeClass("is-visible");
-  $("#videoInfo").removeClass("is-visible");
-  $("#setmonitorModal").removeClass("is-visible");
-  $("#setTimeModal").removeClass("is-visible");
-  $("#inviteModal").removeClass("is-visible");
-  $("#setSoberDate").removeClass("is-visible");
-  $("#proTip").removeClass("is-visible");
-  $("#instructionsModal").removeClass("is-visible");
-  $("#paymentForm").removeClass("is-visible");
-}
-
 //setting height of video recorder
 var totalHeight = $("body").outerHeight();
 var headerHeight = $("header").outerHeight();

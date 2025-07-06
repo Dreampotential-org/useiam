@@ -135,7 +135,6 @@ function signup_api(params) {
   form.append("email", params.email);
   form.append("days_sober", params.days_sober);
   form.append("password", params.password);
-  //form.append("notify_email", 'aaronorosen@gmail.com');
 
   var settings = {
     async: true,
@@ -147,6 +146,8 @@ function signup_api(params) {
     mimeType: "multipart/form-data",
     data: form,
   };
+
+  toggleloadingon()
 
   $.ajax(settings)
     .done(function (response) {
@@ -162,13 +163,17 @@ function signup_api(params) {
       }
       localStorage.setItem("session_id", JSON.parse(response).token);
       console.log("user logged in");
-      //after successful login or signup show dashboard contents
 
       swal({
-        title: "Account Created",
-        text: "You will now be able to view monitor events via email",
-        icon: "success",
-      });
+             'title': 'Account Created',
+             'text': 'You will now be able to view monitor events via email',
+             'icon': 'success',
+         });
+
+	window.location = '/clients.html'
+
+
+
     })
     .fail(function (err) {
       $("#signup").removeClass("running");
